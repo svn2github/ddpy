@@ -131,7 +131,7 @@ Module MConfig
                 info.FileName = "C:\\Program Files\\DanDing\\DdpyCfg.exe"
             Else
                 ' 开发
-                info.FileName = "E:\\DanDing\\Release\\DdpyCfg.exe"
+                info.FileName = "D:\\DanDing\\Release\\DdpyCfg.exe"
             End If
 
             System.Diagnostics.Process.Start(info)
@@ -149,6 +149,7 @@ Module MConfig
 
             lstApp.Add("devenv")  ' VS
             lstApp.Add("firefox")  ' firefox
+            lstApp.Add("WINWORD")  ' Word
         End If
 
         For Each name As String In lstApp
