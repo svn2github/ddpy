@@ -1,0 +1,19 @@
+LIBRARY		DdpyIme.dll
+
+EXPORTS         
+			ImeInquire
+			ImeProcessKey
+			ImeSelect
+			ImeSetActiveContext
+			ImeToAsciiEx
+            ImeConfigure
+
+			ImeConversionList
+            ImeDestroy
+            ImeEscape
+            NotifyIME            
+            ImeRegisterWord      
+            ImeUnregisterWord    
+            ImeGetRegisterWordStyle  
+            ImeEnumRegisterWord          
+            ImeSetCompositionString   

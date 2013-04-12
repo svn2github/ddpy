@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{B53AA007-2B5C-4E89-B726-D03F8CC74D17}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DdpyCom</RootNamespace>
+    <AssemblyName>DdpyCom</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>DdpyCom.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Release\</OutputPath>
+    <DocumentationFile>DdpyCom.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CCand.vb" />
+    <Compile Include="CDandingPy.vb" />
+    <Compile Include="ComClass.vb" />
+    <Compile Include="CWord.vb" />
+    <Compile Include="FrmImeDebug.Designer.vb">
+      <DependentUpon>FrmImeDebug.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmImeDebug.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmImeInput.Designer.vb">
+      <DependentUpon>FrmImeInput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmImeInput.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmImeStatus.Designer.vb">
+      <DependentUpon>FrmImeStatus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmImeStatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MConfig.vb" />
+    <Compile Include="MDanDingKeys.vb" />
+    <Compile Include="MDebug.vb" />
+    <Compile Include="MIme.vb" />
+    <Compile Include="MPinYinBreak.vb" />
+    <Compile Include="MServer.vb" />
+    <Compile Include="MWinApi.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FrmImeDebug.resx">
+      <DependentUpon>FrmImeDebug.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmImeInput.resx">
+      <DependentUpon>FrmImeInput.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmImeStatus.resx">
+      <DependentUpon>FrmImeStatus.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SetN.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BdFullF.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BdFullN.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BdHalfF.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BdHalfN.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KbN.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LngA.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LngCnF.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LngCnN.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LngEnF.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LngEnN.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MdFullF.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MdFullN.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MdHalfF.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MdHalfN.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pin.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SetF.PNG" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
