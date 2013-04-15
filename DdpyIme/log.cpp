@@ -3,7 +3,7 @@
 //#pragma comment(lib, "shell32.lib")  
 
 
-#define LOGFILE  "d:/ImeLog.txt"
+#define LOGFILE  "C:/ImeLog.txt"
 
 
 void WriteLog(char * pszFormat,...)

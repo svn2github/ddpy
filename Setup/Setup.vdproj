@@ -33,6 +33,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_58FADB60E0AE4B00BF50517DD5C89615"
+        "OwnerKey" = "8:_03D686F2F97045C6AD4E8B00422B0F0C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_64172A0333F54355887172B339BF633D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -59,12 +65,6 @@
         {
         "MsmKey" = "8:_9C25533911B1493FA3FDD2EA6FB15777"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9D61E3368EDB4DCA926DB5A92829067B"
-        "OwnerKey" = "8:_03D686F2F97045C6AD4E8B00422B0F0C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -154,7 +154,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:..\\Release\\DdpySetup-Beta1.msi"
+        "OutputFilename" = "8:..\\Release\\DdpySetup.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -441,7 +441,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:淡定拼音输入法"
         "ProductCode" = "8:{C2095991-AADE-4845-B3DD-9EEB3DD1298E}"
-        "PackageCode" = "8:{9DABA5B0-6FA4-41DE-BA60-632A887B3EF8}"
+        "PackageCode" = "8:{BD76FFD0-AF1B-47A9-ADE3-853C10A0BB93}"
         "UpgradeCode" = "8:{CD159289-698A-4D90-B1F5-8581CCB62EAE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -942,11 +942,11 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_9D61E3368EDB4DCA926DB5A92829067B"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_58FADB60E0AE4B00BF50517DD5C89615"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
-            "SourcePath" = "8:Microsoft_VC100_DebugCRT_x86.msm"
+            "SourcePath" = "8:Microsoft_VC100_CRT_x86.msm"
                 "Properties"
                 {
                 }
@@ -961,7 +961,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_03D686F2F97045C6AD4E8B00422B0F0C"
             {
-            "SourcePath" = "8:..\\Debug\\DdpyIme.dll"
+            "SourcePath" = "8:..\\Release\\DdpyIme.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8DD9D0C6FDCF4473A7288658B7642822"
@@ -989,7 +989,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_33AB183A903C4BA386E20DDEBD8091DD"
             {
-            "SourcePath" = "8:..\\DdpyCfg\\obj\\x86\\Debug\\DdpyCfg.exe"
+            "SourcePath" = "8:..\\DdpyCfg\\obj\\x86\\Release\\DdpyCfg.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_59EEFE34E26E482C97E7A5F2A94DE38E"
@@ -1017,7 +1017,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6915719AE77B45729C29D811D6BA03AC"
             {
-            "SourcePath" = "8:..\\DdpyCom\\obj\\Debug\\DdpyCom.dll"
+            "SourcePath" = "8:..\\DdpyCom\\obj\\Release\\DdpyCom.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_59EEFE34E26E482C97E7A5F2A94DE38E"
@@ -1045,7 +1045,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7644560E3BD34A60AFA387B3B0132D6C"
             {
-            "SourcePath" = "8:..\\DdpySrv\\obj\\x86\\Debug\\DdpySrv.exe"
+            "SourcePath" = "8:..\\DdpySrv\\obj\\x86\\Release\\DdpySrv.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_59EEFE34E26E482C97E7A5F2A94DE38E"
@@ -1073,7 +1073,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_ED258406B99E414E88E7E5F838C83093"
             {
-            "SourcePath" = "8:..\\DdpyInstaller\\obj\\Debug\\DdpyInstaller.dll"
+            "SourcePath" = "8:..\\DdpyInstaller\\obj\\Release\\DdpyInstaller.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_59EEFE34E26E482C97E7A5F2A94DE38E"
