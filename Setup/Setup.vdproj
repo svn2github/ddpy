@@ -441,7 +441,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:淡定拼音输入法"
         "ProductCode" = "8:{C2095991-AADE-4845-B3DD-9EEB3DD1298E}"
-        "PackageCode" = "8:{BD76FFD0-AF1B-47A9-ADE3-853C10A0BB93}"
+        "PackageCode" = "8:{6D179301-01D9-49A2-9434-0267FA848EF3}"
         "UpgradeCode" = "8:{CD159289-698A-4D90-B1F5-8581CCB62EAE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -561,10 +561,38 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_500CC3A669A1494FBD0FC4410C81D790"
+            {
+            "Name" = "8:打开输入法日志目录"
+            "Arguments" = "8:Log"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_7644560E3BD34A60AFA387B3B0132D6C"
+            "Folder" = "8:_9B74D56DD18945CE8CD55705B8D80098"
+            "WorkingFolder" = "8:_59EEFE34E26E482C97E7A5F2A94DE38E"
+            "Icon" = "8:_6D832FD2CCCC475691B81DBCD012440F"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_649FBE8414C943768B1575EF8916627E"
+            {
+            "Name" = "8:打开输入法数据目录"
+            "Arguments" = "8:Data"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_7644560E3BD34A60AFA387B3B0132D6C"
+            "Folder" = "8:_9B74D56DD18945CE8CD55705B8D80098"
+            "WorkingFolder" = "8:_59EEFE34E26E482C97E7A5F2A94DE38E"
+            "Icon" = "8:_6D832FD2CCCC475691B81DBCD012440F"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_724E5BDDEB4E450E96A7F9BD339A82DD"
             {
             "Name" = "8:打开输入法用户目录"
-            "Arguments" = "8:"
+            "Arguments" = "8:User"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"

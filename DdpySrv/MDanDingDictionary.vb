@@ -72,9 +72,12 @@ Module MDanDingDictionary
             Dim lstKey As New List(Of String)
             For Each key As String In mDicCacheTick.Keys
 
-                ' 缓存保留10秒
-                If (nowTick - mDicCacheTick(key)) > 100000000 Then
+                ' 缓存保留30秒
+                If (nowTick - mDicCacheTick(key)) > 300000000 Then
                     lstKey.Add(key)
+                Else
+                    Dim lst As List(Of CWord) = mDicCache(key)
+                    lst.Sort()
                 End If
 
             Next

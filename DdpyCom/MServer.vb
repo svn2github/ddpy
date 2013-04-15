@@ -84,7 +84,7 @@ Module MServer
     End Function
 
     ''' <summary>
-    ''' 取得后台服务对象（连接失败时再尝试一次）
+    ''' 取得后台服务对象（创建失败时再尝试一次）
     ''' </summary>
     ''' <returns>后台服务对象</returns>
     Private Function GetDdpyServer() As Object
@@ -92,9 +92,13 @@ Module MServer
             If server Is Nothing Then
                 server = CreateObject("DdpySrv.ComClass")
             End If
-            server.SrvGetMaxPageCnt()
         Catch ex As Exception
-            server = CreateObject("DdpySrv.ComClass")
+            ComDebug(ex)
+            Try
+                server = CreateObject("DdpySrv.ComClass")
+            Catch exx As Exception
+                ComDebug(exx)
+            End Try
         End Try
 
         Return server

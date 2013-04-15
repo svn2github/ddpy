@@ -172,7 +172,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
-    <PostBuildEvent>C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe  $(TargetPath)</PostBuildEvent>
+    <PostBuildEvent>C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe   $(TargetPath)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

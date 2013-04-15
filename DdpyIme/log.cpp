@@ -3,7 +3,7 @@
 //#pragma comment(lib, "shell32.lib")  
 
 
-#define LOGFILE  "C:/ImeLog.txt"
+#define LOGFILE  "C:\\Documents and Settings\\All Users\\Application Data\\DanDing\\Log\\ImeLog.txt"
 
 
 void WriteLog(char * pszFormat,...)
@@ -18,7 +18,7 @@ void WriteLog(char * pszFormat,...)
 #ifdef LOGFILE
 	{
 
-	FILE *f=fopen(buf, "a+"); 
+	FILE *f=fopen(LOGFILE, "a+"); 
 
 	if(f)
 	{

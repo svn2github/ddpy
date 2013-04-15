@@ -24,6 +24,24 @@ Module ZMainModule
             Return
         End If
 
+        If args(0) = "User" Then
+            System.Diagnostics.Process.Start(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData)
+            Return
+        End If
+
+        If args(0) = "Data" Then
+            System.Diagnostics.Process.Start(My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData)
+            Return
+        End If
+
+        If args(0) = "Log" Then
+            Dim sPath As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData
+            sPath = My.Computer.FileSystem.GetParentPath(sPath)
+            sPath = My.Computer.FileSystem.GetParentPath(sPath) & "\Log"
+            System.Diagnostics.Process.Start(sPath)
+            Return
+        End If
+
         ' Run the out-of-process COM server
         ZExeCOMServer.Instance.Run()
 
