@@ -147,7 +147,7 @@ Module MConfig
         If lstApp Is Nothing Then
             lstApp = New List(Of String)
 
-            lstApp.Add("devenv")  ' VS
+            lstApp.Add("devenv")   ' VS
             lstApp.Add("firefox")  ' firefox
             lstApp.Add("WINWORD")  ' Word
         End If
