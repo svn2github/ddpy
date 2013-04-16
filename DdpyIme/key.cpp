@@ -61,7 +61,7 @@ BOOL HandleImeKeys(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKeySt
 		ComDebug(L" 调用 COM 处理结束");
 		return TRUE;
 	}catch(...){
-		ImeLog("[HandleImeKeys] Exception");
+		ImeError("[HandleImeKeys] Exception");
 		return FALSE;
 	}
 }
@@ -1034,7 +1034,7 @@ BOOL SetFieldValue(UINT fldIdex, BOOL bValue)
 		return TRUE;
 
 	}catch(...){
-		ImeLog("[SetFieldValue] Exception");
+		ImeError("[SetFieldValue] Exception");
 		return FALSE;
 	}
 }

@@ -78,7 +78,7 @@ BOOL ImeRegisterClass( HINSTANCE hInst )
     wc.hIconSm        = NULL;
 	
     if( !RegisterClassEx(&wc) ){
-		ImeLog("[ImeRegisterClass] RegisterClassEx Failed");
+		ImeError("[ImeRegisterClass] RegisterClassEx Failed");
         return FALSE;
 	}
 
@@ -92,7 +92,7 @@ BOOL WINAPI DllMain (HINSTANCE hInst, DWORD dwFunction, LPVOID lpNot)
 		if (dwFunction == DLL_PROCESS_ATTACH)
 		{
 			if (!ComInit()){
-				ImeLog("[DllMain] ComInit Failed");
+				ImeError("[DllMain] ComInit Failed");
 				return FALSE;
 			}
 
@@ -104,7 +104,7 @@ BOOL WINAPI DllMain (HINSTANCE hInst, DWORD dwFunction, LPVOID lpNot)
 
 		return TRUE;
 	}catch(...){
-		ImeLog("[DllMain] Exception");
+		ImeError("[DllMain] Exception");
 		return FALSE;
 	}
 }

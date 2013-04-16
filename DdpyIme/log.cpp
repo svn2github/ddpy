@@ -29,10 +29,16 @@ void WriteLog(char * pszFormat,...)
 #endif
 }
 
-void ImeLog(char * text)
+void ImeDebug(char * text)
 {
+#if defined (DEVELOP)
+	WriteLog(text);
+	WriteLog("\n");
+#endif
+}
 
+void ImeError(char * text)
+{
 	WriteLog(text);
 	WriteLog("\n");
 }
-

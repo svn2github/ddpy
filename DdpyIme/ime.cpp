@@ -10,7 +10,7 @@ BOOL WINAPI ImeProcessKey(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE l
 	try{
 		return HandleKeys(hImc, iKey, lpKeyData, lpbKeyState);
 	}catch(...){
-		ImeLog("[ImeProcessKey] Exception");
+		ImeError("[ImeProcessKey] Exception");
 		return FALSE;
 	}
 }
@@ -19,7 +19,7 @@ BOOL WINAPI ImeProcessKey(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE l
 BOOL WINAPI ImeInquire(LPIMEINFO lpImeInfo, LPTSTR lpszUiCls, DWORD dwSystemInfoFlags)
 {
 	if ( !lpImeInfo || !lpszUiCls){
-		ImeLog("[ImeInquire] !lpImeInfo || !lpszUiCls");
+		ImeError("[ImeInquire] !lpImeInfo || !lpszUiCls");
 		return FALSE;
 	}
 
@@ -39,7 +39,7 @@ BOOL WINAPI ImeInquire(LPIMEINFO lpImeInfo, LPTSTR lpszUiCls, DWORD dwSystemInfo
 
 		return TRUE;
 	}catch(...){
-		ImeLog("[ImeInquire] Exception");
+		ImeError("[ImeInquire] Exception");
 		return FALSE;
 	}
 }
@@ -53,7 +53,7 @@ BOOL WINAPI ImeSelect(HIMC hImc, BOOL bSelect)
 
 		return ComImeSelect(bSelect);
 	}catch(...){
-		ImeLog("[ImeSelect] Exception");
+		ImeError("[ImeSelect] Exception");
 		return FALSE;
 	}
 }
@@ -65,7 +65,7 @@ BOOL WINAPI ImeSetActiveContext(HIMC hImc, BOOL bFlag)
 	try{
 		return ComImeSetActiveContext(bFlag);
 	}catch(...){
-		ImeLog("[ImeSetActiveContext] Exception");
+		ImeError("[ImeSetActiveContext] Exception");
 		return FALSE;
 	}
 }

@@ -18,43 +18,43 @@ BOOL ComInit(){
 	try{
 		hr = CoInitialize(NULL);
 		if (FAILED(hr)){
-			ImeLog("[ComInit] 1 Call CoInitialize Failed");
+			ImeError("[ComInit] 1 Call CoInitialize Failed");
 			return FALSE;
 		}
              
 		rc = CLSIDFromProgID(ComClsName, &clsId);
 		if (FAILED(rc)) {
-			ImeLog("[ComInit] 2 Call CLSIDFromProgID Failed");
+			ImeError("[ComInit] 2 Call CLSIDFromProgID Failed");
 			return FALSE;
 		}
 
 		rc = CoCreateInstance(clsId, NULL, CLSCTX_INPROC_SERVER, __uuidof(_ComClass), (LPVOID*) &pComCls);
 		if (FAILED(rc)) {
-			ImeLog("[ComInit] 3 Call CoCreateInstance Failed");
+			ImeError("[ComInit] 3 Call CoCreateInstance Failed");
 			return FALSE;
 		}
 
 		return TRUE;
 	}catch(...){
-		ImeLog("[ComInit] Exception");
+		ImeError("[ComInit] Exception");
 		return FALSE;
 	}
 }
 
 BOOL ComImeProcessKey(UINT iKey, ImeKeyResult * ikr, BSTR * sResult){
 	if (!pComCls){
-		ImeLog("[ComImeProcessKey] ComObject Null");
+		ImeError("[ComImeProcessKey] ComObject Null");
 		return FALSE;
 	}
 
 	try{
 		HRESULT hr = pComCls->ImeProcessKey(iKey, ikr, sResult);
 		if (FAILED(hr)){
-			ImeLog("[ComImeProcessKey] Call COM Failed");
+			ImeError("[ComImeProcessKey] Call COM Failed");
 		}
 		return !FAILED(hr);
 	}catch(...){
-		ImeLog("[ComImeProcessKey] Exception");
+		ImeError("[ComImeProcessKey] Exception");
 		return FALSE;
 	}
 }
@@ -63,18 +63,18 @@ BOOL ComImeProcessKey(UINT iKey, ImeKeyResult * ikr, BSTR * sResult){
 BOOL ComImeSelect (BOOL bSel){
 
 	if (!pComCls){
-		ImeLog("[ComImeSelect] ComObject Null");
+		ImeError("[ComImeSelect] ComObject Null");
 		return FALSE;
 	}
 
 	try{
 		HRESULT hr = pComCls->ImeSelect( bSel, &isNeedStartEndMsg);
 		if (FAILED(hr)){
-			ImeLog("[ComImeSelect] Call COM Failed");
+			ImeError("[ComImeSelect] Call COM Failed");
 		}
 		return !FAILED(hr);
 	}catch(...){
-		ImeLog("[ComImeSelect] Exception");
+		ImeError("[ComImeSelect] Exception");
 		return FALSE;
 	}
 }
@@ -82,18 +82,18 @@ BOOL ComImeSelect (BOOL bSel){
 BOOL ComImeConfigure(){
 
 	if (!pComCls){
-		ImeLog("[ComImeConfigure] ComObject Null");
+		ImeError("[ComImeConfigure] ComObject Null");
 		return FALSE;
 	}
 
 	try{
 		HRESULT hr = pComCls->ImeConfigure();
 		if (FAILED(hr)){
-			ImeLog("[ComImeConfigure] Call COM Failed");
+			ImeError("[ComImeConfigure] Call COM Failed");
 		}
 		return !FAILED(hr);
 	}catch(...){
-		ImeLog("[ComImeConfigure] Exception");
+		ImeError("[ComImeConfigure] Exception");
 		return FALSE;
 	}
 }
@@ -101,18 +101,18 @@ BOOL ComImeConfigure(){
 BOOL ComImeSetActiveContext(BOOL bSetActive){
 
 	if (!pComCls){
-		ImeLog("[ComImeSetActiveContext] ComObject Null");
+		ImeError("[ComImeSetActiveContext] ComObject Null");
 		return FALSE;
 	}
 
 	try{
 		HRESULT hr = pComCls->ImeSetActiveContext(bSetActive);
 		if (FAILED(hr)){
-			ImeLog("[ComImeSetActiveContext] Call COM Failed");
+			ImeError("[ComImeSetActiveContext] Call COM Failed");
 		}
 		return !FAILED(hr);
 	}catch(...){
-		ImeLog("[ComImeSetActiveContext] Exception");
+		ImeError("[ComImeSetActiveContext] Exception");
 		return FALSE;
 	}
 }
@@ -122,18 +122,18 @@ BOOL ComDebug(LPCWSTR str){
 #ifdef DEVELOP
 
 	if (!pComCls){
-		ImeLog("[ComDebug] ComObject Null");
+		ImeError("[ComDebug] ComObject Null");
 		return FALSE;
 	}
 
 	try{
 		HRESULT hr = pComCls->Debug((_bstr_t)str);
 		if (FAILED(hr)){
-			ImeLog("[ComDebug] Call COM Failed");
+			ImeError("[ComDebug] Call COM Failed");
 		}
 		return !FAILED(hr);
 	}catch(...){
-		ImeLog("[ComDebug] Exception");
+		ImeError("[ComDebug] Exception");
 		return FALSE;
 	}
 
@@ -146,18 +146,18 @@ BOOL ComDebug(LPCWSTR str){
 BOOL ComShowStatusText(unsigned short idx, LPCWSTR str){
 
 	if (!pComCls){
-		ImeLog("[ComShowStatusText] ComObject Null");
+		ImeError("[ComShowStatusText] ComObject Null");
 		return FALSE;
 	}
 
 	try{
 		HRESULT hr = pComCls->ShowStatusText(idx, (_bstr_t)str);
 		if (FAILED(hr)){
-			ImeLog("[ComShowStatusText] Call COM Failed");
+			ImeError("[ComShowStatusText] Call COM Failed");
 		}
 		return !FAILED(hr);
 	}catch(...){
-		ImeLog("[ComShowStatusText] Exception");
+		ImeError("[ComShowStatusText] Exception");
 		return FALSE;
 	}
 }
@@ -165,18 +165,18 @@ BOOL ComShowStatusText(unsigned short idx, LPCWSTR str){
 BOOL ComSetUiHwnd(long hwnd){
 
 	if (!pComCls){
-		ImeLog("[ComSetUiHwnd] ComObject Null");
+		ImeError("[ComSetUiHwnd] ComObject Null");
 		return FALSE;
 	}
 
 	try{
 		HRESULT hr = pComCls->SetUiHwnd(hwnd);
 		if (FAILED(hr)){
-			ImeLog("[ComSetUiHwnd] Call COM Failed");
+			ImeError("[ComSetUiHwnd] Call COM Failed");
 		}
 		return !FAILED(hr);
 	}catch(...){
-		ImeLog("[ComSetUiHwnd] Exception");
+		ImeError("[ComSetUiHwnd] Exception");
 		return FALSE;
 	}
 }

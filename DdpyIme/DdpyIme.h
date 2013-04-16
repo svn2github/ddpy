@@ -43,4 +43,5 @@ BOOL HandleNotImeKeys(UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKeyState);
 BOOL HandleImeKeys(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKeyState);
 // ----------------------------------
 
-void ImeLog(char * text);
+void ImeDebug(char * text);
+void ImeError(char * text);
