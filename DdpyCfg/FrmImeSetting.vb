@@ -74,4 +74,7 @@ Public Class FrmSetting
         Me.Close()
     End Sub
 
+    Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        System.Diagnostics.Process.Start(LinkLabel1.Text)
+    End Sub
 End Class

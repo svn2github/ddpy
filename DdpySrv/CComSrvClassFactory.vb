@@ -28,13 +28,13 @@ Public Class CComSrvClassFactory
             ' Create the instance of the .NET object
 
             ' 实际运行用
-            'If comSrv Is Nothing Then
-            '    comSrv = New ComClass
-            'End If
-            'ppvObject = Marshal.GetComInterfaceForObject(comSrv, GetType(ComClass).GetInterface("_ComClass"))
+            If comSrv Is Nothing Then
+                comSrv = New ComClass
+            End If
+            ppvObject = Marshal.GetComInterfaceForObject(comSrv, GetType(ComClass).GetInterface("_ComClass"))
 
-            ' 开发用
-            ppvObject = Marshal.GetComInterfaceForObject(New ComClass, GetType(ComClass).GetInterface("_ComClass"))
+            '' 开发用
+            'ppvObject = Marshal.GetComInterfaceForObject(New ComClass, GetType(ComClass).GetInterface("_ComClass"))
 
         Else
             ' The object that ppvObject points to does not support the 

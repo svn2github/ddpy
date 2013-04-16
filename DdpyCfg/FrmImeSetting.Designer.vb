@@ -39,6 +39,8 @@ Partial Class FrmSetting
         Me.ChkVshow = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TxtTitle = New System.Windows.Forms.TextBox()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumPyLen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumPageCnt, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -46,7 +48,7 @@ Partial Class FrmSetting
         '
         'BtnOK
         '
-        Me.BtnOK.Location = New System.Drawing.Point(41, 239)
+        Me.BtnOK.Location = New System.Drawing.Point(61, 239)
         Me.BtnOK.Name = "BtnOK"
         Me.BtnOK.Size = New System.Drawing.Size(75, 23)
         Me.BtnOK.TabIndex = 1
@@ -55,7 +57,7 @@ Partial Class FrmSetting
         '
         'BtnClose
         '
-        Me.BtnClose.Location = New System.Drawing.Point(166, 239)
+        Me.BtnClose.Location = New System.Drawing.Point(200, 239)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(75, 23)
         Me.BtnClose.TabIndex = 2
@@ -72,7 +74,7 @@ Partial Class FrmSetting
         Me.GroupBox1.Controls.Add(Me.ChkEn)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(263, 100)
+        Me.GroupBox1.Size = New System.Drawing.Size(310, 100)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "模糊音"
@@ -90,7 +92,7 @@ Partial Class FrmSetting
         'ChkZhizhe
         '
         Me.ChkZhizhe.AutoSize = True
-        Me.ChkZhizhe.Location = New System.Drawing.Point(112, 62)
+        Me.ChkZhizhe.Location = New System.Drawing.Point(140, 62)
         Me.ChkZhizhe.Name = "ChkZhizhe"
         Me.ChkZhizhe.Size = New System.Drawing.Size(143, 16)
         Me.ChkZhizhe.TabIndex = 0
@@ -100,7 +102,7 @@ Partial Class FrmSetting
         'ChkZize
         '
         Me.ChkZize.AutoSize = True
-        Me.ChkZize.Location = New System.Drawing.Point(112, 40)
+        Me.ChkZize.Location = New System.Drawing.Point(140, 40)
         Me.ChkZize.Name = "ChkZize"
         Me.ChkZize.Size = New System.Drawing.Size(107, 16)
         Me.ChkZize.TabIndex = 0
@@ -110,7 +112,7 @@ Partial Class FrmSetting
         'ChkZzh
         '
         Me.ChkZzh.AutoSize = True
-        Me.ChkZzh.Location = New System.Drawing.Point(112, 18)
+        Me.ChkZzh.Location = New System.Drawing.Point(140, 18)
         Me.ChkZzh.Name = "ChkZzh"
         Me.ChkZzh.Size = New System.Drawing.Size(98, 16)
         Me.ChkZzh.TabIndex = 0
@@ -203,11 +205,32 @@ Partial Class FrmSetting
         Me.TxtTitle.Size = New System.Drawing.Size(151, 19)
         Me.TxtTitle.TabIndex = 6
         '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.AutoSize = True
+        Me.LinkLabel1.Location = New System.Drawing.Point(120, 301)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(151, 12)
+        Me.LinkLabel1.TabIndex = 7
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "http://ddpy.googlecode.com/"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(54, 302)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(59, 12)
+        Me.Label4.TabIndex = 8
+        Me.Label4.Text = "项目主页："
+        '
         'FrmSetting
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(288, 288)
+        Me.ClientSize = New System.Drawing.Size(335, 332)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.TxtTitle)
         Me.Controls.Add(Me.NumPageCnt)
         Me.Controls.Add(Me.NumPyLen)
@@ -250,5 +273,7 @@ Partial Class FrmSetting
     Friend WithEvents ChkVshow As System.Windows.Forms.CheckBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents TxtTitle As System.Windows.Forms.TextBox
+    Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
+    Friend WithEvents Label4 As System.Windows.Forms.Label
 
 End Class
