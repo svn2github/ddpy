@@ -622,7 +622,12 @@ BOOL HandleConverterChar(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lp
 		}else if (iKey == 188){
 			SetResult(hImc, (!isShiftKeyDown? L"，" : L"＜") );
 		}else if (iKey == 190){
-			SetResult(hImc, (!isShiftKeyDown? L"．" : L"＞") );
+			if (isDot){
+				SetResult(hImc, (!isShiftKeyDown? L"." : L"＞") );
+				isDot = false;
+			}else{
+				SetResult(hImc, (!isShiftKeyDown? L"．" : L"＞") );
+			}
 		}else if (iKey == 191){
 			SetResult(hImc, (!isShiftKeyDown? L"／" : L"？") );
 
@@ -756,7 +761,12 @@ BOOL ConvertFullChar(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKey
 		}else if (iKey == 188){
 			SetResult(hImc, (!isShiftKeyDown? L"，" : L"＜") );
 		}else if (iKey == 190){
-			SetResult(hImc, (!isShiftKeyDown? L"．" : L"＞") );
+			if (isDot){
+				SetResult(hImc, (!isShiftKeyDown? L"." : L"＞") );
+				isDot = false;
+			}else{
+				SetResult(hImc, (!isShiftKeyDown? L"．" : L"＞") );
+			}
 		}else if (iKey == 191){
 			SetResult(hImc, (!isShiftKeyDown? L"／" : L"？") );
 
@@ -869,7 +879,12 @@ BOOL ConvertFullChar(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKey
 		}else if (iKey == 188){
 			SetResult(hImc, (!isShiftKeyDown? L"，" : L"《") );
 		}else if (iKey == 190){
-			SetResult(hImc, (!isShiftKeyDown? L"。" : L"》") );
+			if (isDot){
+				SetResult(hImc, (!isShiftKeyDown? L"." : L"》") );
+				isDot = false;
+			}else{
+				SetResult(hImc, (!isShiftKeyDown? L"。" : L"》") );
+			}
 		}else if (iKey == 191){
 			SetResult(hImc, (!isShiftKeyDown? L"/" : L"？") );
 
@@ -922,20 +937,18 @@ BOOL HandleKeys(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKeyState
 		}
 	}
 
-	if ( GetKeyState(VK_CAPITAL)){
-		return ConvertFullChar(hImc, iKey, lpKeyData, lpbKeyState);
-	}
-
-
-	if ( !isShiftKeyDown && ( (iKey >= 48 && iKey <= 57) || (iKey >= 96 && iKey <= 105 ) )  ){
-		isDot = true; // 正输入数字，紧接着按点的话不转换成句号
-	}
-
 	if (!HandleNotImeKeys(iKey, lpKeyData, lpbKeyState)){
 		return FALSE;
 	}
 	
+	if ( !isShiftKeyDown && ( (iKey >= 48 && iKey <= 57) || (iKey >= 96 && iKey <= 105 ) )  ){
+		isDot = true; // 正输入数字，紧接着按点的话不转换成句号
+	}
 
+	if ( GetKeyState(VK_CAPITAL)){
+		return ConvertFullChar(hImc, iKey, lpKeyData, lpbKeyState);
+	}
+	
 	if ( (isCnMode && !isInputStart && ((iKey < 0x41) || (iKey > 0x5A)) )
 					 || (!isCnMode) ) {
 
@@ -943,6 +956,7 @@ BOOL HandleKeys(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKeyState
 		return HandleConverterChar(hImc, iKey, lpKeyData, lpbKeyState);
 	}
 
+	isDot = false;
 
 	return HandleImeKeys(hImc, iKey, lpKeyData, lpbKeyState);
 }
