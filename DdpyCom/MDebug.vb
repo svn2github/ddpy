@@ -18,6 +18,14 @@ Module MDebug
         ComDebug(ex.Message & vbNewLine & ex.StackTrace)
     End Sub
 
+    Friend Sub ComInfo(ByVal info As String)
+
+        Dim sLogFile As String = GetUserLogPath() & "\\DdpyCom-" & Now.ToString("yyyy-MM-dd") & ".log"
+        Dim txt As String = Now.ToString("yyyy-MM-dd HH:mm:ss.fff  ") & info & vbNewLine
+        My.Computer.FileSystem.WriteAllText(sLogFile, txt, True, Encoding.UTF8)
+
+    End Sub
+
     Friend Sub ComDebug(ByVal info As String, Optional ByVal newLine As Boolean = True)
 
         'Dim sLogFile As String = GetUserLogPath() & "\\DdpyCom-" & Now.ToString("yyyy-MM-dd") & ".log"

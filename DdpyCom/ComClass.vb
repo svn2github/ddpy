@@ -40,8 +40,9 @@ Public Class ComClass
     Public Sub New()
         MyBase.New()
 
-        My.Computer.FileSystem.WriteAllText("d:\\ime.txt", Process.GetCurrentProcess().ProcessName & vbNewLine, False, Encoding.UTF8)
-        isWuNaiApp = IsNeedSendStartEndMsg(Process.GetCurrentProcess().ProcessName)
+        Dim appName As String = Process.GetCurrentProcess().ProcessName
+        ComInfo("当前应用程序名：" & appName)
+        isWuNaiApp = IsNeedSendStartEndMsg(appName)
 
         frmInput = New FrmImeInput
         frmStatus = New FrmImeStatus
@@ -172,6 +173,7 @@ Public Class ComClass
             End If
             frmStatus.Show()
 
+            ComInfo("当前应用程序名：" & Process.GetCurrentProcess().ProcessName)
         Else
             P_LNG_CN = True
             P_MODE_FULL = False
