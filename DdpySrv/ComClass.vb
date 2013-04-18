@@ -111,6 +111,11 @@ Public Class ComClass
                     ' 无视过长文字
                     Continue For
                 End If
+                Dim shotPy As String = Strings.Join(GetMutilShotPys(pys(i)), "")
+                If shotPy.Length > 4 AndAlso shotPy.Replace(Strings.Left(shotPy, 1), "").Length = 0 Then
+                    ' 无视4个以上的重复拼音字
+                    Continue For
+                End If
 
 
                 Dim newWord As New CWord()
