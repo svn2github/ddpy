@@ -149,7 +149,8 @@ Module MConfig
 
             lstApp.Add("devenv")   ' VS
             lstApp.Add("firefox")  ' firefox
-            '  lstApp.Add("WINWORD")  ' Word
+            lstApp.Add("WINWORD")  ' Word
+            lstApp.Add("EXCEL")  ' Excel
         End If
 
         For Each name As String In lstApp

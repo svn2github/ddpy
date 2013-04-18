@@ -84,21 +84,22 @@ Module MServer
     End Function
 
     ''' <summary>
-    ''' 取得后台服务对象（创建失败时再尝试一次）
+    ''' 取得后台服务对象
     ''' </summary>
     ''' <returns>后台服务对象</returns>
     Private Function GetDdpyServer() As Object
+
+        If True Then
+            ' 看看慢不慢
+            Return CreateObject("DdpySrv.ComClass")
+        End If
+
         Try
             If server Is Nothing Then
                 server = CreateObject("DdpySrv.ComClass")
             End If
         Catch ex As Exception
             ComDebug(ex)
-            Try
-                server = CreateObject("DdpySrv.ComClass")
-            Catch exx As Exception
-                ComDebug(exx)
-            End Try
         End Try
 
         Return server
