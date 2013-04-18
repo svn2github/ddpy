@@ -24,7 +24,7 @@ BOOL HandleImeKeys(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKeySt
 
 		
 		if (!isInputStart && IsNeedSendStartEndMsg()){
-			ComDebug(L" 无奈的无奈");
+			ImeDebug(" IsNeedSendStartEndMsg");
 			SendStartEndMsg(hImc); // 无奈的无奈
 		}
 
@@ -554,7 +554,7 @@ BOOL HandleConverterChar(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lp
 
 
 			}else if (iKey == 191){
-				SetResult(hImc, (!isShiftKeyDown? L"/" : L"?") );
+				SetResult(hImc, (!isShiftKeyDown? L"/" : L"？") );
 
 			}else if (iKey == 32){
 				SetResult(hImc, L" " );
