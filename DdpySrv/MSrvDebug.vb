@@ -8,13 +8,13 @@ Module MSrvDebug
     Private oldTime As Integer = 0
     Private sLogPath As String = ""
 
-    Public Function GetUserLogPath() As String
+    Public Function GetAllUsersLogPath() As String
 
         If Not sLogPath = "" Then
             Return sLogPath
         End If
 
-        Dim sPath As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData
+        Dim sPath As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData
         sPath = My.Computer.FileSystem.GetParentPath(sPath)
         sPath = My.Computer.FileSystem.GetParentPath(sPath) & "\\Log"
 
@@ -38,7 +38,7 @@ Module MSrvDebug
 
     Public Sub ComError(ByVal info As String, Optional ByVal ex As Exception = Nothing)
 
-        Dim sLogFile As String = GetUserLogPath() & "\\DdpySrv-" & Now.ToString("yyyy-MM-dd") & ".log"
+        Dim sLogFile As String = GetAllUsersLogPath() & "\\DdpySrv-" & Now.ToString("yyyy-MM-dd") & ".log"
         Dim txt As String = Now.ToString("yyyy-MM-dd HH:mm:ss.fff ") & info & vbNewLine
         If Not ex Is Nothing Then
             txt = txt & ex.Message & vbNewLine & ex.StackTrace & vbNewLine

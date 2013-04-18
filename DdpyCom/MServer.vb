@@ -71,9 +71,9 @@ Module MServer
     ''' 取得用户Log目录
     ''' </summary>
     ''' <returns>用户Log目录</returns>
-    Public Function GetUserLogPath() As String
+    Public Function GetAllUsersLogPath() As String
         Try
-            Return GetDdpyServer().SrvGetUserLogPath()
+            Return GetDdpyServer().SrvGetAllUsersLogPath()
         Catch ex As Exception
             Dim sPath As String = "C:\\Documents and Settings\\All Users\\Application Data\\DanDing\\Log"
             If Not My.Computer.FileSystem.DirectoryExists(sPath) Then

@@ -40,9 +40,7 @@ Public Class ComClass
     Public Sub New()
         MyBase.New()
 
-        Dim appName As String = Process.GetCurrentProcess().ProcessName
-        ComInfo("当前应用程序名：" & appName)
-        isWuNaiApp = IsNeedSendStartEndMsg(appName)
+        isWuNaiApp = IsNeedSendStartEndMsg(Process.GetCurrentProcess().ProcessName)
 
         frmInput = New FrmImeInput
         frmStatus = New FrmImeStatus
@@ -173,7 +171,7 @@ Public Class ComClass
             End If
             frmStatus.Show()
 
-            ComInfo("当前应用程序名：" & Process.GetCurrentProcess().ProcessName)
+            ComInfo("此应用程序打开输入法：" & Process.GetCurrentProcess().ProcessName)
         Else
             P_LNG_CN = True
             P_MODE_FULL = False

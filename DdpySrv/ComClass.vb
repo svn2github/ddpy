@@ -224,8 +224,8 @@ Public Class ComClass
     ''' 取得用户Log目录
     ''' </summary>
     ''' <returns>用户Log目录</returns>
-    Public Function SrvGetUserLogPath() As String
-        Return GetUserLogPath()
+    Public Function SrvGetAllUsersLogPath() As String
+        Return GetAllUsersLogPath()
     End Function
   
 End Class

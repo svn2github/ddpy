@@ -11,7 +11,7 @@ Module MDebug
 
     Friend Sub ComDebug(ByVal ex As Exception)
 
-        Dim sLogFile As String = GetUserLogPath() & "\\DdpyCom-" & Now.ToString("yyyy-MM-dd") & ".log"
+        Dim sLogFile As String = GetAllUsersLogPath() & "\\DdpyCom-" & Now.ToString("yyyy-MM-dd") & ".log"
         Dim txt As String = Now.ToString("yyyy-MM-dd HH:mm:ss.fff  ") & ex.Message & vbNewLine & ex.StackTrace & vbNewLine
         My.Computer.FileSystem.WriteAllText(sLogFile, txt, True, Encoding.UTF8)
 
@@ -20,7 +20,7 @@ Module MDebug
 
     Friend Sub ComInfo(ByVal info As String)
 
-        Dim sLogFile As String = GetUserLogPath() & "\\DdpyCom-" & Now.ToString("yyyy-MM-dd") & ".log"
+        Dim sLogFile As String = GetAllUsersLogPath() & "\\DdpyCom-" & Now.ToString("yyyy-MM-dd") & ".log"
         Dim txt As String = Now.ToString("yyyy-MM-dd HH:mm:ss.fff  ") & info & vbNewLine
         My.Computer.FileSystem.WriteAllText(sLogFile, txt, True, Encoding.UTF8)
 

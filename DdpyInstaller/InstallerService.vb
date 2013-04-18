@@ -26,13 +26,21 @@ Public Class InstallerService
 
         Dim installPath As String = My.Computer.FileSystem.GetFileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName
 
+        Dim imeName As String = "淡定拼音输入法"
+
         ' 安装IME
-        ImmInstallIME("C:\\WINDOWS\\system32\\DdpyIme.dll", "淡定拼音输入法 Beta 0.1")
+        ImmInstallIME("C:\\WINDOWS\\system32\\DdpyIme.dll", imeName)
 
         ' 注册后台服务COM
         Dim info As New System.Diagnostics.ProcessStartInfo
         info.FileName = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
         info.Arguments = """" & installPath & "\\DdpySrv.exe"""
+        info.WindowStyle = ProcessWindowStyle.Hidden
+        System.Diagnostics.Process.Start(info)
+
+        ' 注册COM
+        info.FileName = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
+        info.Arguments = "/codebase """ & installPath & "\\DdpyCom.dll"""
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
 
@@ -50,6 +58,13 @@ Public Class InstallerService
         info.Arguments = "/u """ & installPath & "\\DdpySrv.exe"""
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
+
+        ' 卸载COM
+        info.FileName = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
+        info.Arguments = "/u """ & installPath & "\\DdpyCom.dll"""
+        info.WindowStyle = ProcessWindowStyle.Hidden
+        System.Diagnostics.Process.Start(info)
+
     End Sub
 
     Private Sub DdpyInstaller_AfterUninstall(ByVal sender As Object, ByVal e As System.Configuration.Install.InstallEventArgs) Handles Me.AfterUninstall
