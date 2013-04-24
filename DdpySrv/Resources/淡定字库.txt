@@ -4273,6 +4273,7 @@
 费	f	fei	4019
 府	f	fu	4038
 放	f	fang	4057
+份	f	fen	4070
 分	f	fen	4076
 法	f	fa	4095
 方	f	fang	4114
