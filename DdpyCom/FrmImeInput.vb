@@ -94,6 +94,7 @@ Friend Class FrmImeInput
     ''' </summary>
     Public Overloads Sub Hide()
         NotifyImeCloseCandidate()
+        MyBase.Hide()
     End Sub
 
     ''' <summary>
