@@ -28,9 +28,6 @@ Public Class InstallerService
 
         Dim imeName As String = "淡定拼音输入法"
 
-        ' 安装IME
-        ImmInstallIME("C:\\WINDOWS\\system32\\DdpyIme.dll", imeName)
-
         ' 注册后台服务COM
         Dim info As New System.Diagnostics.ProcessStartInfo
         info.FileName = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
@@ -43,6 +40,9 @@ Public Class InstallerService
         info.Arguments = "/codebase """ & installPath & "\\DdpyCom.dll"""
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
+
+        ' 安装IME
+        ImmInstallIME("C:\\WINDOWS\\system32\\DdpyIme.dll", imeName)
 
     End Sub
 
