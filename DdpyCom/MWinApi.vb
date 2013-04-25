@@ -6,6 +6,10 @@ Imports System.Runtime.InteropServices
 ''' </summary>
 Module MWinApi
 
+    Friend Const WM_IME_NOTIFY As Integer = &H282
+    Friend Const IMN_CLOSECANDIDATE As Integer = &H4
+    Friend Const IMN_OPENCANDIDATE As Integer = &H5
+
     Friend Const SW_SHOWNOACTIVATE As Integer = 4   ' 窗口显示时不抢占焦点
     Friend Const CS_VREDRAW As Integer = &H1
     Friend Const CS_HREDRAW As Integer = &H2

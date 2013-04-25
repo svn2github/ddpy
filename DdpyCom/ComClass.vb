@@ -69,7 +69,6 @@ Public Class ComClass
         Try
             DebugTimeStart()
 
-
             ComProcessKey(iKey, ikr)
 
             If ikr.IsProcessKey Then
@@ -85,7 +84,7 @@ Public Class ComClass
 
                         SrvRegisterWords(ddPy.InputWord)
 
-                        frmInput.Visible = False
+                        frmInput.Hide()
                         ddPy.Clear()
                     Else
 
@@ -104,7 +103,7 @@ Public Class ComClass
                 Else
                     ' Back the only char
                     If ddPy.InputPys.Length = 0 AndAlso ddPy.DispPyText2.Length = 0 Then
-                        frmInput.Visible = False
+                        frmInput.Hide()
                         ddPy.Clear()
                     End If
                 End If
@@ -122,9 +121,10 @@ Public Class ComClass
 
         Catch ex As Exception
             ComDebug(ex)
-            frmInput.Visible = False
+            frmInput.Hide()
             ddPy.Clear()
         End Try
+
     End Sub
 
 
@@ -225,6 +225,7 @@ Public Class ComClass
 
                 frmInput.Hide()
                 ddPy.Clear()
+
             End If
 
         ElseIf idx = 2 Then

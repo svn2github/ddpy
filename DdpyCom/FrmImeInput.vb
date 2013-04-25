@@ -86,6 +86,14 @@ Friend Class FrmImeInput
     Public Overloads Sub Show()
         ShowWindow(Me.Handle, SW_SHOWNOACTIVATE)
         ChangeLocation()
+        NotifyImeOpenCandidate()
+    End Sub
+
+    ''' <summary>
+    ''' 隐藏窗口
+    ''' </summary>
+    Public Overloads Sub Hide()
+        NotifyImeCloseCandidate()
     End Sub
 
     ''' <summary>
