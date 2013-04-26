@@ -139,9 +139,9 @@ Friend NotInheritable Class ZExeCOMServer
         ' When _nLockCnt drops to zero, the server can be shut down.
         Me._nLockCnt = 0
 
-        ' Start the GC timer to trigger GC every 10 seconds.
+        ' Start the GC timer to trigger GC every 5 seconds.
         Me._gcTimer = New Timer( _
-        New TimerCallback(AddressOf ZExeCOMServer.GarbageCollect), Nothing, 10000, 10000)
+        New TimerCallback(AddressOf ZExeCOMServer.GarbageCollect), Nothing, 5000, 5000)
 
     End Sub
 

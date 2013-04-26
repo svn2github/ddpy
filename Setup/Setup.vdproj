@@ -7,10 +7,6 @@
 "LanguageId" = "3:2052"
 "CodePage" = "3:936"
 "UILanguageId" = "3:2052"
-"SccProjectName" = "8:"
-"SccLocalPath" = "8:"
-"SccAuxPath" = "8:"
-"SccProvider" = "8:"
     "Hierarchy"
     {
         "Entry"
@@ -69,6 +65,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B50F17E078604453A19C71DEEF674FDD"
+        "OwnerKey" = "8:_03D686F2F97045C6AD4E8B00422B0F0C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_EB9FBCC2DAAE4877A0FCA9EDB080713D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -88,7 +90,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6915719AE77B45729C29D811D6BA03AC"
+        "OwnerKey" = "8:_ED258406B99E414E88E7E5F838C83093"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -100,7 +102,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ED258406B99E414E88E7E5F838C83093"
+        "OwnerKey" = "8:_6915719AE77B45729C29D811D6BA03AC"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -332,7 +334,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:2"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -424,7 +426,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:淡定拼音输入法"
         "ProductCode" = "8:{C2095991-AADE-4845-B3DD-9EEB3DD1298E}"
-        "PackageCode" = "8:{6D179301-01D9-49A2-9434-0267FA848EF3}"
+        "PackageCode" = "8:{1A516FB6-D916-439D-91D2-D18AD1BDFF4E}"
         "UpgradeCode" = "8:{CD159289-698A-4D90-B1F5-8581CCB62EAE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -953,6 +955,20 @@
         }
         "MergeModule"
         {
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_B50F17E078604453A19C71DEEF674FDD"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "SourcePath" = "8:Microsoft_VC100_CRT_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
         }
         "ProjectOutput"
         {

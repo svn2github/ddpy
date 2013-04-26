@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DllMain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Server.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TextService.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="com.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ITf1ThreadMgrEventSink.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ITf2TextEditSink.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ITf0TextInputProcessor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ITf3KeyEventSink.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ITf4CompositionSink.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ITf5ThreadFocusSink.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ITf6FnConfigure.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EditSessionInsertText.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EditSessionCaretPosition.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HandleKeys.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DdpyTsf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TextService.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EditSession.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Server.def">
+      <Filter>头文件</Filter>
+    </None>
+    <None Include="DdpyTsf.ico">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DdpyTsf.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

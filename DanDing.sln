@@ -13,6 +13,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DdpyInstaller", "DdpyInstaller\DdpyInstaller.vbproj", "{F6423666-DBA6-4E38-9C97-458B8EF43F72}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DdpyTsf", "DdpyTsf\DdpyTsf.vcxproj", "{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,18 @@ Global
 		{F6423666-DBA6-4E38-9C97-458B8EF43F72}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F6423666-DBA6-4E38-9C97-458B8EF43F72}.Release|Win32.ActiveCfg = Release|Any CPU
 		{F6423666-DBA6-4E38-9C97-458B8EF43F72}.Release|x86.ActiveCfg = Release|Any CPU
+		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Debug|Win32.Build.0 = Debug|Win32
+		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Debug|x86.ActiveCfg = Debug|Win32
+		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Release|Any CPU.ActiveCfg = Release|Win32
+		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Release|Win32.ActiveCfg = Release|Win32
+		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Release|Win32.Build.0 = Release|Win32
+		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Release|x86.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

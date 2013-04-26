@@ -110,9 +110,7 @@ Public Class ComClass
 
             Else
                 ' Key: 0 \ [ ] ; ' , . / `
-                ' MsgBox(iKey)
                 ComDebug("不处理的按键：" & iKey)
-
             End If
 
 
