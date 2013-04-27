@@ -8,6 +8,10 @@
 STDAPI CTextService::Activate(ITfThreadMgr *pThreadMgr, TfClientId tfClientId)
 {
 	TsfDebug("CTextService:ITfTextInputProcessor::Activate");
+		if (!ComInit()){
+			TsfError("[DllMain] ComInit Failed");
+			return FALSE;
+		}
 
 	ComImeSelect(true); // 打开淡定输入法状态栏
 
@@ -20,11 +24,11 @@ STDAPI CTextService::Activate(ITfThreadMgr *pThreadMgr, TfClientId tfClientId)
 	ITfDocumentMgr *pDocMgrFocus;
 
 
-	//// 初始化 ITfThreadMgrEventSink
-	//if (!_InitThreadMgrEventSink()){
-	//	TsfError("CTextService:ITfTextInputProcessor::Activate - _InitThreadMgrEventSink Failed");
-	//	goto ExitError;
-	//}
+	// 初始化 ITfThreadMgrEventSink
+	if (!_InitThreadMgrEventSink()){
+		TsfError("CTextService:ITfTextInputProcessor::Activate - _InitThreadMgrEventSink Failed");
+		goto ExitError;
+	}
 
 	// 初始化 ITfTextEditSink
 	if ((_pThreadMgr->GetFocus(&pDocMgrFocus) == S_OK) && (pDocMgrFocus != NULL)) {
@@ -64,6 +68,7 @@ STDAPI CTextService::Deactivate()
 
 	ComImeSelect(false); // 关闭淡定输入法状态栏
 
+	CoUninitialize();
 
 	// 注销 ITfThreadFocusSink
 	_UninitThreadFocusSink();
@@ -74,8 +79,8 @@ STDAPI CTextService::Deactivate()
 	// 注销 ITfTextEditSink
 	_UninitTextEditSink();
 
-	//// 注销 ITfThreadMgrEventSink
-	//_UninitThreadMgrEventSink();
+	// 注销 ITfThreadMgrEventSink
+	_UninitThreadMgrEventSink();
 
 	// 销毁打开输入法时保存的全局变量（TSF框架生成，经参数传入）
 	if (_pThreadMgr != NULL) {

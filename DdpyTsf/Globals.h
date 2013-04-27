@@ -24,6 +24,7 @@ extern CRITICAL_SECTION g_cs;
 extern const CLSID c_clsidTextService;
 extern const GUID c_guidProfile;
 
+extern SYSTEMTIME timeStart;
 
 //#endif // GLOBALS_H
 
