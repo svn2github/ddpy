@@ -3,7 +3,7 @@
 ''' <summary>
 ''' 文字类型
 ''' </summary>
-Public Enum WordType
+Friend Enum WordType
     ''' <summary>
     ''' 字典类型
     ''' </summary>
@@ -20,7 +20,7 @@ End Enum
 ''' </summary>
 ''' <remarks></remarks>
 <Serializable()> _
-Public Class CWord
+Friend Class CWord
     Implements IComparable
 
     Private vText As String                 ' 文字
