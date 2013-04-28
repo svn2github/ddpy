@@ -7,6 +7,10 @@
 "LanguageId" = "3:2052"
 "CodePage" = "3:936"
 "UILanguageId" = "3:2052"
+"SccProjectName" = "8:"
+"SccLocalPath" = "8:"
+"SccAuxPath" = "8:"
+"SccProvider" = "8:"
     "Hierarchy"
     {
         "Entry"
@@ -19,6 +23,12 @@
         {
         "MsmKey" = "8:_0D15F5D643B8AEE0F16194D162A64FC0"
         "OwnerKey" = "8:_03D686F2F97045C6AD4E8B00422B0F0C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0D15F5D643B8AEE0F16194D162A64FC0"
+        "OwnerKey" = "8:_F0D00B1FAF2D49FF88E5EDD6CCB1DC1C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -47,6 +57,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6EC64F869F0D4DB9932C53423E6AE683"
+        "OwnerKey" = "8:_03D686F2F97045C6AD4E8B00422B0F0C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7644560E3BD34A60AFA387B3B0132D6C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -65,8 +81,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B50F17E078604453A19C71DEEF674FDD"
-        "OwnerKey" = "8:_03D686F2F97045C6AD4E8B00422B0F0C"
+        "MsmKey" = "8:_D895DC36E65C4A5E9E10A6CB3B82B78F"
+        "OwnerKey" = "8:_F0D00B1FAF2D49FF88E5EDD6CCB1DC1C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -78,6 +94,12 @@
         "Entry"
         {
         "MsmKey" = "8:_ED258406B99E414E88E7E5F838C83093"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F0D00B1FAF2D49FF88E5EDD6CCB1DC1C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -386,6 +408,17 @@
                     }
                 }
             }
+            "{1525181F-901A-416C-8A58-119130FE478E}:_216B10B4D11C4CC5B48AB337716E92AA"
+            {
+            "Name" = "8:#1936"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:System64Folder"
+                "Folders"
+                {
+                }
+            }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_59EEFE34E26E482C97E7A5F2A94DE38E"
             {
             "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
@@ -426,7 +459,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:淡定拼音输入法"
         "ProductCode" = "8:{C2095991-AADE-4845-B3DD-9EEB3DD1298E}"
-        "PackageCode" = "8:{1A516FB6-D916-439D-91D2-D18AD1BDFF4E}"
+        "PackageCode" = "8:{6F8AA7D7-4F3E-429F-9940-A44672D6A51E}"
         "UpgradeCode" = "8:{CD159289-698A-4D90-B1F5-8581CCB62EAE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -447,7 +480,7 @@
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:1"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"
@@ -629,7 +662,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_298F0B0BA4634CE681964FE82865A013"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:进度"
+                    "DisplayName" = "8:Progress"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminProgressDlg.wid"
@@ -679,7 +712,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_4EC4F931857B457EB756EED03446321C"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:欢迎使用"
+                    "DisplayName" = "8:Welcome"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminWelcomeDlg.wid"
@@ -727,7 +760,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_E1B6914D7BCB490EA4CCB95937A7884F"
                     {
                     "Sequence" = "3:300"
-                    "DisplayName" = "8:确认安装"
+                    "DisplayName" = "8:Confirm Installation"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminConfirmDlg.wid"
@@ -758,7 +791,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_9FEC0D8FE2934A68AE18CB55053AAE9D"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:欢迎使用"
+                    "DisplayName" = "8:Welcome"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdWelcomeDlg.wid"
@@ -806,7 +839,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_D8E46070D2DB47FFBDC3ECFC33F63F24"
                     {
                     "Sequence" = "3:300"
-                    "DisplayName" = "8:确认安装"
+                    "DisplayName" = "8:Confirm Installation"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdConfirmDlg.wid"
@@ -837,7 +870,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_2E18B3931A5C42FCB26D91C0674F5A6B"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:进度"
+                    "DisplayName" = "8:Progress"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdProgressDlg.wid"
@@ -887,7 +920,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_6CE2B1DB155944A39A75824A5FDD23F8"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:已完成"
+                    "DisplayName" = "8:Finished"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdFinishedDlg.wid"
@@ -931,7 +964,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_CF603AA9F2004E7DA61BD67AAA7440BF"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:已完成"
+                    "DisplayName" = "8:Finished"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFinishedDlg.wid"
@@ -955,11 +988,25 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_B50F17E078604453A19C71DEEF674FDD"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_6EC64F869F0D4DB9932C53423E6AE683"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "SourcePath" = "8:Microsoft_VC100_CRT_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_D895DC36E65C4A5E9E10A6CB3B82B78F"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "SourcePath" = "8:Microsoft_VC100_CRT_x64.msm"
                 "Properties"
                 {
                 }
@@ -1030,7 +1077,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6915719AE77B45729C29D811D6BA03AC"
             {
-            "SourcePath" = "8:..\\DdpyCom\\obj\\Release\\DdpyCom.dll"
+            "SourcePath" = "8:..\\DdpyCom\\obj\\x86\\Release\\DdpyCom.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_59EEFE34E26E482C97E7A5F2A94DE38E"
@@ -1086,7 +1133,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_ED258406B99E414E88E7E5F838C83093"
             {
-            "SourcePath" = "8:..\\DdpyInstaller\\obj\\Release\\DdpyInstaller.dll"
+            "SourcePath" = "8:..\\DdpyInstaller\\obj\\x86\\Release\\DdpyInstaller.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_59EEFE34E26E482C97E7A5F2A94DE38E"
@@ -1107,6 +1154,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{F6423666-DBA6-4E38-9C97-458B8EF43F72}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F0D00B1FAF2D49FF88E5EDD6CCB1DC1C"
+            {
+            "SourcePath" = "8:..\\x64\\Release\\DdpyIme.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_216B10B4D11C4CC5B48AB337716E92AA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:Release|x64"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{46A1324E-68B9-4382-9EB5-363366F47821}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

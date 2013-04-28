@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "DdpyIme.h"
 
 
 _ComClass * pComCls;

@@ -1,5 +1,7 @@
-﻿#include "stdafx.h"
+﻿#include "DdpyIme.h"
 
+
+#define ARRAY_SIZE(a) (sizeof(a)/sizeof(a[0]))
 
 long uiHwnd = 0;  // UI窗口句柄
 
@@ -91,6 +93,10 @@ BOOL WINAPI DllMain (HINSTANCE hInst, DWORD dwFunction, LPVOID lpNot)
 	try{
 		if (dwFunction == DLL_PROCESS_ATTACH)
 		{
+			TCHAR achFileName[MAX_PATH];
+			GetModuleFileNameA(hInst, (LPSTR)achFileName, ARRAY_SIZE(achFileName));
+			ImeInfo((char *)achFileName);
+
 			if (!ComInit()){
 				ImeError("[DllMain] ComInit Failed");
 				return FALSE;

@@ -41,6 +41,11 @@ Public Class InstallerService
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
 
+        If IntPtr.Size = 8 Then
+            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+            System.Diagnostics.Process.Start(info)
+        End If
+
         ' 安装IME
         ImmInstallIME("C:\\WINDOWS\\system32\\DdpyIme.dll", imeName)
 
@@ -64,6 +69,11 @@ Public Class InstallerService
         info.Arguments = "/u """ & installPath & "\\DdpyCom.dll"""
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
+
+        If IntPtr.Size = 8 Then
+            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+            System.Diagnostics.Process.Start(info)
+        End If
 
     End Sub
 
@@ -108,7 +118,7 @@ Public Class InstallerService
         Dim keys As String() = regPreload.GetValueNames
 
         For Each key As String In keys
-            Dim name As String = regPreload.GetValue(key)
+            Dim name As String = CStr(regPreload.GetValue(key))
             regLayouts = My.Computer.Registry.LocalMachine.OpenSubKey(sLayouts & name)
 
             If sDdpyIme.Equals(CStr(regLayouts.GetValue("Ime File")), StringComparison.OrdinalIgnoreCase) Then

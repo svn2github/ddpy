@@ -59,6 +59,10 @@ Public Class ComClass
         ComDebug(str)
     End Sub
 
+    Public Function GetLogPath() As String
+        Return GetAllUsersLogPath()
+    End Function
+
     ''' <summary>
     ''' 处理输入法打开状态时的按键输入
     ''' </summary>

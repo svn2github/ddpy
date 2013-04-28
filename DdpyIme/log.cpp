@@ -1,44 +1,45 @@
 #include "stdafx.h"
 #include <shlobj.h>  
-//#pragma comment(lib, "shell32.lib")  
 
 
-#define LOGFILE  "C:\\Documents and Settings\\All Users\\Application Data\\DanDing\\Log\\ImeLog.txt"
+//#define LOGFILE  "C:\\Documents and Settings\\All Users\\Application Data\\DanDing\\Log\\ImeLog.txt"
+#define LOGFILE  "C:\\ProgramData\\DanDing\\Log\\ImeLog-%d-%02d-%02d.txt"
 
 
-void WriteLog(char * pszFormat,...)
+void WriteLog(char * sFormat)
 {
-	va_list args; 
-	char buf[1024];
-	va_start( args, pszFormat );
-	_vsnprintf(buf,sizeof(buf)-1, pszFormat,args);
-	va_end (args);
-	buf[sizeof(buf)-1]=0;
-	OutputDebugString((LPCWSTR)buf);
 #ifdef LOGFILE
-	{
 
-	FILE *f=fopen(LOGFILE, "a+"); 
+    SYSTEMTIME st;  
+    GetLocalTime(&st);  
 
-	if(f)
-	{
-		fprintf(f,buf);
-		fclose(f);
-	}
-	}
+    char filePath[1024];
+    sprintf_s(filePath, LOGFILE, st.wYear, st.wMonth, st.wDay);
+
+    FILE *fp;  
+    fp = fopen(filePath, "at+");  
+    fprintf(fp, "%d-%02d-%02d %02d:%02d:%02d.%03d ", st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond, st.wMilliseconds);  
+    fprintf(fp, sFormat);
+    fprintf(fp, "\n");
+    fclose(fp);  
+
 #endif
 }
+
 
 void ImeDebug(char * text)
 {
 #if defined (DEVELOP)
 	WriteLog(text);
-	WriteLog("\n");
 #endif
 }
 
 void ImeError(char * text)
 {
 	WriteLog(text);
-	WriteLog("\n");
+}
+
+void ImeInfo(char * text)
+{
+	WriteLog(text);
 }

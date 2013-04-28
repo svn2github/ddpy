@@ -44,4 +44,5 @@ BOOL HandleImeKeys(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKeySt
 // ----------------------------------
 
 void ImeDebug(char * text);
+void ImeInfo(char * text);
 void ImeError(char * text);
