@@ -93,9 +93,9 @@ BOOL WINAPI DllMain (HINSTANCE hInst, DWORD dwFunction, LPVOID lpNot)
 	try{
 		if (dwFunction == DLL_PROCESS_ATTACH)
 		{
-			TCHAR achFileName[MAX_PATH];
-			GetModuleFileNameA(hInst, (LPSTR)achFileName, ARRAY_SIZE(achFileName));
-			ImeInfo((char *)achFileName);
+			//TCHAR achFileName[MAX_PATH];
+			//GetModuleFileNameA(hInst, (LPSTR)achFileName, ARRAY_SIZE(achFileName));
+			//ImeInfo((char *)achFileName);
 
 			if (!ComInit()){
 				ImeError("[DllMain] ComInit Failed");

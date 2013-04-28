@@ -2,19 +2,24 @@
 #include <shlobj.h>  
 
 
-//#define LOGFILE  "C:\\Documents and Settings\\All Users\\Application Data\\DanDing\\Log\\ImeLog.txt"
-#define LOGFILE  "C:\\ProgramData\\DanDing\\Log\\ImeLog-%d-%02d-%02d.txt"
+#define LOG
+#define LOGFILEx86  "C:\\Documents and Settings\\All Users\\Application Data\\DanDing\\Log\\ImeLog.txt"
+#define LOGFILEx64  "C:\\ProgramData\\DanDing\\Log\\ImeLog-%d-%02d-%02d.txt"
 
 
 void WriteLog(char * sFormat)
 {
-#ifdef LOGFILE
+#ifdef LOG
 
     SYSTEMTIME st;  
     GetLocalTime(&st);  
 
     char filePath[1024];
-    sprintf_s(filePath, LOGFILE, st.wYear, st.wMonth, st.wDay);
+	if ( sizeof(long) == sizeof(int) ){
+		sprintf_s(filePath, LOGFILEx64, st.wYear, st.wMonth, st.wDay);
+	}else{
+		sprintf_s(filePath, LOGFILEx86, st.wYear, st.wMonth, st.wDay);
+	}
 
     FILE *fp;  
     fp = fopen(filePath, "at+");  
