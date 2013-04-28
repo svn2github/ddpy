@@ -1,4 +1,8 @@
-
+/**********************************************************************/
+/*      IMM.H - Input Method Manager definitions                      */
+/*                                                                    */
+/*      Copyright (c) 1993-1995  Microsoft Corporation                */
+/**********************************************************************/
 
 #ifndef _IMM_
 #define _IMM_        // defined if IMM.H has been included
@@ -865,7 +869,7 @@ DWORD  WINAPI ImmGetIMCCSize(HIMCC);
 #define SOFTKEYBOARD_TYPE_C1            0x0002
 
 // protype of IME APIs                                          
-BOOL    WINAPI ImeInquire(LPIMEINFO, LPTSTR lpszUIClass, LPCTSTR lpszOptions);                  
+BOOL    WINAPI ImeInquire(LPIMEINFO, LPTSTR lpszUIClass,DWORD dwSystemInfoFlags);                  
 BOOL    WINAPI ImeConfigure(HKL, HWND, DWORD, LPVOID);          
 DWORD   WINAPI ImeConversionList(HIMC, LPCTSTR, LPCANDIDATELIST, DWORD dwBufLen, UINT uFlag);   
 BOOL    WINAPI ImeDestroy(UINT);                                
