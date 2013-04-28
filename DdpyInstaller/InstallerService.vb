@@ -41,10 +41,10 @@ Public Class InstallerService
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
 
-        If IntPtr.Size = 8 Then
-            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
-            System.Diagnostics.Process.Start(info)
-        End If
+        'If IntPtr.Size = 8 Then
+        '    info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+        '    System.Diagnostics.Process.Start(info)
+        'End If
 
         ' 安装IME
         ImmInstallIME("C:\\WINDOWS\\system32\\DdpyIme.dll", imeName)
@@ -70,10 +70,10 @@ Public Class InstallerService
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
 
-        If IntPtr.Size = 8 Then
-            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
-            System.Diagnostics.Process.Start(info)
-        End If
+        'If IntPtr.Size = 8 Then
+        '    info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+        '    System.Diagnostics.Process.Start(info)
+        'End If
 
     End Sub
 
