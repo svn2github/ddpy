@@ -83,6 +83,11 @@
       <ModuleDefinitionFile>Server.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Link>
+      <ModuleDefinitionFile>Server.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="DdpyTsf.ico" />
     <None Include="Server.def" />

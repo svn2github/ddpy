@@ -2,5 +2,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ShowAllFiles>false</ShowAllFiles>
+    <LocalDebuggerCommandArguments Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">c:\\windows\\system32\\notepad.exe</LocalDebuggerCommandArguments>
+    <LocalDebuggerAttach Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</LocalDebuggerAttach>
+    <DebuggerFlavor Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArguments Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    </LocalDebuggerCommandArguments>
+    <LocalDebuggerAttach Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LocalDebuggerAttach>
+    <DebuggerFlavor Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
