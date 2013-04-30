@@ -52,11 +52,13 @@
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Debug\</OutputPath>
     <RegisterForComInterop>true</RegisterForComInterop>
+    <DocumentationFile>DdpyCom.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>..\Release\</OutputPath>
     <RegisterForComInterop>true</RegisterForComInterop>
+    <DocumentationFile>DdpyCom.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>

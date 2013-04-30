@@ -37,9 +37,12 @@ Friend Class FrmImeStatus
 
                 P_BD_FULL = False
                 PanBd.BackgroundImage = My.Resources.BdHalfF
+
+                frmInput.Hide()
+
             End If
 
-            SendUiMessage(1, IIf(P_LNG_CN, 1, 0))
+            NotifyIme(&H100, IIf(P_LNG_CN, 1, 0))
 
         Catch ex As Exception
             P_LNG_CN = Not P_LNG_CN
@@ -62,7 +65,7 @@ Friend Class FrmImeStatus
                 PanMode.BackgroundImage = My.Resources.MdHalfF
             End If
 
-            SendUiMessage(2, IIf(P_MODE_FULL, 1, 0))
+            NotifyIme(&H200, IIf(P_MODE_FULL, 1, 0))
 
         Catch ex As Exception
             P_MODE_FULL = Not P_MODE_FULL
@@ -77,7 +80,6 @@ Friend Class FrmImeStatus
     ''' </summary>
     Private Sub PanBd_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles PanBd.MouseClick
         Try
-
             If Not P_LNG_CN Then
                 Return
             End If
@@ -91,7 +93,7 @@ Friend Class FrmImeStatus
                 PanBd.BackgroundImage = My.Resources.BdHalfF
             End If
 
-            SendUiMessage(3, IIf(P_BD_FULL, 1, 0))
+            NotifyIme(&H300, IIf(P_BD_FULL, 1, 0))
 
         Catch ex As Exception
             P_BD_FULL = Not P_BD_FULL

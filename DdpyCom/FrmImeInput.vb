@@ -93,6 +93,7 @@ Friend Class FrmImeInput
     ''' 隐藏窗口
     ''' </summary>
     Public Overloads Sub Hide()
+        ddPy.Clear()
         NotifyImeCloseCandidate()
         MyBase.Hide()
     End Sub
@@ -292,9 +293,7 @@ Friend Class FrmImeInput
 
     Private Sub FrmImeInput_VisibleChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.VisibleChanged
         If Not Me.Visible Then
-            SendUiMessage(4, 0)
-            'Else
-            '    SendUiMessage(4, 1)
+            NotifyIme(&H400, 0)
         End If
     End Sub
 End Class

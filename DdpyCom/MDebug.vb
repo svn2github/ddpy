@@ -28,9 +28,9 @@ Module MDebug
 
     Friend Sub ComDebug(ByVal info As String, Optional ByVal newLine As Boolean = True)
 
-        'Dim sLogFile As String = GetUserLogPath() & "\\DdpyCom-" & Now.ToString("yyyy-MM-dd") & ".log"
-        'Dim txt As String = Now.ToString("HH:mm:ss.fff  ") & info & vbNewLine
-        'My.Computer.FileSystem.WriteAllText(sLogFile, txt, True, Encoding.UTF8)
+        'Dim sLogFile As String = GetAllUsersLogPath() & "\\DdpyCom-" & Now.ToString("yyyy-MM-dd") & ".log"
+        'Dim txts As String = Now.ToString("yyyy-MM-dd HH:mm:ss.fff  ") & info & vbNewLine
+        'My.Computer.FileSystem.WriteAllText(sLogFile, txts, True, Encoding.UTF8)
         If True Then
             Return
         End If

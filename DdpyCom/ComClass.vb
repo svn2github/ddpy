@@ -30,8 +30,6 @@ Public Class ComClass
 #End Region
 
     Private isWuNaiApp As Boolean
-    Private frmInput As FrmImeInput
-    Private frmStatus As FrmImeStatus
 
     ' 可创建的 COM 类必须具有一个不带参数的 Public Sub New() 
     ' 否则， 将不会在 
@@ -42,17 +40,6 @@ Public Class ComClass
 
         isWuNaiApp = IsNeedSendStartEndMsg(Process.GetCurrentProcess().ProcessName)
 
-        frmInput = New FrmImeInput
-        frmStatus = New FrmImeStatus
-
-    End Sub
-
-    ''' <summary>
-    ''' 设定输入法UI窗口句柄
-    ''' </summary>
-    ''' <param name="hwnd">输入法UI窗口句柄</param>
-    Public Sub SetUiHwnd(ByVal hwnd As Integer)
-        SetImeUiHwnd(hwnd)
     End Sub
 
     Public Sub Debug(ByVal str As String)
@@ -89,7 +76,6 @@ Public Class ComClass
                         SrvRegisterWords(ddPy.InputWord)
 
                         frmInput.Hide()
-                        ddPy.Clear()
                     Else
 
                         PosX = ikr.PosX
@@ -108,7 +94,6 @@ Public Class ComClass
                     ' Back the only char
                     If ddPy.InputPys.Length = 0 AndAlso ddPy.DispPyText2.Length = 0 Then
                         frmInput.Hide()
-                        ddPy.Clear()
                     End If
                 End If
 
@@ -124,7 +109,6 @@ Public Class ComClass
         Catch ex As Exception
             ComDebug(ex)
             frmInput.Hide()
-            ddPy.Clear()
         End Try
 
     End Sub
@@ -137,7 +121,6 @@ Public Class ComClass
 
             If Not bSetActive Then
                 frmInput.Hide()
-                ddPy.Clear()
             End If
 
 
@@ -161,7 +144,6 @@ Public Class ComClass
 
         If Not bSelect Then
             frmInput.Hide()
-            ddPy.Clear()
             If Not frmDebug Is Nothing Then
                 frmDebug.Hide()
             End If
@@ -184,7 +166,6 @@ Public Class ComClass
 
             frmStatus.Hide()
         End If
-
 
         isNeedStartEndMsg = isWuNaiApp
 
@@ -226,7 +207,6 @@ Public Class ComClass
                 frmStatus.PanBd.BackgroundImage = My.Resources.BdHalfF
 
                 frmInput.Hide()
-                ddPy.Clear()
 
             End If
 

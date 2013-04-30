@@ -1,43 +1,24 @@
 ﻿Module MIme
 
-    ''' <summary>
-    ''' 输入法UI窗口句柄
-    ''' </summary>
-    Private uiHwnd As Integer
+    Friend frmInput As New FrmImeInput              ' 编码候选窗口
+    Friend frmStatus As New FrmImeStatus            ' 状态栏窗口
 
-    Private listCtrlHwnd As New List(Of Integer)
+    Private listCtrlHwnd As New List(Of Integer)    ' 存放焦点控件句柄
 
     ''' <summary>
-    ''' 设定输入法UI窗口句柄
+    ''' 通过WM_IME_NOTIFY向焦点控件发送IMN_OPENCANDIDATE消息
     ''' </summary>
-    ''' <param name="hwnd">输入法UI窗口句柄</param>
-    Friend Sub SetImeUiHwnd(ByVal hwnd As Integer)
-        uiHwnd = hwnd
-    End Sub
-
-    ''' <summary>
-    ''' 通过向IME的UI窗口发送消息实现IME变量设定
-    ''' </summary>
-    ''' <param name="id">编号</param>
-    ''' <param name="val">值</param>
-    Friend Sub SendUiMessage(ByVal id As Integer, ByVal val As Integer)
-        SendMessage(uiHwnd, 9999, id, val)
-    End Sub
-
-    ''' <summary>
-    ''' 向焦点控件发送IME消息IMN_OPENCANDIDATE
-    ''' </summary>
-    ''' <remarks></remarks>
     Friend Sub NotifyImeOpenCandidate()
         Dim hwnd As Integer = GetFocus()
-        listCtrlHwnd.Add(hwnd)
-        SendMessage(hwnd, WM_IME_NOTIFY, IMN_OPENCANDIDATE, 1)
+        If Not listCtrlHwnd.Contains(hwnd) Then
+            listCtrlHwnd.Add(hwnd)
+            SendMessage(hwnd, WM_IME_NOTIFY, IMN_OPENCANDIDATE, 1)
+        End If
     End Sub
 
     ''' <summary>
-    ''' 向焦点控件发送IME消息IMN_CLOSECANDIDATE
+    ''' 通过WM_IME_NOTIFY向焦点控件发送IMN_CLOSECANDIDATE消息
     ''' </summary>
-    ''' <remarks></remarks>
     Friend Sub NotifyImeCloseCandidate()
         For Each hwnd As Integer In listCtrlHwnd
             SendMessage(hwnd, WM_IME_NOTIFY, IMN_CLOSECANDIDATE, 1)
@@ -45,5 +26,13 @@
         listCtrlHwnd.Clear()
     End Sub
 
+    ''' <summary>
+    ''' 通过WM_IME_NOTIFY向焦点控件发送自定义消息
+    ''' </summary>
+    ''' <param name="wp">区分</param>
+    ''' <param name="lp">0或1</param>
+    Friend Sub NotifyIme(ByVal wp As Integer, ByVal lp As Integer)
+        SendMessage(GetFocus(), WM_IME_NOTIFY, wp, lp)
+    End Sub
 
 End Module
