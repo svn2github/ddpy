@@ -60,6 +60,7 @@ Public Class ComClass
         Try
             DebugTimeStart()
 
+
             ComProcessKey(iKey, ikr)
 
             If ikr.IsProcessKey Then
@@ -98,17 +99,18 @@ Public Class ComClass
                 End If
 
             Else
-                ' Key: 0 \ [ ] ; ' , . / `
+                isDot = False
                 ComDebug("不处理的按键：" & iKey)
             End If
 
 
-            '  sResult = "一二三四五六七八九十壹贰叁肆伍六柒捌玖拾①②③④⑤⑥⑦⑧⑨⑩ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ"
-            ComDebug("COM执行时间：" & DebugTimeEnd() & " 毫秒")
 
         Catch ex As Exception
             ComDebug(ex)
             frmInput.Hide()
+        Finally
+            '  sResult = "一二三四五六七八九十壹贰叁肆伍六柒捌玖拾①②③④⑤⑥⑦⑧⑨⑩ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ"
+            ComDebug("COM执行时间：" & DebugTimeEnd() & " 毫秒")
         End Try
 
     End Sub
@@ -168,7 +170,7 @@ Public Class ComClass
         End If
 
         isNeedStartEndMsg = isWuNaiApp
-
+        isLeftQte = True
     End Sub
 
 

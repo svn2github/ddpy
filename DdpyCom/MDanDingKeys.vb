@@ -5,13 +5,17 @@
 ''' </summary>
 Module MDanDingKeys
 
-    Friend ddPy As New CDandingPy
-
+    Private bCapsLock As Boolean
     Private bShiftKeyDown As Boolean
     Private bLowerCase As Boolean
+    Private bNumLock As Boolean
 
-    Private bQuote As Boolean = True
+    Friend isLeftQte As Boolean = True
+    Friend isDot As Boolean = False
 
+    Friend ddPy As New CDandingPy
+
+  
     ''' <summary>
     ''' 按键处理
     ''' </summary>
@@ -23,19 +27,37 @@ Module MDanDingKeys
         bShiftKeyDown = IsShiftKeyDown()    ' My.Computer.Keyboard.ShiftKeyDown
         bLowerCase = (Not bShiftKeyDown)
 
-        Dim key As String = KeyToString(iKey)
-        ComDebug("ComProcessKey(" & iKey & ":" & key & ")")
 
-        If key <> "" Then
+        ' 初次输入单个非编码字符，直接转换结束
+        If Not frmInput.Visible AndAlso (Not IsAlphaKey(iKey) _
+                                         OrElse My.Computer.Keyboard.CapsLock _
+                                         OrElse (Not P_LNG_CN) _
+                                         ) Then
 
-            ' 编码输入
+            Dim sChar As String = ConvertChar(iKey)
+            If "".Equals(sChar) Then
+                SetIkrFlag(ikr, False, False, False)
+                isDot = False
+            Else
+                SetIkrFlag(ikr, True, True, True)
+                ddPy.TextEndChar = sChar
+            End If
+
+            Return ddPy
+        End If
+
+
+
+        If IsCompKey(iKey) Then
+
+            ' 编码输入(非主键盘的1～9按下时作编码处理)
             If ddPy.InputPys.Length + ddPy.DispPyText2.Length >= P_MAX_PY_LEN Then
                 ' 超过输入长度限制时不处理
                 SetIkrFlag(ikr, True, True, False)
                 Return ddPy
             End If
 
-            ddPy.InputPys = ddPy.InputPys & key
+            ddPy.InputPys = ddPy.InputPys & IIf(iKey = Keys.OemQuotes, "'", Strings.StrConv(ConvertChar(iKey), VbStrConv.Narrow))
             ddPy.ExecuteSearch()  ' 检索
 
             SetIkrFlag(ikr, True, True, False)
@@ -92,7 +114,14 @@ Module MDanDingKeys
                         ddPy.Clear()
                         SetIkrFlag(ikr, False, False, False)
                     Else
-                        EnterWithChar(ikr, False)    ' 回车上屏
+                        EnterWithChar(ikr, False, iKey)    ' 回车上屏
+                    End If
+                Case Keys.Return    ' 小键盘回车
+                    If ddPy.InputPys.Length = 0 AndAlso ddPy.DispPyText2.Length = 0 Then
+                        ddPy.Clear()
+                        SetIkrFlag(ikr, False, False, False)
+                    Else
+                        EnterWithChar(ikr, False, iKey)    ' 回车上屏
                     End If
                 Case Keys.Space
                     If ddPy.InputPys.Length > 0 Then
@@ -105,11 +134,11 @@ Module MDanDingKeys
                             End If
                         Else
                             ' 转换失败时，作回车上屏处理
-                            EnterWithChar(ikr, False)    ' 回车上屏
+                            EnterWithChar(ikr, False, iKey)    ' 回车上屏
                         End If
 
                     ElseIf ddPy.DispPyText2.Length > 0 Then
-                        EnterWithChar(ikr, False)    ' 回车上屏
+                        EnterWithChar(ikr, False, iKey)    ' 回车上屏
                     Else
                         SetIkrFlag(ikr, False, False, False)
                     End If
@@ -152,11 +181,15 @@ Module MDanDingKeys
                         SetIkrFlag(ikr, True, True, False)
                     End If
                 Case Keys.Oemplus
-                    If ddPy.InputPys.Length = 0 Then
-                        SetIkrFlag(ikr, False, False, False)
+                    If My.Computer.Keyboard.ShiftKeyDown Then
+                        EnterWithChar(ikr, True, iKey)    ' 附加字符上屏
                     Else
-                        ddPy.ShowNextPage()                     ' 后页
-                        SetIkrFlag(ikr, True, True, False)
+                        If ddPy.InputPys.Length = 0 Then
+                            SetIkrFlag(ikr, False, False, False)
+                        Else
+                            ddPy.ShowNextPage()                     ' 后页
+                            SetIkrFlag(ikr, True, True, False)
+                        End If
                     End If
 
                 Case Keys.PageUp
@@ -167,46 +200,50 @@ Module MDanDingKeys
                         SetIkrFlag(ikr, True, True, False)
                     End If
                 Case Keys.OemMinus
-                    If ddPy.InputPys.Length = 0 Then
-                        SetIkrFlag(ikr, False, False, False)
+                    If My.Computer.Keyboard.ShiftKeyDown Then
+                        EnterWithChar(ikr, True, iKey)    ' 附加字符上屏
                     Else
-                        ddPy.ShowPreviousPage()                 ' 前页
-                        SetIkrFlag(ikr, True, True, False)
+                        If ddPy.InputPys.Length = 0 Then
+                            SetIkrFlag(ikr, False, False, False)
+                        Else
+                            ddPy.ShowPreviousPage()                 ' 前页
+                            SetIkrFlag(ikr, True, True, False)
+                        End If
                     End If
 
                 Case Keys.Oemtilde
-                    EnterWithChar(ikr, True, "·", "～", "`", "~")    ' 附加字符上屏
+                    EnterWithChar(ikr, True, iKey)    ' 附加字符上屏
                 Case Keys.OemPipe
-                    EnterWithChar(ikr, True, "、", "|", "\", "|")    ' 附加字符上屏
+                    EnterWithChar(ikr, True, iKey)    ' 附加字符上屏
                 Case Keys.OemOpenBrackets
-                    EnterWithChar(ikr, True, "【", "『", "[", "{")    ' 附加字符上屏
+                    EnterWithChar(ikr, True, iKey)    ' 附加字符上屏
                 Case Keys.OemCloseBrackets
-                    EnterWithChar(ikr, True, "】", "』", "]", "}")    ' 附加字符上屏
+                    EnterWithChar(ikr, True, iKey)    ' 附加字符上屏
                 Case Keys.OemSemicolon
-                    EnterWithChar(ikr, True, "；", "：", ";", ":")    ' 附加字符上屏
+                    EnterWithChar(ikr, True, iKey)    ' 附加字符上屏
                 Case Keys.OemQuotes
                     If bQuote Then
-                        EnterWithChar(ikr, True, "‘", ChrW(8220), "'", """")    ' 附加字符上屏
+                        EnterWithChar(ikr, True, iKey)    ' 附加字符上屏
                     Else
-                        EnterWithChar(ikr, True, "’", ChrW(8221), "'", """")    ' 附加字符上屏
+                        EnterWithChar(ikr, True, iKey)    ' 附加字符上屏
                     End If
                     bQuote = Not bQuote
                 Case Keys.Oemcomma
-                    EnterWithChar(ikr, True, "，", "《", ",", "<")    ' 附加字符上屏
+                    EnterWithChar(ikr, True, iKey)    ' 附加字符上屏
                 Case Keys.OemPeriod
                     If ddPy.InputPys.Equals("vb", StringComparison.OrdinalIgnoreCase) Then
                         If bShiftKeyDown Then
-                            EnterWithChar(ikr, False, "》", "》", "》", "》")    ' 附加字符上屏
+                            EnterWithChar(ikr, False, iKey)    ' 附加字符上屏
                         Else
                             ddPy.InputPys = ddPy.InputPys & "."
                             SetIkrFlag(ikr, True, True, False)
                             ddPy.ExecuteSearch()
                         End If
                     Else
-                        EnterWithChar(ikr, True, "。", "》", ".", ">")    ' 附加字符上屏
+                        EnterWithChar(ikr, True, iKey)    ' 附加字符上屏
                     End If
                 Case Keys.OemQuestion
-                    EnterWithChar(ikr, False, "/", "？", "/", "?")    ' 附加字符上屏
+                    EnterWithChar(ikr, False, iKey)    ' 附加字符上屏
 
                 Case Else
                     If iKey >= Keys.D0 And iKey <= Keys.D9 Then
@@ -289,118 +326,566 @@ Module MDanDingKeys
     ''' </summary>
     ''' <param name="ikr">ImeKeyResult</param>
     ''' <param name="bConvert">是否转换当前候选</param>
-    ''' <param name="fullCharLower">附加字符（全角小写）</param>
-    ''' <param name="fullCharUpper">附加字符（全角大写）</param>
-    ''' <param name="charLower">附加字符（半角小写）</param>
-    ''' <param name="charUpper">附加字符（半角大写）</param>
-    Private Sub EnterWithChar(ByRef ikr As ImeKeyResult, ByVal bConvert As Boolean _
-                              , Optional ByVal fullCharLower As String = "" _
-                              , Optional ByVal fullCharUpper As String = "" _
-                              , Optional ByVal charLower As String = "" _
-                              , Optional ByVal charUpper As String = "")
+    Private Sub EnterWithChar(ByRef ikr As ImeKeyResult, ByVal bConvert As Boolean, ByVal iKey As UInteger)
 
         If ddPy.InputPys = "" Then
-            'If bConvert Then
-            '    ' 处理结束，拼接字符后上屏
-            '    SetIkrFlag(ikr, True, True, True)
-            '    ddPy.TextEndChar = IIf(P_BD_FULL, IIf(bLowerCase, fullCharLower, fullCharUpper), IIf(bLowerCase, charLower, charUpper))
-            'Else
-            '    SetIkrFlag(ikr, False, False, False)
-            '    ddPy.TextEndChar = ""
-            'End If
 
             If Not ddPy.DispPyText2 = "" Then
                 ' 处理结束，拼接字符后上屏
                 SetIkrFlag(ikr, True, True, True)
-                ddPy.TextEndChar = IIf(P_BD_FULL, IIf(bLowerCase, fullCharLower, fullCharUpper), IIf(bLowerCase, charLower, charUpper))
+                ddPy.TextEndChar = IIf(iKey = Keys.Space, "", ConvertChar(iKey))
             Else
                 SetIkrFlag(ikr, False, False, False)
-                ddPy.TextEndChar = ""
             End If
+
         Else
             If bConvert Then
                 ddPy.PushWord()
             End If
             ' 处理结束，拼接字符后上屏
             SetIkrFlag(ikr, True, True, True)
-            ddPy.TextEndChar = IIf(P_BD_FULL, IIf(bLowerCase, fullCharLower, fullCharUpper), IIf(bLowerCase, charLower, charUpper))
+            ddPy.TextEndChar = IIf(iKey = Keys.Space, "", ConvertChar(iKey))
         End If
 
     End Sub
 
     ''' <summary>
-    ''' 转换按键为拼音编码（非拼音编码返回空串）
+    ''' 判断是否为编码字符
     ''' </summary>
     ''' <param name="iKey">按键</param>
-    ''' <returns>拼音编码（非拼音编码返回空串）</returns>
-    Friend Function KeyToString(ByVal iKey As UInteger) As String
+    ''' <returns>True：作为编码字符</returns>
+    Friend Function IsCompKey(ByVal iKey As UInteger) As Boolean
 
-        Dim key As String = ""
+        Dim bRet As Boolean = False
         Select Case iKey
             Case Windows.Forms.Keys.A
-                key = IIf(bLowerCase, "a", "A")
+                bRet = True
             Case Windows.Forms.Keys.B
-                key = IIf(bLowerCase, "b", "B")
+                bRet = True
             Case Windows.Forms.Keys.C
-                key = IIf(bLowerCase, "c", "C")
+                bRet = True
             Case Windows.Forms.Keys.D
-                key = IIf(bLowerCase, "d", "D")
+                bRet = True
             Case Windows.Forms.Keys.E
-                key = IIf(bLowerCase, "e", "E")
+                bRet = True
             Case Windows.Forms.Keys.F
-                key = IIf(bLowerCase, "f", "F")
+                bRet = True
             Case Windows.Forms.Keys.G
-                key = IIf(bLowerCase, "g", "G")
+                bRet = True
             Case Windows.Forms.Keys.H
-                key = IIf(bLowerCase, "h", "H")
+                bRet = True
             Case Windows.Forms.Keys.I
-                key = IIf(bLowerCase, "i", "I")
+                bRet = True
             Case Windows.Forms.Keys.J
-                key = IIf(bLowerCase, "j", "J")
+                bRet = True
             Case Windows.Forms.Keys.K
-                key = IIf(bLowerCase, "k", "K")
+                bRet = True
             Case Windows.Forms.Keys.L
-                key = IIf(bLowerCase, "l", "L")
+                bRet = True
             Case Windows.Forms.Keys.M
-                key = IIf(bLowerCase, "m", "M")
+                bRet = True
             Case Windows.Forms.Keys.N
-                key = IIf(bLowerCase, "n", "N")
+                bRet = True
             Case Windows.Forms.Keys.O
-                key = IIf(bLowerCase, "o", "O")
+                bRet = True
             Case Windows.Forms.Keys.P
-                key = IIf(bLowerCase, "p", "P")
+                bRet = True
             Case Windows.Forms.Keys.Q
-                key = IIf(bLowerCase, "q", "Q")
+                bRet = True
             Case Windows.Forms.Keys.R
-                key = IIf(bLowerCase, "r", "R")
+                bRet = True
             Case Windows.Forms.Keys.S
-                key = IIf(bLowerCase, "s", "S")
+                bRet = True
             Case Windows.Forms.Keys.T
-                key = IIf(bLowerCase, "t", "T")
+                bRet = True
             Case Windows.Forms.Keys.U
-                key = IIf(bLowerCase, "u", "U")
+                bRet = True
             Case Windows.Forms.Keys.V
-                key = IIf(bLowerCase, "v", "V")
+                bRet = True
             Case Windows.Forms.Keys.W
-                key = IIf(bLowerCase, "w", "W")
+                bRet = True
             Case Windows.Forms.Keys.X
-                key = IIf(bLowerCase, "x", "X")
+                bRet = True
             Case Windows.Forms.Keys.Y
-                key = IIf(bLowerCase, "y", "Y")
+                bRet = True
             Case Windows.Forms.Keys.Z
-                key = IIf(bLowerCase, "z", "Z")
-
+                bRet = True
             Case Windows.Forms.Keys.OemQuotes
-                If Not ddPy.InputPys = "" Then
-                    key = "'"
+                If My.Computer.Keyboard.ShiftKeyDown Then
+                    bRet = False
+                Else
+                    bRet = True
                 End If
+
             Case Else
-                '
+                bRet = IsNumPadKey(iKey)
         End Select
 
-        Return key
+        Return bRet
 
     End Function
 
+
+
+    Friend Function IsNumPadKey(ByVal iKey As UInteger) As Boolean
+        Dim bRet As Boolean = False
+
+        Select Case iKey
+            Case Windows.Forms.Keys.Divide              ' 小键盘
+                bRet = True
+            Case Windows.Forms.Keys.Multiply            ' 小键盘
+                bRet = True
+            Case Windows.Forms.Keys.Subtract            ' 小键盘
+                bRet = True
+            Case Windows.Forms.Keys.Add                 ' 小键盘
+                bRet = True
+            Case Windows.Forms.Keys.Decimal             ' 小键盘
+                bRet = True
+
+            Case Windows.Forms.Keys.NumPad0             ' 小键盘
+                bRet = True
+            Case Windows.Forms.Keys.NumPad1             ' 小键盘
+                bRet = True
+            Case Windows.Forms.Keys.NumPad2             ' 小键盘
+                bRet = True
+            Case Windows.Forms.Keys.NumPad3             ' 小键盘
+                bRet = True
+            Case Windows.Forms.Keys.NumPad4             ' 小键盘
+                bRet = True
+            Case Windows.Forms.Keys.NumPad5             ' 小键盘
+                bRet = True
+            Case Windows.Forms.Keys.NumPad6             ' 小键盘
+                bRet = True
+            Case Windows.Forms.Keys.NumPad7             ' 小键盘
+                bRet = True
+            Case Windows.Forms.Keys.NumPad8             ' 小键盘
+                bRet = True
+            Case Windows.Forms.Keys.NumPad9             ' 小键盘
+                bRet = True
+
+        End Select
+
+        Return bRet
+    End Function
+
+    Friend Function IsAlphaKey(ByVal iKey As UInteger) As Boolean
+        Dim bRet As Boolean = False
+
+        Select Case iKey
+            Case Windows.Forms.Keys.A
+                bRet = True
+            Case Windows.Forms.Keys.B
+                bRet = True
+            Case Windows.Forms.Keys.C
+                bRet = True
+            Case Windows.Forms.Keys.D
+                bRet = True
+            Case Windows.Forms.Keys.E
+                bRet = True
+            Case Windows.Forms.Keys.F
+                bRet = True
+            Case Windows.Forms.Keys.G
+                bRet = True
+            Case Windows.Forms.Keys.H
+                bRet = True
+            Case Windows.Forms.Keys.I
+                bRet = True
+            Case Windows.Forms.Keys.J
+                bRet = True
+            Case Windows.Forms.Keys.K
+                bRet = True
+            Case Windows.Forms.Keys.L
+                bRet = True
+            Case Windows.Forms.Keys.M
+                bRet = True
+            Case Windows.Forms.Keys.N
+                bRet = True
+            Case Windows.Forms.Keys.O
+                bRet = True
+            Case Windows.Forms.Keys.P
+                bRet = True
+            Case Windows.Forms.Keys.Q
+                bRet = True
+            Case Windows.Forms.Keys.R
+                bRet = True
+            Case Windows.Forms.Keys.S
+                bRet = True
+            Case Windows.Forms.Keys.T
+                bRet = True
+            Case Windows.Forms.Keys.U
+                bRet = True
+            Case Windows.Forms.Keys.V
+                bRet = True
+            Case Windows.Forms.Keys.W
+                bRet = True
+            Case Windows.Forms.Keys.X
+                bRet = True
+            Case Windows.Forms.Keys.Y
+                bRet = True
+            Case Windows.Forms.Keys.Z
+                bRet = True
+
+        End Select
+
+        Return bRet
+    End Function
+
+
+
+    Friend Function ConvertChar(ByVal iKey As UInteger) As String
+        Dim sRet As String = ""
+
+        bCapsLock = My.Computer.Keyboard.CapsLock
+        bShiftKeyDown = My.Computer.Keyboard.ShiftKeyDown
+        bLowerCase = IIf(bCapsLock, IIf(bShiftKeyDown, True, False), IIf(bShiftKeyDown, False, True))
+        bNumLock = My.Computer.Keyboard.NumLock
+
+
+        If IsNumPadKey(iKey) Then
+            ' 按小键盘输入可见字符，任何时候都不作转换
+            sRet = ToDefaultCharOfNumPad(iKey)
+
+        ElseIf bCapsLock OrElse (Not P_LNG_CN) Then
+            ' EN
+            If P_MODE_FULL Then
+                sRet = Strings.StrConv(ConvertDefaultChar(iKey), IIf(bLowerCase, VbStrConv.Lowercase + VbStrConv.Wide, VbStrConv.Uppercase + VbStrConv.Wide))
+            Else
+                sRet = Strings.StrConv(ConvertDefaultChar(iKey), IIf(bLowerCase, VbStrConv.Lowercase, VbStrConv.Uppercase))
+            End If
+
+        Else
+            ' CN
+            sRet = ToCnChar(iKey)
+
+        End If
+
+
+        If Not "".Equals(sRet) AndAlso "0123456789".Contains(sRet) Then
+            isDot = True
+        Else
+            isDot = False
+        End If
+
+        Return sRet
+    End Function
+
+    Private Function ToCnChar(ByVal iKey As UInteger) As String
+        Dim sRet As String = ""
+
+        Select Case iKey
+            Case Windows.Forms.Keys.Oemtilde
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, IIf(P_MODE_FULL, "｀", "·"), "～")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, IIf(P_MODE_FULL, "｀", "`"), "~")
+                End If
+            Case Windows.Forms.Keys.D1
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, "1", "！")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, "1", "!")
+                End If
+            Case Windows.Forms.Keys.D4
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, "4", "￥")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, "4", "$")
+                End If
+            Case Windows.Forms.Keys.D6
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, "6", "……")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, "6", "^")
+                End If
+            Case Windows.Forms.Keys.D8
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, "8", "×")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, "8", "*")
+                End If
+            Case Windows.Forms.Keys.D9
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, "9", "（")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, "9", "(")
+                End If
+            Case Windows.Forms.Keys.D0
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, "0", "）")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, "0", ")")
+                End If
+            Case Windows.Forms.Keys.OemMinus
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, "-", "——")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, "-", "_")
+                End If
+            Case Windows.Forms.Keys.OemPipe
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, "、", "|")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, "\", "|")
+                End If
+            Case Windows.Forms.Keys.OemOpenBrackets
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, "【", "『")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, "[", "{")
+                End If
+            Case Windows.Forms.Keys.OemCloseBrackets
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, "】", "』")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, "]", "}")
+                End If
+            Case Windows.Forms.Keys.OemSemicolon
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, "；", "：")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, ";", ":")
+                End If
+
+            Case Windows.Forms.Keys.OemQuotes
+                If P_BD_FULL Then
+                    If isLeftQte Then
+                        sRet = IIf(Not bShiftKeyDown, "‘", ChrW(8220))
+                    Else
+                        sRet = IIf(Not bShiftKeyDown, "’", ChrW(8221))
+                    End If
+                    isLeftQte = Not isLeftQte
+                Else
+                    sRet = IIf(Not bShiftKeyDown, "'", """")
+                End If
+
+            Case Windows.Forms.Keys.Oemcomma
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, "，", "《")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, ",", "<")
+                End If
+            Case Windows.Forms.Keys.OemPeriod
+
+                If bShiftKeyDown Then
+                    sRet = IIf(P_BD_FULL, "》", ">")
+                ElseIf isDot Then
+                    sRet = "."
+                    isDot = False
+                    Return sRet         ' 小数点特别处理
+                Else
+                    sRet = IIf(P_BD_FULL, "。", ".")
+                End If
+            Case Windows.Forms.Keys.OemQuestion
+                If P_BD_FULL Then
+                    sRet = IIf(Not bShiftKeyDown, "/", "？")
+                Else
+                    sRet = IIf(Not bShiftKeyDown, ",", "?")
+                End If
+
+            Case Else
+                sRet = ConvertDefaultChar(iKey)
+
+        End Select
+
+        If P_MODE_FULL Then
+            sRet = Strings.StrConv(sRet, IIf(bLowerCase, VbStrConv.Lowercase + VbStrConv.Wide, VbStrConv.Uppercase + VbStrConv.Wide))
+        Else
+            sRet = Strings.StrConv(sRet, IIf(bLowerCase, VbStrConv.Lowercase, VbStrConv.Uppercase))
+        End If
+
+        Return sRet
+    End Function
+
+
+    Private Function ToDefaultCharOfNumPad(ByVal iKey As UInteger) As String
+        Dim sRet As String = ""
+
+        Select Case iKey
+            Case Windows.Forms.Keys.Divide              ' 小键盘
+                sRet = "/"
+            Case Windows.Forms.Keys.Multiply            ' 小键盘
+                sRet = "*"
+            Case Windows.Forms.Keys.Subtract            ' 小键盘
+                sRet = "-"
+            Case Windows.Forms.Keys.Add                 ' 小键盘
+                sRet = "+"
+            Case Windows.Forms.Keys.Decimal             ' 小键盘
+                sRet = "."
+
+            Case Windows.Forms.Keys.NumPad0             ' 小键盘
+                sRet = IIf(bNumLock, "0", "")
+            Case Windows.Forms.Keys.NumPad1             ' 小键盘
+                sRet = IIf(bNumLock, "1", "")
+            Case Windows.Forms.Keys.NumPad2             ' 小键盘
+                sRet = IIf(bNumLock, "2", "")
+            Case Windows.Forms.Keys.NumPad3             ' 小键盘
+                sRet = IIf(bNumLock, "3", "")
+            Case Windows.Forms.Keys.NumPad4             ' 小键盘
+                sRet = IIf(bNumLock, "4", "")
+            Case Windows.Forms.Keys.NumPad5             ' 小键盘
+                sRet = IIf(bNumLock, "5", "")
+            Case Windows.Forms.Keys.NumPad6             ' 小键盘
+                sRet = IIf(bNumLock, "6", "")
+            Case Windows.Forms.Keys.NumPad7             ' 小键盘
+                sRet = IIf(bNumLock, "7", "")
+            Case Windows.Forms.Keys.NumPad8             ' 小键盘
+                sRet = IIf(bNumLock, "8", "")
+            Case Windows.Forms.Keys.NumPad9             ' 小键盘
+                sRet = IIf(bNumLock, "9", "")
+
+        End Select
+
+        Return sRet
+    End Function
+
+    Friend Function ConvertDefaultChar(ByVal iKey As UInteger) As String
+
+        Dim sRet As String = ""
+
+        Select Case iKey
+            Case Windows.Forms.Keys.A
+                sRet = IIf(bLowerCase, "a", "A")
+            Case Windows.Forms.Keys.B
+                sRet = IIf(bLowerCase, "b", "B")
+            Case Windows.Forms.Keys.C
+                sRet = IIf(bLowerCase, "c", "C")
+            Case Windows.Forms.Keys.D
+                sRet = IIf(bLowerCase, "d", "D")
+            Case Windows.Forms.Keys.E
+                sRet = IIf(bLowerCase, "e", "E")
+            Case Windows.Forms.Keys.F
+                sRet = IIf(bLowerCase, "f", "F")
+            Case Windows.Forms.Keys.G
+                sRet = IIf(bLowerCase, "g", "G")
+            Case Windows.Forms.Keys.H
+                sRet = IIf(bLowerCase, "h", "H")
+            Case Windows.Forms.Keys.I
+                sRet = IIf(bLowerCase, "i", "I")
+            Case Windows.Forms.Keys.J
+                sRet = IIf(bLowerCase, "j", "J")
+            Case Windows.Forms.Keys.K
+                sRet = IIf(bLowerCase, "k", "K")
+            Case Windows.Forms.Keys.L
+                sRet = IIf(bLowerCase, "l", "L")
+            Case Windows.Forms.Keys.M
+                sRet = IIf(bLowerCase, "m", "M")
+            Case Windows.Forms.Keys.N
+                sRet = IIf(bLowerCase, "n", "N")
+            Case Windows.Forms.Keys.O
+                sRet = IIf(bLowerCase, "o", "O")
+            Case Windows.Forms.Keys.P
+                sRet = IIf(bLowerCase, "p", "P")
+            Case Windows.Forms.Keys.Q
+                sRet = IIf(bLowerCase, "q", "Q")
+            Case Windows.Forms.Keys.R
+                sRet = IIf(bLowerCase, "r", "R")
+            Case Windows.Forms.Keys.S
+                sRet = IIf(bLowerCase, "s", "S")
+            Case Windows.Forms.Keys.T
+                sRet = IIf(bLowerCase, "t", "T")
+            Case Windows.Forms.Keys.U
+                sRet = IIf(bLowerCase, "u", "U")
+            Case Windows.Forms.Keys.V
+                sRet = IIf(bLowerCase, "v", "V")
+            Case Windows.Forms.Keys.W
+                sRet = IIf(bLowerCase, "w", "W")
+            Case Windows.Forms.Keys.X
+                sRet = IIf(bLowerCase, "x", "X")
+            Case Windows.Forms.Keys.Y
+                sRet = IIf(bLowerCase, "y", "Y")
+            Case Windows.Forms.Keys.Z
+                sRet = IIf(bLowerCase, "z", "Z")
+
+            Case Windows.Forms.Keys.Oemtilde
+                sRet = IIf(Not bShiftKeyDown, "`", "~")
+
+            Case Windows.Forms.Keys.D1
+                sRet = IIf(Not bShiftKeyDown, "1", "!")
+            Case Windows.Forms.Keys.D2
+                sRet = IIf(Not bShiftKeyDown, "2", "@")
+            Case Windows.Forms.Keys.D3
+                sRet = IIf(Not bShiftKeyDown, "3", "#")
+            Case Windows.Forms.Keys.D4
+                sRet = IIf(Not bShiftKeyDown, "4", "$")
+            Case Windows.Forms.Keys.D5
+                sRet = IIf(Not bShiftKeyDown, "5", "%")
+            Case Windows.Forms.Keys.D6
+                sRet = IIf(Not bShiftKeyDown, "6", "^")
+            Case Windows.Forms.Keys.D7
+                sRet = IIf(Not bShiftKeyDown, "7", "&")
+            Case Windows.Forms.Keys.D8
+                sRet = IIf(Not bShiftKeyDown, "8", "*")
+            Case Windows.Forms.Keys.D9
+                sRet = IIf(Not bShiftKeyDown, "9", "(")
+            Case Windows.Forms.Keys.D0
+                sRet = IIf(Not bShiftKeyDown, "0", ")")
+
+            Case Windows.Forms.Keys.OemMinus
+                sRet = IIf(Not bShiftKeyDown, "-", "_")
+            Case Windows.Forms.Keys.Oemplus
+                sRet = IIf(Not bShiftKeyDown, "=", "+")
+            Case Windows.Forms.Keys.OemPipe
+                sRet = IIf(Not bShiftKeyDown, "\", "|")
+
+            Case Windows.Forms.Keys.OemOpenBrackets
+                sRet = IIf(Not bShiftKeyDown, "[", "{")
+            Case Windows.Forms.Keys.OemCloseBrackets
+                sRet = IIf(Not bShiftKeyDown, "]", "}")
+
+            Case Windows.Forms.Keys.OemSemicolon
+                sRet = IIf(Not bShiftKeyDown, ";", ":")
+            Case Windows.Forms.Keys.OemQuotes
+                sRet = IIf(Not bShiftKeyDown, "'", """")
+
+            Case Windows.Forms.Keys.Oemcomma
+                sRet = IIf(Not bShiftKeyDown, ",", "<")
+            Case Windows.Forms.Keys.OemPeriod
+                sRet = IIf(Not bShiftKeyDown, ".", ">")
+            Case Windows.Forms.Keys.OemQuestion
+                sRet = IIf(Not bShiftKeyDown, "/", "?")
+
+
+            Case Windows.Forms.Keys.Space
+                sRet = " "
+
+            Case Windows.Forms.Keys.Divide              ' 小键盘
+                sRet = "/"
+            Case Windows.Forms.Keys.Multiply            ' 小键盘
+                sRet = "*"
+            Case Windows.Forms.Keys.Subtract            ' 小键盘
+                sRet = "-"
+            Case Windows.Forms.Keys.Add                 ' 小键盘
+                sRet = "+"
+            Case Windows.Forms.Keys.Decimal             ' 小键盘
+                sRet = "."
+
+            Case Windows.Forms.Keys.NumPad0             ' 小键盘
+                sRet = IIf(bNumLock, "", "0")
+            Case Windows.Forms.Keys.NumPad1             ' 小键盘
+                sRet = IIf(bNumLock, "", "1")
+            Case Windows.Forms.Keys.NumPad2             ' 小键盘
+                sRet = IIf(bNumLock, "", "2")
+            Case Windows.Forms.Keys.NumPad3             ' 小键盘
+                sRet = IIf(bNumLock, "", "3")
+            Case Windows.Forms.Keys.NumPad4             ' 小键盘
+                sRet = IIf(bNumLock, "", "4")
+            Case Windows.Forms.Keys.NumPad5             ' 小键盘
+                sRet = IIf(bNumLock, "", "5")
+            Case Windows.Forms.Keys.NumPad6             ' 小键盘
+                sRet = IIf(bNumLock, "", "6")
+            Case Windows.Forms.Keys.NumPad7             ' 小键盘
+                sRet = IIf(bNumLock, "", "7")
+            Case Windows.Forms.Keys.NumPad8             ' 小键盘
+                sRet = IIf(bNumLock, "", "8")
+            Case Windows.Forms.Keys.NumPad9             ' 小键盘
+                sRet = IIf(bNumLock, "", "9")
+
+            Case Else
+
+
+        End Select
+
+        Return sRet
+    End Function
 
 End Module
