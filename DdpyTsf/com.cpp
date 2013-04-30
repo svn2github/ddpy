@@ -162,22 +162,3 @@ BOOL ComShowStatusText(unsigned short idx, LPCWSTR str){
 	}
 }
 
-BOOL ComSetUiHwnd(long hwnd){
-
-	if (!pComCls){
-		TsfError("[ComSetUiHwnd] ComObject Null");
-		return FALSE;
-	}
-
-	try{
-		HRESULT hr = pComCls->SetUiHwnd(hwnd);
-		if (FAILED(hr)){
-			TsfError("[ComSetUiHwnd] Call COM Failed");
-		}
-		return !FAILED(hr);
-	}catch(...){
-		TsfError("[ComSetUiHwnd] Exception");
-		return FALSE;
-	}
-}
-
