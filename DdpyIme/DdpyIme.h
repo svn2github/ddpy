@@ -17,7 +17,6 @@ BOOL ComImeSetActiveContext(BOOL bSetActive);
 BOOL ComDebug(LPCWSTR str);
 
 BOOL ComShowStatusText(unsigned short idx, LPCWSTR str);
-BOOL ComSetUiHwnd(long hwnd);
 
 BOOL IsNeedSendStartEndMsg();
 // ----------------------------------

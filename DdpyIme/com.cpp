@@ -139,7 +139,7 @@ BOOL ComDebug(LPCWSTR str){
 
 #endif
 
-	return true;
+	return TRUE;
 }
 
 
@@ -161,23 +161,3 @@ BOOL ComShowStatusText(unsigned short idx, LPCWSTR str){
 		return FALSE;
 	}
 }
-
-BOOL ComSetUiHwnd(long hwnd){
-
-	if (!pComCls){
-		ImeError("[ComSetUiHwnd] ComObject Null");
-		return FALSE;
-	}
-
-	try{
-		HRESULT hr = pComCls->SetUiHwnd(hwnd);
-		if (FAILED(hr)){
-			ImeError("[ComSetUiHwnd] Call COM Failed");
-		}
-		return !FAILED(hr);
-	}catch(...){
-		ImeError("[ComSetUiHwnd] Exception");
-		return FALSE;
-	}
-}
-

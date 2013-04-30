@@ -2,7 +2,6 @@
 
 static bool isWinlogon = false;
 
-
 BOOL WINAPI ImeProcessKey(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKeyState)
 {
 	if (isWinlogon) return FALSE;
