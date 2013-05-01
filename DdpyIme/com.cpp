@@ -11,6 +11,11 @@ BOOL IsNeedSendStartEndMsg(){
 
 
 BOOL ComInit(){
+
+	if (pComCls){
+		return TRUE;
+	}
+
 	HRESULT hr;
     HRESULT rc;
 	CLSID clsId;

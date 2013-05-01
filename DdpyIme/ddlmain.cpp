@@ -110,13 +110,7 @@ BOOL ImeRegisterClass( HINSTANCE hInst )
 BOOL WINAPI DllMain (HINSTANCE hInst, DWORD dwFunction, LPVOID lpNot)
 {
 	try{
-		if (dwFunction == DLL_PROCESS_ATTACH)
-		{
-			if (!ComInit()){
-				ImeError("[DllMain] ComInit Failed");
-				return FALSE;
-			}
-
+		if (dwFunction == DLL_PROCESS_ATTACH) {
 			return ImeRegisterClass(hInst);		// 注册 UI窗口类
 
 		}else if(dwFunction == DLL_PROCESS_DETACH){

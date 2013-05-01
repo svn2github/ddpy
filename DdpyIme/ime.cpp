@@ -48,6 +48,11 @@ BOOL WINAPI ImeSelect(HIMC hImc, BOOL bSelect)
 	if (isWinlogon) return TRUE;
 
 	try{
+		if (!ComInit()){
+			ImeError("[DllMain] ComInit Failed");
+			return FALSE;
+		}
+
 		ResetMode();
 
 		return ComImeSelect(bSelect);
