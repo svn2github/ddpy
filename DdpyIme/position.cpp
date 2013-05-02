@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+﻿#include "DdpyIme.h"
 
 void GetPositionInfo(HIMC hImc, ImeKeyResult &lkr)
 {

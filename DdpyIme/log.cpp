@@ -1,24 +1,28 @@
 #include "stdafx.h"
-#include <shlobj.h>  
-
 
 #define LOG
-#define LOGFILEx86  "C:\\Documents and Settings\\All Users\\Application Data\\DanDing\\Log\\ImeLog.txt"
-#define LOGFILEx64  "C:\\ProgramData\\DanDing\\Log\\ImeLog-%d-%02d-%02d.txt"
+#define LogFileXp  "C:\\Documents and Settings\\All Users\\Application Data\\DanDing\\Log\\ImeLog-%d-%02d-%02d.txt"
+#define LogFileWin7  "C:\\ProgramData\\DanDing\\Log\\ImeLog-%d-%02d-%02d.txt"
 
 
 void WriteLog(char * sFormat)
 {
 #ifdef LOG
 
+    char filePath[1024];
     SYSTEMTIME st;  
     GetLocalTime(&st);  
 
-    char filePath[1024];
-	if ( sizeof(long) == sizeof(int) ){
-		sprintf_s(filePath, LOGFILEx64, st.wYear, st.wMonth, st.wDay);
-	}else{
-		sprintf_s(filePath, LOGFILEx86, st.wYear, st.wMonth, st.wDay);
+    OSVERSIONINFO   osver;    
+    osver.dwOSVersionInfoSize   =   sizeof(OSVERSIONINFO);    
+    GetVersionEx(&osver);   
+
+	if(osver.dwMajorVersion == 5 && osver.dwMinorVersion == 1) {
+        // XP
+		sprintf_s(filePath, LogFileXp, st.wYear, st.wMonth, st.wDay);
+	}else if(osver.dwMajorVersion ==  6 && osver.dwMinorVersion == 1) {
+        // Win7
+		sprintf_s(filePath, LogFileWin7, st.wYear, st.wMonth, st.wDay);
 	}
 
     FILE *fp;  
@@ -44,7 +48,3 @@ void ImeError(char * text)
 	WriteLog(text);
 }
 
-void ImeInfo(char * text)
-{
-	WriteLog(text);
-}

@@ -14,9 +14,8 @@ BOOL ComImeConfigure();
 BOOL ComImeSetActiveContext(BOOL bSetActive);
 BOOL ComDebug(LPCWSTR str);
 
-BOOL ComShowStatusText(unsigned short idx, LPCWSTR str);
 
-BOOL IsNeedSendStartEndMsg();
+extern VARIANT_BOOL isWuNaiApp;
 // ----------------------------------
 
 

@@ -8,8 +8,8 @@
 
 #include <tchar.h>
 #include <atlbase.h> 
+#include <comutil.h> 
 #include "Imm.h"				// 使用工程目录中的Imm.h
-#include "DdpyIme.h"
 
-// #define DEVELOP
+ #define DEVELOP
 

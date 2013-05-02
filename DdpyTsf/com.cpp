@@ -2,20 +2,19 @@
 
 
 _ComClass * pComCls;
-
-VARIANT_BOOL isNeedStartEndMsg;
-
-BOOL IsNeedSendStartEndMsg(){
-	return (BOOL)isNeedStartEndMsg;
-}
-
+VARIANT_BOOL isWuNaiApp;
 
 BOOL ComInit(){
+
 	HRESULT hr;
     HRESULT rc;
 	CLSID clsId;
 
 	try{
+	    if (pComCls){
+		    return TRUE;
+	    }
+
 		hr = CoInitialize(NULL);
 		if (FAILED(hr)){
 			TsfError("[ComInit] 1 Call CoInitialize Failed");
@@ -31,6 +30,12 @@ BOOL ComInit(){
 		rc = CoCreateInstance(clsId, NULL, CLSCTX_INPROC_SERVER, __uuidof(_ComClass), (LPVOID*) &pComCls);
 		if (FAILED(rc)) {
 			TsfError("[ComInit] 3 Call CoCreateInstance Failed");
+			return FALSE;
+		}
+
+		hr = pComCls->Init(&isWuNaiApp);
+		if (FAILED(hr)){
+			TsfError("[ComInit] Call Init Failed");
 			return FALSE;
 		}
 
@@ -68,7 +73,7 @@ BOOL ComImeSelect (BOOL bSel){
 	}
 
 	try{
-		HRESULT hr = pComCls->ImeSelect( bSel, &isNeedStartEndMsg);
+		HRESULT hr = pComCls->ImeSelect( bSel);
 		if (FAILED(hr)){
 			TsfError("[ComImeSelect] Call COM Failed");
 		}
@@ -139,26 +144,5 @@ BOOL ComDebug(LPCWSTR str){
 
 #endif
 
-	return true;
+	return TRUE;
 }
-
-
-BOOL ComShowStatusText(unsigned short idx, LPCWSTR str){
-
-	if (!pComCls){
-		TsfError("[ComShowStatusText] ComObject Null");
-		return FALSE;
-	}
-
-	try{
-		HRESULT hr = pComCls->ShowStatusText(idx, (_bstr_t)str);
-		if (FAILED(hr)){
-			TsfError("[ComShowStatusText] Call COM Failed");
-		}
-		return !FAILED(hr);
-	}catch(...){
-		TsfError("[ComShowStatusText] Exception");
-		return FALSE;
-	}
-}
-

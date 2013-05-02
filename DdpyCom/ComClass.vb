@@ -29,26 +29,22 @@ Public Class ComClass
     Public Const EventsId As String = "4ac737ff-8a77-4df2-be9d-260854582044"
 #End Region
 
-    Private isWuNaiApp As Boolean
-
     ' 可创建的 COM 类必须具有一个不带参数的 Public Sub New() 
     ' 否则， 将不会在 
     ' COM 注册表中注册此类，且无法通过
     ' CreateObject 创建此类。
     Public Sub New()
         MyBase.New()
+    End Sub
 
+    Public Sub Init(ByRef isWuNaiApp As Boolean)
+        initStartTime = Now.Ticks
         isWuNaiApp = IsNeedSendStartEndMsg(Process.GetCurrentProcess().ProcessName)
-
     End Sub
 
     Public Sub Debug(ByVal str As String)
         ComDebug(str)
     End Sub
-
-    Public Function GetLogPath() As String
-        Return GetAllUsersLogPath()
-    End Function
 
     ''' <summary>
     ''' 处理输入法打开状态时的按键输入
@@ -99,7 +95,6 @@ Public Class ComClass
                 End If
 
             Else
-                isDot = False
                 ComDebug("不处理的按键：" & iKey)
             End If
 
@@ -121,17 +116,13 @@ Public Class ComClass
         Try
             ComDebug("[COM]ImeSetActiveContext(" & bSetActive & ")")
 
-            If Not bSetActive Then
-                frmInput.Hide()
-            End If
-
-
             If bSetActive Then
                 If My.Computer.Keyboard.CapsLock Then
                     frmStatus.PanLng.BackgroundImage = My.Resources.LngA
                 End If
                 ShowWindow(frmStatus.Handle, SW_SHOWNOACTIVATE)
             Else
+                frmInput.Hide()
                 frmStatus.Hide()
             End If
 
@@ -140,18 +131,14 @@ Public Class ComClass
         End Try
     End Sub
 
-    Public Sub ImeSelect(ByVal bSelect As Boolean, ByRef isNeedStartEndMsg As Boolean)
+    Public Sub ImeSelect(ByVal bSelect As Boolean)
 
         ComDebug("[COM]ImeSelect(" & bSelect & ")")
 
-        If Not bSelect Then
-            frmInput.Hide()
-            If Not frmDebug Is Nothing Then
-                frmDebug.Hide()
-            End If
-        End If
-
         If bSelect Then
+
+            initStartTime = Now.Ticks
+
             If My.Computer.Keyboard.CapsLock Then
                 frmStatus.PanLng.BackgroundImage = My.Resources.LngA
             End If
@@ -159,6 +146,11 @@ Public Class ComClass
 
             ComInfo("此应用程序打开输入法：" & Process.GetCurrentProcess().ProcessName)
         Else
+            frmInput.Hide()
+            If Not frmDebug Is Nothing Then
+                frmDebug.Hide()
+            End If
+
             P_LNG_CN = True
             P_MODE_FULL = False
             P_BD_FULL = True
@@ -167,9 +159,9 @@ Public Class ComClass
             frmStatus.PanBd.BackgroundImage = My.Resources.BdFullN
 
             frmStatus.Hide()
+
         End If
 
-        isNeedStartEndMsg = isWuNaiApp
         isLeftQte = True
     End Sub
 
@@ -178,59 +170,59 @@ Public Class ComClass
         OpenSettingDlg()
     End Sub
 
-    ''' <summary>
-    ''' 设定输入法状态栏显示
-    ''' </summary>
-    ''' <param name="idx">下标（1：中/英，2：全角/半角，3：标点）</param>
-    ''' <param name="sText">文字</param>
-    Public Sub ShowStatusText(ByVal idx As UInt16, ByVal sText As String)
+    ' ''' <summary>
+    ' ''' 设定输入法状态栏显示
+    ' ''' </summary>
+    ' ''' <param name="idx">下标（1：中/英，2：全角/半角，3：标点）</param>
+    ' ''' <param name="sText">文字</param>
+    'Public Sub ShowStatusText(ByVal idx As UInt16, ByVal sText As String)
 
-        frmInput.Hide()
-        ddPy.Clear()
+    '    frmInput.Hide()
+    '    ddPy.Clear()
 
-        If idx = 1 Then
+    '    If idx = 1 Then
 
-            If My.Computer.Keyboard.CapsLock Then
-                frmStatus.PanLng.BackgroundImage = My.Resources.LngA
-                Return
-            End If
+    '        If My.Computer.Keyboard.CapsLock Then
+    '            frmStatus.PanLng.BackgroundImage = My.Resources.LngA
+    '            Return
+    '        End If
 
-            If "中".Equals(sText) Then
-                P_LNG_CN = True
-                frmStatus.PanLng.BackgroundImage = My.Resources.LngCnF
+    '        If "中".Equals(sText) Then
+    '            P_LNG_CN = True
+    '            frmStatus.PanLng.BackgroundImage = My.Resources.LngCnF
 
-                P_BD_FULL = True
-                frmStatus.PanBd.BackgroundImage = My.Resources.BdFullF
-            Else
-                P_LNG_CN = False
-                frmStatus.PanLng.BackgroundImage = My.Resources.LngEnF
+    '            P_BD_FULL = True
+    '            frmStatus.PanBd.BackgroundImage = My.Resources.BdFullF
+    '        Else
+    '            P_LNG_CN = False
+    '            frmStatus.PanLng.BackgroundImage = My.Resources.LngEnF
 
-                P_BD_FULL = False
-                frmStatus.PanBd.BackgroundImage = My.Resources.BdHalfF
+    '            P_BD_FULL = False
+    '            frmStatus.PanBd.BackgroundImage = My.Resources.BdHalfF
 
-                frmInput.Hide()
+    '            frmInput.Hide()
 
-            End If
+    '        End If
 
-        ElseIf idx = 2 Then
-            If "Y".Equals(sText) Then
-                P_MODE_FULL = True
-                frmStatus.PanMode.BackgroundImage = My.Resources.MdFullF
-            Else
-                P_MODE_FULL = False
-                frmStatus.PanMode.BackgroundImage = My.Resources.MdHalfF
-            End If
+    '    ElseIf idx = 2 Then
+    '        If "Y".Equals(sText) Then
+    '            P_MODE_FULL = True
+    '            frmStatus.PanMode.BackgroundImage = My.Resources.MdFullF
+    '        Else
+    '            P_MODE_FULL = False
+    '            frmStatus.PanMode.BackgroundImage = My.Resources.MdHalfF
+    '        End If
 
-        ElseIf idx = 3 Then
-            If "Y".Equals(sText) Then
-                P_BD_FULL = True
-                frmStatus.PanBd.BackgroundImage = My.Resources.BdFullF
-            Else
-                P_BD_FULL = False
-                frmStatus.PanBd.BackgroundImage = My.Resources.BdHalfF
-            End If
-        End If
-    End Sub
+    '    ElseIf idx = 3 Then
+    '        If "Y".Equals(sText) Then
+    '            P_BD_FULL = True
+    '            frmStatus.PanBd.BackgroundImage = My.Resources.BdFullF
+    '        Else
+    '            P_BD_FULL = False
+    '            frmStatus.PanBd.BackgroundImage = My.Resources.BdHalfF
+    '        End If
+    '    End If
+    'End Sub
 
 
 End Class

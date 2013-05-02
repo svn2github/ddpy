@@ -1,6 +1,9 @@
 #include "DdpyTsf.h"
 
 
+#define LogFileXp  "C:\\Documents and Settings\\All Users\\Application Data\\DanDing\\Log\\TsfLog-%d-%02d-%02d.txt"
+#define LogFileWin7  "C:\\ProgramData\\DanDing\\Log\\TsfLog-%d-%02d-%02d.txt"
+
 #define LOGFILE  "C:\\Documents and Settings\\All Users\\Application Data\\DanDing\\Log\\TsfLog-%d-%02d-%02d.txt"
 
 
@@ -8,11 +11,21 @@ void WriteLog(char * sFormat, char * args)
 {
 #ifdef LOGFILE
 
+    char filePath[1024];
     SYSTEMTIME st;  
     GetLocalTime(&st);  
 
-    char filePath[1024];
-    sprintf_s(filePath, LOGFILE, st.wYear, st.wMonth, st.wDay);
+    OSVERSIONINFO   osver;    
+    osver.dwOSVersionInfoSize   =   sizeof(OSVERSIONINFO);    
+    GetVersionEx(&osver);   
+
+	if(osver.dwMajorVersion == 5 && osver.dwMinorVersion == 1) {
+        // XP
+		sprintf_s(filePath, LogFileXp, st.wYear, st.wMonth, st.wDay);
+	}else if(osver.dwMajorVersion ==  6 && osver.dwMinorVersion == 1) {
+        // Win7
+		sprintf_s(filePath, LogFileWin7, st.wYear, st.wMonth, st.wDay);
+	}
 
     FILE *fp;  
     fp = fopen(filePath, "at+");  

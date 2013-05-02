@@ -154,7 +154,7 @@ Module MConfig
         End If
 
         For Each name As String In lstApp
-            If name.Equals(appName, StringComparison.OrdinalIgnoreCase) Then
+            If name.Equals(appName & "", StringComparison.OrdinalIgnoreCase) Then
                 Return True
             End If
         Next

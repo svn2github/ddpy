@@ -1,12 +1,14 @@
-﻿#include "stdafx.h"
+﻿#include "DdpyIme.h"
 
 static bool isWinlogon = false;
+HIMC _hImc;
 
 BOOL WINAPI ImeProcessKey(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKeyState)
 {
 	if (isWinlogon) return FALSE;
 
 	try{
+        _hImc = hImc;
 		return HandleKeys(hImc, iKey, lpKeyData, lpbKeyState);
 	}catch(...){
 		ImeError("[ImeProcessKey] Exception");
@@ -52,8 +54,6 @@ BOOL WINAPI ImeSelect(HIMC hImc, BOOL bSelect)
 			ImeError("[DllMain] ComInit Failed");
 			return FALSE;
 		}
-
-		ResetMode();
 
 		return ComImeSelect(bSelect);
 	}catch(...){

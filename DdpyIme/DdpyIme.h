@@ -15,10 +15,6 @@ BOOL ComImeSelect(BOOL bSelect);
 BOOL ComImeConfigure();
 BOOL ComImeSetActiveContext(BOOL bSetActive);
 BOOL ComDebug(LPCWSTR str);
-
-BOOL ComShowStatusText(unsigned short idx, LPCWSTR str);
-
-BOOL IsNeedSendStartEndMsg();
 // ----------------------------------
 
 
@@ -26,12 +22,10 @@ BOOL IsNeedSendStartEndMsg();
 BOOL SetResultString(HIMC hImc, CComBSTR &sResult);
 BOOL SetResult(HIMC hImc, LPCWSTR sResult);
 BOOL SendStartEndMsg( HIMC hImc );
-
 void GetPositionInfo(HIMC hImc, ImeKeyResult &lkr);
-void ResetMode();
-BOOL IsOpenImeKey();
+void HnadleImeNotify(WPARAM wp, LPARAM lp);
 
-BOOL SetFieldValue(UINT fldIdex, BOOL bValue);
+extern VARIANT_BOOL isWuNaiApp;
 // ----------------------------------
 
 
@@ -42,6 +36,8 @@ BOOL HandleNotImeKeys(UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKeyState);
 BOOL HandleImeKeys(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKeyState);
 // ----------------------------------
 
+
+// -------------- Log --------------
 void ImeDebug(char * text);
-void ImeInfo(char * text);
 void ImeError(char * text);
+// ----------------------------------

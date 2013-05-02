@@ -42,8 +42,6 @@ Friend Class FrmImeStatus
 
             End If
 
-            NotifyIme(&H100, IIf(P_LNG_CN, 1, 0))
-
         Catch ex As Exception
             P_LNG_CN = Not P_LNG_CN
 
@@ -64,8 +62,6 @@ Friend Class FrmImeStatus
             Else
                 PanMode.BackgroundImage = My.Resources.MdHalfF
             End If
-
-            NotifyIme(&H200, IIf(P_MODE_FULL, 1, 0))
 
         Catch ex As Exception
             P_MODE_FULL = Not P_MODE_FULL
@@ -92,8 +88,6 @@ Friend Class FrmImeStatus
             Else
                 PanBd.BackgroundImage = My.Resources.BdHalfF
             End If
-
-            NotifyIme(&H300, IIf(P_BD_FULL, 1, 0))
 
         Catch ex As Exception
             P_BD_FULL = Not P_BD_FULL

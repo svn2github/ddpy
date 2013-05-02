@@ -47,10 +47,6 @@ Module MWinApi
     Friend Function FindWindowEx(ByVal hwndParent As IntPtr, ByVal hwndChildAfter As IntPtr, ByVal lpszClass As String, ByVal lpszWindow As String) As IntPtr
     End Function
 
-    Friend Function IsShiftKeyDown() As Boolean
-        Return (GetKeyState(16) And VK_SHIFT) = VK_SHIFT
-    End Function
-
     Friend Function GetClassNameByHwnd(ByVal hWnd As Integer) As String
         Dim buf As New StringBuilder
         GetClassName(hWnd, buf, 255)

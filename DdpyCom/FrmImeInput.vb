@@ -291,9 +291,4 @@ Friend Class FrmImeInput
 #End Region
 
 
-    Private Sub FrmImeInput_VisibleChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.VisibleChanged
-        If Not Me.Visible Then
-            NotifyIme(&H400, 0)
-        End If
-    End Sub
 End Class
