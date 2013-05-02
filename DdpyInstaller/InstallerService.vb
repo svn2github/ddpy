@@ -30,8 +30,11 @@ Public Class InstallerService
 
         ' 注册后台服务COM
         Dim info As New System.Diagnostics.ProcessStartInfo
-        ' info.FileName = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
-        info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+        If Environment.Is64BitOperatingSystem Then
+            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+        Else
+            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
+        End If
         info.Arguments = """" & installPath & "\\DdpySrv.exe"""
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
@@ -42,8 +45,10 @@ Public Class InstallerService
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
 
-        info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
-        System.Diagnostics.Process.Start(info)
+        If Environment.Is64BitOperatingSystem Then
+            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+            System.Diagnostics.Process.Start(info)
+        End If
 
         ' 安装IME
         ImmInstallIME("C:\\WINDOWS\\system32\\DdpyIme.dll", imeName)
@@ -58,8 +63,11 @@ Public Class InstallerService
 
         ' 卸载后台服务COM
         Dim info As New System.Diagnostics.ProcessStartInfo
-        ' info.FileName = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
-        info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+        If Environment.Is64BitOperatingSystem Then
+            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+        Else
+            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
+        End If
         info.Arguments = "/u """ & installPath & "\\DdpySrv.exe"""
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
@@ -70,8 +78,10 @@ Public Class InstallerService
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
 
-        info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
-        System.Diagnostics.Process.Start(info)
+        If Environment.Is64BitOperatingSystem Then
+            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+            System.Diagnostics.Process.Start(info)
+        End If
 
 
     End Sub
