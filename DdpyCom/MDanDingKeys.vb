@@ -10,7 +10,7 @@ Module MDanDingKeys
 
     Friend ddPy As New CDandingPy
 
-    Private UnDispKey As String = "UnDispKey"
+    Private UnDispKey As String = ""
     Private hasInputWithShift As Boolean = False
 
 
@@ -898,7 +898,7 @@ Module MDanDingKeys
                                          ) Then
 
             Dim sChar As String = ConvertChar(iKey)
-            If sChar.Length > 1 Then
+            If sChar.Length = 0 Then
                 ' 无法显示字符的按键
                 SetIkrFlag(ikr, False, False, False)    ' 交还系统处理
             Else

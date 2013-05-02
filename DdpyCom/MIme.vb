@@ -46,7 +46,7 @@
         ElseIf P_LNG_CN Then
             frmStatus.PanLng.BackgroundImage = My.Resources.LngCnF
 
-            P_BD_FULL = False
+            P_BD_FULL = True
             frmStatus.PanBd.BackgroundImage = My.Resources.BdFullF
         Else
             frmStatus.PanLng.BackgroundImage = My.Resources.LngEnF
