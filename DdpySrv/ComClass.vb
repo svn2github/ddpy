@@ -217,6 +217,9 @@ Public Class ComClass
     Public Sub Close()
 
         CComSrvClassFactory.comSrv = Nothing
+        While ZExeCOMServer.Instance().Unlock() > 0
+            ZExeCOMServer.Instance().Unlock()
+        End While
 
     End Sub
 
