@@ -232,8 +232,12 @@ Module MDanDingKeys
                 EnterWithChar(ikr, False, iKey)    ' 附加字符上屏
 
             Case Else
+                If iKey >= Keys.D0 And iKey <= Keys.D9 Then
+                    ProcessDigitKey(iKey, ikr)     ' 上屏
+                Else
+                    SetIkrFlag(ikr, False, False, False)   ' 交还系统处理
+                End If
 
-                SetIkrFlag(ikr, False, False, False)   ' 交还系统处理
         End Select
 
 
@@ -241,6 +245,38 @@ Module MDanDingKeys
 
     End Sub
 
+    ''' <summary>
+    ''' 数字键处理
+    ''' </summary>
+    ''' <param name="iKey">按键</param>
+    ''' <param name="ikr">按键处理结果</param>
+    Private Sub ProcessDigitKey(ByVal iKey As UInteger, ByRef ikr As ImeKeyResult)
+
+        If iKey >= Keys.D1 And iKey <= Keys.D9 Then
+
+            If My.Computer.Keyboard.ShiftKeyDown Then
+                ddPy.TextEndChar = ConvertChar(iKey)
+                ddPy.PushWord()
+                SetIkrFlag(ikr, True, True, True)
+            Else
+                ddPy.FocusCand = iKey - Keys.D0
+                ddPy.PushWord()
+                SetIkrFlag(ikr, True, True, True)
+
+                If Not ddPy.IsFinish Then
+                    ikr.IsInputEnd = False
+                    ddPy.ExecuteSearch()
+                End If
+            End If
+
+        ElseIf iKey = Keys.D0 Then
+
+            ddPy.TextEndChar = ConvertChar(iKey)
+            ddPy.PushWord()
+            SetIkrFlag(ikr, True, True, True)
+
+        End If
+    End Sub
 
     ''' <summary>
     ''' ImeKeyResult处理标志设定
