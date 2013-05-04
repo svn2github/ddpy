@@ -41,30 +41,31 @@ Friend Class FrmImeInput
     ''' <summary>
     ''' 指定候选文字显示窗口
     ''' </summary>
-    ''' <param name="cand">候选文字对象</param>
-    Public Overloads Sub Show(ByVal cand As CCand)
+    Public Overloads Sub Show(ByVal data As CDandingPy)
 
-        If cand.Text = "" Then
-            LblPinyin.Text = cand.InputPys
+        If ddPy.Text = "" Then
+            LblPinyin.Text = ddPy.InputPys
         Else
-            LblPinyin.Text = cand.Text
+            LblPinyin.Text = ddPy.Text
         End If
-        LblPinyin2.Text = cand.DispPyText2
-        If cand.WordList Is Nothing OrElse cand.WordList.Count = 0 Then
+        LblPinyin2.Text = ddPy.DispPyText2
+        If ddPy.WordList Is Nothing OrElse ddPy.WordList.Count = 0 Then
             ClearCands()
             LblInfo.Text = IIf(P_TITLE = "", "   " & "0", P_TITLE)
+
+            ' 显示并调整窗口位置
             Me.Show()
             Return
         End If
-        LblInfo.Text = IIf(P_TITLE = "", "   " & cand.WordList.Count & "(" & ddPy.CurrentPage & "/" & ddPy.TotalPageCnt & ")", P_TITLE)
-        ComDebug("共 " & cand.TotalPageCnt & " 页，当前显示第 " & cand.CurrentPage & " 页")
+        LblInfo.Text = IIf(P_TITLE = "", "   " & ddPy.WordList.Count & "(" & ddPy.CurrentPage & "/" & ddPy.TotalPageCnt & ")", P_TITLE)
+        ComDebug("共 " & ddPy.TotalPageCnt & " 页，当前显示第 " & ddPy.CurrentPage & " 页")
 
 
-        Dim iStart As Integer = cand.CurrentPage * P_MAX_PAGE_CNT - P_MAX_PAGE_CNT
+        Dim iStart As Integer = ddPy.CurrentPage * P_MAX_PAGE_CNT - P_MAX_PAGE_CNT
         For i As Integer = 0 To 8
 
-            If i < P_MAX_PAGE_CNT AndAlso cand.WordList.Count >= iStart + i + 1 Then
-                GetCandidate(i).Text = (i + 1) & "." & cand.WordList(iStart + i).Text
+            If i < P_MAX_PAGE_CNT AndAlso ddPy.WordList.Count >= iStart + i + 1 Then
+                GetCandidate(i).Text = (i + 1) & "." & ddPy.WordList(iStart + i).Text
                 GetCandidate(i).Visible = True
             Else
                 GetCandidate(i).Visible = False
@@ -74,9 +75,11 @@ Friend Class FrmImeInput
 
         Next
 
-        GetCandidate(cand.FocusCand - 1).ForeColor = Color.White
-        GetCandidate(cand.FocusCand - 1).BackColor = Color.FromArgb(64, 130, 240)
+        GetCandidate(ddPy.FocusCand - 1).ForeColor = Color.White
+        GetCandidate(ddPy.FocusCand - 1).BackColor = Color.FromArgb(64, 130, 240)
 
+
+        ' 显示并调整窗口位置
         Me.Show()
     End Sub
 
@@ -93,6 +96,7 @@ Friend Class FrmImeInput
     ''' 隐藏窗口
     ''' </summary>
     Public Overloads Sub Hide()
+        ContextMenuStripCand.Hide()
         ddPy.Clear()
         NotifyImeCloseCandidate()
         MyBase.Hide()
@@ -277,18 +281,55 @@ Friend Class FrmImeInput
     Private oPoint As Point
     Private oLoc As Point
 
-    Private Sub FrmImeInput_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseDown, PanelPinyin.MouseDown, PanelFill.MouseDown, txt1.MouseDown, txt2.MouseDown, txt3.MouseDown, txt4.MouseDown, txt5.MouseDown, txt6.MouseDown, txt7.MouseDown, txt8.MouseDown, txt9.MouseDown, LblPinyin.MouseDown, LblInfo.MouseDown
+    Private Sub CandTxt_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles txt1.MouseClick, txt2.MouseClick, txt3.MouseClick, txt4.MouseClick, txt5.MouseClick, txt6.MouseClick, txt7.MouseClick, txt8.MouseClick, txt9.MouseClick
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            ' 左击候选文字直接上屏
+            SendKeys.SendWait(sender.Tag + 1)
+        Else
+            ' 右击候选文字弹出菜单
+            Dim idx As Integer = (ddPy.CurrentPage - 1) * P_MAX_PAGE_CNT + sender.Tag
+            Dim word As CWord = ddPy.WordList(idx)
+            If word.WordType = WordType.USR Then
+                menuItemDelCand.Enabled = True
+            Else
+                menuItemDelCand.Enabled = False
+            End If
+
+            ContextMenuStripCand.Location = e.Location
+            ContextMenuStripCand.Show(Cursor.Position.X, Cursor.Position.Y)
+
+            menuItemDelCand.Text = "从用户词库中删除 " & Strings.Left(GetCandidate(sender.Tag).Text, 7) & IIf(GetCandidate(sender.Tag).Text.Length > 7, "～", "")
+            menuItemDelCand.Tag = sender.Tag
+        End If
+    End Sub
+
+
+    Private Sub menuItemDelCand_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles menuItemDelCand.Click
+
+        Dim idx As Integer = (ddPy.CurrentPage - 1) * P_MAX_PAGE_CNT + menuItemDelCand.Tag
+        Dim word As CWord = ddPy.WordList(idx)
+
+        ' 从用户词库删除文字
+        SrvUnRegisterUserWord(word.PinYin, word.Text)
+
+        ' 刷新显示
+        ddPy.ExecuteSearch()
+        Me.Show(ddPy)
+    End Sub
+
+    Private Sub FrmImeInput_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseDown, PanelPinyin.MouseDown, PanelFill.MouseDown, LblPinyin.MouseDown, LblInfo.MouseDown  ' , txt1.MouseDown, txt2.MouseDown, txt3.MouseDown, txt4.MouseDown, txt5.MouseDown, txt6.MouseDown, txt7.MouseDown, txt8.MouseDown, txt9.MouseDown
         oPoint = e.Location
         oLoc = Me.Location
     End Sub
 
-    Private Sub FrmImeInput_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseUp, PanelPinyin.MouseUp, PanelFill.MouseUp, txt1.MouseUp, txt2.MouseUp, txt3.MouseUp, txt4.MouseUp, txt5.MouseUp, txt6.MouseUp, txt7.MouseUp, txt8.MouseUp, txt9.MouseUp, LblPinyin.MouseUp, LblInfo.MouseUp
+    Private Sub FrmImeInput_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseUp, PanelPinyin.MouseUp, PanelFill.MouseUp, LblPinyin.MouseUp, LblInfo.MouseUp ', txt1.MouseUp, txt2.MouseUp, txt3.MouseUp, txt4.MouseUp, txt5.MouseUp, txt6.MouseUp, txt7.MouseUp, txt8.MouseUp, txt9.MouseUp
         Dim nPoint As Point = e.Location
         Dim p As New Point(oLoc.X + (nPoint.X - oPoint.X), oLoc.Y + (nPoint.Y - oPoint.Y))
         Me.Location = p
     End Sub
 
 #End Region
+
 
 
 End Class

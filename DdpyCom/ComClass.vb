@@ -64,6 +64,7 @@ Public Class ComClass
                 If ikr.IsInputStart Then
 
                     If ikr.IsInputEnd Then
+
                         If P_MODE_FULL Then
                             sResult = ddPy.DispWordText & StrConv(ddPy.DispPyText & ddPy.DispPyText2, VbStrConv.Wide) & ddPy.TextEndChar
                         Else
@@ -83,7 +84,7 @@ Public Class ComClass
                             UpdateSettingInfo()
                             frmInput.Location = New System.Drawing.Point(PosX, PosY + PosH + 2)
                         End If
-                        frmInput.Show(ddPy.CreateCCand())
+                        frmInput.Show(ddPy)
 
                         ComDebug("处理中 bProcessKey=" & ikr.IsProcessKey)
                     End If
@@ -169,60 +170,6 @@ Public Class ComClass
     Public Sub ImeConfigure()
         OpenSettingDlg()
     End Sub
-
-    ' ''' <summary>
-    ' ''' 设定输入法状态栏显示
-    ' ''' </summary>
-    ' ''' <param name="idx">下标（1：中/英，2：全角/半角，3：标点）</param>
-    ' ''' <param name="sText">文字</param>
-    'Public Sub ShowStatusText(ByVal idx As UInt16, ByVal sText As String)
-
-    '    frmInput.Hide()
-    '    ddPy.Clear()
-
-    '    If idx = 1 Then
-
-    '        If My.Computer.Keyboard.CapsLock Then
-    '            frmStatus.PanLng.BackgroundImage = My.Resources.LngA
-    '            Return
-    '        End If
-
-    '        If "中".Equals(sText) Then
-    '            P_LNG_CN = True
-    '            frmStatus.PanLng.BackgroundImage = My.Resources.LngCnF
-
-    '            P_BD_FULL = True
-    '            frmStatus.PanBd.BackgroundImage = My.Resources.BdFullF
-    '        Else
-    '            P_LNG_CN = False
-    '            frmStatus.PanLng.BackgroundImage = My.Resources.LngEnF
-
-    '            P_BD_FULL = False
-    '            frmStatus.PanBd.BackgroundImage = My.Resources.BdHalfF
-
-    '            frmInput.Hide()
-
-    '        End If
-
-    '    ElseIf idx = 2 Then
-    '        If "Y".Equals(sText) Then
-    '            P_MODE_FULL = True
-    '            frmStatus.PanMode.BackgroundImage = My.Resources.MdFullF
-    '        Else
-    '            P_MODE_FULL = False
-    '            frmStatus.PanMode.BackgroundImage = My.Resources.MdHalfF
-    '        End If
-
-    '    ElseIf idx = 3 Then
-    '        If "Y".Equals(sText) Then
-    '            P_BD_FULL = True
-    '            frmStatus.PanBd.BackgroundImage = My.Resources.BdFullF
-    '        Else
-    '            P_BD_FULL = False
-    '            frmStatus.PanBd.BackgroundImage = My.Resources.BdHalfF
-    '        End If
-    '    End If
-    'End Sub
 
 
 End Class

@@ -18,9 +18,33 @@ Module MDanDingDictionary
     ''' <remarks></remarks>
     Friend Sub AddWordToDic(ByVal word As CWord)
         Dim lst As List(Of CWord) = InitWordList(word.ShortPinYin)
+
+        For i As Integer = 0 To lst.Count - 1
+            If word.PinYin.Equals(lst(i).PinYin) AndAlso word.Text.Equals(lst(i).Text) Then
+                ' 存在全拼和文字都相同的文字时，不加
+                Return
+            End If
+        Next
         lst.Add(word)
     End Sub
 
+
+    ''' <summary>
+    ''' 删除指定字词
+    ''' </summary>
+    ''' <param name="pinYin">拼音全拼</param>
+    ''' <param name="text">指定字词</param>
+    Friend Sub DeleteWordFromDic(ByVal pinYin As String, ByVal text As String)
+
+        Dim lst As List(Of CWord) = InitWordList(Strings.Join(GetMutilShotPys(pinYin), "'"))
+        Dim iSize As Integer = lst.Count
+        For i As Integer = iSize - 1 To 0 Step -1
+            If pinYin.Equals(lst(i).PinYin) AndAlso text.Equals(lst(i).Text) Then
+                lst.RemoveAt(i)
+            End If
+        Next
+
+    End Sub
 
     ''' <summary>
     ''' 导入词库（"文字 简拼 全拼 注音 词频"  UTF-8）
@@ -65,15 +89,21 @@ Module MDanDingDictionary
     ''' <summary>
     ''' 清除缓存
     ''' </summary>
-    Friend Sub CacheCollect()
+    Friend Sub CacheCollect(Optional ByVal clear As Boolean = False)
         SyncLock oCacheSyncLock
+
+            If clear Then
+                mDicCache.Clear()
+                mDicCacheTick.Clear()
+                Return
+            End If
 
             Dim nowTick As Long = Now.Ticks
             Dim lstKey As New List(Of String)
             For Each key As String In mDicCacheTick.Keys
 
-                ' 缓存保留30秒
-                If (nowTick - mDicCacheTick(key)) > 300000000 Then
+                ' 缓存保留10秒
+                If (nowTick - mDicCacheTick(key)) > 100000000 Then
                     lstKey.Add(key)
                 Else
                     Dim lst As List(Of CWord) = mDicCache(key)
@@ -160,8 +190,6 @@ Module MDanDingDictionary
 
         End SyncLock
     End Function
-
-
 
 
     ''' <summary>

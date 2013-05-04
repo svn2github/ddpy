@@ -36,6 +36,9 @@ Module MSrvDebug
 
     End Sub
 
+    Public Sub ComInfo(ByVal info As String, Optional ByVal ex As Exception = Nothing)
+        ComError(info, ex)
+    End Sub
     Public Sub ComError(ByVal info As String, Optional ByVal ex As Exception = Nothing)
 
         Dim sLogFile As String = GetAllUsersLogPath() & "\\DdpySrv-" & Now.ToString("yyyy-MM-dd") & ".log"

@@ -41,11 +41,6 @@ Module MDanDingKeys
                 Return
             End If
 
-            ' 无奈处理
-            If Not frmInput.Visible AndAlso IsNeedSendStartEndMsg(Process.GetCurrentProcess().ProcessName) Then
-                NotifyIme(&H100, 1)
-            End If
-
             ' 拼接编码后检索
             ddPy.InputPys = ddPy.InputPys & ConvertDefaultChar(iKey)
             ddPy.ExecuteSearch()
@@ -99,6 +94,7 @@ Module MDanDingKeys
                 Else
                     SetIkrFlag(ikr, True, False, False)
                 End If
+
 
             Case Keys.Enter
                 If ddPy.InputPys.Length = 0 AndAlso ddPy.DispPyText2.Length = 0 Then

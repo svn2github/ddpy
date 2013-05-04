@@ -80,24 +80,6 @@ Friend Class CDandingPy
         ExecuteSearch()
     End Sub
 
-    ''' <summary>
-    ''' 创建CCand对象
-    ''' </summary>
-    ''' <returns>CCand对象</returns>
-    Public Function CreateCCand() As CCand
-        Dim ret As New CCand
-
-        ret.CurrentPage = Me.CurrentPage
-        ret.FocusCand = Me.FocusCand
-        ret.InputPys = Me.InputPys
-        ret.IsFinish = Me.IsFinish
-        ret.Text = Me.Text
-        ret.TotalPageCnt = Me.TotalPageCnt
-        ret.WordList = Me.WordList
-        ret.DispPyText2 = Me.DispPyText2
-
-        Return ret
-    End Function
 
     ''' <summary>
     ''' 初始化

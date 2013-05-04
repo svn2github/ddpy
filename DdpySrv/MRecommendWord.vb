@@ -18,7 +18,8 @@ Module MRecommendWord
         Dim tmpWord As CWord = Nothing
         Dim i As Integer = 0
 
-        If Not GetFirstWord(Strings.Join(pyAry, "'")) Is Nothing Then
+        Dim firstWord As CWord = GetFirstWord(Strings.Join(pyAry, "'"))
+        If Not firstWord Is Nothing Then
             Return Nothing
         End If
 
@@ -36,6 +37,7 @@ Module MRecommendWord
             Else
                 If Not tmpWord Is Nothing Then
                     lstStack.Add(tmpWord)
+                    tmpWord = Nothing
                 End If
 
                 cd = pyAry(i)
@@ -82,7 +84,7 @@ Module MRecommendWord
             newWord.ShortPinYin = shortPinYin
             newWord.PinYin = pinYin
             newWord.Order = 1
-            newWord.WordType = WordType.USR
+            ' newWord.WordType = WordType.USR
         End If
 
         Return newWord

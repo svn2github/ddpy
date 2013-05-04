@@ -92,7 +92,9 @@ Public Class ComClass
     ''' <param name="words">用户输入的文字（vbTab分割的拼音 + vbLf + vbTab分割的文字）</param>
     Public Sub SrvRegisterWords(ByVal words As String)
         Try
-            ComDebug(words)
+            ' 清除缓存以便新词生效
+            CacheCollect(True)
+
             Dim lines As String() = words.Split(vbLf)
             Dim pys As String() = lines(0).Split(vbTab)
             Dim txts As String() = lines(1).Split(vbTab)
@@ -155,6 +157,17 @@ Public Class ComClass
     End Sub
 
     ''' <summary>
+    ''' 从用户词库中删除指定字词
+    ''' </summary>
+    ''' <param name="pinYin">拼音全拼</param>
+    ''' <param name="text">指定字词</param>
+    Public Sub SrvUnRegisterUserWord(ByVal pinYin As String, ByVal text As String)
+        UnRegisterUserWord(pinYin, text)
+        DeleteWordFromDic(pinYin, text)
+        CacheCollect(True)
+    End Sub
+
+    ''' <summary>
     ''' 指定拼音编码查找候选文字
     ''' </summary>
     ''' <param name="codes">拼音编码</param>
@@ -191,7 +204,6 @@ Public Class ComClass
             Do While stack.Count > 0
                 lst.AddRange(stack.Pop())
             Loop
-
 
             Dim buf As New StringBuilder
             For i As Integer = 0 To lst.Count - 1

@@ -5,9 +5,6 @@ Module MServer
 
     Private server As Object = Nothing
 
-    Private mapCatch As Hashtable
-    Private lTick As Long = 0
-
     ''' <summary>
     ''' 指定拼音编码查找候选文字
     ''' </summary>
@@ -28,7 +25,6 @@ Module MServer
             lst.Add(New CWord(lines(i)))
         Next
 
-        'mapCatch(codes) = lst
 
         ComDebug("SrvGetWordList( " & codes & " ) : " & lst.Count)
         ComDebug("SrvGetWordList time: " & DebugTimeEnd())
@@ -41,6 +37,15 @@ Module MServer
     ''' <param name="words">用户输入的文字（vbTab分割的拼音 + vbLf + vbTab分割的文字）</param>
     Public Sub SrvRegisterWords(ByVal words As String)
         GetDdpyServer().SrvRegisterWords(words)
+    End Sub
+
+    ''' <summary>
+    ''' 从用户词库中删除指定字词
+    ''' </summary>
+    ''' <param name="pinYin">拼音全拼</param>
+    ''' <param name="text">指定字词</param>
+    Public Sub SrvUnRegisterUserWord(ByVal pinYin As String, ByVal text As String)
+        GetDdpyServer().SrvUnRegisterUserWord(pinYin, text)
     End Sub
 
     ''' <summary>

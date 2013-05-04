@@ -32,7 +32,7 @@
     ''' 通过WM_IME_NOTIFY向焦点控件发送自定义消息
     ''' </summary>
     ''' <param name="wp">区分</param>
-    ''' <param name="lp">0或1</param>
+    ''' <param name="lp">值</param>
     Friend Sub NotifyIme(ByVal wp As Integer, ByVal lp As Integer)
         SendMessage(GetFocus(), WM_IME_NOTIFY, wp, lp)
     End Sub
