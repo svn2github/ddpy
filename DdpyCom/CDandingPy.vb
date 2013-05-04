@@ -48,15 +48,37 @@ Friend Class CDandingPy
 
         vInputPys = Strings.RTrim(vInputPys)
 
-        If Not bDel AndAlso Not vDispPyText = "" Then
-            vDispPyText2 = Strings.Right(vInputPys, 1) & vDispPyText2
-        End If
+        If bDel Then
 
-        If vDispPyText = "" Then
+            vInputPys = Strings.Left(vInputPys, vInputPys.Length - 1)
+        ElseIf vDispPyText = "" Then
+
             PopWord()
         Else
-            vInputPys = Strings.Left(vInputPys, vInputPys.Length - 1)
+
+            Dim sMove As String = ""
+
+            If My.Computer.Keyboard.CtrlKeyDown Then
+                Dim pys As String = BreakPys(vInputPys)
+                If pys.IndexOf(" ") > 0 Then
+                    sMove = Strings.Right(vInputPys, 1)
+                Else
+                    Dim aryPys As String() = pys.Split("'")
+                    Dim iLen As Integer = aryPys(aryPys.Length - 1).Length
+                    sMove = Strings.Right(vInputPys, iLen)
+                End If
+            Else
+                sMove = Strings.Right(vInputPys, 1)
+            End If
+
+
+            vDispPyText2 = sMove & vDispPyText2
+            vInputPys = Strings.Left(vInputPys, vInputPys.Length - sMove.Length)
+
         End If
+
+
+
 
         ExecuteSearch()
     End Sub
@@ -72,11 +94,18 @@ Friend Class CDandingPy
 
         If vWordStack.Count > 0 AndAlso vDispPyText = "" AndAlso Not vInputPys.EndsWith(" ") Then
             vInputPys = vInputPys & " " & Strings.Left(vDispPyText2, 1)
+            vDispPyText2 = Strings.Right(vDispPyText2, vDispPyText2.Length - 1)
         Else
-            vInputPys = vInputPys & Strings.Left(vDispPyText2, 1)
+            If My.Computer.Keyboard.CtrlKeyDown Then
+                Dim py As String = Strings.Split(BreakPys(vDispPyText2), "'")(0)
+                vInputPys = vInputPys & py
+                vDispPyText2 = Strings.Right(vDispPyText2, vDispPyText2.Length - py.Length)
+            Else
+                vInputPys = vInputPys & Strings.Left(vDispPyText2, 1)
+                vDispPyText2 = Strings.Right(vDispPyText2, vDispPyText2.Length - 1)
+            End If
         End If
-        vDispPyText2 = Strings.Right(vDispPyText2, vDispPyText2.Length - 1)
-
+  
         ExecuteSearch()
     End Sub
 

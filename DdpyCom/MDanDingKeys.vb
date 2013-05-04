@@ -879,8 +879,22 @@ Module MDanDingKeys
             Return True
         End If
 
-        ' 不处理Alt组合键、Ctrl组合键
-        If My.Computer.Keyboard.AltKeyDown OrElse My.Computer.Keyboard.CtrlKeyDown Then
+        ' 不处理Alt组合键
+        If My.Computer.Keyboard.AltKeyDown Then
+            SetIkrFlag(ikr, False, False, False)   ' 交还系统处理
+
+            isDot = False
+            Return True
+        End If
+
+        ' 不处理未定义的Ctrl组合键
+        If My.Computer.Keyboard.CtrlKeyDown AndAlso _
+             Not (frmInput.Visible AndAlso _
+                  (iKey = Keys.Left _
+                  OrElse iKey = Keys.Right _
+                  ) _
+                ) Then
+
             SetIkrFlag(ikr, False, False, False)   ' 交还系统处理
 
             isDot = False
