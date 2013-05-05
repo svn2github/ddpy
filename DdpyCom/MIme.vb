@@ -55,6 +55,7 @@
             frmStatus.PanBd.BackgroundImage = My.Resources.BdHalfF
             frmInput.Hide()     ' 英文模式时隐藏候选窗口
         End If
+
     End Sub
 
 End Module

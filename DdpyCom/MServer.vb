@@ -88,6 +88,10 @@ Module MServer
         End Try
     End Function
 
+    Public Function SvrGetDdpyCfgExePath() As String
+        Return GetDdpyServer().SvrGetDdpyCfgExePath()
+    End Function
+
     ''' <summary>
     ''' 取得后台服务对象
     ''' </summary>

@@ -13,6 +13,87 @@ Module MDanDingKeys
     Private UnDispKey As String = ""
     Private hasInputWithShift As Boolean = False
 
+    ' 处理自定义组合键
+    Private Function HandleHotKey(ByVal iKey As UInteger, ByRef ikr As ImeKeyResult) As Boolean
+        Dim bRet As Boolean = False
+
+        Select Case iKey
+            Case Keys.O
+                ' Ctrl+Shift+O 打开配置窗口
+                If My.Computer.Keyboard.CtrlKeyDown AndAlso My.Computer.Keyboard.ShiftKeyDown Then
+                    SetIkrFlag(ikr, True, False, False)
+                    OpenSettingDlg()
+
+                    bRet = True
+                End If
+
+            Case Keys.Space
+                ' Shift+Space 切换全角半角模式
+                If My.Computer.Keyboard.ShiftKeyDown Then
+                    SetIkrFlag(ikr, True, False, False)
+                    P_MODE_FULL = Not P_MODE_FULL
+
+                    ' 刷新输入法状态窗口
+                    If P_MODE_FULL Then
+                        frmStatus.PanMode.BackgroundImage = My.Resources.MdFullF
+                    Else
+                        frmStatus.PanMode.BackgroundImage = My.Resources.MdHalfF
+                    End If
+
+                    bRet = True
+                End If
+
+            Case Keys.OemPeriod
+                ' Ctrl+. 切换标点模式
+                If P_LNG_CN AndAlso My.Computer.Keyboard.CtrlKeyDown Then
+                    SetIkrFlag(ikr, True, False, False)
+                    P_BD_FULL = Not P_BD_FULL
+
+                    ' 刷新输入法状态窗口
+                    If P_BD_FULL Then
+                        frmStatus.PanBd.BackgroundImage = My.Resources.BdFullF
+                    Else
+                        frmStatus.PanBd.BackgroundImage = My.Resources.BdHalfF
+                    End If
+
+                    bRet = True
+                End If
+
+            Case Keys.ShiftKey
+                ' Shift按键松开
+
+                If My.Computer.Keyboard.ShiftKeyDown Then
+                    SetIkrFlag(ikr, False, False, False)   ' 交还系统处理
+                ElseIf hasInputWithShift Then
+                    ' 按Shift组合键松开
+                    SetIkrFlag(ikr, False, False, False)   ' 交还系统处理
+                    hasInputWithShift = False
+                Else
+                    ' 单键Shift按键松开
+                    P_LNG_CN = Not P_LNG_CN                ' 切换中/英模式
+
+                    ' 刷新输入法状态窗口
+                    UpdateStatusWindow()
+
+                    SetIkrFlag(ikr, False, False, False)
+
+                End If
+
+                bRet = True
+
+            Case Keys.ControlKey
+
+                ' Ctrl按键松开时(干啥子未定)
+                If iKey = Keys.ControlKey Then
+                End If
+
+        End Select
+
+
+        isDot = IIf(bRet, False, isDot)
+
+        Return bRet
+    End Function
 
     ''' <summary>
     ''' 按键处理
@@ -20,7 +101,6 @@ Module MDanDingKeys
     ''' <param name="iKey">按键</param>
     ''' <param name="ikr">按键处理结果</param>
     Friend Sub ComProcessKey(ByVal iKey As UInteger, ByRef ikr As ImeKeyResult)
-
 
         ' 处理CapsLock按键
         If HandleCapsLockKey(iKey, ikr) Then
@@ -31,6 +111,12 @@ Module MDanDingKeys
         If HandleNotImeKey(iKey, ikr) Then
             Return
         End If
+
+        ' 处理自定义组合键
+        If HandleHotKey(iKey, ikr) Then
+            Return
+        End If
+
 
         ' 处理编码按键
         If IsCompKey(iKey) Then
@@ -139,11 +225,15 @@ Module MDanDingKeys
                 End If
 
             Case Keys.Left
-                ddPy.MoveCurLeft()
-                SetIkrFlag(ikr, True, True, False)
+                If frmInput.Visible Then
+                    ddPy.MoveCurLeft()
+                    SetIkrFlag(ikr, True, True, False)
+                End If
             Case Keys.Right
-                ddPy.MoveCurRight()
-                SetIkrFlag(ikr, True, True, False)
+                If frmInput.Visible Then
+                    ddPy.MoveCurRight()
+                    SetIkrFlag(ikr, True, True, False)
+                End If
 
             Case Keys.Down
                 If ddPy.InputPys.Length = 0 Then
@@ -158,6 +248,23 @@ Module MDanDingKeys
                 Else
                     ddPy.FocusPreviousWord()                ' 高亮显示前一个候选
                     SetIkrFlag(ikr, True, True, False)
+                End If
+
+            Case Keys.Tab
+                If My.Computer.Keyboard.ShiftKeyDown Then
+                    If ddPy.InputPys.Length = 0 Then
+                        SetIkrFlag(ikr, False, False, False)
+                    Else
+                        ddPy.ShowPreviousPage()                 ' 前页
+                        SetIkrFlag(ikr, True, True, False)
+                    End If
+                Else
+                    If ddPy.InputPys.Length = 0 Then
+                        SetIkrFlag(ikr, False, False, False)
+                    Else
+                        ddPy.ShowNextPage()                     ' 后页
+                        SetIkrFlag(ikr, True, True, False)
+                    End If
                 End If
 
             Case Keys.PageDown
@@ -226,6 +333,7 @@ Module MDanDingKeys
                 End If
             Case Keys.OemQuestion
                 EnterWithChar(ikr, False, iKey)    ' 附加字符上屏
+
 
             Case Else
                 If iKey >= Keys.D0 And iKey <= Keys.D9 Then
@@ -322,6 +430,10 @@ Module MDanDingKeys
     ''' <param name="iKey">按键</param>
     ''' <returns>True：作为编码字符</returns>
     Private Function IsCompKey(ByVal iKey As UInteger) As Boolean
+
+        If My.Computer.Keyboard.CtrlKeyDown Then
+            Return False
+        End If
 
         Dim bRet As Boolean = False
         Select Case iKey
@@ -887,61 +999,36 @@ Module MDanDingKeys
             Return True
         End If
 
-        ' 不处理未定义的Ctrl组合键
+
+        ' 自定义的 Ctrl+Shift+※ 组合键交后续程序处理
+        If My.Computer.Keyboard.CtrlKeyDown AndAlso My.Computer.Keyboard.ShiftKeyDown Then
+            isDot = False
+            Return False
+        End If
+
+        ' 自定义的 Ctrl+※ 组合键交后续程序处理
         If My.Computer.Keyboard.CtrlKeyDown AndAlso _
-             Not (frmInput.Visible AndAlso _
-                  (iKey = Keys.Left _
-                  OrElse iKey = Keys.Right _
-                  ) _
-                ) Then
-
-            SetIkrFlag(ikr, False, False, False)   ' 交还系统处理
+            (iKey = Keys.Left _
+            OrElse iKey = Keys.Right _
+            OrElse iKey = Keys.OemPeriod _
+            ) Then
 
             isDot = False
-            Return True
+            Return False
         End If
 
-        ' Shift按键松开
-        If iKey = Keys.ShiftKey Then
-
-            If My.Computer.Keyboard.ShiftKeyDown Then
-                SetIkrFlag(ikr, False, False, False)   ' 交还系统处理
-            ElseIf hasInputWithShift Then
-                ' 按Shift组合键松开
-                SetIkrFlag(ikr, False, False, False)   ' 交还系统处理
-                hasInputWithShift = False
-            Else
-                ' 单键Shift按键松开
-                P_LNG_CN = Not P_LNG_CN                ' 切换中/英模式
-
-                ' 刷新输入法状态窗口
-                UpdateStatusWindow()
-
-                SetIkrFlag(ikr, False, False, False)
-
-            End If
-
-            isDot = False
-            Return True
-        End If
-
-        ' Ctrl按键松开时
-        If iKey = Keys.ControlKey Then
-            SetIkrFlag(ikr, False, False, False)   ' 交还系统处理
-
-            isDot = False
-            Return True
-        End If
 
         If My.Computer.Keyboard.ShiftKeyDown Then
             hasInputWithShift = True
         End If
 
         ' 初次输入单个非编码字符
-        If Not frmInput.Visible AndAlso (Not IsAlphaKey(iKey) _
-                                         OrElse My.Computer.Keyboard.CapsLock _
-                                         OrElse (Not P_LNG_CN) _
-                                         ) Then
+        If (Not iKey = Keys.ControlKey) AndAlso (Not iKey = Keys.ShiftKey) AndAlso (Not iKey = Keys.Space) _
+            AndAlso (Not frmInput.Visible) _
+            AndAlso (Not IsAlphaKey(iKey) _
+                    OrElse My.Computer.Keyboard.CapsLock _
+                    OrElse (Not P_LNG_CN) _
+                    ) Then
 
             Dim sChar As String = ConvertChar(iKey)
             If sChar.Length = 0 Then

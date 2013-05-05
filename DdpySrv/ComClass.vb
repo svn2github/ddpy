@@ -242,6 +242,12 @@ Public Class ComClass
     Public Function SrvGetAllUsersLogPath() As String
         Return GetAllUsersLogPath()
     End Function
-  
+
+
+    Public Function SvrGetDdpyCfgExePath() As String
+        Dim sPath As String = My.Computer.FileSystem.GetParentPath(Application.ExecutablePath)
+        Return sPath & "\DdpyCfg.exe"
+    End Function
+
 End Class
 

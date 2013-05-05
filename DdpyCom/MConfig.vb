@@ -115,7 +115,7 @@ Module MConfig
             P_TITLE = CStr(ary(9))
 
         Catch ex As Exception
-            MsgBox(ex.Message)
+            ComDebug(ex)
         End Try
 
     End Sub
@@ -126,18 +126,10 @@ Module MConfig
     Friend Sub OpenSettingDlg()
         Try
             Dim info As New System.Diagnostics.ProcessStartInfo
-            If My.Computer.FileSystem.FileExists("C:\\Program Files\\DanDing\\DdpyCfg.exe") Then
-                ' 安装
-                info.FileName = "C:\\Program Files\\DanDing\\DdpyCfg.exe"
-            Else
-                ' 开发
-                info.FileName = "D:\\DanDing\\Release\\DdpyCfg.exe"
-            End If
-
+            info.FileName = SvrGetDdpyCfgExePath()
             System.Diagnostics.Process.Start(info)
-
         Catch ex As Exception
-            MsgBox(ex.Message)
+            ComDebug(ex)
         End Try
     End Sub
 
@@ -151,6 +143,7 @@ Module MConfig
             lstApp.Add("firefox")  ' firefox
             lstApp.Add("WINWORD")  ' Word
             lstApp.Add("EXCEL")  ' Excel
+            lstApp.Add("chrome")  ' Chrome
         End If
 
         For Each name As String In lstApp

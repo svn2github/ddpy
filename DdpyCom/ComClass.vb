@@ -56,7 +56,6 @@ Public Class ComClass
         Try
             DebugTimeStart()
 
-
             ComProcessKey(iKey, ikr)
 
             If ikr.IsProcessKey Then
@@ -122,8 +121,16 @@ Public Class ComClass
                     frmStatus.PanLng.BackgroundImage = My.Resources.LngA
                 End If
                 ShowWindow(frmStatus.Handle, SW_SHOWNOACTIVATE)
+
+                If Not frmInput.Visible AndAlso Not "".Equals(ddPy.InputPys) Then
+                    ' 焦点控件不是按钮的话才显示候选窗口
+                    If Not "Button".Equals(GetClassNameByHwnd(GetFocus()), StringComparison.OrdinalIgnoreCase) Then
+                        frmInput.Show()
+                    End If
+                End If
+
             Else
-                frmInput.Hide()
+                frmInput.Visible = False    ' 关闭候选窗口但不清除ddpy数据
                 frmStatus.Hide()
             End If
 
