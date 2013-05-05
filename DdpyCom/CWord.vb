@@ -28,12 +28,22 @@ Friend Class CWord
     Private vPinYin As String               ' 全拼
     Private vOrder As Integer               ' 词频
     Private vWordType As WordType = WordType.DIC          ' 类型
+    Private vIsMixWord As Boolean
 
     ''' <summary>
     ''' 构造函数
     ''' </summary>
     Public Sub New()
     End Sub
+
+    Public Property IsMixWord() As Boolean
+        Get
+            Return vIsMixWord
+        End Get
+        Set(ByVal Value As Boolean)
+            vIsMixWord = Value
+        End Set
+    End Property
 
     ''' <summary>
     ''' 构造函数

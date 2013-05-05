@@ -117,6 +117,15 @@ Module MDanDingKeys
             Return
         End If
 
+        Dim sChar As String = ConvertDefaultChar(iKey)
+        If Not "".Equals(Trim(sChar)) Then
+            If IsMixInput(sChar) Then
+                ddPy.InputPys = ddPy.InputPys & sChar
+                ddPy.ExecuteSearch()
+                SetIkrFlag(ikr, True, True, False)
+                Return
+            End If
+        End If
 
         ' 处理编码按键
         If IsCompKey(iKey) Then

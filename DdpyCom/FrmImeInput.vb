@@ -107,8 +107,14 @@ Friend Class FrmImeInput
     ''' </summary>
     Private Sub ChangeLocation()
 
+        Dim bTmpVShow As Boolean = False
+        If Not ddPy.WordList Is Nothing AndAlso ddPy.WordList.Count > 0 AndAlso ddPy.WordList(0).IsMixWord Then
+            bTmpVShow = True
+        End If
+
+
         ' 调整候选文字位置
-        If P_V_SHOW Then
+        If bTmpVShow OrElse P_V_SHOW Then
 
             ' 竖直显示
             If txt2.Visible Then
@@ -289,7 +295,8 @@ Friend Class FrmImeInput
             ' 右击候选文字弹出菜单
             Dim idx As Integer = (ddPy.CurrentPage - 1) * P_MAX_PAGE_CNT + sender.Tag
             Dim word As CWord = ddPy.WordList(idx)
-            If word.WordType = WordType.USR Then
+
+            If word.WordType = WordType.USR OrElse word.IsMixWord Then
                 menuItemDelCand.Enabled = True
             Else
                 menuItemDelCand.Enabled = False
@@ -298,7 +305,11 @@ Friend Class FrmImeInput
             ContextMenuStripCand.Location = e.Location
             ContextMenuStripCand.Show(Cursor.Position.X, Cursor.Position.Y)
 
-            menuItemDelCand.Text = "从用户词库中删除 " & Strings.Left(GetCandidate(sender.Tag).Text, 7) & IIf(GetCandidate(sender.Tag).Text.Length > 7, "～", "")
+            If word.IsMixWord Then
+                menuItemDelCand.Text = "删除 " & GetCandidate(sender.Tag).Text.Substring(2)
+            Else
+                menuItemDelCand.Text = "从用户词库中删除 " & Strings.Left(GetCandidate(sender.Tag).Text, 7) & IIf(GetCandidate(sender.Tag).Text.Length > 7, "～", "")
+            End If
             menuItemDelCand.Tag = sender.Tag
         End If
     End Sub
@@ -309,8 +320,13 @@ Friend Class FrmImeInput
         Dim idx As Integer = (ddPy.CurrentPage - 1) * P_MAX_PAGE_CNT + menuItemDelCand.Tag
         Dim word As CWord = ddPy.WordList(idx)
 
-        ' 从用户词库删除文字
-        SrvUnRegisterUserWord(word.PinYin, word.Text)
+        If word.IsMixWord Then
+            ' 删除混合输入
+            DeleteMixInputData(word.Text)
+        Else
+            ' 从用户词库删除文字
+            SrvUnRegisterUserWord(word.PinYin, word.Text)
+        End If
 
         ' 刷新显示
         ddPy.ExecuteSearch()

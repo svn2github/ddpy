@@ -152,6 +152,7 @@
     <Compile Include="MDanDingKeys.vb" />
     <Compile Include="MDebug.vb" />
     <Compile Include="MIme.vb" />
+    <Compile Include="MMixInput.vb" />
     <Compile Include="MPinYinBreak.vb" />
     <Compile Include="MServer.vb" />
     <Compile Include="MWinApi.vb" />

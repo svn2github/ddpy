@@ -92,6 +92,10 @@ Module MServer
         Return GetDdpyServer().SvrGetDdpyCfgExePath()
     End Function
 
+    Public Function SvrGetCurrentUserDataPath() As String
+        Return GetDdpyServer().SvrGetCurrentUserDataPath()
+    End Function
+
     ''' <summary>
     ''' 取得后台服务对象
     ''' </summary>

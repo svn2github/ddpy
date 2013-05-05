@@ -271,10 +271,19 @@ Friend Class CDandingPy
         ElseIf vFocusCand > words.Length Then
             vFocusCand = 1
         End If
-        vWordStack.Push(words(vFocusCand - 1))
+        Dim word As CWord = words(vFocusCand - 1)
+        vWordStack.Push(word)
 
-        vDispWordText = GetDispWordText()
-        vDispPyText = GetDispPyText()
+
+        If word.IsMixWord Then
+            vDispWordText = word.Text
+            vDispPyText = ""
+            vDispPyText2 = ""
+            vTextEndChar = ""
+        Else
+            vDispWordText = GetDispWordText()
+            vDispPyText = GetDispPyText()
+        End If
 
         If vDispPyText = "" AndAlso vDispPyText2 = "" Then
             vIsFinish = True
@@ -451,6 +460,12 @@ Friend Class CDandingPy
     ''' 执行检索
     ''' </summary>
     Public Sub ExecuteSearch()
+
+        If IsMixInput() Then
+            vDispPyText = InputPys
+            Me.WordList = GetMixWords(InputPys.Replace(" ", "") & vDispPyText2)
+            Return
+        End If
 
         vDispPyText = GetDispPyText()
 

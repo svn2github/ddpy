@@ -70,6 +70,7 @@ Public Class ComClass
                             sResult = ddPy.Text & ddPy.DispPyText2 & ddPy.TextEndChar
                         End If
 
+                        AddMixInputData(sResult)
                         SrvRegisterWords(ddPy.InputWord)
 
                         frmInput.Hide()

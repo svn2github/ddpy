@@ -59,8 +59,14 @@ Public Class ComClass
                 SetSettingInfo(My.Computer.FileSystem.ReadAllText(sFileCfg, Encoding.UTF8))
             End If
 
+            ' 创建网址邮件等用户混合输入文件
+            Dim sFileUserData As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\\用户混合输入.txt"
+            If Not My.Computer.FileSystem.FileExists(sFileUserData) Then
+                My.Computer.FileSystem.WriteAllText(sFileUserData, "ddpy.googlecode.com", False, Encoding.UTF8)
+            End If
+
         Catch ex As Exception
-            ComError("New() - ImportDanDingFile(" & userWordFile & ")", ex)
+            ComError("New()", ex)
         End Try
 
     End Sub
@@ -247,6 +253,10 @@ Public Class ComClass
     Public Function SvrGetDdpyCfgExePath() As String
         Dim sPath As String = My.Computer.FileSystem.GetParentPath(Application.ExecutablePath)
         Return sPath & "\DdpyCfg.exe"
+    End Function
+
+    Public Function SvrGetCurrentUserDataPath() As String
+        Return My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData
     End Function
 
 End Class
