@@ -22,6 +22,16 @@ Friend Class CDandingPy
     Private aryRegisterWordText As String()
     Private aryRegisterWordPy As String()
 
+    Private vHasInput As Boolean = True
+
+    Public Function HasInput() As Boolean
+        Return vInputPys.Length > 0 OrElse vDispPyText.Length > 0 OrElse vDispPyText2.Length > 0
+    End Function
+
+    Public Function HasStackWord() As Boolean
+        Return vWordStack.Count > 0
+    End Function
+
     ''' <summary>
     ''' 编辑状态下编码栏光标右边的灰色拼音
     ''' </summary>
@@ -77,8 +87,22 @@ Friend Class CDandingPy
 
         End If
 
+        ExecuteSearch()
+    End Sub
+
+    Public Sub MoveCurHome()
+        If vInputPys.Length <= 0 Then
+            Return
+        End If
 
 
+        If HasStackWord() Then
+            vDispPyText2 = vDispPyText & vDispPyText2
+            vInputPys = Strings.Left(vInputPys, vInputPys.Length - vDispPyText.Length)
+        Else
+            vDispPyText2 = vInputPys & vDispPyText2
+            vInputPys = ""
+        End If
 
         ExecuteSearch()
     End Sub
@@ -105,7 +129,18 @@ Friend Class CDandingPy
                 vDispPyText2 = Strings.Right(vDispPyText2, vDispPyText2.Length - 1)
             End If
         End If
-  
+
+        ExecuteSearch()
+    End Sub
+
+    Public Sub MoveCurEnd()
+        If vDispPyText2.Length <= 0 Then
+            Return
+        End If
+
+        vInputPys = vInputPys & vDispPyText2
+        vDispPyText2 = ""
+
         ExecuteSearch()
     End Sub
 
@@ -461,9 +496,11 @@ Friend Class CDandingPy
     ''' </summary>
     Public Sub ExecuteSearch()
 
-        If IsMixInput() Then
+        If SrvIsMixInput(Me.InputPys.Replace(" ", ""), Me.DispPyText2) Then
             vDispPyText = InputPys
-            Me.WordList = GetMixWords(InputPys.Replace(" ", "") & vDispPyText2)
+            Me.WordList = SrvSearchMixWords(InputPys.Replace(" ", "") & vDispPyText2)
+            Me.CurrentPage = 1
+            Me.FocusCand = 1
             Return
         End If
 

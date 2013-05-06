@@ -48,7 +48,7 @@ Friend Class CWord
     ''' <summary>
     ''' 构造函数
     ''' </summary>
-    ''' <param name="line">文字行（文字Tab简拼Tab全拼Tab词频Tab类型）</param>
+    ''' <param name="line">文字行（文字Tab简拼Tab全拼Tab词频Tab类型Tab是否混合输入）</param>
     Public Sub New(ByVal line As String)
 
         ' 文字 简拼 全拼 词频 类型
@@ -60,6 +60,9 @@ Friend Class CWord
 
         If cols.Length > 4 Then
             vWordType = cols(4)
+        End If
+        If cols.Length > 5 Then
+            vIsMixWord = CBool(cols(5))
         End If
     End Sub
 
@@ -175,7 +178,7 @@ Friend Class CWord
     End Function
 
     Public Overrides Function ToString() As String
-        Return Me.Text & vbTab & Me.ShortPinYin & vbTab & Me.PinYin & vbTab & Me.Order & vbTab & Me.WordType
+        Return Me.Text & vbTab & Me.ShortPinYin & vbTab & Me.PinYin & vbTab & Me.Order & vbTab & Me.WordType & vbTab & Me.IsMixWord
     End Function
 
     ''' <summary>

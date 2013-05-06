@@ -65,7 +65,11 @@ Friend Class FrmImeInput
         For i As Integer = 0 To 8
 
             If i < P_MAX_PAGE_CNT AndAlso ddPy.WordList.Count >= iStart + i + 1 Then
-                GetCandidate(i).Text = (i + 1) & "." & ddPy.WordList(iStart + i).Text
+                If ddPy.WordList(iStart + i).IsMixWord Then
+                    GetCandidate(i).Text = ddPy.WordList(iStart + i).Text & " "
+                Else
+                    GetCandidate(i).Text = (i + 1) & "." & ddPy.WordList(iStart + i).Text
+                End If
                 GetCandidate(i).Visible = True
             Else
                 GetCandidate(i).Visible = False
@@ -108,7 +112,7 @@ Friend Class FrmImeInput
     Private Sub ChangeLocation()
 
         Dim bTmpVShow As Boolean = False
-        If Not ddPy.WordList Is Nothing AndAlso ddPy.WordList.Count > 0 AndAlso ddPy.WordList(0).IsMixWord Then
+        If Not ddPy.WordList Is Nothing AndAlso ddPy.WordList.Count > 5 AndAlso ddPy.WordList(0).IsMixWord Then
             bTmpVShow = True
         End If
 
@@ -306,7 +310,7 @@ Friend Class FrmImeInput
             ContextMenuStripCand.Show(Cursor.Position.X, Cursor.Position.Y)
 
             If word.IsMixWord Then
-                menuItemDelCand.Text = "删除 " & GetCandidate(sender.Tag).Text.Substring(2)
+                menuItemDelCand.Text = "删除 " & word.Text
             Else
                 menuItemDelCand.Text = "从用户词库中删除 " & Strings.Left(GetCandidate(sender.Tag).Text, 7) & IIf(GetCandidate(sender.Tag).Text.Length > 7, "～", "")
             End If
@@ -322,7 +326,7 @@ Friend Class FrmImeInput
 
         If word.IsMixWord Then
             ' 删除混合输入
-            DeleteMixInputData(word.Text)
+            SrvDeleteMixInputData(word.Text)
         Else
             ' 从用户词库删除文字
             SrvUnRegisterUserWord(word.PinYin, word.Text)

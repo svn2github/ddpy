@@ -10,7 +10,7 @@ Module MServer
     ''' </summary>
     ''' <param name="codes">拼音编码</param>
     ''' <returns>候选文字列表</returns>
-    Public Function SrvSearchWords(ByVal codes As String) As List(Of CWord)
+    Friend Function SrvSearchWords(ByVal codes As String) As List(Of CWord)
 
         DebugTimeStart()
 
@@ -31,11 +31,38 @@ Module MServer
         Return lst
     End Function
 
+    Friend Function SrvSearchMixWords(ByVal codes As String) As List(Of CWord)
+        Dim lst As New List(Of CWord)
+        Dim txt As String = GetDdpyServer().SrvSearchMixWords(codes)
+        If txt = "" Then
+            Return lst
+        End If
+
+        Dim lines As String() = txt.Split(vbLf)
+        For i As Integer = 0 To lines.Length - 1
+            lst.Add(New CWord(lines(i)))
+        Next
+
+        Return lst
+    End Function
+
+    Friend Sub SrvAddMixInputData(ByVal codes As String)
+        GetDdpyServer().SrvAddMixInputData(codes)
+    End Sub
+
+    Friend Sub SrvDeleteMixInputData(ByVal codes As String)
+        GetDdpyServer().SrvDeleteMixInputData(codes)
+    End Sub
+
+    Friend Function SrvIsMixInput(ByVal leftPy As String, ByVal rightPy As String, Optional ByVal sChar As String = "") As Boolean
+        Return GetDdpyServer().SrvIsMixInput(leftPy, rightPy, sChar)
+    End Function
+
     ''' <summary>
     ''' 登记用户输入的文字（vbTab分割的拼音 + vbLf + vbTab分割的文字）
     ''' </summary>
     ''' <param name="words">用户输入的文字（vbTab分割的拼音 + vbLf + vbTab分割的文字）</param>
-    Public Sub SrvRegisterWords(ByVal words As String)
+    Friend Sub SrvRegisterWords(ByVal words As String)
         GetDdpyServer().SrvRegisterWords(words)
     End Sub
 
@@ -44,7 +71,7 @@ Module MServer
     ''' </summary>
     ''' <param name="pinYin">拼音全拼</param>
     ''' <param name="text">指定字词</param>
-    Public Sub SrvUnRegisterUserWord(ByVal pinYin As String, ByVal text As String)
+    Friend Sub SrvUnRegisterUserWord(ByVal pinYin As String, ByVal text As String)
         GetDdpyServer().SrvUnRegisterUserWord(pinYin, text)
     End Sub
 
@@ -52,7 +79,7 @@ Module MServer
     ''' 从后台服务取得配置信息：可输入的拼音编码最大长度
     ''' </summary>
     ''' <returns>可输入的拼音编码最大长度</returns>
-    Public Function SrvGetMaxPyLen() As Integer
+    Friend Function SrvGetMaxPyLen() As Integer
         Return GetDdpyServer().SrvGetMaxPyLen()
     End Function
 
@@ -60,7 +87,7 @@ Module MServer
     ''' 从后台服务取得配置信息：候选文字最大个数
     ''' </summary>
     ''' <returns>候选文字最大个数</returns>
-    Public Function SrvGetMaxPageCnt() As Integer
+    Friend Function SrvGetMaxPageCnt() As Integer
         Return GetDdpyServer().SrvGetMaxPageCnt()
     End Function
 
@@ -68,7 +95,7 @@ Module MServer
     ''' 从后台服务取得配置信息：是否垂直显示
     ''' </summary>
     ''' <returns>是否垂直显示</returns>
-    Public Function SrvGetVshow() As Boolean
+    Friend Function SrvGetVshow() As Boolean
         Return GetDdpyServer().SrvGetVshow()
     End Function
 
@@ -76,25 +103,18 @@ Module MServer
     ''' 取得用户Log目录
     ''' </summary>
     ''' <returns>用户Log目录</returns>
-    Public Function GetAllUsersLogPath() As String
-        Try
+    Friend Function GetAllUsersLogPath() As String
             Return GetDdpyServer().SrvGetAllUsersLogPath()
-        Catch ex As Exception
-            Dim sPath As String = "C:\\Documents and Settings\\All Users\\Application Data\\DanDing\\Log"
-            If Not My.Computer.FileSystem.DirectoryExists(sPath) Then
-                My.Computer.FileSystem.CreateDirectory(sPath)
-            End If
-            Return sPath
-        End Try
     End Function
 
-    Public Function SvrGetDdpyCfgExePath() As String
+    Friend Function SvrGetDdpyCfgExePath() As String
         Return GetDdpyServer().SvrGetDdpyCfgExePath()
     End Function
 
-    Public Function SvrGetCurrentUserDataPath() As String
+    Friend Function SvrGetCurrentUserDataPath() As String
         Return GetDdpyServer().SvrGetCurrentUserDataPath()
     End Function
+
 
     ''' <summary>
     ''' 取得后台服务对象

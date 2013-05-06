@@ -72,7 +72,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>DdpySrvKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>DdpySrvKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -140,6 +140,7 @@
     <Compile Include="CComSrvClassFactory.vb" />
     <Compile Include="ComClass.vb" />
     <Compile Include="CWord.vb" />
+    <Compile Include="MMixInput.vb" />
     <Compile Include="MSrvConfig.vb" />
     <Compile Include="MDanDingDictionary.vb" />
     <Compile Include="MSrvDebug.vb" />
@@ -178,7 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="DdpySrvKey.pfx" />
+    <None Include="DdpySrvKey.snk" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

@@ -117,18 +117,11 @@ Module MDanDingKeys
             Return
         End If
 
+
         Dim sChar As String = ConvertDefaultChar(iKey)
-        If Not "".Equals(Trim(sChar)) Then
-            If IsMixInput(sChar) Then
-                ddPy.InputPys = ddPy.InputPys & sChar
-                ddPy.ExecuteSearch()
-                SetIkrFlag(ikr, True, True, False)
-                Return
-            End If
-        End If
 
         ' 处理编码按键
-        If IsCompKey(iKey) Then
+        If Not My.Computer.Keyboard.CtrlKeyDown AndAlso IsCompKey(iKey) Then
 
             ' 超过输入长度限制时不处理
             If ddPy.InputPys.Length + ddPy.DispPyText2.Length >= P_MAX_PY_LEN Then
@@ -137,100 +130,134 @@ Module MDanDingKeys
             End If
 
             ' 拼接编码后检索
-            ddPy.InputPys = ddPy.InputPys & ConvertDefaultChar(iKey)
+            ddPy.InputPys = ddPy.InputPys & sChar
             ddPy.ExecuteSearch()
 
             SetIkrFlag(ikr, True, True, False)
             Return
         End If
 
+        ' 处理混合输入
+        If Not My.Computer.Keyboard.CtrlKeyDown AndAlso Not "".Equals(Trim(sChar)) Then
+            If SrvIsMixInput(ddPy.InputPys, ddPy.DispPyText2, sChar) Then
+                ddPy.InputPys = ddPy.InputPys & sChar
+                ddPy.ExecuteSearch()
+                SetIkrFlag(ikr, True, True, False)
+                Return
+            End If
+        End If
+
         ' 处理非编码按键
         Select Case iKey
             Case Keys.Back
-
-                If ddPy.InputPys.Length = 0 Then
-                    If ddPy.DispPyText2.Length > 1 Then
+                If frmInput.Visible Then
+                    If ddPy.DispPyText.Length = 0 Then
+                        ddPy.MoveCurLeft()
                         SetIkrFlag(ikr, True, True, False)
                     Else
-                        SetIkrFlag(ikr, False, False, False)
-                    End If
-                Else
 
-                    If ddPy.DispPyText2.Length = 0 Then
+                        If ddPy.DispPyText2.Length = 0 Then
 
-                        Dim word As CWord = ddPy.PopWord()
-                        If word Is Nothing Then
-                            ddPy.InputPys = Left(ddPy.InputPys, ddPy.InputPys.Length - 1)
-                            If ddPy.InputPys.Length = 0 Then
-                                SetIkrFlag(ikr, True, False, False)
+                            Dim word As CWord = ddPy.PopWord()
+                            If word Is Nothing Then
+                                ddPy.InputPys = Left(ddPy.InputPys, ddPy.InputPys.Length - 1)
+                                If ddPy.InputPys.Length = 0 Then
+                                    SetIkrFlag(ikr, True, False, False)
+                                Else
+                                    ddPy.ExecuteSearch() ' 检索
+                                    SetIkrFlag(ikr, True, True, False)
+                                End If
                             Else
                                 ddPy.ExecuteSearch() ' 检索
                                 SetIkrFlag(ikr, True, True, False)
                             End If
+
                         Else
-                            ddPy.ExecuteSearch() ' 检索
+
+                            ddPy.MoveCurLeft(True)
                             SetIkrFlag(ikr, True, True, False)
                         End If
+                    End If
 
-                    Else
+                End If
 
-                        ddPy.MoveCurLeft(True)
+            Case Keys.Insert
+                If frmInput.Visible AndAlso (Not ddPy.WordList Is Nothing) AndAlso ddPy.WordList.Count > 0 Then
+                    If SrvIsMixInput(ddPy.InputPys, ddPy.DispPyText2) Then
+                        ddPy.InputPys = Strings.Left(ddPy.WordList(ddPy.FocusCand - 1).Text, ddPy.InputPys.Length)
+                        ddPy.DispPyText2 = ddPy.WordList(ddPy.FocusCand - 1).Text.Substring(ddPy.InputPys.Length)
+                        ddPy.ExecuteSearch()
                         SetIkrFlag(ikr, True, True, False)
                     End If
                 End If
 
             Case Keys.Delete
-                If ddPy.DispPyText2.Length > 0 Then
-                    ddPy.DispPyText2 = ddPy.DispPyText2.Substring(1)
-                End If
+                If frmInput.Visible Then
+                    If ddPy.DispPyText2.Length > 0 Then
+                        ddPy.DispPyText2 = ddPy.DispPyText2.Substring(1)
+                    End If
 
-                If ddPy.InputPys.Length > 0 OrElse ddPy.DispPyText2.Length > 0 Then
-                    SetIkrFlag(ikr, True, True, False)
-                Else
-                    SetIkrFlag(ikr, True, False, False)
+                    If ddPy.InputPys.Length > 0 OrElse ddPy.DispPyText2.Length > 0 Then
+                        SetIkrFlag(ikr, True, True, False)
+                        ddPy.ExecuteSearch()
+                    Else
+                        SetIkrFlag(ikr, True, False, False)
+                    End If
+
                 End If
 
 
             Case Keys.Enter
-                If ddPy.InputPys.Length = 0 AndAlso ddPy.DispPyText2.Length = 0 Then
-                    ddPy.Clear()
-                    SetIkrFlag(ikr, False, False, False)
-                Else
-                    EnterWithChar(ikr, False, iKey)    ' 回车上屏
-                End If
-            Case Keys.Return    ' 小键盘回车
-                If ddPy.InputPys.Length = 0 AndAlso ddPy.DispPyText2.Length = 0 Then
-                    ddPy.Clear()
-                    SetIkrFlag(ikr, False, False, False)
-                Else
-                    EnterWithChar(ikr, False, iKey)    ' 回车上屏
-                End If
-            Case Keys.Space
-                If ddPy.InputPys.Length > 0 Then
-
-                    If ddPy.PushWord() Then
-                        SetIkrFlag(ikr, True, True, True)
-                        If Not ddPy.IsFinish Then
-                            ikr.IsInputEnd = False
-                            ddPy.ExecuteSearch()
-                        End If
+                If frmInput.Visible Then
+                    If ddPy.InputPys.Length = 0 AndAlso ddPy.DispPyText2.Length = 0 Then
+                        ddPy.Clear()
+                        SetIkrFlag(ikr, False, False, False)
                     Else
-                        ' 转换失败时，作回车上屏处理
                         EnterWithChar(ikr, False, iKey)    ' 回车上屏
                     End If
 
-                ElseIf ddPy.DispPyText2.Length > 0 Then
-                    EnterWithChar(ikr, False, iKey)    ' 回车上屏
-                Else
-                    SetIkrFlag(ikr, False, False, False)
+                End If
+            Case Keys.Return    ' 小键盘回车
+                If frmInput.Visible Then
+                    If ddPy.InputPys.Length = 0 AndAlso ddPy.DispPyText2.Length = 0 Then
+                        ddPy.Clear()
+                        SetIkrFlag(ikr, False, False, False)
+                    Else
+                        EnterWithChar(ikr, False, iKey)    ' 回车上屏
+                    End If
+
+                End If
+            Case Keys.Space
+                If frmInput.Visible Then
+                    If ddPy.InputPys.Length > 0 Then
+
+                        If ddPy.PushWord() Then
+                            SetIkrFlag(ikr, True, True, True)
+                            If Not ddPy.IsFinish Then
+                                ikr.IsInputEnd = False
+                                ddPy.ExecuteSearch()
+                            End If
+                        Else
+                            ' 转换失败时，作回车上屏处理
+                            EnterWithChar(ikr, False, iKey)    ' 回车上屏
+                        End If
+
+                    ElseIf ddPy.DispPyText2.Length > 0 Then
+                        EnterWithChar(ikr, False, iKey)    ' 回车上屏
+                    Else
+                        SetIkrFlag(ikr, False, False, False)
+                    End If
+
                 End If
 
             Case Keys.Escape
-                If ddPy.InputPys.Length = 0 AndAlso ddPy.DispPyText2.Length = 0 Then
-                    SetIkrFlag(ikr, False, False, False)
-                Else
-                    ddPy.Clear()
-                    SetIkrFlag(ikr, True, False, False)
+                If frmInput.Visible Then
+                    If ddPy.InputPys.Length = 0 AndAlso ddPy.DispPyText2.Length = 0 Then
+                        SetIkrFlag(ikr, False, False, False)
+                    Else
+                        ddPy.Clear()
+                        SetIkrFlag(ikr, True, False, False)
+                    End If
                 End If
 
             Case Keys.Left
@@ -244,36 +271,56 @@ Module MDanDingKeys
                     SetIkrFlag(ikr, True, True, False)
                 End If
 
-            Case Keys.Down
-                If ddPy.InputPys.Length = 0 Then
-                    SetIkrFlag(ikr, False, False, False)
-                Else
-                    ddPy.FocusNextWord()                    ' 高亮显示下一个候选
+            Case Keys.Home
+                If frmInput.Visible Then
+                    ddPy.MoveCurHome()
                     SetIkrFlag(ikr, True, True, False)
                 End If
-            Case Keys.Up
-                If ddPy.InputPys.Length = 0 Then
-                    SetIkrFlag(ikr, False, False, False)
-                Else
-                    ddPy.FocusPreviousWord()                ' 高亮显示前一个候选
+            Case Keys.End
+                If frmInput.Visible Then
+                    ddPy.MoveCurEnd()
                     SetIkrFlag(ikr, True, True, False)
                 End If
 
+
+            Case Keys.Down
+                If frmInput.Visible Then
+                    If ddPy.InputPys.Length = 0 Then
+                        SetIkrFlag(ikr, False, False, False)
+                    Else
+                        ddPy.FocusNextWord()                    ' 高亮显示下一个候选
+                        SetIkrFlag(ikr, True, True, False)
+                    End If
+                End If
+            Case Keys.Up
+                If frmInput.Visible Then
+                    If ddPy.InputPys.Length = 0 Then
+                        SetIkrFlag(ikr, False, False, False)
+                    Else
+                        ddPy.FocusPreviousWord()                ' 高亮显示前一个候选
+                        SetIkrFlag(ikr, True, True, False)
+                    End If
+
+                End If
+
             Case Keys.Tab
-                If My.Computer.Keyboard.ShiftKeyDown Then
-                    If ddPy.InputPys.Length = 0 Then
-                        SetIkrFlag(ikr, False, False, False)
+                If frmInput.Visible Then
+                    If My.Computer.Keyboard.ShiftKeyDown Then
+                        If ddPy.InputPys.Length = 0 Then
+                            SetIkrFlag(ikr, False, False, False)
+                        Else
+                            ddPy.ShowPreviousPage()                 ' 前页
+                            SetIkrFlag(ikr, True, True, False)
+                        End If
                     Else
-                        ddPy.ShowPreviousPage()                 ' 前页
-                        SetIkrFlag(ikr, True, True, False)
+                        If ddPy.InputPys.Length = 0 Then
+                            SetIkrFlag(ikr, False, False, False)
+                        Else
+                            ddPy.ShowNextPage()                     ' 后页
+                            SetIkrFlag(ikr, True, True, False)
+                        End If
                     End If
-                Else
-                    If ddPy.InputPys.Length = 0 Then
-                        SetIkrFlag(ikr, False, False, False)
-                    Else
-                        ddPy.ShowNextPage()                     ' 后页
-                        SetIkrFlag(ikr, True, True, False)
-                    End If
+
                 End If
 
             Case Keys.PageDown
@@ -373,13 +420,28 @@ Module MDanDingKeys
                 SetIkrFlag(ikr, True, True, True)
             Else
                 ddPy.FocusCand = iKey - Keys.D0
-                ddPy.PushWord()
-                SetIkrFlag(ikr, True, True, True)
 
-                If Not ddPy.IsFinish Then
-                    ikr.IsInputEnd = False
-                    ddPy.ExecuteSearch()
+                If ddPy.FocusCand = iKey - Keys.D0 Then
+                    ddPy.PushWord()
+                    SetIkrFlag(ikr, True, True, True)
+
+                    If Not ddPy.IsFinish Then
+                        ikr.IsInputEnd = False
+                        ddPy.ExecuteSearch()
+                    End If
+                Else
+                    ' 所按数字非候选项
+                    If ddPy.HasStackWord() Then
+                        ' 已经有文字转换，不响应
+                    Else
+                        ' 未曾转换过，作混合输入处理
+                        ddPy.InputPys = ddPy.InputPys & ConvertDefaultChar(iKey)
+                        ddPy.ExecuteSearch()
+                    End If
+                    SetIkrFlag(ikr, True, True, False)
+
                 End If
+
             End If
 
         ElseIf iKey = Keys.D0 Then
@@ -439,10 +501,6 @@ Module MDanDingKeys
     ''' <param name="iKey">按键</param>
     ''' <returns>True：作为编码字符</returns>
     Private Function IsCompKey(ByVal iKey As UInteger) As Boolean
-
-        If My.Computer.Keyboard.CtrlKeyDown Then
-            Return False
-        End If
 
         Dim bRet As Boolean = False
         Select Case iKey
@@ -941,28 +999,28 @@ Module MDanDingKeys
             Case Windows.Forms.Keys.Add                 ' 小键盘
                 sRet = "+"
             Case Windows.Forms.Keys.Decimal             ' 小键盘
-                sRet = "."
+                sRet = IIf(My.Computer.Keyboard.NumLock, ".", UnDispKey)
 
             Case Windows.Forms.Keys.NumPad0             ' 小键盘
-                sRet = IIf(My.Computer.Keyboard.NumLock, UnDispKey, "0")
+                sRet = IIf(My.Computer.Keyboard.NumLock, "0", UnDispKey)
             Case Windows.Forms.Keys.NumPad1             ' 小键盘
-                sRet = IIf(My.Computer.Keyboard.NumLock, UnDispKey, "1")
+                sRet = IIf(My.Computer.Keyboard.NumLock, "1", UnDispKey)
             Case Windows.Forms.Keys.NumPad2             ' 小键盘
-                sRet = IIf(My.Computer.Keyboard.NumLock, UnDispKey, "2")
+                sRet = IIf(My.Computer.Keyboard.NumLock, "2", UnDispKey)
             Case Windows.Forms.Keys.NumPad3             ' 小键盘
-                sRet = IIf(My.Computer.Keyboard.NumLock, UnDispKey, "3")
+                sRet = IIf(My.Computer.Keyboard.NumLock, "3", UnDispKey)
             Case Windows.Forms.Keys.NumPad4             ' 小键盘
-                sRet = IIf(My.Computer.Keyboard.NumLock, UnDispKey, "4")
+                sRet = IIf(My.Computer.Keyboard.NumLock, "4", UnDispKey)
             Case Windows.Forms.Keys.NumPad5             ' 小键盘
-                sRet = IIf(My.Computer.Keyboard.NumLock, UnDispKey, "5")
+                sRet = IIf(My.Computer.Keyboard.NumLock, "5", UnDispKey)
             Case Windows.Forms.Keys.NumPad6             ' 小键盘
-                sRet = IIf(My.Computer.Keyboard.NumLock, UnDispKey, "6")
+                sRet = IIf(My.Computer.Keyboard.NumLock, "6", UnDispKey)
             Case Windows.Forms.Keys.NumPad7             ' 小键盘
-                sRet = IIf(My.Computer.Keyboard.NumLock, UnDispKey, "7")
+                sRet = IIf(My.Computer.Keyboard.NumLock, "7", UnDispKey)
             Case Windows.Forms.Keys.NumPad8             ' 小键盘
-                sRet = IIf(My.Computer.Keyboard.NumLock, UnDispKey, "8")
+                sRet = IIf(My.Computer.Keyboard.NumLock, "8", UnDispKey)
             Case Windows.Forms.Keys.NumPad9             ' 小键盘
-                sRet = IIf(My.Computer.Keyboard.NumLock, UnDispKey, "9")
+                sRet = IIf(My.Computer.Keyboard.NumLock, "9", UnDispKey)
 
             Case Else
 

@@ -15,6 +15,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DdpyInstaller", "DdpyInstal
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DdpyTsf", "DdpyTsf\DdpyTsf.vcxproj", "{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupX86", "SetupX86\SetupX86.vdproj", "{460AEC53-9881-4D64-8974-02238624D44C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,8 +36,8 @@ Global
 		{46A1324E-68B9-4382-9EB5-363366F47821}.Debug|Win32.Build.0 = Debug|Win32
 		{46A1324E-68B9-4382-9EB5-363366F47821}.Debug|x86.ActiveCfg = Debug|Win32
 		{46A1324E-68B9-4382-9EB5-363366F47821}.Release|Any CPU.ActiveCfg = Release|Win32
-		{46A1324E-68B9-4382-9EB5-363366F47821}.Release|Mixed Platforms.ActiveCfg = Release|x64
-		{46A1324E-68B9-4382-9EB5-363366F47821}.Release|Mixed Platforms.Build.0 = Release|x64
+		{46A1324E-68B9-4382-9EB5-363366F47821}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{46A1324E-68B9-4382-9EB5-363366F47821}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{46A1324E-68B9-4382-9EB5-363366F47821}.Release|Win32.ActiveCfg = Release|Win32
 		{46A1324E-68B9-4382-9EB5-363366F47821}.Release|Win32.Build.0 = Release|Win32
 		{46A1324E-68B9-4382-9EB5-363366F47821}.Release|x86.ActiveCfg = Release|Win32
@@ -58,8 +60,8 @@ Global
 		{B0EED501-B016-4FB2-9AC9-B830B42A0D06}.Debug|x86.ActiveCfg = Debug|x86
 		{B0EED501-B016-4FB2-9AC9-B830B42A0D06}.Debug|x86.Build.0 = Debug|x86
 		{B0EED501-B016-4FB2-9AC9-B830B42A0D06}.Release|Any CPU.ActiveCfg = Release|x86
-		{B0EED501-B016-4FB2-9AC9-B830B42A0D06}.Release|Mixed Platforms.ActiveCfg = Release|x64
-		{B0EED501-B016-4FB2-9AC9-B830B42A0D06}.Release|Mixed Platforms.Build.0 = Release|x64
+		{B0EED501-B016-4FB2-9AC9-B830B42A0D06}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B0EED501-B016-4FB2-9AC9-B830B42A0D06}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B0EED501-B016-4FB2-9AC9-B830B42A0D06}.Release|Win32.ActiveCfg = Release|x86
 		{B0EED501-B016-4FB2-9AC9-B830B42A0D06}.Release|x86.ActiveCfg = Release|x86
 		{B0EED501-B016-4FB2-9AC9-B830B42A0D06}.Release|x86.Build.0 = Release|x86
@@ -107,6 +109,14 @@ Global
 		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Release|Win32.ActiveCfg = Release|Win32
 		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Release|Win32.Build.0 = Release|Win32
 		{9D4756D3-50DE-4A6E-A3D8-59A009C960CF}.Release|x86.ActiveCfg = Release|Win32
+		{460AEC53-9881-4D64-8974-02238624D44C}.Debug|Any CPU.ActiveCfg = Debug
+		{460AEC53-9881-4D64-8974-02238624D44C}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{460AEC53-9881-4D64-8974-02238624D44C}.Debug|Win32.ActiveCfg = Debug
+		{460AEC53-9881-4D64-8974-02238624D44C}.Debug|x86.ActiveCfg = Debug
+		{460AEC53-9881-4D64-8974-02238624D44C}.Release|Any CPU.ActiveCfg = Release
+		{460AEC53-9881-4D64-8974-02238624D44C}.Release|Mixed Platforms.ActiveCfg = Release
+		{460AEC53-9881-4D64-8974-02238624D44C}.Release|Win32.ActiveCfg = Release
+		{460AEC53-9881-4D64-8974-02238624D44C}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

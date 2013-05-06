@@ -3,7 +3,7 @@
 ''' <summary>
 ''' 文字类型
 ''' </summary>
-Public Enum WordType
+Friend Enum WordType
     ''' <summary>
     ''' 字典类型
     ''' </summary>
@@ -20,7 +20,7 @@ End Enum
 ''' </summary>
 ''' <remarks></remarks>
 <Serializable()> _
-Public Class CWord
+Friend Class CWord
     Implements IComparable
 
     Private vText As String                 ' 文字
@@ -28,6 +28,7 @@ Public Class CWord
     Private vPinYin As String               ' 全拼
     Private vOrder As Integer               ' 词频
     Private vWordType As WordType = WordType.DIC          ' 类型
+    Private vIsMixWord As Boolean
 
     ''' <summary>
     ''' 构造函数
@@ -35,10 +36,19 @@ Public Class CWord
     Public Sub New()
     End Sub
 
+    Public Property IsMixWord() As Boolean
+        Get
+            Return vIsMixWord
+        End Get
+        Set(ByVal Value As Boolean)
+            vIsMixWord = Value
+        End Set
+    End Property
+
     ''' <summary>
     ''' 构造函数
     ''' </summary>
-    ''' <param name="line">文字行（文字Tab简拼Tab全拼Tab词频Tab类型）</param>
+    ''' <param name="line">文字行（文字Tab简拼Tab全拼Tab词频Tab类型Tab是否混合输入）</param>
     Public Sub New(ByVal line As String)
 
         ' 文字 简拼 全拼 词频 类型
@@ -50,6 +60,9 @@ Public Class CWord
 
         If cols.Length > 4 Then
             vWordType = cols(4)
+        End If
+        If cols.Length > 5 Then
+            vWordType = CBool(cols(5))
         End If
     End Sub
 
@@ -125,6 +138,29 @@ Public Class CWord
     End Property
 
 
+    'Public Function CompareTo(ByVal obj As Object) As Integer Implements IComparable.CompareTo
+    '    Dim word As CWord = obj
+    '    If Me.ShortPinYin > word.ShortPinYin Then
+    '        Return 1
+    '    ElseIf Me.ShortPinYin < word.ShortPinYin Then
+    '        Return -1
+    '    ElseIf Me.Order > word.Order Then
+    '        Return 1
+    '    ElseIf Me.Order < word.Order Then
+    '        Return -1
+    '    ElseIf Me.PinYin > word.PinYin Then
+    '        Return 1
+    '    ElseIf Me.PinYin < word.PinYin Then
+    '        Return -1
+    '    ElseIf Me.Text > word.Text Then
+    '        Return 1
+    '    ElseIf Me.Text < word.Text Then
+    '        Return -1
+    '    Else
+    '        Return 0
+    '    End If
+    'End Function
+
     ''' <summary>
     ''' 排序用比较方法
     ''' </summary>
@@ -142,7 +178,7 @@ Public Class CWord
     End Function
 
     Public Overrides Function ToString() As String
-        Return Me.Text & vbTab & Me.ShortPinYin & vbTab & Me.PinYin & vbTab & Me.Order & vbTab & Me.WordType
+        Return Me.Text & vbTab & Me.ShortPinYin & vbTab & Me.PinYin & vbTab & Me.Order & vbTab & Me.WordType & vbTab & Me.IsMixWord
     End Function
 
     ''' <summary>

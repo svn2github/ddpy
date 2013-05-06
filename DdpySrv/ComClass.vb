@@ -48,9 +48,6 @@ Public Class ComClass
         MyBase.New()
 
         Try
-            ' 初始化字库词库
-            ImportDanDingFile()
-
             ' 读写配置文件
             Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\DanDingConfig.txt"
             If Not My.Computer.FileSystem.FileExists(sFileCfg) Then
@@ -59,11 +56,10 @@ Public Class ComClass
                 SetSettingInfo(My.Computer.FileSystem.ReadAllText(sFileCfg, Encoding.UTF8))
             End If
 
-            ' 创建网址邮件等用户混合输入文件
-            Dim sFileUserData As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\\用户混合输入.txt"
-            If Not My.Computer.FileSystem.FileExists(sFileUserData) Then
-                My.Computer.FileSystem.WriteAllText(sFileUserData, "ddpy.googlecode.com", False, Encoding.UTF8)
-            End If
+
+            ' 初始化字库词库
+            ImportDanDingFile()
+            InitMixInputFile()
 
         Catch ex As Exception
             ComError("New()", ex)
@@ -172,6 +168,34 @@ Public Class ComClass
         DeleteWordFromDic(pinYin, text)
         CacheCollect(True)
     End Sub
+
+    Public Function SrvSearchMixWords(ByVal codes As String) As String
+        Dim lst As List(Of CWord) = SearchMixWords(codes)
+
+        Dim buf As New StringBuilder
+        For i As Integer = 0 To lst.Count - 1
+            If i = 0 Then
+                buf.Append(lst(i).ToString)
+            Else
+                buf.Append(vbLf & lst(i).ToString)
+            End If
+        Next
+
+        Return buf.ToString
+
+    End Function
+
+    Public Sub SrvAddMixInputData(ByVal codes As String)
+        AddMixInputData(codes)
+    End Sub
+
+    Public Sub SrvDeleteMixInputData(ByVal codes As String)
+        DeleteMixInputData(codes)
+    End Sub
+
+    Public Function SrvIsMixInput(ByVal leftPy As String, ByVal rightPy As String, Optional ByVal sChar As String = "") As Boolean
+        Return IsMixInput(leftPy, rightPy, sChar)
+    End Function
 
     ''' <summary>
     ''' 指定拼音编码查找候选文字

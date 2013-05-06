@@ -70,7 +70,7 @@ Public Class ComClass
                             sResult = ddPy.Text & ddPy.DispPyText2 & ddPy.TextEndChar
                         End If
 
-                        AddMixInputData(sResult)
+                        SrvAddMixInputData(ddPy.InputPys.Replace(" ", "") & ddPy.DispPyText2)
                         SrvRegisterWords(ddPy.InputWord)
 
                         frmInput.Hide()
@@ -123,7 +123,7 @@ Public Class ComClass
                 End If
                 ShowWindow(frmStatus.Handle, SW_SHOWNOACTIVATE)
 
-                If Not frmInput.Visible AndAlso Not "".Equals(ddPy.InputPys) Then
+                If Not frmInput.Visible AndAlso ddPy.HasInput() Then
                     ' 焦点控件不是按钮的话才显示候选窗口
                     If Not "Button".Equals(GetClassNameByHwnd(GetFocus()), StringComparison.OrdinalIgnoreCase) Then
                         frmInput.Show()
@@ -153,7 +153,7 @@ Public Class ComClass
             End If
             frmStatus.Show()
 
-            ComInfo("此应用程序打开输入法：" & Process.GetCurrentProcess().ProcessName)
+            '  ComInfo("此应用程序打开输入法：" & Process.GetCurrentProcess().ProcessName)
         Else
             frmInput.Hide()
             If Not frmDebug Is Nothing Then
