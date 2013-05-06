@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:Setup"
+"ProjectName" = "8:SetupX64"
 "LanguageId" = "3:2052"
 "CodePage" = "3:936"
 "UILanguageId" = "3:2052"
@@ -57,8 +57,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_895D5FD6300B4A79885CD34603E03AB1"
-        "OwnerKey" = "8:_CFB994213EBE4534885F226C3F9C615D"
+        "MsmKey" = "8:_81757187E1E548C8BED403F2DA36B930"
+        "OwnerKey" = "8:_A348BD7C9E944CD392870898CD6C515D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -81,8 +81,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_EBBF6690D21140D9B4CF8DB807938270"
-        "OwnerKey" = "8:_A348BD7C9E944CD392870898CD6C515D"
+        "MsmKey" = "8:_DFA2E115A15448569CE14789EC8FF4E6"
+        "OwnerKey" = "8:_CFB994213EBE4534885F226C3F9C615D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -160,7 +160,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:..\\Release\\DdpySetup.msi"
+        "OutputFilename" = "8:..\\Release\\DdpySetupX64.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -936,11 +936,11 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_895D5FD6300B4A79885CD34603E03AB1"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_81757187E1E548C8BED403F2DA36B930"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
-            "SourcePath" = "8:Microsoft_VC100_CRT_x64.msm"
+            "SourcePath" = "8:Microsoft_VC100_CRT_x86.msm"
                 "Properties"
                 {
                 }
@@ -950,11 +950,11 @@
             "Feature" = "8:"
             "IsolateTo" = "8:"
             }
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_EBBF6690D21140D9B4CF8DB807938270"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_DFA2E115A15448569CE14789EC8FF4E6"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
-            "SourcePath" = "8:Microsoft_VC100_CRT_x86.msm"
+            "SourcePath" = "8:Microsoft_VC100_CRT_x64.msm"
                 "Properties"
                 {
                 }
