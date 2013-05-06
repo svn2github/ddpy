@@ -55,7 +55,7 @@ Public Class FrmSetting
 
             lst.Add(ChkVshow.Checked)
 
-            lst.Add(Trim(TxtTitle.Text))
+            lst.Add(TxtTitle.Text)
 
             server.SrvSetSettingInfo(Strings.Join(lst.ToArray, vbTab))
 
