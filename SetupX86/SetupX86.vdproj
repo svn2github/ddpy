@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_3D4F5E1795864F21A0D2A7FBA4686881"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5082F16A4E1740EBA177CDCE19935EB4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -34,18 +40,6 @@
         "Entry"
         {
         "MsmKey" = "8:_58C3C92F9C20498B8EDD6876DB47B3BE"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8A45325F2C0E4FF6923EB8E202EEF8DA"
-        "OwnerKey" = "8:_B4DF4FBE7B984B8CB2D94E8D9923F8D4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AF2CC352BB474EABA9A4C58711AFC835"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -75,6 +69,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F8EE79C5616F498EB0CC9CC9BCED6202"
+        "OwnerKey" = "8:_B4DF4FBE7B984B8CB2D94E8D9923F8D4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_58C3C92F9C20498B8EDD6876DB47B3BE"
         "MsmSig" = "8:_UNDEFINED"
@@ -82,7 +82,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5082F16A4E1740EBA177CDCE19935EB4"
+        "OwnerKey" = "8:_C08947A2A9CC4C60B4C9E79D08B2C616"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -94,7 +94,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C08947A2A9CC4C60B4C9E79D08B2C616"
+        "OwnerKey" = "8:_5082F16A4E1740EBA177CDCE19935EB4"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -115,13 +115,21 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:..\\Release\\DdpySetupX86.msi"
+        "OutputFilename" = "8:..\\Release\\DdpyX86.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -131,6 +139,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -208,10 +237,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AF2CC352BB474EABA9A4C58711AFC835"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3D4F5E1795864F21A0D2A7FBA4686881"
             {
-            "SourcePath" = "8:..\\uninstaller.ico"
-            "TargetName" = "8:uninstaller.ico"
+            "SourcePath" = "8:..\\SetupDdpy\\SetupDdpy.ico"
+            "TargetName" = "8:SetupDdpy.ico"
             "Tag" = "8:"
             "Folder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
             "Condition" = "8:"
@@ -336,7 +365,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:淡定拼音输入法"
         "ProductCode" = "8:{C2095991-AADE-4845-B3DD-9EEB3DD1298E}"
-        "PackageCode" = "8:{551DA1A9-8E1A-40BB-8864-F3FFB1662A3D}"
+        "PackageCode" = "8:{00848CF0-04BD-4905-A3C4-FAB8B494E9FF}"
         "UpgradeCode" = "8:{CD159289-698A-4D90-B1F5-8581CCB62EAE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -523,7 +552,7 @@
             "Target" = "8:_5082F16A4E1740EBA177CDCE19935EB4"
             "Folder" = "8:_092EE5BE271546FDADEC57952063E72B"
             "WorkingFolder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
-            "Icon" = "8:_AF2CC352BB474EABA9A4C58711AFC835"
+            "Icon" = "8:_3D4F5E1795864F21A0D2A7FBA4686881"
             "Feature" = "8:"
             }
         }
@@ -922,7 +951,7 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_8A45325F2C0E4FF6923EB8E202EEF8DA"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_F8EE79C5616F498EB0CC9CC9BCED6202"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"

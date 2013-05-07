@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1727A256668F4FED938D521EE79E27E8"
+        "OwnerKey" = "8:_CFB994213EBE4534885F226C3F9C615D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_33AB183A903C4BA386E20DDEBD8091DD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -57,19 +63,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_81757187E1E548C8BED403F2DA36B930"
-        "OwnerKey" = "8:_A348BD7C9E944CD392870898CD6C515D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9C25533911B1493FA3FDD2EA6FB15777"
+        "MsmKey" = "8:_A348BD7C9E944CD392870898CD6C515D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A348BD7C9E944CD392870898CD6C515D"
+        "MsmKey" = "8:_A5985AE717A842F091BB73078AFEFAB8"
+        "OwnerKey" = "8:_A348BD7C9E944CD392870898CD6C515D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BD9BE802713E49CDA50BF11E5AA76BA1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -77,12 +83,6 @@
         {
         "MsmKey" = "8:_CFB994213EBE4534885F226C3F9C615D"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DFA2E115A15448569CE14789EC8FF4E6"
-        "OwnerKey" = "8:_CFB994213EBE4534885F226C3F9C615D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -160,7 +160,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:..\\Release\\DdpySetupX64.msi"
+        "OutputFilename" = "8:..\\Release\\DdpyX64.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -308,10 +308,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9C25533911B1493FA3FDD2EA6FB15777"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BD9BE802713E49CDA50BF11E5AA76BA1"
             {
-            "SourcePath" = "8:..\\uninstaller.ico"
-            "TargetName" = "8:uninstaller.ico"
+            "SourcePath" = "8:..\\SetupDdpy\\SetupDdpy.ico"
+            "TargetName" = "8:SetupDdpy.ico"
             "Tag" = "8:"
             "Folder" = "8:_59EEFE34E26E482C97E7A5F2A94DE38E"
             "Condition" = "8:"
@@ -407,7 +407,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:淡定拼音输入法"
         "ProductCode" = "8:{C2095991-AADE-4845-B3DD-9EEB3DD1298E}"
-        "PackageCode" = "8:{3816729C-2A2A-47AA-8E7F-4170010A2498}"
+        "PackageCode" = "8:{BB4A91F4-FAE1-42F6-BF3D-BFE5B5F94E6D}"
         "UpgradeCode" = "8:{CD159289-698A-4D90-B1F5-8581CCB62EAE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -538,7 +538,7 @@
             "Target" = "8:_53AE9C06B41D4EC182A46810A866E41C"
             "Folder" = "8:_9B74D56DD18945CE8CD55705B8D80098"
             "WorkingFolder" = "8:_59EEFE34E26E482C97E7A5F2A94DE38E"
-            "Icon" = "8:_9C25533911B1493FA3FDD2EA6FB15777"
+            "Icon" = "8:_BD9BE802713E49CDA50BF11E5AA76BA1"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_500CC3A669A1494FBD0FC4410C81D790"
@@ -610,7 +610,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_298F0B0BA4634CE681964FE82865A013"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Progress"
+                    "DisplayName" = "8:进度"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminProgressDlg.wid"
@@ -660,7 +660,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_4EC4F931857B457EB756EED03446321C"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Welcome"
+                    "DisplayName" = "8:欢迎使用"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminWelcomeDlg.wid"
@@ -708,7 +708,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_E1B6914D7BCB490EA4CCB95937A7884F"
                     {
                     "Sequence" = "3:300"
-                    "DisplayName" = "8:Confirm Installation"
+                    "DisplayName" = "8:确认安装"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminConfirmDlg.wid"
@@ -739,7 +739,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_9FEC0D8FE2934A68AE18CB55053AAE9D"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Welcome"
+                    "DisplayName" = "8:欢迎使用"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdWelcomeDlg.wid"
@@ -787,7 +787,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_D8E46070D2DB47FFBDC3ECFC33F63F24"
                     {
                     "Sequence" = "3:300"
-                    "DisplayName" = "8:Confirm Installation"
+                    "DisplayName" = "8:确认安装"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdConfirmDlg.wid"
@@ -818,7 +818,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_2E18B3931A5C42FCB26D91C0674F5A6B"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Progress"
+                    "DisplayName" = "8:进度"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdProgressDlg.wid"
@@ -868,7 +868,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_6CE2B1DB155944A39A75824A5FDD23F8"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Finished"
+                    "DisplayName" = "8:已完成"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdFinishedDlg.wid"
@@ -912,7 +912,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_CF603AA9F2004E7DA61BD67AAA7440BF"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Finished"
+                    "DisplayName" = "8:已完成"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFinishedDlg.wid"
@@ -936,11 +936,11 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_81757187E1E548C8BED403F2DA36B930"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_1727A256668F4FED938D521EE79E27E8"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
-            "SourcePath" = "8:Microsoft_VC100_CRT_x86.msm"
+            "SourcePath" = "8:Microsoft_VC100_CRT_x64.msm"
                 "Properties"
                 {
                 }
@@ -950,11 +950,11 @@
             "Feature" = "8:"
             "IsolateTo" = "8:"
             }
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_DFA2E115A15448569CE14789EC8FF4E6"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_A5985AE717A842F091BB73078AFEFAB8"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
-            "SourcePath" = "8:Microsoft_VC100_CRT_x64.msm"
+            "SourcePath" = "8:Microsoft_VC100_CRT_x86.msm"
                 "Properties"
                 {
                 }
