@@ -102,13 +102,18 @@ Public Class ComClass
             Dim txts As String() = lines(1).Split(vbTab)
             For i As Integer = 0 To pys.Length - 1
 
+                ' 拼音或文字为空时忽略
+                If "".Equals(Trim(pys(i))) OrElse "".Equals(Trim(txts(i))) Then
+                    Continue For
+                End If
+
                 Dim sFstChar As String = Strings.Left(txts(i), 1)
                 If txts(i).Replace("啊", "").Length = 0 Then
                     ' 无视 啊啊啊啊啊啊啊啊啊
                     Continue For
                 End If
-                If txts(i).Length > 2 AndAlso txts(i).Replace(sFstChar, "").Length = 0 Then
-                    ' 无视2个以上的重复字
+                If txts(i).Length > 3 AndAlso txts(i).Replace(sFstChar, "").Length = 0 Then
+                    ' 无视3个以上的重复字
                     Continue For
                 End If
                 If txts(i).Length > 20 Then
@@ -117,7 +122,7 @@ Public Class ComClass
                 End If
                 Dim shotPy As String = Strings.Join(GetMutilShotPys(pys(i)), "")
                 If shotPy.Length > 4 AndAlso shotPy.Replace(Strings.Left(shotPy, 1), "").Length = 0 Then
-                    ' 无视4个以上的重复拼音字
+                    ' 无视4个以上的重复简拼字
                     Continue For
                 End If
 

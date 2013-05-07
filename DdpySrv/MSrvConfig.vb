@@ -56,6 +56,7 @@ Module MSrvConfig
     ''' </summary>
     Private P_TITLE As String = ""
 
+    Friend P_MEMORY As Boolean = False
 
     ''' <summary>
     ''' 取得输入法配置信息
@@ -77,6 +78,8 @@ Module MSrvConfig
         lst.Add(P_V_SHOW)
 
         lst.Add(P_TITLE)
+
+        lst.Add(P_MEMORY)
 
         Return Strings.Join(lst.ToArray, vbTab)
     End Function
@@ -102,6 +105,7 @@ Module MSrvConfig
             P_V_SHOW = CBool(ary(8))
 
             P_TITLE = CStr(ary(9))
+            P_MEMORY = CBool(ary(10))
 
             ' 保存配置信息
             Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\DanDingConfig.txt"

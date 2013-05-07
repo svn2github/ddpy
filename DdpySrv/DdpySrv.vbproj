@@ -140,6 +140,7 @@
     <Compile Include="CComSrvClassFactory.vb" />
     <Compile Include="ComClass.vb" />
     <Compile Include="CWord.vb" />
+    <Compile Include="MMemory.vb" />
     <Compile Include="MMixInput.vb" />
     <Compile Include="MSrvConfig.vb" />
     <Compile Include="MDanDingDictionary.vb" />
