@@ -22,6 +22,7 @@ Module MDanDingKeys
                 ' Ctrl+Shift+O 打开配置窗口
                 If My.Computer.Keyboard.CtrlKeyDown AndAlso My.Computer.Keyboard.ShiftKeyDown Then
                     SetIkrFlag(ikr, True, False, False)
+                    hasInputWithShift = True
                     OpenSettingDlg()
 
                     bRet = True
@@ -41,6 +42,7 @@ Module MDanDingKeys
                     End If
 
                     bRet = True
+                    hasInputWithShift = True
                     ShowTipWindow(2)
                 End If
 
@@ -113,7 +115,7 @@ Module MDanDingKeys
             End If
         Else
             If Not frmStatus.Visible Then
-                ShowWindow(frmStatus.Handle, SW_SHOWNOACTIVATE)
+                frmStatus.Show()
             End If
         End If
 

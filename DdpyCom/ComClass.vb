@@ -39,13 +39,8 @@ Public Class ComClass
 
     Public Sub Init(ByRef isWuNaiApp As Boolean)
         initStartTime = Now.Ticks
+        isWuNaiApp = IsNeedSendStartEndMsg(Process.GetCurrentProcess().ProcessName)
         UpdateSettingInfo()
-
-        If P_AUTO_POSITION Then
-            isWuNaiApp = IsNeedSendStartEndMsg(Process.GetCurrentProcess().ProcessName)
-        Else
-            isWuNaiApp = False
-        End If
     End Sub
 
     Public Sub Debug(ByVal str As String)
@@ -124,12 +119,14 @@ Public Class ComClass
 
             If bSetActive Then
 
+                UpdateSettingInfo()
+
                 ' 显示状态栏窗口
                 If Not P_HIDE_STATUS Then
                     If My.Computer.Keyboard.CapsLock Then
                         frmStatus.PanLng.BackgroundImage = My.Resources.LngA
                     End If
-                    ShowWindow(frmStatus.Handle, SW_SHOWNOACTIVATE)
+                    frmStatus.Show()
                 End If
 
                 ' 焦点控件不是按钮的话才显示候选窗口
@@ -183,6 +180,7 @@ Public Class ComClass
 
             frmStatus.Hide()
 
+            GC.Collect()
         End If
 
         isLeftQte = True
