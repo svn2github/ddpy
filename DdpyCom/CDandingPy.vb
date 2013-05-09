@@ -535,7 +535,7 @@ Friend Class CDandingPy
             Return True
         End If
 
-        Me.CurrentPage = 1
+        'Me.CurrentPage = 1
         Return False
     End Function
 
@@ -550,7 +550,7 @@ Friend Class CDandingPy
             Return True
         End If
 
-        Me.CurrentPage = Me.TotalPageCnt
+        Me.CurrentPage = 1
         Return False
     End Function
 
