@@ -1,4 +1,5 @@
 ﻿Imports System.Text
+Imports System.Drawing
 
 ''' <summary>
 ''' 输入法配置模块
@@ -90,6 +91,7 @@ Module MConfig
 
 
     Private lstApp As List(Of String)
+    Friend fontCand As New Font("宋体", 12, FontStyle.Regular)
 
     ''' <summary>
     ''' 取得最新配置信息
@@ -113,6 +115,12 @@ Module MConfig
             P_V_SHOW = CBool(ary(8))
 
             P_TITLE = CStr(ary(9))
+
+            Dim sFont As String() = Strings.Split(ary(11), ",")
+            Dim sFontName As String = sFont(0)
+            Dim sFontSize As Single = sFont(1)
+            Dim sFontStyle As FontStyle = sFont(2)
+            fontCand = New Font(sFontName, sFontSize, sFontStyle)
 
         Catch ex As Exception
             ComDebug(ex)

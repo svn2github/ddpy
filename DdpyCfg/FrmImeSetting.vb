@@ -5,6 +5,8 @@
 ''' </summary>
 Public Class FrmSetting
 
+    Private sSrvSetting As String = ""
+
     ''' <summary>
     ''' 初始化
     ''' </summary>
@@ -12,7 +14,9 @@ Public Class FrmSetting
 
         Try
             Dim server = CreateObject("DdpySrv.ComClass")
-            Dim ary As String() = server.SrvGetSettingInfo().Split(vbTab)
+            sSrvSetting = server.SrvGetSettingInfo()
+
+            Dim ary As String() = sSrvSetting.Split(vbTab)
 
             ChkAn.Checked = CBool(ary(0))
             ChkEn.Checked = CBool(ary(1))
@@ -30,10 +34,57 @@ Public Class FrmSetting
 
             ChkSrvMemory.Checked = CStr(ary(10))
 
+            If Trim(ary(11)).Replace(",", "").Length = (ary(11).Length - 2) Then
+                TxtFont.Text = ary(11)
+            End If
+
+
         Catch ex As Exception
             ' MsgBox("初始显示发生异常" & vbNewLine & "(错误消息:" & ex.Message & ")", MsgBoxStyle.Exclamation, "淡定")
         End Try
 
+        If GetSetting().Equals(sSrvSetting) Then
+            BtnApply.Enabled = False
+        Else
+            BtnApply.Enabled = True
+        End If
+
+    End Sub
+
+    Private Function GetSetting() As String
+        Dim lst As New ArrayList
+        lst.Add(ChkAn.Checked)
+        lst.Add(ChkEn.Checked)
+        lst.Add(ChkIn.Checked)
+        lst.Add(ChkZzh.Checked)
+        lst.Add(ChkZize.Checked)
+        lst.Add(ChkZhizhe.Checked)
+
+        lst.Add(NumPyLen.Value)
+        lst.Add(NumPageCnt.Value)
+
+        lst.Add(ChkVshow.Checked)
+
+        lst.Add(TxtTitle.Text)
+
+        lst.Add(ChkSrvMemory.Checked)
+
+        lst.Add(TxtFont.Text)
+
+        Return Strings.Join(lst.ToArray, vbTab)
+    End Function
+
+    Private Sub BtnApply_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnApply.Click
+        Try
+            Dim sSeting As String = GetSetting()
+            Dim server = CreateObject("DdpySrv.ComClass")
+            server.SrvSetSettingInfo(sSeting)
+
+            sSrvSetting = sSeting
+            BtnApply.Enabled = False
+        Catch ex As Exception
+            MsgBox("配置信息保存失败" & vbNewLine & "(错误消息:" & ex.Message & ")", MsgBoxStyle.Exclamation, "淡定")
+        End Try
     End Sub
 
     ''' <summary>
@@ -41,39 +92,34 @@ Public Class FrmSetting
     ''' </summary>
     Private Sub BtnOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnOK.Click
         Try
-
             Dim server = CreateObject("DdpySrv.ComClass")
+            server.SrvSetSettingInfo(GetSetting())
 
-            Dim lst As New ArrayList
-            lst.Add(ChkAn.Checked)
-            lst.Add(ChkEn.Checked)
-            lst.Add(ChkIn.Checked)
-            lst.Add(ChkZzh.Checked)
-            lst.Add(ChkZize.Checked)
-            lst.Add(ChkZhizhe.Checked)
-
-            lst.Add(NumPyLen.Value)
-            lst.Add(NumPageCnt.Value)
-
-            lst.Add(ChkVshow.Checked)
-
-            lst.Add(TxtTitle.Text)
-
-            lst.Add(ChkSrvMemory.Checked)
-
-            server.SrvSetSettingInfo(Strings.Join(lst.ToArray, vbTab))
-
-            MsgBox("设定成功                ", MsgBoxStyle.Information, "确认信息")
-
+            Me.Close()
         Catch ex As Exception
-            MsgBox("设定成功失败" & vbNewLine & "(错误消息:" & ex.Message & ")", MsgBoxStyle.Exclamation, "淡定")
+            MsgBox("配置信息保存失败" & vbNewLine & "(错误消息:" & ex.Message & ")", MsgBoxStyle.Exclamation, "淡定")
         End Try
 
     End Sub
 
-    ' 后台服务管理：保存设定
-    Private Sub BtnSrvSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSrvSave.Click
-        BtnOK_Click(sender, e)
+
+    Private Sub BtnFontCand_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnFontCand.Click
+
+        Try
+            Dim sFont As String() = Strings.Split(TxtFont.Text, ",")
+            Dim sName As String = sFont(0)
+            Dim iSize As Single = sFont(1)
+            Dim iStyle As FontStyle = sFont(2)
+
+            FontDlgCand.Font = New Font(sName, iSize, iStyle)
+        Catch ex As Exception
+            FontDlgCand.Font = New Font("宋体", 12, FontStyle.Regular)
+        End Try
+
+        If FontDlgCand.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            TxtFont.Text = FontDlgCand.Font.Name & "," & FontDlgCand.Font.Size & "," & FontDlgCand.Font.Style
+        End If
+
     End Sub
 
 #Region "关闭窗口"
@@ -595,6 +641,31 @@ Public Class FrmSetting
             MsgBox("后台服务程序已关闭 （需要时会自行启动）", MsgBoxStyle.Information, "淡定")
         Catch ex As Exception
         End Try
+
+
     End Sub
 
+    Private Sub ChkAn_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ChkAn.MouseClick, ChkEn.MouseClick, ChkIn.MouseClick, ChkSrvMemory.MouseClick, ChkVshow.MouseClick, ChkZhizhe.MouseClick, ChkZize.MouseClick, ChkZzh.MouseClick
+        If GetSetting().Equals(sSrvSetting) Then
+            BtnApply.Enabled = False
+        Else
+            BtnApply.Enabled = True
+        End If
+    End Sub
+
+    Private Sub TxtFont_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles TxtFont.TextChanged, TxtTitle.TextChanged
+        If GetSetting().Equals(sSrvSetting) Then
+            BtnApply.Enabled = False
+        Else
+            BtnApply.Enabled = True
+        End If
+    End Sub
+
+    Private Sub NumPageCnt_ValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles NumPageCnt.ValueChanged, NumPyLen.ValueChanged
+        If GetSetting().Equals(sSrvSetting) Then
+            BtnApply.Enabled = False
+        Else
+            BtnApply.Enabled = True
+        End If
+    End Sub
 End Class

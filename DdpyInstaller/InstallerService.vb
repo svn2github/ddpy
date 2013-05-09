@@ -25,61 +25,67 @@ Public Class InstallerService
     Private Sub DdpyInstaller_AfterInstall(ByVal sender As Object, ByVal e As System.Configuration.Install.InstallEventArgs) Handles Me.AfterInstall
 
         Dim installPath As String = My.Computer.FileSystem.GetFileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName
-
+        Dim windir As String = Environment.GetEnvironmentVariable("windir")   ' C:\Windows
         Dim imeName As String = "淡定拼音输入法"
 
         ' 注册后台服务COM
         Dim info As New System.Diagnostics.ProcessStartInfo
         If Environment.Is64BitOperatingSystem Then
-            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+            info.FileName = windir & "\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
         Else
-            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
+            info.FileName = windir & "\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
         End If
         info.Arguments = """" & installPath & "\\DdpySrv.exe"""
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
 
         ' 注册COM
-        info.FileName = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
+        info.FileName = windir & "\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
         info.Arguments = "/codebase """ & installPath & "\\DdpyCom.dll"""
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
 
         If Environment.Is64BitOperatingSystem Then
-            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+            info.FileName = windir & "\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
             System.Diagnostics.Process.Start(info)
         End If
 
         ' 安装IME
-        ImmInstallIME("C:\\WINDOWS\\system32\\DdpyIme.dll", imeName)
+        ImmInstallIME(windir & "\\system32\\DdpyIme.dll", imeName)
 
     End Sub
 
 
-
     Private Sub DdpyInstaller_BeforeUninstall(ByVal sender As Object, ByVal e As System.Configuration.Install.InstallEventArgs) Handles Me.BeforeUninstall
 
+        ' 关闭后台服务
+        Dim srvProcess As Process() = System.Diagnostics.Process.GetProcessesByName("DdpySrv")
+        For Each prc As Process In srvProcess
+            prc.Kill()
+        Next
+
         Dim installPath As String = My.Computer.FileSystem.GetFileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName
+        Dim windir As String = Environment.GetEnvironmentVariable("windir")   ' C:\Windows
 
         ' 卸载后台服务COM
         Dim info As New System.Diagnostics.ProcessStartInfo
         If Environment.Is64BitOperatingSystem Then
-            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+            info.FileName = windir & "\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
         Else
-            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
+            info.FileName = windir & "\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
         End If
         info.Arguments = "/u """ & installPath & "\\DdpySrv.exe"""
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
 
         ' 卸载COM
-        info.FileName = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
+        info.FileName = windir & "\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
         info.Arguments = "/u """ & installPath & "\\DdpyCom.dll"""
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
 
         If Environment.Is64BitOperatingSystem Then
-            info.FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+            info.FileName = windir & "\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
             System.Diagnostics.Process.Start(info)
         End If
 
@@ -88,6 +94,7 @@ Public Class InstallerService
 
     Private Sub DdpyInstaller_AfterUninstall(ByVal sender As Object, ByVal e As System.Configuration.Install.InstallEventArgs) Handles Me.AfterUninstall
 
+        Dim windir As String = Environment.GetEnvironmentVariable("windir")   ' C:\Windows
 
         Try
             ' 卸载IME
@@ -112,6 +119,24 @@ Public Class InstallerService
 
         Catch ex As Exception
             '  MsgBox(ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+
+
+        ' 尝试删除IME文件
+        Try
+            Dim imeFile32 As String = windir & "\\system32\\DdpyIme.dll"
+            If My.Computer.FileSystem.FileExists(imeFile32) Then
+                My.Computer.FileSystem.DeleteFile(imeFile32)
+            End If
+        Catch ex As Exception
+        End Try
+
+        Try
+            Dim imeFile64 As String = windir & "\\SysWOW64\\DdpyIme.dll"
+            If Environment.Is64BitOperatingSystem AndAlso My.Computer.FileSystem.FileExists(imeFile64) Then
+                My.Computer.FileSystem.DeleteFile(imeFile64)
+            End If
+        Catch ex As Exception
         End Try
 
     End Sub

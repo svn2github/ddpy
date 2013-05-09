@@ -43,51 +43,57 @@ Partial Class FrmSetting
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPageNormal = New System.Windows.Forms.TabPage()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.BtnFontCand = New System.Windows.Forms.Button()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.TxtFont = New System.Windows.Forms.TextBox()
         Me.TabPageWordDic = New System.Windows.Forms.TabPage()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.BtnAddWord = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TxtPinYin = New System.Windows.Forms.TextBox()
         Me.TxtWord = New System.Windows.Forms.TextBox()
-        Me.TabPageHelp = New System.Windows.Forms.TabPage()
         Me.TabPageAdvanced = New System.Windows.Forms.TabPage()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.BtnCloseServer = New System.Windows.Forms.Button()
         Me.ChkSrvMemory = New System.Windows.Forms.CheckBox()
-        Me.BtnSrvSave = New System.Windows.Forms.Button()
+        Me.TabPageHelp = New System.Windows.Forms.TabPage()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.FontDlgCand = New System.Windows.Forms.FontDialog()
+        Me.BtnApply = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumPyLen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumPageCnt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPageNormal.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.TabPageWordDic.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.TabPageHelp.SuspendLayout()
         Me.TabPageAdvanced.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
+        Me.TabPageHelp.SuspendLayout()
         Me.SuspendLayout()
         '
         'BtnOK
         '
         Me.BtnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnOK.Location = New System.Drawing.Point(291, 235)
+        Me.BtnOK.Location = New System.Drawing.Point(182, 310)
         Me.BtnOK.Name = "BtnOK"
-        Me.BtnOK.Size = New System.Drawing.Size(95, 24)
+        Me.BtnOK.Size = New System.Drawing.Size(80, 23)
         Me.BtnOK.TabIndex = 1
-        Me.BtnOK.Text = "保存设定"
+        Me.BtnOK.Text = "确  定"
         Me.BtnOK.UseVisualStyleBackColor = True
         '
         'BtnClose
         '
-        Me.BtnClose.Location = New System.Drawing.Point(173, 309)
+        Me.BtnClose.Location = New System.Drawing.Point(263, 310)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(96, 24)
+        Me.BtnClose.Size = New System.Drawing.Size(80, 23)
         Me.BtnClose.TabIndex = 2
-        Me.BtnClose.Text = "关闭窗口"
+        Me.BtnClose.Text = "取  消"
         Me.BtnClose.UseVisualStyleBackColor = True
         '
         'GroupBox1
@@ -102,7 +108,7 @@ Partial Class FrmSetting
         Me.GroupBox1.Controls.Add(Me.ChkEn)
         Me.GroupBox1.Location = New System.Drawing.Point(6, 8)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(390, 100)
+        Me.GroupBox1.Size = New System.Drawing.Size(390, 93)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "模糊音设定"
@@ -190,27 +196,27 @@ Partial Class FrmSetting
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(14, 48)
+        Me.Label2.Location = New System.Drawing.Point(14, 52)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(71, 12)
+        Me.Label2.Size = New System.Drawing.Size(95, 12)
         Me.Label2.TabIndex = 4
-        Me.Label2.Text = "候选文字数："
+        Me.Label2.Text = "候选项显示个数："
         '
         'NumPageCnt
         '
-        Me.NumPageCnt.Location = New System.Drawing.Point(127, 44)
+        Me.NumPageCnt.Location = New System.Drawing.Point(127, 48)
         Me.NumPageCnt.Maximum = New Decimal(New Integer() {9, 0, 0, 0})
         Me.NumPageCnt.Minimum = New Decimal(New Integer() {3, 0, 0, 0})
         Me.NumPageCnt.Name = "NumPageCnt"
         Me.NumPageCnt.Size = New System.Drawing.Size(36, 19)
         Me.NumPageCnt.TabIndex = 5
         Me.NumPageCnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.NumPageCnt.Value = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.NumPageCnt.Value = New Decimal(New Integer() {9, 0, 0, 0})
         '
         'ChkVshow
         '
         Me.ChkVshow.AutoSize = True
-        Me.ChkVshow.Location = New System.Drawing.Point(202, 20)
+        Me.ChkVshow.Location = New System.Drawing.Point(222, 22)
         Me.ChkVshow.Name = "ChkVshow"
         Me.ChkVshow.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.ChkVshow.Size = New System.Drawing.Size(114, 16)
@@ -221,7 +227,7 @@ Partial Class FrmSetting
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(14, 76)
+        Me.Label3.Location = New System.Drawing.Point(14, 80)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(95, 12)
         Me.Label3.TabIndex = 4
@@ -230,16 +236,16 @@ Partial Class FrmSetting
         'TxtTitle
         '
         Me.TxtTitle.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.TxtTitle.Location = New System.Drawing.Point(127, 73)
+        Me.TxtTitle.Location = New System.Drawing.Point(127, 77)
         Me.TxtTitle.MaxLength = 20
         Me.TxtTitle.Name = "TxtTitle"
-        Me.TxtTitle.Size = New System.Drawing.Size(189, 19)
+        Me.TxtTitle.Size = New System.Drawing.Size(209, 19)
         Me.TxtTitle.TabIndex = 6
         '
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(176, 153)
+        Me.LinkLabel1.Location = New System.Drawing.Point(155, 187)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(151, 12)
         Me.LinkLabel1.TabIndex = 7
@@ -249,7 +255,7 @@ Partial Class FrmSetting
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(110, 154)
+        Me.Label4.Location = New System.Drawing.Point(89, 188)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(59, 12)
         Me.Label4.TabIndex = 8
@@ -273,7 +279,6 @@ Partial Class FrmSetting
         '
         Me.TabPageNormal.Controls.Add(Me.GroupBox3)
         Me.TabPageNormal.Controls.Add(Me.GroupBox1)
-        Me.TabPageNormal.Controls.Add(Me.BtnOK)
         Me.TabPageNormal.Location = New System.Drawing.Point(4, 21)
         Me.TabPageNormal.Name = "TabPageNormal"
         Me.TabPageNormal.Padding = New System.Windows.Forms.Padding(3)
@@ -281,6 +286,54 @@ Partial Class FrmSetting
         Me.TabPageNormal.TabIndex = 0
         Me.TabPageNormal.Text = "常用设定"
         Me.TabPageNormal.UseVisualStyleBackColor = True
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox3.Controls.Add(Me.BtnFontCand)
+        Me.GroupBox3.Controls.Add(Me.Label7)
+        Me.GroupBox3.Controls.Add(Me.TxtFont)
+        Me.GroupBox3.Controls.Add(Me.NumPageCnt)
+        Me.GroupBox3.Controls.Add(Me.NumPyLen)
+        Me.GroupBox3.Controls.Add(Me.TxtTitle)
+        Me.GroupBox3.Controls.Add(Me.ChkVshow)
+        Me.GroupBox3.Controls.Add(Me.Label3)
+        Me.GroupBox3.Controls.Add(Me.Label2)
+        Me.GroupBox3.Controls.Add(Me.Label1)
+        Me.GroupBox3.Location = New System.Drawing.Point(6, 112)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(390, 110)
+        Me.GroupBox3.TabIndex = 7
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "外观显示"
+        '
+        'BtnFontCand
+        '
+        Me.BtnFontCand.Location = New System.Drawing.Point(342, 47)
+        Me.BtnFontCand.Name = "BtnFontCand"
+        Me.BtnFontCand.Size = New System.Drawing.Size(40, 23)
+        Me.BtnFontCand.TabIndex = 8
+        Me.BtnFontCand.Text = "变更"
+        Me.BtnFontCand.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(190, 52)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(59, 12)
+        Me.Label7.TabIndex = 9
+        Me.Label7.Text = "候选字体："
+        '
+        'TxtFont
+        '
+        Me.TxtFont.Location = New System.Drawing.Point(255, 49)
+        Me.TxtFont.Name = "TxtFont"
+        Me.TxtFont.ReadOnly = True
+        Me.TxtFont.Size = New System.Drawing.Size(81, 19)
+        Me.TxtFont.TabIndex = 10
+        Me.TxtFont.Text = "宋体,12,0"
         '
         'TabPageWordDic
         '
@@ -293,6 +346,17 @@ Partial Class FrmSetting
         Me.TabPageWordDic.TabIndex = 1
         Me.TabPageWordDic.Text = "词典管理"
         Me.TabPageWordDic.UseVisualStyleBackColor = True
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox4.Location = New System.Drawing.Point(6, 73)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(390, 156)
+        Me.GroupBox4.TabIndex = 1
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "词典管理"
         '
         'GroupBox2
         '
@@ -316,7 +380,7 @@ Partial Class FrmSetting
         Me.BtnAddWord.Enabled = False
         Me.BtnAddWord.Location = New System.Drawing.Point(276, 20)
         Me.BtnAddWord.Name = "BtnAddWord"
-        Me.BtnAddWord.Size = New System.Drawing.Size(99, 23)
+        Me.BtnAddWord.Size = New System.Drawing.Size(100, 23)
         Me.BtnAddWord.TabIndex = 3
         Me.BtnAddWord.Text = "添加到用户词库"
         Me.BtnAddWord.UseVisualStyleBackColor = True
@@ -324,7 +388,7 @@ Partial Class FrmSetting
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(93, 25)
+        Me.Label6.Location = New System.Drawing.Point(93, 26)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(35, 12)
         Me.Label6.TabIndex = 2
@@ -333,7 +397,7 @@ Partial Class FrmSetting
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(11, 25)
+        Me.Label5.Location = New System.Drawing.Point(11, 26)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(35, 12)
         Me.Label5.TabIndex = 2
@@ -357,8 +421,64 @@ Partial Class FrmSetting
         Me.TxtWord.TabIndex = 0
         Me.TxtWord.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'TabPageAdvanced
+        '
+        Me.TabPageAdvanced.Controls.Add(Me.GroupBox6)
+        Me.TabPageAdvanced.Controls.Add(Me.GroupBox5)
+        Me.TabPageAdvanced.Location = New System.Drawing.Point(4, 21)
+        Me.TabPageAdvanced.Name = "TabPageAdvanced"
+        Me.TabPageAdvanced.Size = New System.Drawing.Size(404, 267)
+        Me.TabPageAdvanced.TabIndex = 3
+        Me.TabPageAdvanced.Text = "高级设定"
+        Me.TabPageAdvanced.UseVisualStyleBackColor = True
+        '
+        'GroupBox6
+        '
+        Me.GroupBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox6.Location = New System.Drawing.Point(7, 76)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(390, 135)
+        Me.GroupBox6.TabIndex = 2
+        Me.GroupBox6.TabStop = False
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox5.Controls.Add(Me.BtnCloseServer)
+        Me.GroupBox5.Controls.Add(Me.ChkSrvMemory)
+        Me.GroupBox5.Location = New System.Drawing.Point(6, 8)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(390, 62)
+        Me.GroupBox5.TabIndex = 0
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "后台服务管理"
+        '
+        'BtnCloseServer
+        '
+        Me.BtnCloseServer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnCloseServer.Location = New System.Drawing.Point(234, 21)
+        Me.BtnCloseServer.Name = "BtnCloseServer"
+        Me.BtnCloseServer.Size = New System.Drawing.Size(140, 23)
+        Me.BtnCloseServer.TabIndex = 0
+        Me.BtnCloseServer.Text = "关闭后台服务程序"
+        Me.BtnCloseServer.UseVisualStyleBackColor = True
+        '
+        'ChkSrvMemory
+        '
+        Me.ChkSrvMemory.AutoSize = True
+        Me.ChkSrvMemory.Location = New System.Drawing.Point(9, 25)
+        Me.ChkSrvMemory.Name = "ChkSrvMemory"
+        Me.ChkSrvMemory.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.ChkSrvMemory.Size = New System.Drawing.Size(102, 16)
+        Me.ChkSrvMemory.TabIndex = 0
+        Me.ChkSrvMemory.Text = "：节省内存模式"
+        Me.ChkSrvMemory.UseVisualStyleBackColor = True
+        '
         'TabPageHelp
         '
+        Me.TabPageHelp.Controls.Add(Me.GroupBox7)
         Me.TabPageHelp.Controls.Add(Me.Label4)
         Me.TabPageHelp.Controls.Add(Me.LinkLabel1)
         Me.TabPageHelp.Location = New System.Drawing.Point(4, 21)
@@ -368,88 +488,32 @@ Partial Class FrmSetting
         Me.TabPageHelp.Text = "帮助"
         Me.TabPageHelp.UseVisualStyleBackColor = True
         '
-        'TabPageAdvanced
+        'GroupBox7
         '
-        Me.TabPageAdvanced.Controls.Add(Me.BtnCloseServer)
-        Me.TabPageAdvanced.Controls.Add(Me.GroupBox5)
-        Me.TabPageAdvanced.Location = New System.Drawing.Point(4, 21)
-        Me.TabPageAdvanced.Name = "TabPageAdvanced"
-        Me.TabPageAdvanced.Size = New System.Drawing.Size(404, 267)
-        Me.TabPageAdvanced.TabIndex = 3
-        Me.TabPageAdvanced.Text = "高级设定"
-        Me.TabPageAdvanced.UseVisualStyleBackColor = True
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.GroupBox7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox3.Controls.Add(Me.NumPageCnt)
-        Me.GroupBox3.Controls.Add(Me.NumPyLen)
-        Me.GroupBox3.Controls.Add(Me.TxtTitle)
-        Me.GroupBox3.Controls.Add(Me.ChkVshow)
-        Me.GroupBox3.Controls.Add(Me.Label3)
-        Me.GroupBox3.Controls.Add(Me.Label2)
-        Me.GroupBox3.Controls.Add(Me.Label1)
-        Me.GroupBox3.Location = New System.Drawing.Point(6, 118)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(390, 109)
-        Me.GroupBox3.TabIndex = 7
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "外观显示"
+        Me.GroupBox7.Location = New System.Drawing.Point(7, 13)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Size = New System.Drawing.Size(390, 124)
+        Me.GroupBox7.TabIndex = 9
+        Me.GroupBox7.TabStop = False
         '
-        'GroupBox4
+        'FontDlgCand
         '
-        Me.GroupBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox4.Location = New System.Drawing.Point(6, 73)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(390, 156)
-        Me.GroupBox4.TabIndex = 1
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "词典管理"
+        Me.FontDlgCand.AllowVectorFonts = False
+        Me.FontDlgCand.AllowVerticalFonts = False
+        Me.FontDlgCand.FontMustExist = True
+        Me.FontDlgCand.ShowEffects = False
         '
-        'GroupBox5
+        'BtnApply
         '
-        Me.GroupBox5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox5.Controls.Add(Me.BtnSrvSave)
-        Me.GroupBox5.Controls.Add(Me.ChkSrvMemory)
-        Me.GroupBox5.Location = New System.Drawing.Point(6, 8)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(390, 110)
-        Me.GroupBox5.TabIndex = 0
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "后台服务管理"
-        '
-        'BtnCloseServer
-        '
-        Me.BtnCloseServer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnCloseServer.Location = New System.Drawing.Point(254, 231)
-        Me.BtnCloseServer.Name = "BtnCloseServer"
-        Me.BtnCloseServer.Size = New System.Drawing.Size(142, 23)
-        Me.BtnCloseServer.TabIndex = 0
-        Me.BtnCloseServer.Text = "关闭后台服务程序"
-        Me.BtnCloseServer.UseVisualStyleBackColor = True
-        '
-        'ChkSrvMemory
-        '
-        Me.ChkSrvMemory.AutoSize = True
-        Me.ChkSrvMemory.Location = New System.Drawing.Point(11, 27)
-        Me.ChkSrvMemory.Name = "ChkSrvMemory"
-        Me.ChkSrvMemory.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ChkSrvMemory.Size = New System.Drawing.Size(102, 16)
-        Me.ChkSrvMemory.TabIndex = 0
-        Me.ChkSrvMemory.Text = "：节省内存模式"
-        Me.ChkSrvMemory.UseVisualStyleBackColor = True
-        '
-        'BtnSrvSave
-        '
-        Me.BtnSrvSave.Location = New System.Drawing.Point(284, 23)
-        Me.BtnSrvSave.Name = "BtnSrvSave"
-        Me.BtnSrvSave.Size = New System.Drawing.Size(90, 23)
-        Me.BtnSrvSave.TabIndex = 1
-        Me.BtnSrvSave.Text = "保存设定"
-        Me.BtnSrvSave.UseVisualStyleBackColor = True
+        Me.BtnApply.Enabled = False
+        Me.BtnApply.Location = New System.Drawing.Point(344, 310)
+        Me.BtnApply.Name = "BtnApply"
+        Me.BtnApply.Size = New System.Drawing.Size(80, 23)
+        Me.BtnApply.TabIndex = 2
+        Me.BtnApply.Text = "应  用"
+        Me.BtnApply.UseVisualStyleBackColor = True
         '
         'FrmSetting
         '
@@ -457,7 +521,9 @@ Partial Class FrmSetting
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(436, 345)
         Me.Controls.Add(Me.TabControl1)
+        Me.Controls.Add(Me.BtnApply)
         Me.Controls.Add(Me.BtnClose)
+        Me.Controls.Add(Me.BtnOK)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.ImeMode = System.Windows.Forms.ImeMode.Disable
@@ -472,16 +538,16 @@ Partial Class FrmSetting
         CType(Me.NumPageCnt, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPageNormal.ResumeLayout(False)
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         Me.TabPageWordDic.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.TabPageHelp.ResumeLayout(False)
-        Me.TabPageHelp.PerformLayout()
         Me.TabPageAdvanced.ResumeLayout(False)
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
+        Me.TabPageHelp.ResumeLayout(False)
+        Me.TabPageHelp.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -519,6 +585,12 @@ Partial Class FrmSetting
     Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
     Friend WithEvents BtnCloseServer As System.Windows.Forms.Button
     Friend WithEvents ChkSrvMemory As System.Windows.Forms.CheckBox
-    Friend WithEvents BtnSrvSave As System.Windows.Forms.Button
+    Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
+    Friend WithEvents FontDlgCand As System.Windows.Forms.FontDialog
+    Friend WithEvents BtnFontCand As System.Windows.Forms.Button
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents TxtFont As System.Windows.Forms.TextBox
+    Friend WithEvents GroupBox7 As System.Windows.Forms.GroupBox
+    Friend WithEvents BtnApply As System.Windows.Forms.Button
 
 End Class

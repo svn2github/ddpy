@@ -40,6 +40,7 @@ Public Class ComClass
     Public Sub Init(ByRef isWuNaiApp As Boolean)
         initStartTime = Now.Ticks
         isWuNaiApp = IsNeedSendStartEndMsg(Process.GetCurrentProcess().ProcessName)
+        UpdateSettingInfo()
     End Sub
 
     Public Sub Debug(ByVal str As String)

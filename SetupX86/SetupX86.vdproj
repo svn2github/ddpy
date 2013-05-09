@@ -15,6 +15,18 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0C60885A39FC4CB5B0009CD2CD1FA50B"
+        "OwnerKey" = "8:_671A79C655064834A7A5E1071740B362"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_29C87C56C6974BD98ACF1F6507255ECE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2B94ED593A7446009C9C082EEBE6C16E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -22,12 +34,6 @@
         "Entry"
         {
         "MsmKey" = "8:_3D4F5E1795864F21A0D2A7FBA4686881"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5082F16A4E1740EBA177CDCE19935EB4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -45,13 +51,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B27185FC1C6C44F4A1AB531E10696839"
+        "MsmKey" = "8:_671A79C655064834A7A5E1071740B362"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B4DF4FBE7B984B8CB2D94E8D9923F8D4"
+        "MsmKey" = "8:_B27185FC1C6C44F4A1AB531E10696839"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -64,19 +70,19 @@
         "Entry"
         {
         "MsmKey" = "8:_E5067E06A3CE36EC2BA8863E51435159"
-        "OwnerKey" = "8:_B4DF4FBE7B984B8CB2D94E8D9923F8D4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F8EE79C5616F498EB0CC9CC9BCED6202"
-        "OwnerKey" = "8:_B4DF4FBE7B984B8CB2D94E8D9923F8D4"
+        "OwnerKey" = "8:_671A79C655064834A7A5E1071740B362"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_58C3C92F9C20498B8EDD6876DB47B3BE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_29C87C56C6974BD98ACF1F6507255ECE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -89,12 +95,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_51222CD6B96842598E97B71A18583262"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5082F16A4E1740EBA177CDCE19935EB4"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -293,7 +293,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:TRUE"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -365,14 +365,14 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:淡定拼音输入法"
         "ProductCode" = "8:{C2095991-AADE-4845-B3DD-9EEB3DD1298E}"
-        "PackageCode" = "8:{00848CF0-04BD-4905-A3C4-FAB8B494E9FF}"
+        "PackageCode" = "8:{3497154B-3CDB-4A55-8B93-EA1A4FC283F1}"
         "UpgradeCode" = "8:{CD159289-698A-4D90-B1F5-8581CCB62EAE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:sunmoon2222@gmail.com"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -507,7 +507,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_5082F16A4E1740EBA177CDCE19935EB4"
+            "Target" = "8:_29C87C56C6974BD98ACF1F6507255ECE"
             "Folder" = "8:_092EE5BE271546FDADEC57952063E72B"
             "WorkingFolder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
             "Icon" = "8:_2B94ED593A7446009C9C082EEBE6C16E"
@@ -521,7 +521,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_5082F16A4E1740EBA177CDCE19935EB4"
+            "Target" = "8:_29C87C56C6974BD98ACF1F6507255ECE"
             "Folder" = "8:_092EE5BE271546FDADEC57952063E72B"
             "WorkingFolder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
             "Icon" = "8:_2B94ED593A7446009C9C082EEBE6C16E"
@@ -535,7 +535,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_5082F16A4E1740EBA177CDCE19935EB4"
+            "Target" = "8:_29C87C56C6974BD98ACF1F6507255ECE"
             "Folder" = "8:_092EE5BE271546FDADEC57952063E72B"
             "WorkingFolder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
             "Icon" = "8:_2B94ED593A7446009C9C082EEBE6C16E"
@@ -549,7 +549,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_5082F16A4E1740EBA177CDCE19935EB4"
+            "Target" = "8:_29C87C56C6974BD98ACF1F6507255ECE"
             "Folder" = "8:_092EE5BE271546FDADEC57952063E72B"
             "WorkingFolder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
             "Icon" = "8:_3D4F5E1795864F21A0D2A7FBA4686881"
@@ -951,7 +951,7 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_F8EE79C5616F498EB0CC9CC9BCED6202"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_0C60885A39FC4CB5B0009CD2CD1FA50B"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
@@ -968,7 +968,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5082F16A4E1740EBA177CDCE19935EB4"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_29C87C56C6974BD98ACF1F6507255ECE"
             {
             "SourcePath" = "8:..\\DdpySrv\\obj\\Release\\DdpySrv.exe"
             "TargetName" = "8:"
@@ -988,7 +988,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
+            "OutputConfiguration" = "8:Release|Any CPU"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{B0EED501-B016-4FB2-9AC9-B830B42A0D06}"
             "ShowKeyOutput" = "11:TRUE"
@@ -1052,7 +1052,7 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B4DF4FBE7B984B8CB2D94E8D9923F8D4"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_671A79C655064834A7A5E1071740B362"
             {
             "SourcePath" = "8:..\\Release\\DdpyIme.dll"
             "TargetName" = "8:"
@@ -1072,7 +1072,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
+            "OutputConfiguration" = "8:Release|Win32"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{46A1324E-68B9-4382-9EB5-363366F47821}"
             "ShowKeyOutput" = "11:TRUE"

@@ -8,7 +8,7 @@ Imports System.Runtime.InteropServices
 
 ' 查看程序集特性的值
 
-<Assembly: AssemblyTitle("DdpySrv")> 
+<Assembly: AssemblyTitle("淡定拼音输入法服务程序")> 
 <Assembly: AssemblyDescription("sunmoon2222@gmail.com")> 
 <Assembly: AssemblyCompany("DanDing")> 
 <Assembly: AssemblyProduct("DdpySrv")> 

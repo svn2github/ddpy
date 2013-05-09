@@ -1060,10 +1060,14 @@ Module MDanDingKeys
 
         ' 不处理Alt组合键
         If My.Computer.Keyboard.AltKeyDown Then
-            SetIkrFlag(ikr, False, False, False)   ' 交还系统处理
-
-            isDot = False
-            Return True
+            If frmInput.Visible Then
+                SetIkrFlag(ikr, True, False, False)     ' 编码输入期间，不响应
+                Return True
+            Else
+                SetIkrFlag(ikr, False, False, False)    ' 非编码输入期间，交还系统处理
+                isDot = False
+                Return True
+            End If
         End If
 
 
@@ -1084,6 +1088,12 @@ Module MDanDingKeys
             Return False
         End If
 
+
+        ' 编码输入期间，不响应未定义的组合键
+        If frmInput.Visible AndAlso (My.Computer.Keyboard.CtrlKeyDown OrElse My.Computer.Keyboard.AltKeyDown) Then
+            SetIkrFlag(ikr, True, False, False)
+            Return True
+        End If
 
         If My.Computer.Keyboard.ShiftKeyDown Then
             hasInputWithShift = True

@@ -58,6 +58,8 @@ Module MSrvConfig
 
     Friend P_MEMORY As Boolean = False
 
+    Private P_FONT As String = "宋体,12,0"
+
     ''' <summary>
     ''' 取得输入法配置信息
     ''' </summary>
@@ -80,6 +82,8 @@ Module MSrvConfig
         lst.Add(P_TITLE)
 
         lst.Add(P_MEMORY)
+
+        lst.Add(P_FONT)
 
         Return Strings.Join(lst.ToArray, vbTab)
     End Function
@@ -106,16 +110,17 @@ Module MSrvConfig
 
             P_TITLE = CStr(ary(9))
             P_MEMORY = CBool(ary(10))
+            P_FONT = CStr(ary(11))
 
             ' 保存配置信息
-            Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\DanDingConfig.txt"
+            Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定配置.txt"
             My.Computer.FileSystem.WriteAllText(sFileCfg, GetSettingInfo(), False, Encoding.UTF8)
 
         Catch ex As Exception
             ComError("SetSettingInfo(" & conf & ")失败。配置文件恢复成默认配置", ex)
 
             ' 保存默认配置信息
-            Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\DanDingConfig.txt"
+            Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定配置.txt"
             My.Computer.FileSystem.WriteAllText(sFileCfg, GetSettingInfo(), False, Encoding.UTF8)
         End Try
 

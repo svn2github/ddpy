@@ -48,13 +48,21 @@ Module ZMainModule
 
         ' 卸载
         If args(0) = "/x" Then
-            Dim server As Object = CreateObject("DdpySrv.ComClass")
-            server.Close()
-            Shell("C:\WINDOWS\system32\msiexec.exe /x {C2095991-AADE-4845-B3DD-9EEB3DD1298E}", AppWinStyle.NormalFocus, False)
+
+            ' 关闭后台服务
+            Dim srvProcess As Process() = System.Diagnostics.Process.GetProcessesByName("DdpySrv")
+            For Each prc As Process In srvProcess
+                If Not System.Diagnostics.Process.GetCurrentProcess().Id = prc.Id Then
+                    prc.Kill()
+                End If
+            Next
+
+            ' 卸载
+            Shell("msiexec.exe /x {C2095991-AADE-4845-B3DD-9EEB3DD1298E}", AppWinStyle.NormalFocus, False)  ' 不等待
             Return
         End If
 
-        ' 启动COM服务
+        ' 启动COM服务(args:【-Embedding】)
         ZExeCOMServer.Instance.Run()
 
     End Sub

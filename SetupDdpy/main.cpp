@@ -1,9 +1,18 @@
 ﻿#include <windows.h>
 
+// -------------- Com --------------
+#import "../Release/DdpyCom.tlb" no_namespace, raw_interfaces_only
+#define ComClsName      OLESTR("DdpyCom.ComClass")
+_ComClass * pComCls;
+VARIANT_BOOL isWuNaiApp;
+// ---------------------------------
+
+
+
 typedef BOOL (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL); 
 LPFN_ISWOW64PROCESS fnIsWow64Process = NULL; 
 
-BOOL WINAPI SafeIsWow64Process(HANDLE hProcess, PBOOL Wow64Process) 
+BOOL WINAPI SafeIsWow64Process(HANDLE hProcess, PBOOL wow64Process) 
 { 
     if (fnIsWow64Process == NULL) { 
         // IsWow64Process is not available on all supported versions of  
@@ -20,7 +29,7 @@ BOOL WINAPI SafeIsWow64Process(HANDLE hProcess, PBOOL Wow64Process)
             return FALSE; 
         } 
     } 
-    return fnIsWow64Process(hProcess, Wow64Process); 
+    return fnIsWow64Process(hProcess, wow64Process); 
 } 
 
 
@@ -46,18 +55,76 @@ BOOL Is64BitOS()
 #endif 
 } 
 
-
-int APIENTRY WinMain(HINSTANCE hInstance,
-                     HINSTANCE hPrevInstance,
-                     LPSTR     lpCmdLine,
-                     int       nCmdShow)
+void ExecuteCmd(LPWSTR sCmdFile, LPWSTR sParams, int iShow, bool bWait)
 {
-    if (Is64BitOS()){
-        WinExec("cmd /c msiexec.exe /i DdpyX64.msi_", SW_HIDE);
-    }else{
-        WinExec("cmd /c msiexec.exe /i DdpyX86.msi_", SW_HIDE);
+    SHELLEXECUTEINFO shExeInfo = {0};
+
+    shExeInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+    shExeInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
+    shExeInfo.hwnd = NULL;
+    shExeInfo.lpVerb = NULL;
+    shExeInfo.lpFile = sCmdFile; 
+    shExeInfo.lpParameters = sParams;
+    shExeInfo.lpDirectory = NULL;
+    shExeInfo.nShow = iShow;
+    shExeInfo.hInstApp = NULL; 
+
+    ShellExecuteEx(&shExeInfo);
+
+    if (bWait){
+        WaitForSingleObject(shExeInfo.hProcess, INFINITE); 
     }
 
+}
+
+
+BOOL ComInit(){
+
+	HRESULT hr;
+    HRESULT rc;
+	CLSID clsId;
+
+	try{
+	    if (pComCls){
+		    return TRUE;
+	    }
+
+		hr = CoInitialize(NULL);
+		if (FAILED(hr)){
+			return FALSE;
+		}
+             
+		rc = CLSIDFromProgID(ComClsName, &clsId);
+		if (FAILED(rc)) {
+			return FALSE;
+		}
+
+		rc = CoCreateInstance(clsId, NULL, CLSCTX_INPROC_SERVER, __uuidof(_ComClass), (LPVOID*) &pComCls);
+		if (FAILED(rc)) {
+			return FALSE;
+		}
+
+		hr = pComCls->Init(&isWuNaiApp);
+		if (FAILED(hr)){
+			return FALSE;
+		}
+
+		return TRUE;
+	}catch(...){
+		return FALSE;
+	}
+}
+
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{
+    if (Is64BitOS()){
+        ExecuteCmd(L"msiexec.exe", L"/i DdpyX64.msi_", SW_SHOW, true);
+    }else{
+        ExecuteCmd(L"msiexec.exe", L"/i DdpyX86.msi_", SW_SHOW, true);
+    }
+
+    // 起动后台服务程序
+    ComInit();
 return 0;
 }
 

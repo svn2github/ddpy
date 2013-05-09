@@ -36,6 +36,15 @@ Friend Class FrmImeInput
         txt8.BackColor = bgColor
         txt9.BackColor = bgColor
 
+        txt1.Font = fontCand
+        txt2.Font = fontCand
+        txt3.Font = fontCand
+        txt4.Font = fontCand
+        txt5.Font = fontCand
+        txt6.Font = fontCand
+        txt7.Font = fontCand
+        txt8.Font = fontCand
+        txt9.Font = fontCand
     End Sub
 
     ''' <summary>
@@ -91,6 +100,19 @@ Friend Class FrmImeInput
     ''' 显示并调整窗口位置
     ''' </summary>
     Public Overloads Sub Show()
+
+        If Not Me.Visible Then
+            txt1.Font = fontCand
+            txt2.Font = fontCand
+            txt3.Font = fontCand
+            txt4.Font = fontCand
+            txt5.Font = fontCand
+            txt6.Font = fontCand
+            txt7.Font = fontCand
+            txt8.Font = fontCand
+            txt9.Font = fontCand
+        End If
+
         ShowWindow(Me.Handle, SW_SHOWNOACTIVATE)
         ChangeLocation()
         NotifyImeOpenCandidate()
@@ -100,10 +122,17 @@ Friend Class FrmImeInput
     ''' 隐藏窗口
     ''' </summary>
     Public Overloads Sub Hide()
+        MyBase.Hide()
+
         ContextMenuStripCand.Hide()
         ddPy.Clear()
         NotifyImeCloseCandidate()
-        MyBase.Hide()
+
+        LblPinyin.Text = ""
+        LblPinyin2.Text = ""
+        ClearCands()
+        LblInfo.Text = IIf(P_TITLE = "", "   " & "0", P_TITLE)
+
     End Sub
 
     ''' <summary>

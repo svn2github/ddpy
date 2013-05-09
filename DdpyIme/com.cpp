@@ -48,14 +48,17 @@ BOOL ComInit(){
 
 BOOL ComImeProcessKey(UINT iKey, ImeKeyResult * ikr, BSTR * sResult){
 	if (!pComCls){
-		ImeError("[ComImeProcessKey] ComObject Null");
-		return FALSE;
+        if ( !ComInit() ){
+		    ImeError("[ComImeProcessKey] ComInit Failed");
+		    return FALSE;
+        }
 	}
 
 	try{
 		HRESULT hr = pComCls->ImeProcessKey(iKey, ikr, sResult);
 		if (FAILED(hr)){
 			ImeError("[ComImeProcessKey] Call COM Failed");
+            pComCls = NULL;
 		}
 		return !FAILED(hr);
 	}catch(...){
@@ -68,14 +71,17 @@ BOOL ComImeProcessKey(UINT iKey, ImeKeyResult * ikr, BSTR * sResult){
 BOOL ComImeSelect (BOOL bSel){
 
 	if (!pComCls){
-		ImeError("[ComImeSelect] ComObject Null");
-		return FALSE;
+        if ( !ComInit() ){
+		    ImeError("[ComImeSelect] ComInit Failed");
+		    return FALSE;
+        }
 	}
 
 	try{
 		HRESULT hr = pComCls->ImeSelect( bSel);
 		if (FAILED(hr)){
 			ImeError("[ComImeSelect] Call COM Failed");
+            pComCls = NULL;
 		}
 		return !FAILED(hr);
 	}catch(...){
@@ -87,14 +93,17 @@ BOOL ComImeSelect (BOOL bSel){
 BOOL ComImeConfigure(){
 
 	if (!pComCls){
-		ImeError("[ComImeConfigure] ComObject Null");
-		return FALSE;
+        if ( !ComInit() ){
+		    ImeError("[ComImeConfigure] ComInit Failed");
+		    return FALSE;
+        }
 	}
 
 	try{
 		HRESULT hr = pComCls->ImeConfigure();
 		if (FAILED(hr)){
 			ImeError("[ComImeConfigure] Call COM Failed");
+            pComCls = NULL;
 		}
 		return !FAILED(hr);
 	}catch(...){
@@ -106,14 +115,17 @@ BOOL ComImeConfigure(){
 BOOL ComImeSetActiveContext(BOOL bSetActive){
 
 	if (!pComCls){
-		ImeError("[ComImeSetActiveContext] ComObject Null");
-		return FALSE;
+        if ( !ComInit() ){
+		    ImeError("[ComImeSetActiveContext] ComInit Failed");
+		    return FALSE;
+        }
 	}
 
 	try{
 		HRESULT hr = pComCls->ImeSetActiveContext(bSetActive);
 		if (FAILED(hr)){
 			ImeError("[ComImeSetActiveContext] Call COM Failed");
+            pComCls = NULL;
 		}
 		return !FAILED(hr);
 	}catch(...){
@@ -127,14 +139,17 @@ BOOL ComDebug(LPCWSTR str){
 #ifdef DEVELOP
 
 	if (!pComCls){
-		ImeError("[ComDebug] ComObject Null");
-		return FALSE;
+        if ( !ComInit() ){
+		    ImeError("[ComDebug] ComInit Failed");
+		    return FALSE;
+        }
 	}
 
 	try{
 		HRESULT hr = pComCls->Debug((_bstr_t)str);
 		if (FAILED(hr)){
 			ImeError("[ComDebug] Call COM Failed");
+            pComCls = NULL;
 		}
 		return !FAILED(hr);
 	}catch(...){
