@@ -18,7 +18,8 @@ BOOL HandleImeKeys(HIMC hImc, UINT iKey, LPARAM lpKeyData, CONST LPBYTE lpbKeySt
 		CComBSTR sResult = NULL;
 
 		if ( !ComImeProcessKey(iKey, &ikr, &sResult) ){
-    		return FALSE;    // 失败时交还系统处理
+    		//return FALSE;    // 失败时交还系统处理
+    		return TRUE;    // 失败时不处理
 		}
 
 		if (!ikr.IsProcessKey || ikr.IsInputEnd){
