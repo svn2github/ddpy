@@ -39,8 +39,13 @@ Public Class ComClass
 
     Public Sub Init(ByRef isWuNaiApp As Boolean)
         initStartTime = Now.Ticks
-        isWuNaiApp = IsNeedSendStartEndMsg(Process.GetCurrentProcess().ProcessName)
         UpdateSettingInfo()
+
+        If P_AUTO_POSITION Then
+            isWuNaiApp = IsNeedSendStartEndMsg(Process.GetCurrentProcess().ProcessName)
+        Else
+            isWuNaiApp = False
+        End If
     End Sub
 
     Public Sub Debug(ByVal str As String)
@@ -56,6 +61,14 @@ Public Class ComClass
     Public Sub ImeProcessKey(ByVal iKey As UInteger, ByRef ikr As ImeKeyResult, ByRef sResult As String)
         Try
             DebugTimeStart()
+
+            If ddPy.InputPys.Length = 0 AndAlso ddPy.DispPyText2.Length = 0 Then
+                UpdateSettingInfo()
+            End If
+
+            PosX = ikr.PosX
+            PosY = ikr.PosY
+            PosH = ikr.PosH
 
             ComProcessKey(iKey, ikr)
 
@@ -76,15 +89,6 @@ Public Class ComClass
 
                         frmInput.Hide()
                     Else
-
-                        PosX = ikr.PosX
-                        PosY = ikr.PosY
-                        PosH = ikr.PosH
-
-                        If ddPy.InputPys.Length = 1 Then
-                            UpdateSettingInfo()
-                            frmInput.Location = New System.Drawing.Point(PosX, PosY + PosH + 2)
-                        End If
                         frmInput.Show(ddPy)
 
                         ComDebug("处理中 bProcessKey=" & ikr.IsProcessKey)
@@ -119,13 +123,17 @@ Public Class ComClass
             ComDebug("[COM]ImeSetActiveContext(" & bSetActive & ")")
 
             If bSetActive Then
-                If My.Computer.Keyboard.CapsLock Then
-                    frmStatus.PanLng.BackgroundImage = My.Resources.LngA
-                End If
-                ShowWindow(frmStatus.Handle, SW_SHOWNOACTIVATE)
 
+                ' 显示状态栏窗口
+                If Not P_HIDE_STATUS Then
+                    If My.Computer.Keyboard.CapsLock Then
+                        frmStatus.PanLng.BackgroundImage = My.Resources.LngA
+                    End If
+                    ShowWindow(frmStatus.Handle, SW_SHOWNOACTIVATE)
+                End If
+
+                ' 焦点控件不是按钮的话才显示候选窗口
                 If Not frmInput.Visible AndAlso ddPy.HasInput() Then
-                    ' 焦点控件不是按钮的话才显示候选窗口
                     If Not "Button".Equals(GetClassNameByHwnd(GetFocus()), StringComparison.OrdinalIgnoreCase) Then
                         frmInput.Show()
                     End If
@@ -149,10 +157,22 @@ Public Class ComClass
 
             initStartTime = Now.Ticks
 
-            If My.Computer.Keyboard.CapsLock Then
-                frmStatus.PanLng.BackgroundImage = My.Resources.LngA
+            P_LNG_CN = True
+            P_MODE_FULL = False
+            P_BD_FULL = True
+
+            ' 显示状态栏窗口
+            If Not P_HIDE_STATUS Then
+
+                frmStatus.PanLng.BackgroundImage = My.Resources.LngCnN
+                frmStatus.PanMode.BackgroundImage = My.Resources.MdHalfN
+                frmStatus.PanBd.BackgroundImage = My.Resources.BdFullN
+
+                If My.Computer.Keyboard.CapsLock Then
+                    frmStatus.PanLng.BackgroundImage = My.Resources.LngA
+                End If
+                frmStatus.Show()
             End If
-            frmStatus.Show()
 
             '  ComInfo("此应用程序打开输入法：" & Process.GetCurrentProcess().ProcessName)
         Else
@@ -160,13 +180,6 @@ Public Class ComClass
             If Not frmDebug Is Nothing Then
                 frmDebug.Hide()
             End If
-
-            P_LNG_CN = True
-            P_MODE_FULL = False
-            P_BD_FULL = True
-            frmStatus.PanLng.BackgroundImage = My.Resources.LngCnN
-            frmStatus.PanMode.BackgroundImage = My.Resources.MdHalfN
-            frmStatus.PanBd.BackgroundImage = My.Resources.BdFullN
 
             frmStatus.Hide()
 

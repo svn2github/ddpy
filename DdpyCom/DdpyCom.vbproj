@@ -148,6 +148,12 @@
     <Compile Include="FrmImeStatus.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmImeTip.Designer.vb">
+      <DependentUpon>FrmImeTip.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmImeTip.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MConfig.vb" />
     <Compile Include="MDanDingKeys.vb" />
     <Compile Include="MDebug.vb" />
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmImeStatus.resx">
       <DependentUpon>FrmImeStatus.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmImeTip.resx">
+      <DependentUpon>FrmImeTip.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

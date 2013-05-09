@@ -60,6 +60,9 @@ Module MSrvConfig
 
     Private P_FONT As String = "宋体,12,0"
 
+    Private P_HIDE_STATUS As Boolean = False
+    Private P_AUTO_POSITION As Boolean = True
+
     ''' <summary>
     ''' 取得输入法配置信息
     ''' </summary>
@@ -84,6 +87,8 @@ Module MSrvConfig
         lst.Add(P_MEMORY)
 
         lst.Add(P_FONT)
+        lst.Add(P_HIDE_STATUS)
+        lst.Add(P_AUTO_POSITION)
 
         Return Strings.Join(lst.ToArray, vbTab)
     End Function
@@ -111,6 +116,8 @@ Module MSrvConfig
             P_TITLE = CStr(ary(9))
             P_MEMORY = CBool(ary(10))
             P_FONT = CStr(ary(11))
+            P_HIDE_STATUS = CBool(ary(12))
+            P_AUTO_POSITION = CBool(ary(13))
 
             ' 保存配置信息
             Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定配置.txt"

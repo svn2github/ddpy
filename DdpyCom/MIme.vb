@@ -58,4 +58,33 @@
 
     End Sub
 
+    Private iTipType As Integer
+    Friend Sub ShowTipWindow(ByVal iType As Integer)
+        If Not P_HIDE_STATUS Then
+            Return
+        End If
+
+        iTipType = iType
+        Dim thd As New Threading.Thread(AddressOf ShowImeTip)
+        thd.Start()
+    End Sub
+
+    Private Sub ShowImeTip()
+        Dim frm As New FrmImeTip
+
+        If iTipType = 1 Then
+            frm.BackgroundImage = IIf(P_LNG_CN, My.Resources.LngCnF, My.Resources.LngEnF)
+        ElseIf iTipType = 2 Then
+            frm.BackgroundImage = IIf(P_MODE_FULL, My.Resources.MdFullF, My.Resources.MdHalfF)
+        Else
+            frm.BackgroundImage = IIf(P_BD_FULL, My.Resources.BdFullF, My.Resources.BdHalfF)
+        End If
+
+        frm.Location = New System.Drawing.Point(PosX + 2, PosY + PosH + 5)
+
+        ShowWindow(frm.Handle, SW_SHOWNOACTIVATE)
+        Threading.Thread.Sleep(600)
+        frm.Close()
+    End Sub
+
 End Module

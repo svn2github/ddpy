@@ -92,6 +92,8 @@ Module MConfig
 
     Private lstApp As List(Of String)
     Friend fontCand As New Font("宋体", 12, FontStyle.Regular)
+    Friend P_HIDE_STATUS As Boolean = False
+    Friend P_AUTO_POSITION As Boolean = True
 
     ''' <summary>
     ''' 取得最新配置信息
@@ -121,6 +123,9 @@ Module MConfig
             Dim sFontSize As Single = sFont(1)
             Dim sFontStyle As FontStyle = sFont(2)
             fontCand = New Font(sFontName, sFontSize, sFontStyle)
+
+            P_HIDE_STATUS = CBool(ary(12))
+            P_AUTO_POSITION = CBool(ary(13))
 
         Catch ex As Exception
             ComDebug(ex)

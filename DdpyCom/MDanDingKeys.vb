@@ -41,7 +41,9 @@ Module MDanDingKeys
                     End If
 
                     bRet = True
+                    ShowTipWindow(2)
                 End If
+
 
             Case Keys.OemPeriod
                 ' Ctrl+. 切换标点模式
@@ -57,6 +59,7 @@ Module MDanDingKeys
                     End If
 
                     bRet = True
+                    ShowTipWindow(3)
                 End If
 
             Case Keys.ShiftKey
@@ -77,6 +80,7 @@ Module MDanDingKeys
 
                     SetIkrFlag(ikr, False, False, False)
 
+                    ShowTipWindow(1)
                 End If
 
                 bRet = True
@@ -101,6 +105,17 @@ Module MDanDingKeys
     ''' <param name="iKey">按键</param>
     ''' <param name="ikr">按键处理结果</param>
     Friend Sub ComProcessKey(ByVal iKey As UInteger, ByRef ikr As ImeKeyResult)
+
+        ' 状态栏显示控制
+        If P_HIDE_STATUS Then
+            If frmStatus.Visible Then
+                frmStatus.Hide()
+            End If
+        Else
+            If Not frmStatus.Visible Then
+                ShowWindow(frmStatus.Handle, SW_SHOWNOACTIVATE)
+            End If
+        End If
 
         ' 处理CapsLock按键
         If HandleCapsLockKey(iKey, ikr) Then

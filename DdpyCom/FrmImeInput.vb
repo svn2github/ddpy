@@ -9,6 +9,8 @@ Imports System.Text
 ''' </summary>
 Friend Class FrmImeInput
 
+    Private defaultPosX As Integer
+
     ''' <summary>
     ''' 窗口初始化
     ''' </summary>
@@ -45,12 +47,25 @@ Friend Class FrmImeInput
         txt7.Font = fontCand
         txt8.Font = fontCand
         txt9.Font = fontCand
+
+        Dim x As Integer = (Screen.PrimaryScreen.Bounds.Width - Me.Width) / 2
+        Dim y As Integer = (Screen.PrimaryScreen.Bounds.Height - Me.Height) * 0.6
+        defaultPosX = x
+        Me.Location = New System.Drawing.Point(x, y)
+
     End Sub
 
     ''' <summary>
     ''' 指定候选文字显示窗口
     ''' </summary>
     Public Overloads Sub Show(ByVal data As CDandingPy)
+
+        If P_AUTO_POSITION Then
+            If ddPy.InputPys.Length = 1 AndAlso ddPy.DispPyText2.Length = 0 Then
+                Me.Location = New System.Drawing.Point(PosX, PosY + PosH + 2)
+            End If
+        End If
+
 
         If ddPy.Text = "" Then
             LblPinyin.Text = ddPy.InputPys
@@ -132,6 +147,10 @@ Friend Class FrmImeInput
         LblPinyin2.Text = ""
         ClearCands()
         LblInfo.Text = IIf(P_TITLE = "", "   " & "0", P_TITLE)
+
+        If Not P_AUTO_POSITION Then
+            Me.Location = New System.Drawing.Point(defaultPosX, Me.Location.Y)
+        End If
 
     End Sub
 
@@ -224,20 +243,35 @@ Friend Class FrmImeInput
 
 
         ' 调整窗口位置
-        Dim x As Integer = PosX
-        Dim y As Integer = PosY + PosH + 2
-        If Screen.PrimaryScreen.Bounds.Width - PosX - Me.Width < 0 Then
-            If Screen.PrimaryScreen.Bounds.Width - Me.Width < 0 Then
-                x = 0
-            Else
-                x = Screen.PrimaryScreen.Bounds.Width - Me.Width
-            End If
-        End If
-        If Screen.PrimaryScreen.Bounds.Height - PosY - PosH - 2 - Me.Height < 0 Then
-            y = PosY - Me.Height - 2
-        End If
+        If P_AUTO_POSITION Then
 
-        Me.Location = New Point(x, y)
+            ' 光标跟随
+            Dim x As Integer = PosX
+            Dim y As Integer = PosY + PosH + 2
+            If Screen.PrimaryScreen.Bounds.Width - PosX - Me.Width < 0 Then
+                If Screen.PrimaryScreen.Bounds.Width - Me.Width < 0 Then
+                    x = 0
+                Else
+                    x = Screen.PrimaryScreen.Bounds.Width - Me.Width
+                End If
+            End If
+            If Screen.PrimaryScreen.Bounds.Height - PosY - PosH - 2 - Me.Height < 0 Then
+                y = PosY - Me.Height - 2
+            End If
+
+            Me.Location = New Point(x, y)
+        Else
+
+            Dim x As Integer
+            If Screen.PrimaryScreen.Bounds.Width - defaultPosX < Me.Width Then
+                x = Screen.PrimaryScreen.Bounds.Width - Me.Width
+            Else
+                x = defaultPosX
+            End If
+
+            Me.Location = New System.Drawing.Point(x, Me.Location.Y)
+
+        End If
 
     End Sub
 

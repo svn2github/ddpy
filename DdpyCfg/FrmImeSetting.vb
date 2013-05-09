@@ -32,11 +32,14 @@ Public Class FrmSetting
 
             TxtTitle.Text = CStr(ary(9))
 
-            ChkSrvMemory.Checked = CStr(ary(10))
+            ChkSrvMemory.Checked = CBool(ary(10))
 
             If Trim(ary(11)).Replace(",", "").Length = (ary(11).Length - 2) Then
                 TxtFont.Text = ary(11)
             End If
+
+            ChkHideStatus.Checked = CBool(ary(12))
+            ChkAutoPosition.Checked = CBool(ary(13))
 
 
         Catch ex As Exception
@@ -70,6 +73,8 @@ Public Class FrmSetting
         lst.Add(ChkSrvMemory.Checked)
 
         lst.Add(TxtFont.Text)
+        lst.Add(ChkHideStatus.Checked)
+        lst.Add(ChkAutoPosition.Checked)
 
         Return Strings.Join(lst.ToArray, vbTab)
     End Function
@@ -645,7 +650,7 @@ Public Class FrmSetting
 
     End Sub
 
-    Private Sub ChkAn_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ChkAn.MouseClick, ChkEn.MouseClick, ChkIn.MouseClick, ChkSrvMemory.MouseClick, ChkVshow.MouseClick, ChkZhizhe.MouseClick, ChkZize.MouseClick, ChkZzh.MouseClick
+    Private Sub ChkAn_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ChkAn.MouseClick, ChkEn.MouseClick, ChkIn.MouseClick, ChkSrvMemory.MouseClick, ChkVshow.MouseClick, ChkZhizhe.MouseClick, ChkZize.MouseClick, ChkZzh.MouseClick, ChkHideStatus.MouseClick, ChkAutoPosition.MouseClick
         If GetSetting().Equals(sSrvSetting) Then
             BtnApply.Enabled = False
         Else

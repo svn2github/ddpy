@@ -49,7 +49,7 @@ Public Class ComClass
 
         Try
             ' 读写配置文件
-            Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\DanDingConfig.txt"
+            Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定配置.txt"
             If Not My.Computer.FileSystem.FileExists(sFileCfg) Then
                 My.Computer.FileSystem.WriteAllText(sFileCfg, GetSettingInfo(), False, Encoding.UTF8)
             Else
