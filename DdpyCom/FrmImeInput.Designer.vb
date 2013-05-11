@@ -51,7 +51,7 @@ Partial Class FrmImeInput
         Me.LblPinyin.AutoSize = True
         Me.LblPinyin.BackColor = System.Drawing.SystemColors.Control
         Me.LblPinyin.Dock = System.Windows.Forms.DockStyle.Left
-        Me.LblPinyin.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.LblPinyin.Font = New System.Drawing.Font("SimSun", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.LblPinyin.Location = New System.Drawing.Point(0, 0)
         Me.LblPinyin.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LblPinyin.Name = "LblPinyin"
@@ -64,7 +64,7 @@ Partial Class FrmImeInput
         Me.txt1.AutoSize = True
         Me.txt1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txt1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.txt1.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.txt1.Font = New System.Drawing.Font("SimSun", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.txt1.Location = New System.Drawing.Point(3, 22)
         Me.txt1.Name = "txt1"
         Me.txt1.Size = New System.Drawing.Size(40, 16)
@@ -78,7 +78,7 @@ Partial Class FrmImeInput
         Me.txt2.AutoSize = True
         Me.txt2.BackColor = System.Drawing.SystemColors.ControlLight
         Me.txt2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.txt2.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.txt2.Font = New System.Drawing.Font("SimSun", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.txt2.Location = New System.Drawing.Point(43, 22)
         Me.txt2.Name = "txt2"
         Me.txt2.Size = New System.Drawing.Size(40, 16)
@@ -92,7 +92,7 @@ Partial Class FrmImeInput
         Me.txt3.AutoSize = True
         Me.txt3.BackColor = System.Drawing.SystemColors.ControlLight
         Me.txt3.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.txt3.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.txt3.Font = New System.Drawing.Font("SimSun", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.txt3.Location = New System.Drawing.Point(83, 22)
         Me.txt3.Name = "txt3"
         Me.txt3.Size = New System.Drawing.Size(40, 16)
@@ -106,7 +106,7 @@ Partial Class FrmImeInput
         Me.txt4.AutoSize = True
         Me.txt4.BackColor = System.Drawing.SystemColors.ControlLight
         Me.txt4.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.txt4.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.txt4.Font = New System.Drawing.Font("SimSun", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.txt4.Location = New System.Drawing.Point(123, 22)
         Me.txt4.Name = "txt4"
         Me.txt4.Size = New System.Drawing.Size(40, 16)
@@ -120,7 +120,7 @@ Partial Class FrmImeInput
         Me.txt5.AutoSize = True
         Me.txt5.BackColor = System.Drawing.SystemColors.ControlLight
         Me.txt5.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.txt5.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.txt5.Font = New System.Drawing.Font("SimSun", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.txt5.Location = New System.Drawing.Point(163, 22)
         Me.txt5.Name = "txt5"
         Me.txt5.Size = New System.Drawing.Size(40, 16)
@@ -134,7 +134,7 @@ Partial Class FrmImeInput
         Me.txt6.AutoSize = True
         Me.txt6.BackColor = System.Drawing.SystemColors.ControlLight
         Me.txt6.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.txt6.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.txt6.Font = New System.Drawing.Font("SimSun", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.txt6.Location = New System.Drawing.Point(203, 22)
         Me.txt6.Name = "txt6"
         Me.txt6.Size = New System.Drawing.Size(40, 16)
@@ -148,7 +148,7 @@ Partial Class FrmImeInput
         Me.txt7.AutoSize = True
         Me.txt7.BackColor = System.Drawing.SystemColors.ControlLight
         Me.txt7.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.txt7.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.txt7.Font = New System.Drawing.Font("SimSun", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.txt7.Location = New System.Drawing.Point(243, 22)
         Me.txt7.Name = "txt7"
         Me.txt7.Size = New System.Drawing.Size(40, 16)
@@ -162,7 +162,7 @@ Partial Class FrmImeInput
         Me.txt8.AutoSize = True
         Me.txt8.BackColor = System.Drawing.SystemColors.ControlLight
         Me.txt8.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.txt8.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.txt8.Font = New System.Drawing.Font("SimSun", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.txt8.Location = New System.Drawing.Point(283, 22)
         Me.txt8.Name = "txt8"
         Me.txt8.Size = New System.Drawing.Size(40, 16)
@@ -176,7 +176,7 @@ Partial Class FrmImeInput
         Me.txt9.AutoSize = True
         Me.txt9.BackColor = System.Drawing.SystemColors.ControlLight
         Me.txt9.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.txt9.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.txt9.Font = New System.Drawing.Font("SimSun", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.txt9.Location = New System.Drawing.Point(323, 22)
         Me.txt9.Name = "txt9"
         Me.txt9.Size = New System.Drawing.Size(40, 16)
@@ -190,9 +190,9 @@ Partial Class FrmImeInput
         Me.LblInfo.AutoSize = True
         Me.LblInfo.BackColor = System.Drawing.SystemColors.ControlLight
         Me.LblInfo.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LblInfo.Font = New System.Drawing.Font("宋体", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.LblInfo.Font = New System.Drawing.Font("SimSun", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.LblInfo.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.LblInfo.Location = New System.Drawing.Point(388, 0)
+        Me.LblInfo.Location = New System.Drawing.Point(385, 0)
         Me.LblInfo.Name = "LblInfo"
         Me.LblInfo.Size = New System.Drawing.Size(35, 13)
         Me.LblInfo.TabIndex = 3
@@ -209,7 +209,7 @@ Partial Class FrmImeInput
         Me.PanelPinyin.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelPinyin.Location = New System.Drawing.Point(0, 0)
         Me.PanelPinyin.Name = "PanelPinyin"
-        Me.PanelPinyin.Size = New System.Drawing.Size(423, 19)
+        Me.PanelPinyin.Size = New System.Drawing.Size(420, 19)
         Me.PanelPinyin.TabIndex = 4
         '
         'PanCur
@@ -224,7 +224,7 @@ Partial Class FrmImeInput
         '
         Me.LblPinyin2.AutoSize = True
         Me.LblPinyin2.BackColor = System.Drawing.SystemColors.Control
-        Me.LblPinyin2.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.LblPinyin2.Font = New System.Drawing.Font("SimSun", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.LblPinyin2.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.LblPinyin2.Location = New System.Drawing.Point(56, 0)
         Me.LblPinyin2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
@@ -250,7 +250,7 @@ Partial Class FrmImeInput
         Me.PanelFill.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelFill.Location = New System.Drawing.Point(0, 0)
         Me.PanelFill.Name = "PanelFill"
-        Me.PanelFill.Size = New System.Drawing.Size(423, 103)
+        Me.PanelFill.Size = New System.Drawing.Size(420, 103)
         Me.PanelFill.TabIndex = 5
         '
         'PanelPosition
@@ -263,7 +263,7 @@ Partial Class FrmImeInput
         '
         'ContextMenuStripCand
         '
-        Me.ContextMenuStripCand.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.ContextMenuStripCand.Font = New System.Drawing.Font("SimSun", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.ContextMenuStripCand.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuItemDelCand})
         Me.ContextMenuStripCand.Name = "ContextMenuStripCand"
         Me.ContextMenuStripCand.Size = New System.Drawing.Size(153, 48)
@@ -282,7 +282,7 @@ Partial Class FrmImeInput
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.AutoValidate = System.Windows.Forms.AutoValidate.Disable
         Me.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.ClientSize = New System.Drawing.Size(423, 103)
+        Me.ClientSize = New System.Drawing.Size(420, 103)
         Me.Controls.Add(Me.PanelPinyin)
         Me.Controls.Add(Me.PanelFill)
         Me.Cursor = System.Windows.Forms.Cursors.SizeAll

@@ -134,7 +134,6 @@ Module MDanDingKeys
             Return
         End If
 
-
         Dim sChar As String = ConvertDefaultChar(iKey)
 
         ' 处理编码按键
@@ -1106,10 +1105,15 @@ Module MDanDingKeys
         End If
 
 
-        ' 编码输入期间，不响应未定义的组合键
-        If frmInput.Visible AndAlso (My.Computer.Keyboard.CtrlKeyDown OrElse My.Computer.Keyboard.AltKeyDown) Then
-            SetIkrFlag(ikr, True, False, False)
-            Return True
+        If (My.Computer.Keyboard.CtrlKeyDown OrElse My.Computer.Keyboard.AltKeyDown) Then
+            If frmInput.Visible Then
+                ' 编码输入期间，不响应未定义的组合键
+                SetIkrFlag(ikr, True, False, False)
+                Return True
+            Else
+                SetIkrFlag(ikr, False, False, False)
+                Return True
+            End If
         End If
 
         If My.Computer.Keyboard.ShiftKeyDown Then

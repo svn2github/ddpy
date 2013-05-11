@@ -55,6 +55,7 @@ Friend Class FrmImeInput
 
     End Sub
 
+
     ''' <summary>
     ''' 指定候选文字显示窗口
     ''' </summary>
@@ -137,7 +138,6 @@ Friend Class FrmImeInput
     ''' 隐藏窗口
     ''' </summary>
     Public Overloads Sub Hide()
-        MyBase.Hide()
 
         ContextMenuStripCand.Hide()
         ddPy.Clear()
@@ -152,6 +152,8 @@ Friend Class FrmImeInput
             Me.Location = New System.Drawing.Point(defaultPosX, Me.Location.Y)
         End If
 
+        Me.Width = 420
+        MyBase.Hide()
     End Sub
 
     ''' <summary>
