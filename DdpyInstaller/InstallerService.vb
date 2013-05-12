@@ -123,8 +123,17 @@ Public Class InstallerService
 
 
         ' 尝试删除IME文件
+        Dim imeFile32 As String = windir & "\\system32\\DdpyIme.dll"
+        Dim imeFile64 As String = windir & "\\SysWOW64\\DdpyIme.dll"
+
         Try
-            Dim imeFile32 As String = windir & "\\system32\\DdpyIme.dll"
+            If Environment.Is64BitOperatingSystem AndAlso My.Computer.FileSystem.FileExists(imeFile64) Then
+                My.Computer.FileSystem.DeleteFile(imeFile64)
+            End If
+        Catch ex As Exception
+        End Try
+
+        Try
             If My.Computer.FileSystem.FileExists(imeFile32) Then
                 My.Computer.FileSystem.DeleteFile(imeFile32)
             End If
@@ -132,9 +141,14 @@ Public Class InstallerService
         End Try
 
         Try
-            Dim imeFile64 As String = windir & "\\SysWOW64\\DdpyIme.dll"
-            If Environment.Is64BitOperatingSystem AndAlso My.Computer.FileSystem.FileExists(imeFile64) Then
-                My.Computer.FileSystem.DeleteFile(imeFile64)
+            If My.Computer.FileSystem.FileExists(imeFile32) Then
+                Dim info As New System.Diagnostics.ProcessStartInfo
+                info.FileName = "cmd.exe"
+                info.Arguments = "/k takeown /f " & imeFile32 & " && icacls " & imeFile32 & "/grant " & My.User.Name & ":F"
+                info.WindowStyle = ProcessWindowStyle.Hidden
+                System.Diagnostics.Process.Start(info)
+
+                My.Computer.FileSystem.DeleteFile(imeFile32)
             End If
         Catch ex As Exception
         End Try
