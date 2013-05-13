@@ -50,4 +50,20 @@ Module MSrvDebug
 
     End Sub
 
+    Private lTimeStart As Long
+    ''' <summary>
+    ''' 计时开始
+    ''' </summary>
+    Friend Sub DebugTimeStart()
+        lTimeStart = Now.Ticks
+    End Sub
+
+    ''' <summary>
+    ''' 计时结束
+    ''' </summary>
+    ''' <returns>毫秒</returns>
+    Friend Function DebugTimeEnd() As String
+        Return (Now.Ticks - lTimeStart) \ 10000
+    End Function
+
 End Module

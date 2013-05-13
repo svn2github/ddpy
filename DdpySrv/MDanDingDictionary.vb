@@ -71,7 +71,6 @@ Module MDanDingDictionary
             InitDanDingWordDic(sFileWrd) ' 淡定词库
         End If
 
-
         ' 导入用户词库
         If My.Computer.FileSystem.FileExists(userWordFile) Then
             InitDanDingWordDic(userWordFile)
@@ -82,6 +81,67 @@ Module MDanDingDictionary
         For Each key As String In mDanDingDic.Keys
             lst = mDanDingDic(key)
             lst.Sort()
+        Next
+
+    End Sub
+
+
+    ''' <summary>
+    ''' 从文件导入字库词库
+    ''' </summary>
+    ''' <param name="sPathFile">文件（"文字 全拼 词频"  UTF-8）</param>
+    Private Sub ImportWordDic(ByVal sPathFile As String)
+
+        Dim txt As String = My.Computer.FileSystem.ReadAllText(sPathFile, Encoding.UTF8)
+        Dim lines As String() = txt.Split(vbNewLine)
+        Dim cols As String()
+        Dim lstWord As List(Of CWord)
+        Dim word As CWord = Nothing
+        Dim wordQp As CWord = Nothing
+        Dim wordJp As CWord = Nothing
+
+        Dim spys As String
+
+        For i As Integer = 0 To lines.Length - 1
+
+            Dim line As String = lines(i).Replace(vbLf, "")
+            If Trim(line) = "" Then
+                Continue For
+            End If
+
+            ' "文字全拼 词频" 
+            cols = line.Split(vbTab)
+            spys = Strings.Join(GetMutilShotPys(cols(1)), "'")
+            wordJp = GetWord(cols(0), spys, cols(1))
+
+            If wordJp Is Nothing Then
+
+                word = New CWord()
+                word.Text = cols(0)
+                word.ShortPinYin = spys
+                word.PinYin = cols(1)
+                word.Order = cols(2)
+                If cols.Length > 3 Then
+                    word.WordType = cols(3)
+                End If
+
+                lstWord = InitWordList(spys)
+                lstWord.Add(word)
+
+                If word.WordType = WordType.USR Then
+                    RegisterUserWord(word)
+                End If
+            Else
+                If cols.Length > 3 AndAlso wordJp.WordType < cols(3) Then
+                    wordJp.Order = cols(2)
+                    wordJp.WordType = cols(3)
+                End If
+
+                If wordJp.WordType = WordType.USR Then
+                    RegisterUserWord(wordJp)
+                End If
+            End If
+
         Next
 
     End Sub

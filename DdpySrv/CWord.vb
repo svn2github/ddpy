@@ -26,7 +26,7 @@ Friend Class CWord
     Private vText As String                 ' 文字
     Private vShortPinYin As String          ' 简拼
     Private vPinYin As String               ' 全拼
-    Private vOrder As Integer               ' 词频
+    Private vOrder As Long               ' 词频
     Private vWordType As WordType = WordType.DIC          ' 类型
     Private vIsMixWord As Boolean
 
@@ -128,11 +128,11 @@ Friend Class CWord
     ''' </summary>
     ''' <value>频率</value>
     ''' <returns>频率</returns>
-    Public Property Order() As Integer
+    Public Property Order() As Long
         Get
             Return vOrder
         End Get
-        Set(ByVal Value As Integer)
+        Set(ByVal Value As Long)
             vOrder = Value
         End Set
     End Property
