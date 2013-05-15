@@ -67,84 +67,24 @@ Module MDanDingDictionary
         ' 初始化字库
         If (mDanDingDic Is Nothing) Then
             mDanDingDic = New Hashtable ' "拼音 - CWord
-            InitDanDingWordDic(sFileDic) ' 淡定字库
-            InitDanDingWordDic(sFileWrd) ' 淡定词库
+            InitDanDingWordDic(sFileDic, WordType.SYS) ' 淡定字库
+            InitDanDingWordDic(sFileWrd, WordType.SYS) ' 淡定词库
         End If
 
         ' 导入用户词库
         If My.Computer.FileSystem.FileExists(userWordFile) Then
-            InitDanDingWordDic(userWordFile)
+            InitDanDingWordDic(userWordFile, WordType.USR)
         End If
 
-        ' 排序
-        Dim lst As List(Of CWord) = Nothing
-        For Each key As String In mDanDingDic.Keys
-            lst = mDanDingDic(key)
-            lst.Sort()
-        Next
+        '' 排序
+        'Dim lst As List(Of CWord) = Nothing
+        'For Each key As String In mDanDingDic.Keys
+        '    lst = mDanDingDic(key)
+        '    lst.Sort()
+        'Next
 
     End Sub
 
-
-    ''' <summary>
-    ''' 从文件导入字库词库
-    ''' </summary>
-    ''' <param name="sPathFile">文件（"文字 全拼 词频"  UTF-8）</param>
-    Private Sub ImportWordDic(ByVal sPathFile As String)
-
-        Dim txt As String = My.Computer.FileSystem.ReadAllText(sPathFile, Encoding.UTF8)
-        Dim lines As String() = txt.Split(vbNewLine)
-        Dim cols As String()
-        Dim lstWord As List(Of CWord)
-        Dim word As CWord = Nothing
-        Dim wordQp As CWord = Nothing
-        Dim wordJp As CWord = Nothing
-
-        Dim spys As String
-
-        For i As Integer = 0 To lines.Length - 1
-
-            Dim line As String = lines(i).Replace(vbLf, "")
-            If Trim(line) = "" Then
-                Continue For
-            End If
-
-            ' "文字全拼 词频" 
-            cols = line.Split(vbTab)
-            spys = Strings.Join(GetMutilShotPys(cols(1)), "'")
-            wordJp = GetWord(cols(0), spys, cols(1))
-
-            If wordJp Is Nothing Then
-
-                word = New CWord()
-                word.Text = cols(0)
-                word.ShortPinYin = spys
-                word.PinYin = cols(1)
-                word.Order = cols(2)
-                If cols.Length > 3 Then
-                    word.WordType = cols(3)
-                End If
-
-                lstWord = InitWordList(spys)
-                lstWord.Add(word)
-
-                If word.WordType = WordType.USR Then
-                    RegisterUserWord(word)
-                End If
-            Else
-                If cols.Length > 3 AndAlso wordJp.WordType < cols(3) Then
-                    wordJp.Order = cols(2)
-                    wordJp.WordType = cols(3)
-                End If
-
-                If wordJp.WordType = WordType.USR Then
-                    RegisterUserWord(wordJp)
-                End If
-            End If
-
-        Next
-
-    End Sub
 
     ''' <summary>
     ''' 清除缓存
@@ -222,11 +162,7 @@ Module MDanDingDictionary
             Dim cds As String() = codes.Split("'")          ' 输入的混拼数组
 
             ' 按简拼取词
-            Dim keySpy As String = Strings.Join(shotCds, "'")
-            If "ang".Equals(keySpy) OrElse "eng".Equals(keySpy) Then
-                keySpy = keySpy.Substring(0, 2)
-            End If
-            Dim lst As List(Of CWord) = mDanDingDic(keySpy)
+            Dim lst As List(Of CWord) = mDanDingDic(Strings.Join(shotCds, "'"))
 
             If Not lst Is Nothing Then
 
@@ -276,60 +212,52 @@ Module MDanDingDictionary
     ''' 从文件导入字库词库
     ''' </summary>
     ''' <param name="sPathFile">文件（"文字 简拼 全拼 注音 词频"  UTF-8）</param>
-    Private Sub InitDanDingWordDic(ByVal sPathFile As String)
+    Private Sub InitDanDingWordDic(ByVal sPathFile As String, ByVal wType As WordType)
 
         Dim txt As String = My.Computer.FileSystem.ReadAllText(sPathFile, Encoding.UTF8)
         Dim lines As String() = txt.Split(vbNewLine)
         Dim cols As String()
         Dim lstWord As List(Of CWord)
-        Dim word As CWord = Nothing
-        Dim wordQp As CWord = Nothing
-        Dim wordJp As CWord = Nothing
+        Dim newWord As CWord = Nothing
+        Dim existWord As CWord = Nothing
 
         For i As Integer = 0 To lines.Length - 1
 
-            Dim line As String = lines(i).Replace(vbLf, "")
-            If Trim(line) = "" Then
+            Dim line As String = Trim(lines(i).Replace(vbLf, ""))
+
+            ' 忽略注释行、空行
+            If line.StartsWith("//") OrElse "".Equals(line) Then
                 Continue For
             End If
 
-            ' "文字 简拼 全拼 词频 类型" 
+            ' "文字 全拼 词频" 
             cols = line.Split(vbTab)
-            If cols(1).Contains("zh") OrElse cols(1).Contains("ch") OrElse cols(1).Contains("sh") Then
-                cols(1) = Strings.Join(GetMutilShotPys(cols(1)), "'")
-            End If
-            ' 简拼 ang->an, eng->en 
-            If "ang".Equals(cols(1)) OrElse "eng".Equals(cols(1)) Then
-                cols(1) = cols(1).Substring(0, 2)
-            End If
 
-            wordJp = GetWord(cols(0), cols(1), cols(2))
+            Dim shotPys As String = Strings.Join(GetMutilShotPys(cols(1)), "'")
+            existWord = GetWord(cols(0), shotPys, cols(1))  ' 查找"同字同拼音"字
 
-            If wordJp Is Nothing Then
+            If existWord Is Nothing Then
 
-                word = New CWord()
-                word.Text = cols(0)
-                word.ShortPinYin = cols(1)
-                word.PinYin = cols(2)
-                word.Order = cols(3)
-                If cols.Length > 4 Then
-                    word.WordType = cols(4)
-                End If
+                ' 不存在时追加
+                newWord = New CWord()
+                newWord.WordType = wType
+                newWord.Text = cols(0)
+                newWord.ShortPinYin = shotPys
+                newWord.PinYin = cols(1)
+                newWord.Order = cols(2)
 
-                lstWord = InitWordList(cols(1))
-                lstWord.Add(word)
+                lstWord = InitWordList(newWord.ShortPinYin)
+                lstWord.Add(newWord)
 
-                If word.WordType = WordType.USR Then
-                    RegisterUserWord(word)
+                If newWord.WordType And WordType.USR Then
+                    RegisterUserWord(newWord)
                 End If
             Else
-                If cols.Length > 4 AndAlso wordJp.WordType < cols(4) Then
-                    wordJp.Order = cols(3)
-                    wordJp.WordType = cols(4)
-                End If
+                ' 已存在时，仅更新类型
+                existWord.WordType = existWord.WordType Or wType
 
-                If wordJp.WordType = WordType.USR Then
-                    RegisterUserWord(wordJp)
+                If existWord.WordType And WordType.USR Then
+                    RegisterUserWord(existWord)
                 End If
             End If
 

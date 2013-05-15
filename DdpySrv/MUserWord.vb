@@ -16,27 +16,27 @@ Module MUserWord
     ''' </summary>
     ''' <param name="word">文字对象</param>
     Public Sub RegisterUserWord(ByVal word As CWord)
-        mapUserWords(word.PinYin & word.Text) = word
-        hasNewRegisterWord = True
+        Dim wordKey As String = word.PinYin & vbTab & word.Text
+        If Not mapUserWords.ContainsKey(wordKey) Then
+            mapUserWords(wordKey) = word
+            hasNewRegisterWord = True
+        End If
     End Sub
 
     ''' <summary>
-    ''' 登记文字
+    ''' 注销文字
     ''' </summary>
     ''' <param name="pinYin">拼音全拼</param>
     ''' <param name="text">指定字词</param>
     Public Sub UnRegisterUserWord(ByVal pinYin As String, ByVal text As String)
-        Dim lstKey As New List(Of String)
-        For Each key As String In mapUserWords.Keys
-            If key.Equals(pinYin & text) Then
-                lstKey.Add(key)
-            End If
-        Next
 
-        For Each key As String In lstKey
-            mapUserWords.Remove(key)
+        Dim wordKey As String = pinYin & vbTab & text
+        
+        If mapUserWords.ContainsKey(wordKey) Then
+            mapUserWords.Remove(wordKey)
             hasNewRegisterWord = True
-        Next
+        End If
+
     End Sub
 
     ''' <summary>
@@ -66,7 +66,7 @@ Module MUserWord
                  End Function)
 
         For i As Integer = 0 To lst.Count - 1
-            txt.AppendLine(lst(i).ToString)
+            txt.AppendLine(lst(i).Text & vbTab & lst(i).PinYin & vbTab & lst(i).Order)
         Next
         My.Computer.FileSystem.WriteAllText(userWordFile, txt.ToString, False, Encoding.UTF8)
 

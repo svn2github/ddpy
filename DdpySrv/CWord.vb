@@ -5,13 +5,21 @@
 ''' </summary>
 Friend Enum WordType
     ''' <summary>
-    ''' 字典类型
+    ''' 不明类型
     ''' </summary>
-    DIC = 0
+    UNKNOW = &H0
+    ''' <summary>
+    ''' 系统类型
+    ''' </summary>
+    SYS = &H1
+    ''' <summary>
+    ''' 导入类型
+    ''' </summary>
+    IMP = &H10
     ''' <summary>
     ''' 用户类型
     ''' </summary>
-    USR = 9
+    USR = &H100
 End Enum
 
 
@@ -26,9 +34,9 @@ Friend Class CWord
     Private vText As String                 ' 文字
     Private vShortPinYin As String          ' 简拼
     Private vPinYin As String               ' 全拼
-    Private vOrder As Long               ' 词频
-    Private vWordType As WordType = WordType.DIC          ' 类型
-    Private vIsMixWord As Boolean
+    Private vOrder As Integer               ' 词频
+    Private vWordType As WordType = WordType.UNKNOW          ' 类型
+    Private vIsMixWord As Boolean           ' 混合输入
 
     ''' <summary>
     ''' 构造函数
@@ -51,19 +59,13 @@ Friend Class CWord
     ''' <param name="line">文字行（文字Tab简拼Tab全拼Tab词频Tab类型Tab是否混合输入）</param>
     Public Sub New(ByVal line As String)
 
-        ' 文字 简拼 全拼 词频 类型
+        ' 文字 全拼 类型 混合输入
         Dim cols As String() = line.Split(vbTab)
         vText = cols(0)
-        vShortPinYin = cols(1)
-        vPinYin = cols(2)
-        vOrder = cols(3)
+        vPinYin = cols(1)
+        vWordType = cols(2)
+        vIsMixWord = cols(3)
 
-        If cols.Length > 4 Then
-            vWordType = cols(4)
-        End If
-        If cols.Length > 5 Then
-            vWordType = CBool(cols(5))
-        End If
     End Sub
 
     ''' <summary>
@@ -128,11 +130,11 @@ Friend Class CWord
     ''' </summary>
     ''' <value>频率</value>
     ''' <returns>频率</returns>
-    Public Property Order() As Long
+    Public Property Order() As Integer
         Get
             Return vOrder
         End Get
-        Set(ByVal Value As Long)
+        Set(ByVal Value As Integer)
             vOrder = Value
         End Set
     End Property
@@ -178,7 +180,7 @@ Friend Class CWord
     End Function
 
     Public Overrides Function ToString() As String
-        Return Me.Text & vbTab & Me.ShortPinYin & vbTab & Me.PinYin & vbTab & Me.Order & vbTab & Me.WordType & vbTab & Me.IsMixWord
+        Return Me.Text & vbTab & Me.PinYin & vbTab & Me.WordType & vbTab & Me.IsMixWord
     End Function
 
     ''' <summary>

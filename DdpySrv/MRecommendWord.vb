@@ -18,6 +18,7 @@ Module MRecommendWord
         Dim tmpWord As CWord = Nothing
         Dim i As Integer = 0
 
+        ' 有完全匹配的文字存在时，不做自动组合
         Dim firstWord As CWord = GetFirstWord(Strings.Join(pyAry, "'"))
         If Not firstWord Is Nothing Then
             Return Nothing
@@ -70,7 +71,6 @@ Module MRecommendWord
                 tmpWord = lstStack(i)
 
                 If txt = "" Then
-                    '文字,简拼,全拼,词频
                     shortPinYin = tmpWord.ShortPinYin & shortPinYin
                     pinYin = tmpWord.PinYin & pinYin
                 Else
@@ -84,7 +84,7 @@ Module MRecommendWord
             newWord.ShortPinYin = shortPinYin
             newWord.PinYin = pinYin
             newWord.Order = 1
-            ' newWord.WordType = WordType.USR
+            newWord.WordType = WordType.UNKNOW
         End If
 
         Return newWord

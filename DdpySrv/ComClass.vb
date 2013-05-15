@@ -65,7 +65,7 @@ Public Class ComClass
         Catch ex As Exception
             ComError("New()", ex)
         Finally
-            ComDebug("初始化时间共: " & DebugTimeEnd() & " 毫秒")
+            ComError("初始化时间共: " & DebugTimeEnd() & " 毫秒")
         End Try
 
     End Sub
@@ -243,6 +243,8 @@ Public Class ComClass
                 lst.AddRange(stack.Pop())
             Loop
 
+
+            ' 拼接成字符串作为结果返回给客户端
             Dim buf As New StringBuilder
             For i As Integer = 0 To lst.Count - 1
                 If i = 0 Then

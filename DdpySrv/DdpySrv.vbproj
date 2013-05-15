@@ -140,6 +140,12 @@
     <Compile Include="CComSrvClassFactory.vb" />
     <Compile Include="ComClass.vb" />
     <Compile Include="CWord.vb" />
+    <Compile Include="FrmTest.Designer.vb">
+      <DependentUpon>FrmTest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTest.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MMemory.vb" />
     <Compile Include="MMixInput.vb" />
     <Compile Include="MSrvConfig.vb" />
@@ -171,6 +177,9 @@
     <Compile Include="ZReferenceCountedObject.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FrmTest.resx">
+      <DependentUpon>FrmTest.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
