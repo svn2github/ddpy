@@ -27,12 +27,19 @@ Module MPinYinBreak
     ''' <param name="fullPy">单字全拼</param>
     ''' <returns>单字简拼</returns>
     Friend Function GetSingleShotPy(ByVal fullPy As String) As String
-        Dim tmp As String = Strings.Left(fullPy, 1)
-        If "a,o,e".Contains(tmp) Then
-            Return fullPy
+
+        Dim sRet As String = Strings.Left(fullPy, 1)
+
+        If "a,o,e".Contains(sRet) Then
+            sRet = fullPy
         End If
 
-        Return tmp
+        ' 简拼 ang->an, eng->en 
+        If "ang".Equals(sRet) OrElse "eng".Equals(sRet) Then
+            sRet = Strings.Left(sRet, 2)
+        End If
+
+        Return sRet
     End Function
 
 

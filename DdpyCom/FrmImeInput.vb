@@ -351,10 +351,7 @@ Friend Class FrmImeInput
 
 #End Region
 
-#Region "窗口拖动处理"
-
-    Private oPoint As Point
-    Private oLoc As Point
+#Region "输入法窗口菜单"
 
     Private Sub CandTxt_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles txt1.MouseClick, txt2.MouseClick, txt3.MouseClick, txt4.MouseClick, txt5.MouseClick, txt6.MouseClick, txt7.MouseClick, txt8.MouseClick, txt9.MouseClick
         If e.Button = Windows.Forms.MouseButtons.Left Then
@@ -365,7 +362,7 @@ Friend Class FrmImeInput
             Dim idx As Integer = (ddPy.CurrentPage - 1) * P_MAX_PAGE_CNT + sender.Tag
             Dim word As CWord = ddPy.WordList(idx)
 
-            If word.WordType = WordType.USR OrElse word.IsMixWord Then
+            If (word.WordType And WordType.USR) OrElse word.IsMixWord Then
                 menuItemDelCand.Enabled = True
             Else
                 menuItemDelCand.Enabled = False
@@ -401,6 +398,13 @@ Friend Class FrmImeInput
         ddPy.ExecuteSearch()
         Me.Show(ddPy)
     End Sub
+
+#End Region
+
+#Region "窗口拖动处理"
+
+    Private oPoint As Point
+    Private oLoc As Point
 
     Private Sub FrmImeInput_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseDown, PanelPinyin.MouseDown, PanelFill.MouseDown, LblPinyin.MouseDown, LblInfo.MouseDown  ' , txt1.MouseDown, txt2.MouseDown, txt3.MouseDown, txt4.MouseDown, txt5.MouseDown, txt6.MouseDown, txt7.MouseDown, txt8.MouseDown, txt9.MouseDown
         oPoint = e.Location
