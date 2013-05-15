@@ -141,16 +141,19 @@ Public Class ComClass
 
                 Dim isExist As Boolean = False
                 For Each word As CWord In lst
-                    If newWord.Text.Equals(word.Text) Then
-                        If word.WordType < WordType.USR Then
-                            word.WordType = WordType.USR
-                            word.Order = 0
+                    If newWord.Equals(word) Then
+
+                        ' 更新文字类型和频率
+                        If word.WordType And WordType.USR Then
+                            word.Order = word.Order + 1
                         End If
 
-                        word.Order = word.Order + 1
-                        isExist = True
+                        word.WordType = word.WordType Or WordType.USR
 
+                        isExist = True
                         RegisterUserWord(word)
+
+                        Exit For
                     End If
                 Next
 
@@ -216,7 +219,7 @@ Public Class ComClass
 
             Dim okPys As String = BreakPys(codes).Split(" ")(0)  ' Get Right Py Only
             Dim aryPy As String() = okPys.Split("'")
-            Dim arySpy As String() = GetMutilShotPys(okPys)
+            '   Dim arySpy As String() = GetMutilShotPys2(okPys)
 
             Dim stack As New Stack(Of List(Of CWord))
             Dim py As String = ""

@@ -17,7 +17,21 @@ Module MDanDingDictionary
     ''' <param name="word"></param>
     ''' <remarks></remarks>
     Friend Sub AddWordToDic(ByVal word As CWord)
-        Dim lst As List(Of CWord) = InitWordList(word.ShortPinYin)
+        Dim lst As List(Of CWord) = InitWordList(Strings.Join(GetMutilShotPys(word.PinYin), "'"))
+
+        For i As Integer = 0 To lst.Count - 1
+            If word.PinYin.Equals(lst(i).PinYin) AndAlso word.Text.Equals(lst(i).Text) Then
+                ' 存在全拼和文字都相同的文字时，不加
+                Return
+            End If
+        Next
+        lst.Add(word)
+
+        AddWordToDic2(word)
+    End Sub
+
+    Private Sub AddWordToDic2(ByVal word As CWord)
+        Dim lst As List(Of CWord) = InitWordList(Strings.Join(GetMutilShotPys2(word.PinYin), "'"))
 
         For i As Integer = 0 To lst.Count - 1
             If word.PinYin.Equals(lst(i).PinYin) AndAlso word.Text.Equals(lst(i).Text) Then
@@ -40,7 +54,27 @@ Module MDanDingDictionary
         Dim iSize As Integer = lst.Count
         For i As Integer = iSize - 1 To 0 Step -1
             If pinYin.Equals(lst(i).PinYin) AndAlso text.Equals(lst(i).Text) Then
-                lst.RemoveAt(i)
+
+                lst(i).WordType = lst(i).WordType And &H11
+                If lst(i).WordType = WordType.UNKNOW Then
+                    lst.RemoveAt(i)
+                End If
+            End If
+        Next
+
+        DeleteWordFromDic2(pinYin, text)
+    End Sub
+    Private Sub DeleteWordFromDic2(ByVal pinYin As String, ByVal text As String)
+
+        Dim lst As List(Of CWord) = InitWordList(Strings.Join(GetMutilShotPys2(pinYin), "'"))
+        Dim iSize As Integer = lst.Count
+        For i As Integer = iSize - 1 To 0 Step -1
+            If pinYin.Equals(lst(i).PinYin) AndAlso text.Equals(lst(i).Text) Then
+
+                lst(i).WordType = lst(i).WordType And &H11
+                If lst(i).WordType = WordType.UNKNOW Then
+                    lst.RemoveAt(i)
+                End If
             End If
         Next
 
@@ -158,7 +192,7 @@ Module MDanDingDictionary
                 Return mDicCache(codes)
             End If
 
-            Dim shotCds As String() = GetMutilShotPys(codes)     ' 简拼数组
+            Dim shotCds As String() = GetMutilShotPys2(codes)     ' 简拼数组
             Dim cds As String() = codes.Split("'")          ' 输入的混拼数组
 
             ' 按简拼取词
@@ -246,7 +280,7 @@ Module MDanDingDictionary
                 newWord.PinYin = cols(1)
                 newWord.Order = cols(2)
 
-                lstWord = InitWordList(newWord.ShortPinYin)
+                lstWord = InitWordList(shotPys)
                 lstWord.Add(newWord)
 
                 If newWord.WordType And WordType.USR Then
@@ -260,6 +294,39 @@ Module MDanDingDictionary
                     RegisterUserWord(existWord)
                 End If
             End If
+
+
+            ' ''''''''''''
+            shotPys = Strings.Join(GetMutilShotPys2(cols(1)), "'")
+            existWord = GetWord(cols(0), shotPys, cols(1))  ' 查找"同字同拼音"字
+
+            If existWord Is Nothing Then
+
+                ' 不存在时追加
+                If newWord Is Nothing Then
+                    newWord = New CWord()
+                    newWord.WordType = wType
+                    newWord.Text = cols(0)
+                    newWord.ShortPinYin = shotPys
+                    newWord.PinYin = cols(1)
+                    newWord.Order = cols(2)
+                End If
+
+                lstWord = InitWordList(shotPys)
+                lstWord.Add(newWord)
+
+                If newWord.WordType And WordType.USR Then
+                    RegisterUserWord(newWord)
+                End If
+            Else
+                ' 已存在时，仅更新类型
+                existWord.WordType = existWord.WordType Or wType
+
+                If existWord.WordType And WordType.USR Then
+                    RegisterUserWord(existWord)
+                End If
+            End If
+
 
         Next
 

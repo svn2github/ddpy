@@ -22,6 +22,48 @@ Module MPinYinBreak
     End Function
 
     ''' <summary>
+    ''' 取得简拼连拼
+    ''' </summary>
+    ''' <param name="fullPys">全拼连拼（单引号分隔）</param>
+    ''' <returns>简拼连拼（单引号分隔）</returns>
+    Friend Function GetMutilShotPys2(ByVal fullPys As String) As String()
+
+        Dim pys As String() = fullPys.Split("'")
+
+        For i As Integer = 0 To pys.Length - 1
+            If i = 0 Then
+                pys(i) = GetPinYinKey(pys(i))
+            Else
+                pys(i) = GetSingleShotPy(pys(i))
+            End If
+        Next
+
+        Return pys
+    End Function
+
+    Private Function GetPinYinKey(ByVal singlePy As String) As String
+
+        Dim sCd As String = singlePy
+
+        ' zh,ch,sh -> z,c,s
+        If sCd.StartsWith("zh") OrElse sCd.StartsWith("ch") OrElse sCd.StartsWith("sh") Then
+            sCd = Strings.Left(sCd, 1) & sCd.Substring(2)
+        End If
+
+        ' ze,ce,se -> zi,ci,si
+        If sCd.Equals("ze") OrElse sCd.Equals("ce") OrElse sCd.Equals("se") Then
+            sCd = Strings.Left(sCd, 1) & "i"
+        End If
+
+        ' ang,eng,ing -> an,en,in
+        If sCd.EndsWith("ang") OrElse sCd.EndsWith("eng") OrElse sCd.EndsWith("ing") Then
+            sCd = Strings.Left(sCd, sCd.Length - 1)
+        End If
+
+        Return sCd
+    End Function
+
+    ''' <summary>
     ''' 取得单字简拼
     ''' </summary>
     ''' <param name="fullPy">单字全拼</param>
@@ -69,13 +111,13 @@ Module MPinYinBreak
 
             While (pyTmp <> "") AndAlso (errPy = "")
 
-                wordPy = GetRightPy(Strings.Left(pyTmp, 6))
+                wordPy = GetRightPy(pyTmp)
                 If wordPy = "" Then
                     errPy = pyTmp
                     pyTmp = ""
                 Else
                     lst.Add(wordPy)
-                    pyTmp = pyTmp.Substring(wordPy.Length)
+                    pyTmp = pyTmp.Substring(wordPy.Replace("'", "").Length)
                 End If
 
             End While
@@ -104,9 +146,23 @@ Module MPinYinBreak
     ''' <summary>
     ''' 取得一个正确的单字拼音
     ''' </summary>
-    ''' <param name="pys">拼音编码</param>
+    ''' <param name="codes">拼音编码（无分隔符）</param>
     ''' <returns>单字拼音（完全误拼返回空串）</returns>
-    Private Function GetRightPy(ByVal pys As String) As String
+    Private Function GetRightPy(ByVal codes As String) As String
+
+        Dim pys As String = codes
+
+        ' keneng -> ke'neng     kenenga -> ke'neng'a
+        If pys.StartsWith("kenen") Then
+            Return "ke"
+        End If
+        ' 
+        If pys.StartsWith("nini") Then
+            Return "ni"
+        End If
+
+        pys = Strings.Left(pys, 6)
+
         If pys.Length = 6 Then
             If mapPy(pys) Then
                 Return pys
