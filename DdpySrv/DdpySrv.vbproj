@@ -146,6 +146,7 @@
     <Compile Include="FrmTest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MWordFreq.vb" />
     <Compile Include="MMemory.vb" />
     <Compile Include="MMixInput.vb" />
     <Compile Include="MSrvConfig.vb" />
@@ -204,6 +205,7 @@
   <ItemGroup>
     <Content Include="Resources\淡定字库.txt" />
     <Content Include="Resources\淡定词库.txt" />
+    <None Include="Resources\淡定词频.txt" />
     <Content Include="Service.ico" />
   </ItemGroup>
   <ItemGroup>

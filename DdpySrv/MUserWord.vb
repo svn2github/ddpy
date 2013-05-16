@@ -59,14 +59,14 @@ Module MUserWord
         Next
 
         lst.Sort(Function(w1 As CWord, w2 As CWord)
-                     If w1.ShortPinYin.CompareTo(w2.ShortPinYin) = 0 Then
-                         Return w1.Order.CompareTo(w1.Order)
+                     If w1.PinYin.CompareTo(w2.PinYin) = 0 Then
+                         Return w1.UsrOrder.CompareTo(w2.UsrOrder)
                      End If
-                     Return w1.ShortPinYin.CompareTo(w2.ShortPinYin)
+                     Return w1.PinYin.CompareTo(w2.PinYin)
                  End Function)
 
         For i As Integer = 0 To lst.Count - 1
-            txt.AppendLine(lst(i).Text & vbTab & lst(i).PinYin & vbTab & lst(i).Order)
+            txt.AppendLine(lst(i).Text & vbTab & lst(i).PinYin & vbTab & lst(i).UsrOrder)
         Next
         My.Computer.FileSystem.WriteAllText(userWordFile, txt.ToString, False, Encoding.UTF8)
 

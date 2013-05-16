@@ -3,11 +3,11 @@
 ''' </summary>
 Friend Class CDandingPy
 
-    Private vDispWordText As String
+    Private vDispWordText As String = ""
     Private vDispPyText As String = ""
     Private vDispPyText2 As String = ""
 
-    Private vErrorPys As String
+    Private vErrorPys As String = ""
     Private vInputPys As String = ""
     Private vWordList As List(Of CWord)
     Private vWordStack As New Stack(Of CWord)
@@ -505,6 +505,10 @@ Friend Class CDandingPy
         End If
 
         vDispPyText = GetDispPyText()
+        If "".Equals(vDispPyText) AndAlso vDispWordText.Length > 0 Then
+            vDispPyText = vDispPyText2
+            vDispPyText2 = ""
+        End If
 
         Dim recommendWord As CWord = Nothing
 

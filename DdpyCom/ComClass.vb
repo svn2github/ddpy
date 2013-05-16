@@ -38,9 +38,13 @@ Public Class ComClass
     End Sub
 
     Public Sub Init(ByRef isWuNaiApp As Boolean)
+        '  DebugTimeStart()
+
         initStartTime = Now.Ticks
         isWuNaiApp = IsNeedSendStartEndMsg(Process.GetCurrentProcess().ProcessName)
         UpdateSettingInfo()
+
+        '  ComInfo("初始化时间：" & DebugTimeEnd())
     End Sub
 
     Public Sub Debug(ByVal str As String)

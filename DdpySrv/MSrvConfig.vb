@@ -44,7 +44,7 @@ Module MSrvConfig
     ''' <summary>
     ''' 每页最大候选件数
     ''' </summary>
-    Private P_MAX_PAGE_CNT As Integer = 9
+    Friend P_MAX_PAGE_CNT As Integer = 9
 
     ''' <summary>
     ''' 是否垂直显示

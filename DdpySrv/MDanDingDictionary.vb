@@ -29,7 +29,6 @@ Module MDanDingDictionary
 
         AddWordToDic2(word)
     End Sub
-
     Private Sub AddWordToDic2(ByVal word As CWord)
         Dim lst As List(Of CWord) = InitWordList(Strings.Join(GetMutilShotPys2(word.PinYin), "'"))
 
@@ -101,21 +100,14 @@ Module MDanDingDictionary
         ' 初始化字库
         If (mDanDingDic Is Nothing) Then
             mDanDingDic = New Hashtable ' "拼音 - CWord
-            InitDanDingWordDic(sFileDic, WordType.SYS) ' 淡定字库
-            InitDanDingWordDic(sFileWrd, WordType.SYS) ' 淡定词库
+            InitDanDingWordDic(sFileDic) ' 淡定字库
+            InitDanDingWordDic(sFileWrd) ' 淡定词库
         End If
 
         ' 导入用户词库
         If My.Computer.FileSystem.FileExists(userWordFile) Then
-            InitDanDingWordDic(userWordFile, WordType.USR)
+            ImportWords(userWordFile, WordType.USR)
         End If
-
-        '' 排序
-        'Dim lst As List(Of CWord) = Nothing
-        'For Each key As String In mDanDingDic.Keys
-        '    lst = mDanDingDic(key)
-        '    lst.Sort()
-        'Next
 
     End Sub
 
@@ -200,10 +192,19 @@ Module MDanDingDictionary
 
             If Not lst Is Nothing Then
 
+                'lst.Sort()
+                'Dim iCnt As Integer = 0
+
                 For Each word As CWord In lst
                     ' 逐个比较
                     If MatchMutilPinYin(cds, shotCds, word.PinYin.Split("'")) Then
+                        ' word.SearchKey = codes
                         lstRet.Add(word)    ' 满足输入的对象
+                        'iCnt = iCnt + 1
+
+                        'If iCnt >= 100 Then
+                        '    Exit For
+                        'End If
                     End If
                 Next
 
@@ -245,8 +246,8 @@ Module MDanDingDictionary
     ''' <summary>
     ''' 从文件导入字库词库
     ''' </summary>
-    ''' <param name="sPathFile">文件（"文字 简拼 全拼 注音 词频"  UTF-8）</param>
-    Private Sub InitDanDingWordDic(ByVal sPathFile As String, ByVal wType As WordType)
+    ''' <param name="sPathFile">文件（"文字 全拼 词频"  UTF-8）</param>
+    Private Sub ImportWords(ByVal sPathFile As String, ByVal wType As WordType)
 
         Dim txt As String = My.Computer.FileSystem.ReadAllText(sPathFile, Encoding.UTF8)
         Dim lines As String() = txt.Split(vbNewLine)
@@ -276,9 +277,17 @@ Module MDanDingDictionary
                 newWord = New CWord()
                 newWord.WordType = wType
                 newWord.Text = cols(0)
-                newWord.ShortPinYin = shotPys
                 newWord.PinYin = cols(1)
-                newWord.Order = cols(2)
+
+                If cols.Length > 2 Then
+                    If wType = WordType.IMP Then
+                        newWord.ImpOrder = cols(2)
+                    ElseIf wType = WordType.USR Then
+                        newWord.UsrOrder = cols(2)
+                    Else
+                        newWord.Order = cols(2)
+                    End If
+                End If
 
                 lstWord = InitWordList(shotPys)
                 lstWord.Add(newWord)
@@ -307,9 +316,20 @@ Module MDanDingDictionary
                     newWord = New CWord()
                     newWord.WordType = wType
                     newWord.Text = cols(0)
-                    newWord.ShortPinYin = shotPys
                     newWord.PinYin = cols(1)
-                    newWord.Order = cols(2)
+
+                    If cols.Length > 2 Then
+
+                        If wType = WordType.IMP Then
+                            newWord.ImpOrder = cols(2)
+                        ElseIf wType = WordType.USR Then
+                            newWord.UsrOrder = cols(2)
+                        Else
+                            newWord.Order = cols(2)
+                        End If
+
+                    End If
+
                 End If
 
                 lstWord = InitWordList(shotPys)
@@ -327,6 +347,69 @@ Module MDanDingDictionary
                 End If
             End If
 
+
+        Next
+
+    End Sub
+
+
+    ''' <summary>
+    ''' 从文件导入字库词库
+    ''' </summary>
+    ''' <param name="sPathFile">文件（"文字 全拼 词频"  UTF-8）</param>
+    Private Sub InitDanDingWordDic(ByVal sPathFile As String)
+
+        Dim txt As String = My.Computer.FileSystem.ReadAllText(sPathFile, Encoding.UTF8)
+        Dim lines As String() = txt.Split(vbNewLine)
+        Dim cols As String()
+        Dim lstWord As List(Of CWord)
+        Dim newWord As CWord = Nothing
+        Dim existWord As CWord = Nothing
+
+        Dim iMax As Integer
+        Dim sKey As String = ""
+
+        For i As Integer = 0 To lines.Length - 1
+
+            Dim line As String = Trim(lines(i).Replace(vbLf, ""))
+
+            ' 忽略注释行、空行
+            If line.StartsWith("//") OrElse "".Equals(line) Then
+                Continue For
+            End If
+
+            ' "文字 全拼" 
+            cols = line.Split(vbTab)
+
+            Dim shotPys As String = Strings.Join(GetMutilShotPys(cols(1)), "'")
+            Dim shotPys2 As String = Strings.Join(GetMutilShotPys2(cols(1)), "'")
+
+            If sKey.Equals(shotPys) Then
+                iMax = iMax - 1
+            Else
+                sKey = shotPys
+                iMax = 100000
+            End If
+
+            ' 直接追加
+            newWord = New CWord()
+            newWord.WordType = WordType.SYS
+            newWord.Text = cols(0)
+            newWord.PinYin = cols(1)
+
+            newWord.Order = iMax
+
+            lstWord = InitWordList(shotPys)
+            lstWord.Add(newWord)
+
+            If Not shotPys2.Equals(shotPys) Then
+                lstWord = InitWordList(shotPys2)
+                lstWord.Add(newWord)
+            End If
+
+            If newWord.WordType And WordType.USR Then
+                RegisterUserWord(newWord)
+            End If
 
         Next
 

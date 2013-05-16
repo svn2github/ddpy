@@ -71,17 +71,14 @@ Module MRecommendWord
                 tmpWord = lstStack(i)
 
                 If txt = "" Then
-                    shortPinYin = tmpWord.ShortPinYin & shortPinYin
                     pinYin = tmpWord.PinYin & pinYin
                 Else
-                    shortPinYin = tmpWord.ShortPinYin & "'" & shortPinYin
                     pinYin = tmpWord.PinYin & "'" & pinYin
                 End If
                 txt = tmpWord.Text & txt
             Next
 
             newWord.Text = txt
-            newWord.ShortPinYin = shortPinYin
             newWord.PinYin = pinYin
             newWord.Order = 1
             newWord.WordType = WordType.UNKNOW

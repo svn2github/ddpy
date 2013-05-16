@@ -132,9 +132,8 @@ Public Class ComClass
 
                 Dim newWord As New CWord()
                 newWord.Text = txts(i)
-                newWord.ShortPinYin = Strings.Join(GetMutilShotPys(pys(i)), "'")
                 newWord.PinYin = pys(i)
-                newWord.Order = 1
+                newWord.UsrOrder = 1
                 newWord.WordType = WordType.USR
 
                 Dim lst As List(Of CWord) = SearchWords(newWord.PinYin)
@@ -145,7 +144,7 @@ Public Class ComClass
 
                         ' 更新文字类型和频率
                         If word.WordType And WordType.USR Then
-                            word.Order = word.Order + 1
+                            word.UsrOrder = word.UsrOrder + 1
                         End If
 
                         word.WordType = word.WordType Or WordType.USR
@@ -219,7 +218,6 @@ Public Class ComClass
 
             Dim okPys As String = BreakPys(codes).Split(" ")(0)  ' Get Right Py Only
             Dim aryPy As String() = okPys.Split("'")
-            '   Dim arySpy As String() = GetMutilShotPys2(okPys)
 
             Dim stack As New Stack(Of List(Of CWord))
             Dim py As String = ""

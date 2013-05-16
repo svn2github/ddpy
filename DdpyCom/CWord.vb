@@ -11,11 +11,11 @@ Friend Enum WordType
     ''' <summary>
     ''' 系统类型
     ''' </summary>
-    SYS = &H1
+    SYS = &H10
     ''' <summary>
     ''' 导入类型
     ''' </summary>
-    IMP = &H10
+    IMP = &H1
     ''' <summary>
     ''' 用户类型
     ''' </summary>
@@ -31,17 +31,63 @@ End Enum
 Friend Class CWord
     Implements IComparable
 
-    Private vText As String                 ' 文字
-    Private vShortPinYin As String          ' 简拼
-    Private vPinYin As String               ' 全拼
-    Private vOrder As Integer               ' 词频
-    Private vWordType As WordType = WordType.UNKNOW          ' 类型
-    Private vIsMixWord As Boolean           ' 混合输入
+    Private vText As String                         ' 文字
+    Private vSearchKey As String                    ' 检索串
+    Private vPinYin As String                       ' 全拼
+    Private vOrder As Integer                       ' 词频
+    Private vImpOrder As Integer                    ' 词频
+    Private vUsrOrder As Integer                    ' 词频
+    Private vWordType As WordType = WordType.UNKNOW ' 类型
+    Private vIsMixWord As Boolean                   ' 混合输入
+
+    ''' <summary>
+    ''' 频率
+    ''' </summary>
+    ''' <value>频率</value>
+    ''' <returns>频率</returns>
+    Public Property ImpOrder() As Integer
+        Get
+            Return vImpOrder
+        End Get
+        Set(ByVal Value As Integer)
+            vImpOrder = Value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' 频率
+    ''' </summary>
+    ''' <value>频率</value>
+    ''' <returns>频率</returns>
+    Public Property UsrOrder() As Integer
+        Get
+            Return vUsrOrder
+        End Get
+        Set(ByVal Value As Integer)
+            vUsrOrder = Value
+        End Set
+    End Property
+
 
     ''' <summary>
     ''' 构造函数
     ''' </summary>
     Public Sub New()
+    End Sub
+
+    ''' <summary>
+    ''' 构造函数
+    ''' </summary>
+    ''' <param name="line">文字行（文字Tab全拼Tab词频Tab类型Tab是否混合输入）</param>
+    Public Sub New(ByVal line As String)
+
+        ' 文字 全拼 类型 混合输入
+        Dim cols As String() = line.Split(vbTab)
+        vText = cols(0)
+        vPinYin = cols(1)
+        vWordType = cols(2)
+        vIsMixWord = CBool(cols(3))
+
     End Sub
 
     Public Property IsMixWord() As Boolean
@@ -52,21 +98,6 @@ Friend Class CWord
             vIsMixWord = Value
         End Set
     End Property
-
-    ''' <summary>
-    ''' 构造函数
-    ''' </summary>
-    ''' <param name="line">文字行（文字Tab简拼Tab全拼Tab词频Tab类型Tab是否混合输入）</param>
-    Public Sub New(ByVal line As String)
-
-        ' 文字 全拼 类型 混合输入
-        Dim cols As String() = line.Split(vbTab)
-        vText = cols(0)
-        vPinYin = cols(1)
-        vWordType = cols(2)
-        vIsMixWord = cols(3)
-
-    End Sub
 
     ''' <summary>
     ''' 文字
@@ -83,16 +114,16 @@ Friend Class CWord
     End Property
 
     ''' <summary>
-    ''' 简拼
+    ''' 检索串
     ''' </summary>
-    ''' <value>简拼</value>
-    ''' <returns>简拼</returns>
-    Public Property ShortPinYin() As String
+    ''' <value>检索串</value>
+    ''' <returns>检索串</returns>
+    Public Property SearchKey() As String
         Get
-            Return vShortPinYin
+            Return vSearchKey
         End Get
         Set(ByVal Value As String)
-            vShortPinYin = Value
+            vSearchKey = Value
         End Set
     End Property
 
@@ -170,17 +201,25 @@ Friend Class CWord
     ''' <returns>比较结果</returns>
     Public Function CompareTo(ByVal obj As Object) As Integer Implements IComparable.CompareTo
         Dim word As CWord = obj
-        If Me.WordType > word.WordType Then
-            Return -1
-        ElseIf Me.WordType < word.WordType Then
-            Return 1
+
+        If Me.WordType And WordType.USR Then
+            If word.WordType And WordType.USR Then
+                Return Me.UsrOrder > word.UsrOrder
+            Else
+                Return -1
+            End If
         Else
-            Return Me.Order > word.Order
+            If word.WordType And WordType.USR Then
+                Return 1
+            Else
+                Return Me.Order > word.Order
+            End If
         End If
+
     End Function
 
     Public Overrides Function ToString() As String
-        Return Me.Text & vbTab & Me.PinYin & vbTab & Me.WordType & vbTab & Me.IsMixWord
+        Return Me.Text & vbTab & Me.PinYin & vbTab & Me.WordType & vbTab & IIf(Me.IsMixWord, 1, 0)
     End Function
 
     ''' <summary>
