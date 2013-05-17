@@ -208,12 +208,27 @@ Friend Class CWord
             Else
                 Return -1
             End If
-        Else
+        ElseIf Me.WordType And WordType.SYS Then
+
             If word.WordType And WordType.USR Then
                 Return 1
-            Else
+            ElseIf word.WordType And WordType.SYS Then
                 Return Me.Order > word.Order
+            Else
+                Return -1
             End If
+        ElseIf Me.WordType And WordType.IMP Then
+            If word.WordType And WordType.USR Then
+                Return 1
+            ElseIf word.WordType And WordType.SYS Then
+                Return 1
+            ElseIf word.WordType And WordType.IMP Then
+                Return Me.ImpOrder > word.ImpOrder
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
         End If
 
     End Function

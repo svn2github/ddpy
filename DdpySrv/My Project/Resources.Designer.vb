@@ -61,65 +61,93 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 啊	a	10
-        '''阿	a	9
-        '''呵	a	8
-        '''腌	a	7
-        '''嗄	a	6
-        '''锕	a	5
-        '''吖	a	4
-        '''錒	a	3
-        '''嬶	a	2
-        '''厑	a	1
-        '''爱	ai	74
-        '''碍	ai	73
-        '''唉	ai	72
-        '''哎	ai	71
-        '''挨	ai	70
-        '''埃	ai	69
-        '''矮	ai	68
-        '''艾	ai	67
-        '''哀	ai	66
-        '''蔼	ai	65
-        '''癌	ai	64
-        '''隘	ai	63
-        '''霭	ai	62
-        '''暧	ai	61
-        '''嗳	ai	60
-        '''捱	ai	59
-        '''皑	ai	58
-        '''噫	ai	57
-        '''瑷	ai	56
-        '''嫒	ai	55
-        '''嗌	ai	54
-        '''毐	ai	53
-        '''僾	ai	52
-        '''诶	ai	51
-        '''锿	ai	50
-        '''﨟	ai	49
-        '''鴱	ai	48
-        '''鱫	ai	47
-        '''騃	ai	46
-        '''馤	ai	45
-        '''餲	ai	44
-        '''靉	ai	43
-        '''靄	ai	42
-        '''阨	ai	41
-        '''鑀	ai	40
-        '''鎄	ai	39
-        '''躷	ai	38
-        '''譪	ai	37
-        '''藹	ai	36
-        '''薆	ai	35
-        '''礙	ai	34
-        '''硋	ai	33
-        '''瞹	ai	32
-        '''皧	ai	31
-        '''皚	ai	30
-        '''璦	ai	29
-        '''濭	ai	28
-        '''溾	ai	27
-        '''溰	ai	26
+        '''  查找类似 啊	a
+        '''阿	a
+        '''呵	a
+        '''腌	a
+        '''嗄	a
+        '''锕	a
+        '''吖	a
+        '''錒	a
+        '''嬶	a
+        '''厑	a
+        '''爱	ai
+        '''碍	ai
+        '''唉	ai
+        '''哎	ai
+        '''挨	ai
+        '''埃	ai
+        '''矮	ai
+        '''艾	ai
+        '''哀	ai
+        '''蔼	ai
+        '''癌	ai
+        '''隘	ai
+        '''霭	ai
+        '''暧	ai
+        '''嗳	ai
+        '''捱	ai
+        '''皑	ai
+        '''噫	ai
+        '''瑷	ai
+        '''嫒	ai
+        '''嗌	ai
+        '''毐	ai
+        '''僾	ai
+        '''诶	ai
+        '''锿	ai
+        '''﨟	ai
+        '''鴱	ai
+        '''鱫	ai
+        '''騃	ai
+        '''馤	ai
+        '''餲	ai
+        '''靉	ai
+        '''靄	ai
+        '''阨	ai
+        '''鑀	ai
+        '''鎄	ai
+        '''躷	ai
+        '''譪	ai
+        '''藹	ai
+        '''薆	ai
+        '''礙	ai
+        '''硋	ai
+        '''瞹	ai
+        '''皧	ai
+        '''皚	ai
+        '''璦	ai
+        '''濭	ai
+        '''溾	ai
+        '''溰	ai
+        '''欸	ai
+        '''曖	ai
+        '''昹	ai
+        '''敳	ai
+        '''敱	ai
+        '''懝	ai
+        '''懓	ai
+        '''愛	ai
+        '''嬡	ai
+        '''娾	ai
+        '''娭	ai
+        '''壒	ai
+        '''塧	ai
+        '''噯	ai
+        '''嘊	ai
+        '''啀	ai
+        '''叆	ai
+        '''佁	ai
+        '''伌	ai
+        '''魞	ai
+        '''閊	ai
+        '''砹	ai
+        '''鱛	ai
+        '''譺	ai
+        '''凒	ai
+        '''安	an
+        '''按	an
+        '''案	an
         ''' [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property 淡定字库() As String
@@ -129,174 +157,44 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 阿爸	a&apos;ba	2
-        '''阿坝	a&apos;ba	1
-        '''阿坝县	a&apos;ba&apos;xian	1
-        '''阿坝州	a&apos;ba&apos;zhou	2
-        '''阿坝镇	a&apos;ba&apos;zhen	1
-        '''阿城市	a&apos;cheng&apos;shi	1
-        '''阿昌族	a&apos;chang&apos;zu	2
-        '''阿城镇	a&apos;cheng&apos;zhen	1
-        '''阿斗	a&apos;dou	1
-        '''阿的平	a&apos;de&apos;ping	1
-        '''阿杜瓦战役	a&apos;du&apos;wa&apos;zhan&apos;yi	1
-        '''阿尔巴尼亚	a&apos;er&apos;ba&apos;ni&apos;ya	1
-        '''阿尔卑斯山	a&apos;er&apos;bei&apos;si&apos;shan	1
-        '''阿尔卑斯山脉	a&apos;er&apos;bei&apos;si&apos;shan&apos;mai	1
-        '''阿尔法	a&apos;er&apos;fa	1
-        '''阿耳法粒子	a&apos;er&apos;fa&apos;li&apos;zi	1
-        '''阿尔山市	a&apos;er&apos;shan&apos;shi	1
-        '''阿尔泰山	a&apos;er&apos;tai&apos;shan	1
-        '''阿尔泰山脉	a&apos;er&apos;tai&apos;shan&apos;mai	1
-        '''阿尔乡镇	a&apos;er&apos;xiang&apos;zhen	1
-        '''阿飞	a&apos;fei	2
-        '''阿附	a&apos;fu	1
-        '''阿房宫	a&apos;fang&apos;gong	1
-        '''阿富汗	a&apos;fu&apos;han	1
-        '''阿富汗尼	a&apos;fu&apos;han&apos;ni	1
-        '''阿芙蓉	a&apos;fu&apos;rong	1
-        '''阿根廷	a&apos;gen&apos;ting	1
-        '''阿干 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''  查找类似 阿爸	a&apos;ba
+        '''阿坝	a&apos;ba
+        '''阿伯	a&apos;bo
+        '''阿扁	a&apos;bian
+        '''阿波罗	a&apos;bo&apos;luo
+        '''阿巴斯	a&apos;ba&apos;si
+        '''阿坝县	a&apos;ba&apos;xian
+        '''阿坝州	a&apos;ba&apos;zhou
+        '''阿坝镇	a&apos;ba&apos;zhen
+        '''阿布扎比	a&apos;bu&apos;zha&apos;bi
+        '''阿城市	a&apos;cheng&apos;shi
+        '''阿昌族	a&apos;chang&apos;zu
+        '''阿城镇	a&apos;cheng&apos;zhen
+        '''阿斗	a&apos;dou
+        '''阿弟	a&apos;di
+        '''阿达	a&apos;da
+        '''阿呆	a&apos;dai
+        '''阿德	a&apos;de
+        '''阿迪	a&apos;di
+        '''阿迪达斯	a&apos;di&apos;da&apos;si
+        '''阿的平	a&apos;de&apos;ping
+        '''阿杜瓦战役	a&apos;du&apos;wa&apos;zhan&apos;yi
+        '''阿尔巴尼	a&apos;er&apos;ba&apos;ni
+        '''阿尔巴尼亚	a&apos;er&apos;ba&apos;ni&apos;ya
+        '''阿尔卑斯	a&apos;er&apos;bei&apos;si
+        '''阿尔卑斯山	a&apos;er&apos;bei&apos;si&apos;shan
+        '''阿尔卑斯山脉	a&apos;er&apos;bei&apos;si&apos;shan&apos;mai
+        '''阿尔法	a&apos;er&apos;fa
+        '''阿耳法粒子	a&apos;er&apos;fa&apos;li&apos;zi
+        '''阿尔及利	a&apos;er&apos;ji&apos;li
+        '''阿尔及利亚	a&apos;er&apos;ji&apos;li&apos;ya
+        '''阿尔卡特	a&apos;er&apos;ka&apos;te
+        '''阿尔山市	a&apos;er&apos;shan&apos;shi
+        '''阿尔泰山 [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property 淡定词库() As String
             Get
                 Return ResourceManager.GetString("淡定词库", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找类似 近日
-        '''了哪
-        '''台州市
-        '''聊以
-        '''他是
-        '''年底
-        '''事后
-        '''注册
-        '''一个
-        '''时间
-        '''积分
-        '''我们
-        '''公司
-        '''企业
-        '''中国
-        '''可以
-        '''工作
-        '''或者
-        '''没有
-        '''信息
-        '''文章
-        '''自己
-        '''产品
-        '''等级
-        '''使用
-        '''这个
-        '''精华
-        '''作者
-        '''就是
-        '''他们
-        '''通过
-        '''如果
-        '''服务
-        '''以及
-        '''论坛
-        '''提供
-        '''管理
-        '''要求
-        '''状态
-        '''问题
-        '''系统
-        '''阅读
-        '''软件
-        '''自己的
-        '''帖子
-        '''项目
-        '''因为
-        '''电话
-        '''网站
-        '''所以
-        '''但是
-        '''支持
-        '''用户
-        '''已经
-        '''同时
-        '''一些
-        '''威望
-        '''得很
-        '''发布
-        '''方式
-        '''内容
-        '''这些
-        '''设计
-        '''价格
-        '''我的
-        '''根据
-        '''技术
-        '''能么
-        '''北京
-        '''作为
-        '''具有
-        '''需要
-        '''现在
-        '''选择
-        '''活动
-        '''其他
-        '''应当
-        '''下载
-        '''权限
-        '''市场
-        '''地址
-        '''的人
-        '''包括
-        '''本站
-        '''最后
-        '''由于
-        '''还是
-        '''目前
-        '''因此
-        '''来自
-        '''国家
-        '''你的
-        '''在线
-        '''发展
-        '''功能
-        '''这种
-        '''单位
-        '''专业
-        '''会员
-        '''对于
-        '''门派
-        '''学生
-        '''所有
-        '''以上
-        '''什么
-        '''相关
-        '''回复
-        '''开始
-        '''品牌
-        '''上海
-        '''情况
-        '''组织
-        '''他的
-        '''都是
-        '''登录
-        '''万元
-        '''一种
-        '''图片
-        '''而且
-        '''离线
-        '''规定
-        '''网络
-        '''也是
-        '''主题
-        '''其中
-        '''关于
-        '''成为
-        '''学习 [字符串的其余部分被截断]&quot;; 的本地化字符串。
-        '''</summary>
-        Friend ReadOnly Property 淡定词频() As String
-            Get
-                Return ResourceManager.GetString("淡定词频", resourceCulture)
             End Get
         End Property
     End Module

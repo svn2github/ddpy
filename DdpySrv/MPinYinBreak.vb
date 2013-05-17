@@ -143,6 +143,27 @@ Module MPinYinBreak
 
     End Function
 
+
+    Private mapCustBreakPy As Hashtable = Nothing
+    Private Function GetCustBreakPy(ByVal codes As String) As String
+        If mapCustBreakPy Is Nothing Then
+            mapCustBreakPy = New Hashtable
+
+            mapCustBreakPy("kenen") = "ke"
+            mapCustBreakPy("nini") = "ni"
+            mapCustBreakPy("kunao") = "ku"
+        End If
+
+        For Each key As String In mapCustBreakPy.Keys
+            If codes.StartsWith(key) Then
+                Return mapCustBreakPy(key)
+            End If
+        Next
+
+        Return ""
+
+    End Function
+
     ''' <summary>
     ''' 取得一个正确的单字拼音
     ''' </summary>
@@ -152,13 +173,9 @@ Module MPinYinBreak
 
         Dim pys As String = codes
 
-        ' keneng -> ke'neng     kenenga -> ke'neng'a
-        If pys.StartsWith("kenen") Then
-            Return "ke"
-        End If
-        ' 
-        If pys.StartsWith("nini") Then
-            Return "ni"
+        Dim custBk As String = GetCustBreakPy(codes)
+        If Not "".Equals(custBk) Then
+            Return custBk
         End If
 
         pys = Strings.Left(pys, 6)

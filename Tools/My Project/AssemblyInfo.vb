@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Tools")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("Tools")> 
-<Assembly: AssemblyCopyright("Copyright ©  2013")> 
+<Assembly: AssemblyTitle("淡定拼音工具")> 
+<Assembly: AssemblyDescription("sunmoon2222@gmail.com")> 
+<Assembly: AssemblyCompany("DanDing")> 
+<Assembly: AssemblyProduct("DdpyTools")> 
+<Assembly: AssemblyCopyright("Copyright © 淡定 2013")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
