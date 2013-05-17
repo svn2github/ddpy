@@ -3664,12 +3664,13 @@
 誒	ei
 欸	ei
 恩	en
+嗯	en
 摁	en
-蒽	en
-鞥	eng
-煾	en
 奀	en
+蒽	en
+煾	en
 峎	en
+鞥	eng
 椧	eng
 而	er
 二	er
