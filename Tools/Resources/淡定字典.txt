@@ -2545,6 +2545,7 @@
 蔀	bu	bù	13
 蓧	diao	diào	13
 蒽	en	ēn	13
+嗯	en	ēn	13
 蒿	hao	hāo	13
 蒦	huo	huò	13
 蒺	ji	jí	13

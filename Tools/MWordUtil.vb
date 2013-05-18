@@ -141,7 +141,7 @@ Module MWordUtil
         For i As Integer = 0 To words.Length - 1
             w = words.Substring(i, 1)
             If GetPinyinMap().ContainsKey(w) Then
-                pys.Add(GetPinyinMap()(words.Substring(i, 1)))
+                pys.Add(GetPinyinMap()(w))
             Else
                 ' pys.Add("")     ' 非汉字无拼音
             End If
@@ -196,7 +196,7 @@ Module MWordUtil
             End If
 
             Dim pys As String = GetPinyin(line)
-            If pys.IndexOf(",") > 0 Then
+            If Not pys = Nothing AndAlso pys.IndexOf(",") > 0 Then
                 bufErr.AppendLine(line & vbTab & GetPinyin(line))
             Else
                 buf.AppendLine(line & vbTab & GetPinyin(line))

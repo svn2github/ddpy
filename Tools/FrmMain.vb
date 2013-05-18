@@ -54,7 +54,6 @@
 
             Cursor = Cursors.WaitCursor
             Dim files As String() = ToPinyinFiles(TxtWordFile.Text)
-            Cursor = Cursors.Arrow
 
             If files.Length > 0 Then
                 TxtWordPinyin.Text = files(0)
@@ -63,6 +62,8 @@
 
         Catch ex As Exception
             MsgBox("怎么回事，不该发生的错误： " & ex.Message, MsgBoxStyle.Exclamation, "淡定")
+        Finally
+            Cursor = Cursors.Arrow
         End Try
 
     End Sub
@@ -103,12 +104,13 @@
 
             Cursor = Cursors.WaitCursor
             Dim sFile As String = ToSortedPinyinFile(TxtWordPinyin.Text, False)
-            Cursor = Cursors.Arrow
 
             System.Diagnostics.Process.Start(My.Computer.FileSystem.GetFileInfo(sFile).DirectoryName)
 
         Catch ex As Exception
             MsgBox("怎么回事，不该发生的错误： " & ex.Message, MsgBoxStyle.Exclamation, "淡定")
+        Finally
+            Cursor = Cursors.Arrow
         End Try
 
     End Sub
@@ -138,12 +140,13 @@
 
             Cursor = Cursors.WaitCursor
             Dim sFile As String = ToSortedPinyinFile(TxtWordPinyin.Text, True)
-            Cursor = Cursors.Arrow
 
             System.Diagnostics.Process.Start(My.Computer.FileSystem.GetFileInfo(sFile).DirectoryName)
 
         Catch ex As Exception
             MsgBox("怎么回事，不该发生的错误： " & ex.Message, MsgBoxStyle.Exclamation, "淡定")
+        Finally
+            Cursor = Cursors.Arrow
         End Try
     End Sub
 
