@@ -263,7 +263,9 @@ Module MDanDingKeys
                     Else
                         SetIkrFlag(ikr, False, False, False)
                     End If
-
+                Else
+                    ddPy.TextEndChar = ConvertChar(iKey)
+                    SetIkrFlag(ikr, True, True, True)
                 End If
 
             Case Keys.Escape
