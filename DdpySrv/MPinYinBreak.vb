@@ -683,6 +683,7 @@ Module MPinYinBreak
         map("lou") = True
         map("mou") = True
         map("nou") = True
+        map("kei") = True
 
         Return map
     End Function

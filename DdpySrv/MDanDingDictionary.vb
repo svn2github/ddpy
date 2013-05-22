@@ -11,6 +11,9 @@ Module MDanDingDictionary
     Private mDicCache As New Hashtable  ' 拼音-List
     Private mDicCacheTick As New Hashtable  ' 拼音-Tick
 
+    Private iSysOrder As Integer
+    Private iImpOrder As Integer
+
     ''' <summary>
     ''' 增加一个新文字
     ''' </summary>
@@ -96,6 +99,9 @@ Module MDanDingDictionary
         If Not My.Computer.FileSystem.FileExists(sFileWrd) Then
             My.Computer.FileSystem.WriteAllText(sFileWrd, My.Resources.淡定词库, False, Encoding.UTF8)
         End If
+
+        iSysOrder = Integer.MaxValue
+        iImpOrder = Integer.MaxValue
 
         ' 初始化字库
         If (mDanDingDic Is Nothing) Then
@@ -366,9 +372,6 @@ Module MDanDingDictionary
         Dim newWord As CWord = Nothing
         Dim existWord As CWord = Nothing
 
-        Dim iMax As Integer
-        Dim sKey As String = ""
-
         For i As Integer = 0 To lines.Length - 1
 
             Dim line As String = Trim(lines(i).Replace(vbLf, ""))
@@ -384,12 +387,7 @@ Module MDanDingDictionary
             Dim shotPys As String = Strings.Join(GetMutilShotPys(cols(1)), "'")
             Dim shotPys2 As String = Strings.Join(GetMutilShotPys2(cols(1)), "'")
 
-            If sKey.Equals(shotPys) Then
-                iMax = iMax - 1
-            Else
-                sKey = shotPys
-                iMax = 100000
-            End If
+            iSysOrder = iSysOrder - 1
 
             ' 直接追加
             newWord = New CWord()
@@ -397,7 +395,7 @@ Module MDanDingDictionary
             newWord.Text = cols(0)
             newWord.PinYin = cols(1)
 
-            newWord.Order = iMax
+            newWord.Order = iSysOrder
 
             lstWord = InitWordList(shotPys)
             lstWord.Add(newWord)

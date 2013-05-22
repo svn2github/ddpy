@@ -204,7 +204,13 @@ Friend Class CWord
 
         If Me.WordType And WordType.USR Then
             If word.WordType And WordType.USR Then
-                Return Me.UsrOrder > word.UsrOrder
+                If Me.UsrOrder > word.UsrOrder Then
+                    Return -1
+                ElseIf Me.UsrOrder = word.UsrOrder Then
+                    Return 0
+                Else
+                    Return 1
+                End If
             Else
                 Return -1
             End If
@@ -213,7 +219,13 @@ Friend Class CWord
             If word.WordType And WordType.USR Then
                 Return 1
             ElseIf word.WordType And WordType.SYS Then
-                Return Me.Order > word.Order
+                If Me.Order > word.Order Then
+                    Return -1
+                ElseIf Me.Order = word.Order Then
+                    Return 0
+                Else
+                    Return 1
+                End If
             Else
                 Return -1
             End If
@@ -223,7 +235,13 @@ Friend Class CWord
             ElseIf word.WordType And WordType.SYS Then
                 Return 1
             ElseIf word.WordType And WordType.IMP Then
-                Return Me.ImpOrder > word.ImpOrder
+                If Me.ImpOrder > word.ImpOrder Then
+                    Return -1
+                ElseIf Me.ImpOrder = word.ImpOrder Then
+                    Return 0
+                Else
+                    Return 1
+                End If
             Else
                 Return -1
             End If

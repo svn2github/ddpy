@@ -38,7 +38,6 @@ Public Class FrmTest
 
             Dim okPys As String = BreakPys(codes).Split(" ")(0)  ' Get Right Py Only
             Dim aryPy As String() = okPys.Split("'")
-            Dim arySpy As String() = GetMutilShotPys(okPys)
 
             Dim stack As New Stack(Of List(Of CWord))
             Dim py As String = ""
@@ -65,12 +64,14 @@ Public Class FrmTest
                 lst.AddRange(stack.Pop())
             Loop
 
+
+            ' 拼接成字符串作为结果返回给客户端
             Dim buf As New StringBuilder
             For i As Integer = 0 To lst.Count - 1
                 If i = 0 Then
                     buf.Append(lst(i).ToString)
                 Else
-                    buf.Append("-" & lst(i).ToString)
+                    buf.Append(vbLf & lst(i).ToString)
                 End If
             Next
 
