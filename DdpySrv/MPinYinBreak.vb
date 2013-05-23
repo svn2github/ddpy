@@ -145,12 +145,11 @@ Module MPinYinBreak
 
 
     Private mapCustBreakPy As Hashtable = Nothing
-    Private mapStartWithNotEr As Hashtable = Nothing
+    Private mapStartWithNoEr As Hashtable = Nothing
     Private Function GetCustBreakPy(ByVal codes As String) As String
         If mapCustBreakPy Is Nothing Then
             mapCustBreakPy = New Hashtable
-            mapStartWithNotEr = New Hashtable
-
+            mapStartWithNoEr = New Hashtable
 
             mapCustBreakPy("ani") = "a"
             mapCustBreakPy("anu") = "a"
@@ -1567,43 +1566,81 @@ Module MPinYinBreak
 
 
 
-            mapStartWithNotEr("qine") = "qi"
-            mapStartWithNotEr("qinge") = "qin"
-            mapStartWithNotEr("yinge") = "yin"
-            mapStartWithNotEr("pine") = "pi"
-            mapStartWithNotEr("pinge") = "pin"
-            mapStartWithNotEr("line") = "li"
-            mapStartWithNotEr("linge") = "lin"
-            mapStartWithNotEr("xinge") = "xin"
-            mapStartWithNotEr("binge") = "bin"
-            mapStartWithNotEr("nine") = "ni"
-            mapStartWithNotEr("ninge") = "nin"
-            mapStartWithNotEr("wenge") = "wen"
-            mapStartWithNotEr("rene") = "re"
-            mapStartWithNotEr("renge") = "ren"
-            mapStartWithNotEr("sene") = "se"
-            mapStartWithNotEr("shene") = "she"
-            mapStartWithNotEr("dene") = "de"
-            mapStartWithNotEr("gene") = "ge"
-            mapStartWithNotEr("kene") = "ke"
-            mapStartWithNotEr("fenge") = "fen"
-            mapStartWithNotEr("zenge") = "zen"
-            mapStartWithNotEr("zhene") = "zhe"
-            mapStartWithNotEr("zhenge") = "zhen"
-            mapStartWithNotEr("cene") = "ce"
-            mapStartWithNotEr("chene") = "che"
-            mapStartWithNotEr("mene") = "me"
-            mapStartWithNotEr("wange") = "wan"
-            mapStartWithNotEr("tane") = "ta"
-            mapStartWithNotEr("tange") = "tan"
-            mapStartWithNotEr("pane") = "pa"
-            mapStartWithNotEr("sange") = "san"
-            mapStartWithNotEr("shange") = "shan"
-            mapStartWithNotEr("dane") = "da"
-            mapStartWithNotEr("dange") = "dan"
-            mapStartWithNotEr("gange") = "gan"
-            mapStartWithNotEr("kange") = "kan"
-            mapStartWithNotEr("zange") = "zan"
+            mapStartWithNoEr("qine") = "qi"
+            mapStartWithNoEr("qinge") = "qin"
+            mapStartWithNoEr("yinge") = "yin"
+            mapStartWithNoEr("pine") = "pi"
+            mapStartWithNoEr("pinge") = "pin"
+            mapStartWithNoEr("line") = "li"
+            mapStartWithNoEr("linge") = "lin"
+            mapStartWithNoEr("xinge") = "xin"
+            mapStartWithNoEr("binge") = "bin"
+            mapStartWithNoEr("nine") = "ni"
+            mapStartWithNoEr("ninge") = "nin"
+            mapStartWithNoEr("wenge") = "wen"
+            mapStartWithNoEr("rene") = "re"
+            mapStartWithNoEr("renge") = "ren"
+            mapStartWithNoEr("sene") = "se"
+            mapStartWithNoEr("shene") = "she"
+            mapStartWithNoEr("dene") = "de"
+            mapStartWithNoEr("gene") = "ge"
+            mapStartWithNoEr("kene") = "ke"
+            mapStartWithNoEr("fenge") = "fen"
+            mapStartWithNoEr("zenge") = "zen"
+            mapStartWithNoEr("zhene") = "zhe"
+            mapStartWithNoEr("zhenge") = "zhen"
+            mapStartWithNoEr("cene") = "ce"
+            mapStartWithNoEr("chene") = "che"
+            mapStartWithNoEr("mene") = "me"
+            mapStartWithNoEr("wange") = "wan"
+            mapStartWithNoEr("tane") = "ta"
+            mapStartWithNoEr("tange") = "tan"
+            mapStartWithNoEr("pane") = "pa"
+            mapStartWithNoEr("sange") = "san"
+            mapStartWithNoEr("shange") = "shan"
+            mapStartWithNoEr("dane") = "da"
+            mapStartWithNoEr("dange") = "dan"
+            mapStartWithNoEr("gange") = "gan"
+            mapStartWithNoEr("kange") = "kan"
+            mapStartWithNoEr("zange") = "zan"
+
+            mapCustBreakPy("qiner") = "qin"
+            mapCustBreakPy("qinger") = "qing"
+            mapCustBreakPy("yinger") = "ying"
+            mapCustBreakPy("piner") = "pin"
+            mapCustBreakPy("pinger") = "ping"
+            mapCustBreakPy("liner") = "lin"
+            mapCustBreakPy("linger") = "ling"
+            mapCustBreakPy("xinger") = "xing"
+            mapCustBreakPy("binger") = "bing"
+            mapCustBreakPy("niner") = "nin"
+            mapCustBreakPy("ninger") = "ning"
+            mapCustBreakPy("wenger") = "weng"
+            mapCustBreakPy("rener") = "ren"
+            mapCustBreakPy("renger") = "reng"
+            mapCustBreakPy("sener") = "sen"
+            mapCustBreakPy("shener") = "shen"
+            mapCustBreakPy("dener") = "den"
+            mapCustBreakPy("gener") = "gen"
+            mapCustBreakPy("kener") = "ken"
+            mapCustBreakPy("fenger") = "feng"
+            mapCustBreakPy("zenger") = "zeng"
+            mapCustBreakPy("zhener") = "zhen"
+            mapCustBreakPy("zhenger") = "zheng"
+            mapCustBreakPy("cener") = "cen"
+            mapCustBreakPy("chener") = "chen"
+            mapCustBreakPy("mener") = "men"
+            mapCustBreakPy("wanger") = "wang"
+            mapCustBreakPy("taner") = "tan"
+            mapCustBreakPy("tanger") = "tang"
+            mapCustBreakPy("paner") = "pan"
+            mapCustBreakPy("sanger") = "sang"
+            mapCustBreakPy("shanger") = "shang"
+            mapCustBreakPy("daner") = "dan"
+            mapCustBreakPy("danger") = "dang"
+            mapCustBreakPy("ganger") = "gang"
+            mapCustBreakPy("kanger") = "kang"
+            mapCustBreakPy("zanger") = "zang"
 
         End If
 
@@ -1628,8 +1665,8 @@ Module MPinYinBreak
                 Return mapCustBreakPy(sKey)
             End If
 
-            If mapStartWithNotEr.ContainsKey(sKey) AndAlso Not codes.StartsWith(sKey & "r") Then
-                Return mapStartWithNotEr(sKey)
+            If mapStartWithNoEr.ContainsKey(sKey) Then
+                Return mapStartWithNoEr(sKey)
             End If
 
         End If
@@ -1640,8 +1677,8 @@ Module MPinYinBreak
                 Return mapCustBreakPy(sKey)
             End If
 
-            If mapStartWithNotEr.ContainsKey(sKey) AndAlso Not codes.StartsWith(sKey & "r") Then
-                Return mapStartWithNotEr(sKey)
+            If mapStartWithNoEr.ContainsKey(sKey) Then
+                Return mapStartWithNoEr(sKey)
             End If
 
             ' 仅模糊音适用 din
@@ -1661,8 +1698,8 @@ Module MPinYinBreak
                 Return mapCustBreakPy(sKey)
             End If
 
-            If mapStartWithNotEr.ContainsKey(sKey) AndAlso Not codes.StartsWith(sKey & "r") Then
-                Return mapStartWithNotEr(sKey)
+            If mapStartWithNoEr.ContainsKey(sKey) Then
+                Return mapStartWithNoEr(sKey)
             End If
 
             If codes.StartsWith("bana") AndAlso Not codes.StartsWith("banai") _

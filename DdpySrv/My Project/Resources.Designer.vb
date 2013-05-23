@@ -157,40 +157,50 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 阿爸	a&apos;ba
-        '''阿坝	a&apos;ba
-        '''阿伯	a&apos;bo
-        '''阿扁	a&apos;bian
-        '''阿波罗	a&apos;bo&apos;luo
-        '''阿巴斯	a&apos;ba&apos;si
-        '''阿坝县	a&apos;ba&apos;xian
-        '''阿坝州	a&apos;ba&apos;zhou
-        '''阿坝镇	a&apos;ba&apos;zhen
-        '''阿布扎比	a&apos;bu&apos;zha&apos;bi
-        '''阿城市	a&apos;cheng&apos;shi
-        '''阿昌族	a&apos;chang&apos;zu
-        '''阿城镇	a&apos;cheng&apos;zhen
-        '''阿斗	a&apos;dou
-        '''阿弟	a&apos;di
-        '''阿达	a&apos;da
-        '''阿呆	a&apos;dai
-        '''阿德	a&apos;de
-        '''阿迪	a&apos;di
-        '''阿迪达斯	a&apos;di&apos;da&apos;si
-        '''阿的平	a&apos;de&apos;ping
-        '''阿杜瓦战役	a&apos;du&apos;wa&apos;zhan&apos;yi
-        '''阿尔巴尼	a&apos;er&apos;ba&apos;ni
-        '''阿尔巴尼亚	a&apos;er&apos;ba&apos;ni&apos;ya
-        '''阿尔卑斯	a&apos;er&apos;bei&apos;si
-        '''阿尔卑斯山	a&apos;er&apos;bei&apos;si&apos;shan
-        '''阿尔卑斯山脉	a&apos;er&apos;bei&apos;si&apos;shan&apos;mai
-        '''阿尔法	a&apos;er&apos;fa
-        '''阿耳法粒子	a&apos;er&apos;fa&apos;li&apos;zi
-        '''阿尔及利	a&apos;er&apos;ji&apos;li
-        '''阿尔及利亚	a&apos;er&apos;ji&apos;li&apos;ya
-        '''阿尔卡特	a&apos;er&apos;ka&apos;te
-        '''阿尔山市	a&apos;er&apos;shan&apos;shi
-        '''阿尔泰山 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''  查找类似 我们	wo&apos;men
+        '''一个	yi&apos;ge
+        '''他是	ta&apos;shi
+        '''年底	nian&apos;di
+        '''事后	shi&apos;hou
+        '''时间	shi&apos;jian
+        '''近日	jin&apos;ri
+        '''积分	ji&apos;fen
+        '''公司	gong&apos;si
+        '''企业	qi&apos;ye
+        '''注册	zhu&apos;ce
+        '''中国	zhong&apos;guo
+        '''可以	ke&apos;yi
+        '''工作	gong&apos;zuo
+        '''或者	huo&apos;zhe
+        '''没有	mei&apos;you
+        '''信息	xin&apos;xi
+        '''文章	wen&apos;zhang
+        '''自己	zi&apos;ji
+        '''产品	chan&apos;pin
+        '''等级	deng&apos;ji
+        '''使用	shi&apos;yong
+        '''这个	zhe&apos;ge
+        '''精华	jing&apos;hua
+        '''作者	zuo&apos;zhe
+        '''就是	jiu&apos;shi
+        '''他们	ta&apos;men
+        '''通过	tong&apos;guo
+        '''如果	ru&apos;guo
+        '''服务	fu&apos;wu
+        '''以及	yi&apos;ji
+        '''论坛	lun&apos;tan
+        '''提供	ti&apos;gong
+        '''管理	guan&apos;li
+        '''要求	yao&apos;qiu
+        '''状态	zhuang&apos;tai
+        '''问题	wen&apos;ti
+        '''系统	xi&apos;tong
+        '''阅读	yue&apos;du
+        '''软件	ruan&apos;jian
+        '''聊以	liao&apos;yi
+        '''自己的	zi&apos;ji&apos;de
+        '''帖子	tie&apos;zi
+        '''项目	 [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property 淡定词库() As String
             Get

@@ -84,6 +84,7 @@ Public Class FrmTest
     End Function
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Dim ddd As String = BreakPys(TextBox1.Text)
         Dim sss As String = SrvSearchWords(TextBox1.Text)
 
         Dim lst As New List(Of CWord)

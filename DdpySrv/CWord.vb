@@ -47,7 +47,7 @@ Friend Class CWord
     ''' <returns>频率</returns>
     Public Property ImpOrder() As Integer
         Get
-            Return vImpOrder
+            Return (vImpOrder)
         End Get
         Set(ByVal Value As Integer)
             vImpOrder = Value
@@ -270,4 +270,5 @@ Friend Class CWord
 
         Return Me.Text.Equals(word.Text) AndAlso Me.PinYin.Equals(word.PinYin)
     End Function
+
 End Class
