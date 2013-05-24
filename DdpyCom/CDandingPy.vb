@@ -59,10 +59,8 @@ Friend Class CDandingPy
         vInputPys = Strings.RTrim(vInputPys)
 
         If bDel Then
-
             vInputPys = Strings.Left(vInputPys, vInputPys.Length - 1)
         ElseIf vDispPyText = "" Then
-
             PopWord()
         Else
 
@@ -317,7 +315,18 @@ Friend Class CDandingPy
             vTextEndChar = ""
         Else
             vDispWordText = GetDispWordText()
-            vDispPyText = GetDispPyText()
+
+            If vDispPyText = "" AndAlso Not vDispPyText2 = "" Then
+                vInputPys = vInputPys & vDispPyText2
+
+                vDispPyText = GetDispPyText()
+                vDispPyText2 = vDispPyText
+                vInputPys = Strings.Left(vInputPys, vInputPys.Length - vDispPyText.Length)
+                vDispPyText = ""
+            Else
+                vDispPyText = GetDispPyText()
+            End If
+
         End If
 
         If vDispPyText = "" AndAlso vDispPyText2 = "" Then
@@ -505,14 +514,19 @@ Friend Class CDandingPy
         End If
 
         vDispPyText = GetDispPyText()
+        Dim searchPy As String = vDispPyText
+
         If "".Equals(vDispPyText) AndAlso vDispWordText.Length > 0 Then
-            vDispPyText = vDispPyText2
-            vDispPyText2 = ""
+            'vDispPyText = vDispPyText2
+            'vDispPyText2 = ""
+            'vInputPys = vInputPys & vDispPyText
+
+            searchPy = vDispPyText2
         End If
 
         Dim recommendWord As CWord = Nothing
 
-        Dim dspPys As String() = BreakPys(vDispPyText).Split(" ")
+        Dim dspPys As String() = BreakPys(searchPy).Split(" ")
         If dspPys.Length > 1 Then
             vErrorPys = dspPys(1)
         Else

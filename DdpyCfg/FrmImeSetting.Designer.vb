@@ -47,6 +47,7 @@ Partial Class FrmSetting
         Me.BtnFontCand = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TxtFont = New System.Windows.Forms.TextBox()
+        Me.ChkAutoPosition = New System.Windows.Forms.CheckBox()
         Me.ChkHideStatus = New System.Windows.Forms.CheckBox()
         Me.TabPageWordDic = New System.Windows.Forms.TabPage()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
@@ -65,7 +66,7 @@ Partial Class FrmSetting
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.FontDlgCand = New System.Windows.Forms.FontDialog()
         Me.BtnApply = New System.Windows.Forms.Button()
-        Me.ChkAutoPosition = New System.Windows.Forms.CheckBox()
+        Me.ChkRiRe = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumPyLen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumPageCnt, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,6 +106,7 @@ Partial Class FrmSetting
         Me.GroupBox1.Controls.Add(Me.ChkIn)
         Me.GroupBox1.Controls.Add(Me.ChkZhizhe)
         Me.GroupBox1.Controls.Add(Me.ChkZize)
+        Me.GroupBox1.Controls.Add(Me.ChkRiRe)
         Me.GroupBox1.Controls.Add(Me.ChkZzh)
         Me.GroupBox1.Controls.Add(Me.ChkAn)
         Me.GroupBox1.Controls.Add(Me.ChkEn)
@@ -339,6 +341,19 @@ Partial Class FrmSetting
         Me.TxtFont.TabIndex = 10
         Me.TxtFont.Text = "宋体,12,0"
         '
+        'ChkAutoPosition
+        '
+        Me.ChkAutoPosition.AutoSize = True
+        Me.ChkAutoPosition.Checked = True
+        Me.ChkAutoPosition.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ChkAutoPosition.Location = New System.Drawing.Point(198, 108)
+        Me.ChkAutoPosition.Name = "ChkAutoPosition"
+        Me.ChkAutoPosition.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.ChkAutoPosition.Size = New System.Drawing.Size(138, 16)
+        Me.ChkAutoPosition.TabIndex = 0
+        Me.ChkAutoPosition.Text = "：输入法窗口光标跟随"
+        Me.ChkAutoPosition.UseVisualStyleBackColor = True
+        '
         'ChkHideStatus
         '
         Me.ChkHideStatus.AutoSize = True
@@ -530,18 +545,15 @@ Partial Class FrmSetting
         Me.BtnApply.Text = "应  用"
         Me.BtnApply.UseVisualStyleBackColor = True
         '
-        'ChkAutoPosition
+        'ChkRiRe
         '
-        Me.ChkAutoPosition.AutoSize = True
-        Me.ChkAutoPosition.Checked = True
-        Me.ChkAutoPosition.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ChkAutoPosition.Location = New System.Drawing.Point(198, 108)
-        Me.ChkAutoPosition.Name = "ChkAutoPosition"
-        Me.ChkAutoPosition.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ChkAutoPosition.Size = New System.Drawing.Size(138, 16)
-        Me.ChkAutoPosition.TabIndex = 0
-        Me.ChkAutoPosition.Text = "：输入法窗口光标跟随"
-        Me.ChkAutoPosition.UseVisualStyleBackColor = True
+        Me.ChkRiRe.AutoSize = True
+        Me.ChkRiRe.Location = New System.Drawing.Point(281, 21)
+        Me.ChkRiRe.Name = "ChkRiRe"
+        Me.ChkRiRe.Size = New System.Drawing.Size(55, 16)
+        Me.ChkRiRe.TabIndex = 0
+        Me.ChkRiRe.Text = "ri = re"
+        Me.ChkRiRe.UseVisualStyleBackColor = True
         '
         'FrmSetting
         '
@@ -622,5 +634,6 @@ Partial Class FrmSetting
     Friend WithEvents BtnApply As System.Windows.Forms.Button
     Friend WithEvents ChkHideStatus As System.Windows.Forms.CheckBox
     Friend WithEvents ChkAutoPosition As System.Windows.Forms.CheckBox
+    Friend WithEvents ChkRiRe As System.Windows.Forms.CheckBox
 
 End Class

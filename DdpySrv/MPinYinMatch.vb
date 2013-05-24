@@ -72,6 +72,15 @@ Module MPinYinMatch
                 sPy = Strings.Left(sPy, sPy.Length - 1)
             End If
         End If
+        ' ri=re
+        If P_RI_RE Then
+            If sCd.Equals("re") Then
+                sCd = "ri"
+            End If
+            If sPy.Equals("re") Then
+                sPy = "ri"
+            End If
+        End If
 
         ' 比较
         If "a,o,e".Contains(Strings.Left(sCd, 1)) Then

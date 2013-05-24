@@ -36,6 +36,11 @@ Module MConfig
     ''' </summary>
     Friend P_ZHICHISHI_ZHECHESHE As Boolean = True
 
+    ''' <summary>
+    ''' 模糊音标志 ri=re
+    ''' </summary>
+    Friend P_RI_RE As Boolean = True
+
 
     ''' <summary>
     ''' 中文模式
@@ -110,22 +115,23 @@ Module MConfig
             P_ZCS_ZHCHSH = CBool(ary(3))
             P_ZICISI_ZECESE = CBool(ary(4))
             P_ZHICHISHI_ZHECHESHE = CBool(ary(5))
+            P_RI_RE = CBool(ary(6))
 
-            P_MAX_PY_LEN = CInt(ary(6))
-            P_MAX_PAGE_CNT = CInt(ary(7))
+            P_MAX_PY_LEN = CInt(ary(7))
+            P_MAX_PAGE_CNT = CInt(ary(8))
 
-            P_V_SHOW = CBool(ary(8))
+            P_V_SHOW = CBool(ary(9))
 
-            P_TITLE = CStr(ary(9))
-
-            Dim sFont As String() = Strings.Split(ary(11), ",")
+            P_TITLE = CStr(ary(10))
+            ' 11: Memory
+            Dim sFont As String() = Strings.Split(ary(12), ",")
             Dim sFontName As String = sFont(0)
             Dim sFontSize As Single = sFont(1)
             Dim sFontStyle As FontStyle = sFont(2)
             fontCand = New Font(sFontName, sFontSize, sFontStyle)
 
-            P_HIDE_STATUS = CBool(ary(12))
-            P_AUTO_POSITION = CBool(ary(13))
+            P_HIDE_STATUS = CBool(ary(13))
+            P_AUTO_POSITION = CBool(ary(14))
 
         Catch ex As Exception
             ComDebug(ex)

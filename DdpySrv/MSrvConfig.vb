@@ -35,6 +35,10 @@ Module MSrvConfig
     ''' </summary>
     Friend P_ZHICHISHI_ZHECHESHE As Boolean = True
 
+    ''' <summary>
+    ''' 模糊音标志 ri=re
+    ''' </summary>
+    Friend P_RI_RE As Boolean = True
 
     ''' <summary>
     ''' 能输入的拼音最大长度
@@ -76,6 +80,7 @@ Module MSrvConfig
         lst.Add(P_ZCS_ZHCHSH)
         lst.Add(P_ZICISI_ZECESE)
         lst.Add(P_ZHICHISHI_ZHECHESHE)
+        lst.Add(P_RI_RE)
 
         lst.Add(P_MAX_PY_LEN)
         lst.Add(P_MAX_PAGE_CNT)
@@ -107,17 +112,18 @@ Module MSrvConfig
             P_ZCS_ZHCHSH = CBool(ary(3))
             P_ZICISI_ZECESE = CBool(ary(4))
             P_ZHICHISHI_ZHECHESHE = CBool(ary(5))
+            P_RI_RE = CBool(ary(6))
 
-            P_MAX_PY_LEN = CInt(ary(6))
-            P_MAX_PAGE_CNT = CInt(ary(7))
+            P_MAX_PY_LEN = CInt(ary(7))
+            P_MAX_PAGE_CNT = CInt(ary(8))
 
-            P_V_SHOW = CBool(ary(8))
+            P_V_SHOW = CBool(ary(9))
 
-            P_TITLE = CStr(ary(9))
-            P_MEMORY = CBool(ary(10))
-            P_FONT = CStr(ary(11))
-            P_HIDE_STATUS = CBool(ary(12))
-            P_AUTO_POSITION = CBool(ary(13))
+            P_TITLE = CStr(ary(10))
+            P_MEMORY = CBool(ary(11))
+            P_FONT = CStr(ary(12))
+            P_HIDE_STATUS = CBool(ary(13))
+            P_AUTO_POSITION = CBool(ary(14))
 
             ' 保存配置信息
             Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定配置.txt"

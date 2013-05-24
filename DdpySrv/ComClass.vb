@@ -47,7 +47,7 @@ Public Class ComClass
     Public Sub New()
         MyBase.New()
 
-        DebugTimeStart()
+        '  DebugTimeStart()
         Try
             ' 读写配置文件
             Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定配置.txt"
@@ -65,7 +65,7 @@ Public Class ComClass
         Catch ex As Exception
             ComError("New()", ex)
         Finally
-            ComError("初始化时间共: " & DebugTimeEnd() & " 毫秒")
+            '  ComError("初始化时间共: " & DebugTimeEnd() & " 毫秒")
         End Try
 
     End Sub

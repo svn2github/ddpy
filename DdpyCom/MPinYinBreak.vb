@@ -60,6 +60,11 @@ Module MPinYinBreak
             sCd = Strings.Left(sCd, sCd.Length - 1)
         End If
 
+        ' re -> ri
+        If sCd.Equals("re") Then
+            sCd = "ri"
+        End If
+
         Return sCd
     End Function
 
@@ -2104,53 +2109,58 @@ Module MPinYinBreak
     ''' <returns>单字拼音（完全误拼返回空串）</returns>
     Private Function GetRightPy(ByVal codes As String) As String
 
-        Dim pys As String = codes
-
         Dim custBk As String = GetCustBreakPy(codes)
         If Not "".Equals(custBk) Then
             Return custBk
         End If
 
-        pys = Strings.Left(pys, 6)
 
-        If pys.Length = 6 Then
-            If mapPy(pys) Then
-                Return pys
-            Else
-                Return GetRightPy(Left(pys, 5))
+        Dim sKey As String
+        If codes.Length >= 6 Then
+            sKey = Strings.Left(codes, 6)
+            If mapPy(sKey) Then
+                Return sKey
             End If
-        ElseIf pys.Length = 5 Then
-            If mapPy(pys) Then
-                Return pys
-            Else
-                Return GetRightPy(Left(pys, 4))
-            End If
-        ElseIf pys.Length = 4 Then
-            If mapPy(pys) Then
-                Return pys
-            Else
-                Return GetRightPy(Left(pys, 3))
-            End If
-        ElseIf pys.Length = 3 Then
+        End If
 
-            If Not P_IN_ING AndAlso pys.Equals("din") Then
-                Return GetRightPy(Left(pys, 2))
+        If codes.Length >= 5 Then
+            sKey = Strings.Left(codes, 5)
+            If mapPy(sKey) Then
+                Return sKey
+            End If
+        End If
+
+        If codes.Length >= 4 Then
+            sKey = Strings.Left(codes, 4)
+            If mapPy(sKey) Then
+                Return sKey
+            End If
+        End If
+
+        If codes.Length >= 3 Then
+            sKey = Strings.Left(codes, 3)
+            If mapPy(sKey) Then
+                Return sKey
             End If
 
-            If mapPy(pys) Then
-                Return pys
-            Else
-                Return GetRightPy(Left(pys, 2))
+            ' 实际没有 din 这个拼音，仅为模糊音 in=ing 用
+            If P_IN_ING AndAlso sKey.Equals("din") Then
+                 Return sKey
             End If
-        ElseIf pys.Length = 2 Then
-            If mapPy(pys) Then
-                Return pys
-            Else
-                Return GetRightPy(Left(pys, 1))
+
+        End If
+
+        If codes.Length >= 2 Then
+            sKey = Strings.Left(codes, 2)
+            If mapPy(sKey) Then
+                Return sKey
             End If
-        ElseIf pys.Length = 1 Then
-            If mapPy(pys) Then
-                Return pys
+        End If
+
+        If codes.Length >= 1 Then
+            sKey = Strings.Left(codes, 1)
+            If mapPy(sKey) Then
+                Return sKey
             End If
         End If
 
@@ -2532,9 +2542,6 @@ Module MPinYinBreak
         map("diao") = True
         map("bing") = True
         map("xian") = True
-
-        map("din") = True   ' 实际没有这个拼音，仅为模糊音 in=ing 用
-
         map("ding") = True
         map("w") = True
         map("ong") = True

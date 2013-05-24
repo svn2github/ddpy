@@ -24,22 +24,23 @@ Public Class FrmSetting
             ChkZzh.Checked = CBool(ary(3))
             ChkZize.Checked = CBool(ary(4))
             ChkZhizhe.Checked = CBool(ary(5))
+            ChkRiRe.Checked = CBool(ary(6))
 
-            NumPyLen.Value = CInt(ary(6))
-            NumPageCnt.Value = CInt(ary(7))
+            NumPyLen.Value = CInt(ary(7))
+            NumPageCnt.Value = CInt(ary(8))
 
-            ChkVshow.Checked = CBool(ary(8))
+            ChkVshow.Checked = CBool(ary(9))
 
-            TxtTitle.Text = CStr(ary(9))
+            TxtTitle.Text = CStr(ary(10))
 
-            ChkSrvMemory.Checked = CBool(ary(10))
+            ChkSrvMemory.Checked = CBool(ary(11))
 
-            If Trim(ary(11)).Replace(",", "").Length = (ary(11).Length - 2) Then
-                TxtFont.Text = ary(11)
+            If Trim(ary(12)).Replace(",", "").Length = (ary(12).Length - 2) Then
+                TxtFont.Text = ary(12)
             End If
 
-            ChkHideStatus.Checked = CBool(ary(12))
-            ChkAutoPosition.Checked = CBool(ary(13))
+            ChkHideStatus.Checked = CBool(ary(13))
+            ChkAutoPosition.Checked = CBool(ary(14))
 
 
         Catch ex As Exception
@@ -62,6 +63,7 @@ Public Class FrmSetting
         lst.Add(ChkZzh.Checked)
         lst.Add(ChkZize.Checked)
         lst.Add(ChkZhizhe.Checked)
+        lst.Add(ChkRiRe.Checked)
 
         lst.Add(NumPyLen.Value)
         lst.Add(NumPageCnt.Value)
@@ -650,7 +652,7 @@ Public Class FrmSetting
 
     End Sub
 
-    Private Sub ChkAn_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ChkAn.MouseClick, ChkEn.MouseClick, ChkIn.MouseClick, ChkSrvMemory.MouseClick, ChkVshow.MouseClick, ChkZhizhe.MouseClick, ChkZize.MouseClick, ChkZzh.MouseClick, ChkHideStatus.MouseClick, ChkAutoPosition.MouseClick
+    Private Sub ChkAn_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ChkAn.MouseClick, ChkEn.MouseClick, ChkIn.MouseClick, ChkSrvMemory.MouseClick, ChkVshow.MouseClick, ChkZhizhe.MouseClick, ChkZize.MouseClick, ChkZzh.MouseClick, ChkHideStatus.MouseClick, ChkAutoPosition.MouseClick, ChkRiRe.MouseClick
         If GetSetting().Equals(sSrvSetting) Then
             BtnApply.Enabled = False
         Else
