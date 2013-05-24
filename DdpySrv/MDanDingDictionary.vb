@@ -13,6 +13,8 @@ Module MDanDingDictionary
 
     Private iSysOrder As Integer
     Private iImpOrder As Integer
+    Private iUsrOrder As Integer
+    Private iTopOrder As Integer
 
     ''' <summary>
     ''' 增加一个新文字
@@ -99,9 +101,15 @@ Module MDanDingDictionary
         If Not My.Computer.FileSystem.FileExists(sFileWrd) Then
             My.Computer.FileSystem.WriteAllText(sFileWrd, My.Resources.淡定词库, False, Encoding.UTF8)
         End If
+        Dim sFileTop As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定固顶.txt"
+        If Not My.Computer.FileSystem.FileExists(sFileTop) Then
+            My.Computer.FileSystem.WriteAllText(sFileTop, My.Resources.淡定固顶, False, Encoding.UTF8)
+        End If
 
         iSysOrder = Integer.MaxValue
         iImpOrder = Integer.MaxValue
+        iUsrOrder = Integer.MaxValue
+        iTopOrder = Integer.MaxValue
 
         ' 初始化字库
         If (mDanDingDic Is Nothing) Then
@@ -114,6 +122,9 @@ Module MDanDingDictionary
         If My.Computer.FileSystem.FileExists(userWordFile) Then
             ImportWords(userWordFile, WordType.USR)
         End If
+
+        ' 导入固顶词库
+        ImportWords(sFileTop, WordType.TOP)
 
     End Sub
 
@@ -290,14 +301,14 @@ Module MDanDingDictionary
                 newWord.Text = cols(0)
                 newWord.PinYin = cols(1)
 
-                If cols.Length > 2 Then
-                    If wType = WordType.IMP Then
-                        newWord.ImpOrder = cols(2)
-                    ElseIf wType = WordType.USR Then
-                        newWord.UsrOrder = cols(2)
-                    Else
-                        newWord.Order = cols(2)
-                    End If
+                If wType And WordType.USR Then
+                    newWord.UsrOrder = cols(2)
+                Else If wType And WordType.TOP Then
+                    iTopOrder = iTopOrder - 1
+                    newWord.TopOrder = iTopOrder
+                ElseIf wType And WordType.IMP Then
+                    iImpOrder = iImpOrder - 1
+                    newWord.ImpOrder = iImpOrder
                 End If
 
                 lstWord = InitWordList(shotPys)
@@ -309,6 +320,16 @@ Module MDanDingDictionary
             Else
                 ' 已存在时，仅更新类型
                 existWord.WordType = existWord.WordType Or wType
+
+                If wType And WordType.USR Then
+                    existWord.UsrOrder = cols(2)
+                ElseIf wType And WordType.TOP Then
+                    iTopOrder = iTopOrder - 1
+                    existWord.TopOrder = iTopOrder
+                ElseIf wType And WordType.IMP Then
+                    iImpOrder = iImpOrder - 1
+                    existWord.ImpOrder = iImpOrder
+                End If
 
                 If existWord.WordType And WordType.USR Then
                     RegisterUserWord(existWord)
@@ -329,16 +350,14 @@ Module MDanDingDictionary
                     newWord.Text = cols(0)
                     newWord.PinYin = cols(1)
 
-                    If cols.Length > 2 Then
-
-                        If wType = WordType.IMP Then
-                            newWord.ImpOrder = cols(2)
-                        ElseIf wType = WordType.USR Then
-                            newWord.UsrOrder = cols(2)
-                        Else
-                            newWord.Order = cols(2)
-                        End If
-
+                    If wType And WordType.USR Then
+                        newWord.UsrOrder = cols(2)
+                    ElseIf wType And WordType.TOP Then
+                        iTopOrder = iTopOrder - 1
+                        newWord.TopOrder = iTopOrder
+                    ElseIf wType And WordType.IMP Then
+                        iImpOrder = iImpOrder - 1
+                        newWord.ImpOrder = iImpOrder
                     End If
 
                 End If
@@ -352,6 +371,16 @@ Module MDanDingDictionary
             Else
                 ' 已存在时，仅更新类型
                 existWord.WordType = existWord.WordType Or wType
+
+                If wType And WordType.USR Then
+                    existWord.UsrOrder = cols(2)
+                ElseIf wType And WordType.TOP Then
+                    iTopOrder = iTopOrder - 1
+                    existWord.TopOrder = iTopOrder
+                ElseIf wType And WordType.IMP Then
+                    iImpOrder = iImpOrder - 1
+                    existWord.ImpOrder = iImpOrder
+                End If
 
                 If existWord.WordType And WordType.USR Then
                     RegisterUserWord(existWord)

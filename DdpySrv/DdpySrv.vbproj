@@ -202,6 +202,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\淡定固顶.txt" />
     <Content Include="Resources\淡定字库.txt" />
     <Content Include="Resources\淡定词库.txt" />
     <Content Include="Service.ico" />

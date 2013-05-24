@@ -63,6 +63,45 @@ Namespace My.Resources
         '''<summary>
         '''  查找类似 啊	a
         '''阿	a
+        '''爱	ai
+        '''哎	ai
+        '''安	an
+        '''昂	ang
+        '''奥	ao
+        '''澳	ao
+        '''不	bu
+        '''部	bu
+        '''报	bao
+        '''表	biao
+        '''比	bi
+        '''便	bian
+        '''变	bian
+        '''必	bi
+        '''边	bian
+        '''白	bai
+        '''百	bai
+        '''办	ban
+        '''北	bei
+        '''吧	ba
+        '''并	bing
+        '''般	ban
+        '''博	bo
+        '''帮	bang
+        '''背	bei
+        '''宾	bin
+        '''本	ben
+        '''迸	beng
+        ''' 的本地化字符串。
+        '''</summary>
+        Friend ReadOnly Property 淡定固顶() As String
+            Get
+                Return ResourceManager.GetString("淡定固顶", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似 啊	a
+        '''阿	a
         '''呵	a
         '''腌	a
         '''嗄	a

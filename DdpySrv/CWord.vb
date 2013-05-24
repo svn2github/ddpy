@@ -20,6 +20,10 @@ Friend Enum WordType
     ''' 用户类型
     ''' </summary>
     USR = &H100
+    ''' <summary>
+    ''' 固顶类型
+    ''' </summary>
+    TOP = &H1000
 End Enum
 
 
@@ -37,8 +41,24 @@ Friend Class CWord
     Private vOrder As Integer                       ' 词频
     Private vImpOrder As Integer                    ' 词频
     Private vUsrOrder As Integer                    ' 词频
+    Private vTopOrder As Integer                    ' 词频
     Private vWordType As WordType = WordType.UNKNOW ' 类型
     Private vIsMixWord As Boolean                   ' 混合输入
+
+
+    ''' <summary>
+    ''' 频率
+    ''' </summary>
+    ''' <value>频率</value>
+    ''' <returns>频率</returns>
+    Public Property TopOrder() As Integer
+        Get
+            Return (vTopOrder)
+        End Get
+        Set(ByVal Value As Integer)
+            vTopOrder = Value
+        End Set
+    End Property
 
     ''' <summary>
     ''' 频率
@@ -113,19 +133,19 @@ Friend Class CWord
         End Set
     End Property
 
-    ''' <summary>
-    ''' 检索串
-    ''' </summary>
-    ''' <value>检索串</value>
-    ''' <returns>检索串</returns>
-    Public Property SearchKey() As String
-        Get
-            Return vSearchKey
-        End Get
-        Set(ByVal Value As String)
-            vSearchKey = Value
-        End Set
-    End Property
+    ' ''' <summary>
+    ' ''' 检索串
+    ' ''' </summary>
+    ' ''' <value>检索串</value>
+    ' ''' <returns>检索串</returns>
+    'Public Property SearchKey() As String
+    '    Get
+    '        Return vSearchKey
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        vSearchKey = Value
+    '    End Set
+    'End Property
 
     ''' <summary>
     ''' 全拼
@@ -202,46 +222,34 @@ Friend Class CWord
     Public Function CompareTo(ByVal obj As Object) As Integer Implements IComparable.CompareTo
         Dim word As CWord = obj
 
-        If Me.WordType And WordType.USR Then
-            If word.WordType And WordType.USR Then
-                If Me.UsrOrder > word.UsrOrder Then
-                    Return -1
-                ElseIf Me.UsrOrder = word.UsrOrder Then
-                    Return 0
-                Else
-                    Return 1
-                End If
+        If Me.WordType And WordType.TOP Then
+            If word.WordType And WordType.TOP Then
+                Return Me.TopOrder > word.TopOrder
+            Else
+                Return -1
+            End If
+        ElseIf Me.WordType And WordType.USR Then
+            If word.WordType And WordType.TOP Then
+                Return 1
+            ElseIf word.WordType And WordType.USR Then
+                Return Me.UsrOrder > word.UsrOrder
             Else
                 Return -1
             End If
         ElseIf Me.WordType And WordType.SYS Then
 
-            If word.WordType And WordType.USR Then
+            If word.WordType And (WordType.USR Or DdpySrv.WordType.TOP) Then
                 Return 1
             ElseIf word.WordType And WordType.SYS Then
-                If Me.Order > word.Order Then
-                    Return -1
-                ElseIf Me.Order = word.Order Then
-                    Return 0
-                Else
-                    Return 1
-                End If
+                Return Me.Order > word.Order
             Else
                 Return -1
             End If
         ElseIf Me.WordType And WordType.IMP Then
-            If word.WordType And WordType.USR Then
-                Return 1
-            ElseIf word.WordType And WordType.SYS Then
+            If word.WordType And (WordType.USR Or DdpySrv.WordType.TOP Or DdpySrv.WordType.SYS) Then
                 Return 1
             ElseIf word.WordType And WordType.IMP Then
-                If Me.ImpOrder > word.ImpOrder Then
-                    Return -1
-                ElseIf Me.ImpOrder = word.ImpOrder Then
-                    Return 0
-                Else
-                    Return 1
-                End If
+                Return Me.ImpOrder > word.ImpOrder
             Else
                 Return -1
             End If
