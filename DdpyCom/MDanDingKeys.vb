@@ -18,6 +18,42 @@ Module MDanDingKeys
         Dim bRet As Boolean = False
 
         Select Case iKey
+            Case Keys.Delete
+                ' Ctrl+Delete 删除选中的非系统候选词
+                If My.Computer.Keyboard.CtrlKeyDown Then
+
+                    If ddPy.WordList Is Nothing OrElse ddPy.WordList.Count = 0 Then
+                        SetIkrFlag(ikr, True, False, False)
+                    Else
+                        Dim idx As Integer = ddPy.CurrentPage * P_MAX_PAGE_CNT - P_MAX_PAGE_CNT + ddPy.FocusCand - 1
+                        Dim word As CWord = ddPy.WordList(idx)
+
+                        If word.IsMixWord Then
+                            ' 删除混合输入
+                            SrvDeleteMixInputData(word.Text)
+                            ' 刷新显示
+                            ddPy.ExecuteSearch()
+                            frmInput.Show(ddPy)
+
+                            SetIkrFlag(ikr, True, True, False)
+                        ElseIf word.WordType And WordType.USR Then
+                            ' 从用户词库删除文字
+                            SrvUnRegisterUserWord(word.PinYin, word.Text)
+                            ' 刷新显示
+                            ddPy.ExecuteSearch()
+                            frmInput.Show(ddPy)
+
+                            SetIkrFlag(ikr, True, True, False)
+                        Else
+                            SetIkrFlag(ikr, True, False, False)
+                        End If
+
+                    End If
+
+                    bRet = True
+
+                End If
+
             Case Keys.O
                 ' Ctrl+Shift+O 打开配置窗口
                 If My.Computer.Keyboard.CtrlKeyDown AndAlso My.Computer.Keyboard.ShiftKeyDown Then
@@ -209,6 +245,7 @@ Module MDanDingKeys
 
             Case Keys.Delete
                 If frmInput.Visible Then
+
                     If ddPy.DispPyText2.Length > 0 Then
                         ddPy.DispPyText2 = ddPy.DispPyText2.Substring(1)
                     End If
@@ -1095,11 +1132,20 @@ Module MDanDingKeys
             Return False
         End If
 
+        ' 非编码输入期间，不响应Ctrl组合键
+        If (My.Computer.Keyboard.CtrlKeyDown OrElse My.Computer.Keyboard.AltKeyDown) Then
+            If Not frmInput.Visible Then
+                SetIkrFlag(ikr, False, False, False)
+                Return True
+            End If
+        End If
+
         ' 自定义的 Ctrl+※ 组合键交后续程序处理
         If My.Computer.Keyboard.CtrlKeyDown AndAlso _
             (iKey = Keys.Left _
             OrElse iKey = Keys.Right _
             OrElse iKey = Keys.OemPeriod _
+            OrElse iKey = Keys.Delete _
             ) Then
 
             isDot = False

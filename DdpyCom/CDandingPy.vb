@@ -319,6 +319,7 @@ Friend Class CDandingPy
             If vDispPyText = "" AndAlso Not vDispPyText2 = "" Then
                 vInputPys = vInputPys & vDispPyText2
 
+                ' 剩余拼音更新为vDispPyText2，最新Push的拼音拼接到vInputPys，vDispPyText还是显示空
                 vDispPyText = GetDispPyText()
                 vDispPyText2 = vDispPyText
                 vInputPys = Strings.Left(vInputPys, vInputPys.Length - vDispPyText.Length)
