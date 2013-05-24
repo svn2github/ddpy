@@ -198,26 +198,31 @@ Module MDanDingDictionary
 
             If Not lst Is Nothing Then
 
-                'lst.Sort()
-                'Dim iCnt As Integer = 0
+                lst.Sort()
+                Dim iCnt As Integer = 0
 
                 For Each word As CWord In lst
                     ' 逐个比较
                     If MatchMutilPinYin(cds, shotCds, word.PinYin.Split("'")) Then
-                        ' word.SearchKey = codes
-                        lstRet.Add(word)    ' 满足输入的对象
-                        'iCnt = iCnt + 1
 
-                        'If iCnt >= 100 Then
-                        '    Exit For
-                        'End If
+                        ' word.SearchKey = codes
+
+                        lstRet.Add(word)    ' 满足输入的对象
+
+                        If word.Text.Length > 1 Then
+                            iCnt = iCnt + 1
+                        End If
+
+                        If iCnt >= 30 Then
+                            Exit For
+                        End If
                     End If
                 Next
 
             End If
 
-            ' 排序显示
-            lstRet.Sort()
+            '' 排序显示
+            'lstRet.Sort()
 
             ' 缓存
             mDicCache(codes) = lstRet

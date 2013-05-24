@@ -1566,6 +1566,343 @@ Module MPinYinBreak
 
 
 
+            'mapCustBreakPy("qiana") = "qia"  
+            'mapCustBreakPy("qianai") = "qia"
+            'mapCustBreakPy("qianao") = "qia"
+            'mapCustBreakPy("qianan") = "qia"
+            'mapCustBreakPy("qianang") = "qia"
+            mapCustBreakPy("qianou") = "qia"
+            mapCustBreakPy("qianong") = "qia"
+            'mapCustBreakPy("qiane") = "qia"
+            'mapCustBreakPy("qianer") = "qia"
+            mapCustBreakPy("qianei") = "qia"
+            'mapCustBreakPy("qianen") = "qia"
+            mapCustBreakPy("qianeng") = "qia"
+            mapCustBreakPy("qiani") = "qia"
+            mapCustBreakPy("qianu") = "qia"
+            mapCustBreakPy("qianv") = "qia"
+
+            'mapCustBreakPy("qianga") = "qian"
+            'mapCustBreakPy("qiangai") = "qian"
+            'mapCustBreakPy("qiangao") = "qian"
+            'mapCustBreakPy("qiangan") = "qian"
+            mapCustBreakPy("qiangang") = "qian"
+            'mapCustBreakPy("qiango") = "qian"
+            mapCustBreakPy("qiangou") = "qian"
+            mapCustBreakPy("qiangong") = "qian"
+            mapCustBreakPy("qiange") = "qian"
+            mapCustBreakPy("qianger") = "qiang"
+            'mapCustBreakPy("qiangei") = "qian"
+            'mapCustBreakPy("qiangen") = "qian"
+            'mapCustBreakPy("qiangeng") = "qian"
+            mapCustBreakPy("qiangu") = "qian"
+
+
+            mapCustBreakPy("tiani") = "ti"
+            mapCustBreakPy("tianu") = "ti"
+            mapCustBreakPy("tianv") = "ti"
+
+            mapCustBreakPy("piani") = "pi"
+            mapCustBreakPy("pianu") = "pi"
+            mapCustBreakPy("pianv") = "pi"
+
+            mapCustBreakPy("diani") = "di"
+            mapCustBreakPy("dianu") = "di"
+            mapCustBreakPy("dianv") = "di"
+
+
+            'mapCustBreakPy("jiana") = "jia"  
+            'mapCustBreakPy("jianai") = "jia"
+            'mapCustBreakPy("jianao") = "jia"
+            'mapCustBreakPy("jianan") = "jia"
+            'mapCustBreakPy("jianang") = "jia"
+            'mapCustBreakPy("jianou") = "jia"
+            mapCustBreakPy("jianong") = "jia"
+            'mapCustBreakPy("jiane") = "jia"
+            'mapCustBreakPy("jianer") = "jian"
+            mapCustBreakPy("jianei") = "jia"
+            mapCustBreakPy("jianen") = "jia"
+            'mapCustBreakPy("jianeng") = "jia"
+            mapCustBreakPy("jiani") = "jia"
+            mapCustBreakPy("jianu") = "jia"
+            mapCustBreakPy("jianv") = "jia"
+
+            'mapCustBreakPy("jianga") = "jian"
+            'mapCustBreakPy("jiangai") = "jian"
+            'mapCustBreakPy("jiangao") = "jian"
+            'mapCustBreakPy("jiangan") = "jian"
+            'mapCustBreakPy("jiangang") = "jian"
+            'mapCustBreakPy("jiango") = "jian"
+            'mapCustBreakPy("jiangou") = "jian"
+            mapCustBreakPy("jiangong") = "jian"
+            mapCustBreakPy("jiange") = "jian"
+            mapCustBreakPy("jianger") = "jiang"
+            'mapCustBreakPy("jiangei") = "jian"
+            'mapCustBreakPy("jiangen") = "jian"
+            'mapCustBreakPy("jiangeng") = "jian"
+            mapCustBreakPy("jiangu") = "jian"
+
+
+            'mapCustBreakPy("liana") = "lia"  
+            'mapCustBreakPy("lianai") = "lia"
+            'mapCustBreakPy("lianao") = "lia"
+            'mapCustBreakPy("lianan") = "lia"
+            'mapCustBreakPy("lianang") = "lia"
+            'mapCustBreakPy("lianou") = "lia"
+            mapCustBreakPy("lianong") = "lia"
+            'mapCustBreakPy("liane") = "lia"
+            'mapCustBreakPy("lianer") = "lia"
+            mapCustBreakPy("lianei") = "lia"
+            'mapCustBreakPy("lianen") = "lia"
+            'mapCustBreakPy("lianeng") = "lia"
+            mapCustBreakPy("liani") = "lia"
+            mapCustBreakPy("lianu") = "lia"
+            mapCustBreakPy("lianv") = "lia"
+
+            'mapCustBreakPy("lianga") = "lian"
+            'mapCustBreakPy("liangai") = "lian"
+            'mapCustBreakPy("liangao") = "lian"
+            'mapCustBreakPy("liangan") = "lian"
+            mapCustBreakPy("liangang") = "lian"
+            'mapCustBreakPy("liango") = "lian"
+            'mapCustBreakPy("liangou") = "lian"
+            mapCustBreakPy("liangong") = "lian"
+            mapCustBreakPy("liange") = "lian"
+            mapCustBreakPy("lianger") = "liang"
+            'mapCustBreakPy("liangei") = "lian"
+            'mapCustBreakPy("liangen") = "lian"
+            'mapCustBreakPy("liangeng") = "lian"
+            mapCustBreakPy("liangu") = "lian"
+
+
+            mapCustBreakPy("xiani") = "xia"
+            mapCustBreakPy("xianu") = "xia"
+            mapCustBreakPy("xianv") = "xia"
+            mapCustBreakPy("xianei") = "xia"
+            mapCustBreakPy("xianong") = "xia"
+            mapCustBreakPy("xiangong") = "xian"
+            mapCustBreakPy("xiange") = "xian"
+            mapCustBreakPy("xianger") = "xiang"
+            mapCustBreakPy("xiangu") = "xian"
+
+            mapCustBreakPy("xianshibian") = "xi"   ' 西安事变
+            mapCustBreakPy("xianjiaoda") = "xi"   ' 西安交大
+            mapCustBreakPy("xianbeilin") = "xi"   ' 西安碑林
+            mapCustBreakPy("xianjiaotong") = "xi"   ' 西安交通
+            mapCustBreakPy("xianchengqiang") = "xi"   ' 西安城墙
+            mapCustBreakPy("xianfengzhen") = "xi"   ' 西安丰镇
+            mapCustBreakPy("xianbangzi") = "xi"   ' 西安梆子
+            mapCustBreakPy("xiandianzi") = "xi"   ' 西安电子
+
+
+            mapCustBreakPy("biani") = "bi"
+            mapCustBreakPy("bianu") = "bi"
+            mapCustBreakPy("bianv") = "bi"
+
+
+            'mapCustBreakPy("niana") = "nia"  
+            'mapCustBreakPy("nianai") = "nia"
+            'mapCustBreakPy("nianao") = "nia"
+            'mapCustBreakPy("nianan") = "nia"
+            'mapCustBreakPy("nianang") = "nia"
+            'mapCustBreakPy("nianou") = "nia"
+            mapCustBreakPy("nianong") = "nia"
+            'mapCustBreakPy("niane") = "nia"
+            'mapCustBreakPy("nianer") = "nia"
+            mapCustBreakPy("nianei") = "nia"
+            'mapCustBreakPy("nianen") = "nia"
+            'mapCustBreakPy("nianeng") = "nia"
+            mapCustBreakPy("niani") = "ni"
+            mapCustBreakPy("nianu") = "ni"
+            mapCustBreakPy("nianv") = "ni"
+
+            'mapCustBreakPy("nianga") = "nian"
+            mapCustBreakPy("niangai") = "nian"
+            mapCustBreakPy("niangao") = "nian"
+            mapCustBreakPy("niangan") = "nian"
+            'mapCustBreakPy("niangang") = "nian"
+            'mapCustBreakPy("niango") = "nian"
+            mapCustBreakPy("niangou") = "nian"
+            mapCustBreakPy("niangong") = "nian"
+            mapCustBreakPy("niange") = "nian"
+            mapCustBreakPy("nianger") = "niang"
+            'mapCustBreakPy("niangei") = "nian"
+            'mapCustBreakPy("niangen") = "nian"
+            'mapCustBreakPy("niangeng") = "nian"
+            mapCustBreakPy("niangu") = "nian"
+
+            mapCustBreakPy("miani") = "mi"
+            mapCustBreakPy("mianu") = "mi"
+            mapCustBreakPy("mianv") = "mi"
+
+
+            mapCustBreakPy("quani") = "qu"
+            mapCustBreakPy("quanu") = "qu"
+            mapCustBreakPy("quanv") = "qu"
+
+            mapCustBreakPy("ruani") = "ru"
+            mapCustBreakPy("ruanu") = "ru"
+            mapCustBreakPy("ruanv") = "ru"
+
+            mapCustBreakPy("tuani") = "tu"
+            mapCustBreakPy("tuanu") = "tu"
+            mapCustBreakPy("tuanv") = "tu"
+
+            mapCustBreakPy("yuani") = "yu"
+            mapCustBreakPy("yuanu") = "yu"
+            mapCustBreakPy("yuanv") = "yu"
+
+
+            mapCustBreakPy("suani") = "su"
+            mapCustBreakPy("suanu") = "su"
+            mapCustBreakPy("suanv") = "su"
+
+            mapCustBreakPy("shuanong") = "shua"
+            mapCustBreakPy("shuanei") = "shua"
+            mapCustBreakPy("shuani") = "shu"
+            mapCustBreakPy("shuanu") = "shu"
+            mapCustBreakPy("shuanv") = "shu"
+            mapCustBreakPy("shuangei") = "shuan"
+            mapCustBreakPy("shuangi") = "shuan"
+            mapCustBreakPy("shuangu") = "shuan"
+
+
+            mapCustBreakPy("duani") = "du"
+            mapCustBreakPy("duanu") = "du"
+            mapCustBreakPy("duanv") = "du"
+
+
+            'mapCustBreakPy("guana") = "gua"  
+            'mapCustBreakPy("guanai") = "gua"
+            'mapCustBreakPy("guanao") = "gua"
+            mapCustBreakPy("guanan") = "gua"
+            'mapCustBreakPy("guanang") = "gua"
+            'mapCustBreakPy("guanou") = "gua"
+            mapCustBreakPy("guanong") = "gua"
+            'mapCustBreakPy("guane") = "gua"
+            'mapCustBreakPy("guaner") = "gua"
+            mapCustBreakPy("guanei") = "gua"
+            'mapCustBreakPy("guanen") = "gua"
+            'mapCustBreakPy("guaneng") = "gua"
+            mapCustBreakPy("guani") = "gu"
+            mapCustBreakPy("guanu") = "gu"
+            mapCustBreakPy("guanv") = "gu"
+
+            'mapCustBreakPy("guanga") = "guan"
+            mapCustBreakPy("guangai") = "guan"
+            mapCustBreakPy("guangao") = "guan"
+            mapCustBreakPy("guangan") = "guan"
+            'mapCustBreakPy("guangang") = "guan"
+            'mapCustBreakPy("guango") = "guan"
+            mapCustBreakPy("guangou") = "guan"
+            mapCustBreakPy("guangong") = "guan"
+            'mapCustBreakPy("guange") = "guan"
+            'mapCustBreakPy("guanger") = "guang"
+            mapCustBreakPy("guangei") = "guan"
+            mapCustBreakPy("guangen") = "guan"
+            'mapCustBreakPy("guangeng") = "guan"
+            mapCustBreakPy("guangu") = "guan"
+
+
+            'mapCustBreakPy("huana") = "hua"  
+            'mapCustBreakPy("huanai") = "hua"
+            mapCustBreakPy("huanao") = "hua"
+            mapCustBreakPy("huanan") = "hua"
+            'mapCustBreakPy("huanang") = "hua"
+            'mapCustBreakPy("huanou") = "hua"
+            mapCustBreakPy("huanong") = "hua"
+            mapCustBreakPy("huane") = "hua"
+            mapCustBreakPy("huaner") = "hua"
+            'mapCustBreakPy("huanei") = "hua"
+            'mapCustBreakPy("huanen") = "hua"
+            'mapCustBreakPy("huaneng") = "hua"
+            mapCustBreakPy("huani") = "hu"
+            mapCustBreakPy("huanu") = "hu"
+            mapCustBreakPy("huanv") = "hu"
+
+            'mapCustBreakPy("huanga") = "huan"
+            'mapCustBreakPy("huangai") = "huan"
+            'mapCustBreakPy("huangao") = "huan"
+            'mapCustBreakPy("huangan") = "huan"
+            'mapCustBreakPy("huangang") = "huan"
+            'mapCustBreakPy("huango") = "huan"
+            'mapCustBreakPy("huangou") = "huan"
+            mapCustBreakPy("huangong") = "huan"
+            mapCustBreakPy("huange") = "huan"
+            mapCustBreakPy("huanger") = "huang"
+            'mapCustBreakPy("huangei") = "huan"
+            mapCustBreakPy("huangen") = "huang"
+            'mapCustBreakPy("huangeng") = "huan"
+            mapCustBreakPy("huangu") = "huan"
+
+
+            mapCustBreakPy("juani") = "ju"
+            mapCustBreakPy("juanu") = "ju"
+            mapCustBreakPy("juanv") = "ju"
+
+
+            'mapCustBreakPy("kuana") = "kua"  
+            'mapCustBreakPy("kuanai") = "kua"
+            'mapCustBreakPy("kuanao") = "kua"
+            'mapCustBreakPy("kuanan") = "kua"
+            'mapCustBreakPy("kuanang") = "kua"
+            'mapCustBreakPy("kuanou") = "kua"
+            mapCustBreakPy("kuanong") = "kua"
+            'mapCustBreakPy("kuane") = "kua"
+            'mapCustBreakPy("kuaner") = "kua"
+            mapCustBreakPy("kuanei") = "kua"
+            'mapCustBreakPy("kuanen") = "kua"
+            'mapCustBreakPy("kuaneng") = "kua"
+            mapCustBreakPy("kuani") = "ku"
+            mapCustBreakPy("kuanu") = "ku"
+            mapCustBreakPy("kuanv") = "ku"
+
+            'mapCustBreakPy("kuanga") = "kuan"
+            'mapCustBreakPy("kuangai") = "kuan"
+            'mapCustBreakPy("kuangao") = "kuan"
+            'mapCustBreakPy("kuangan") = "kuan"
+            'mapCustBreakPy("kuangang") = "kuan"
+            'mapCustBreakPy("kuango") = "kuan"
+            mapCustBreakPy("kuangou") = "kuan"
+            mapCustBreakPy("kuangong") = "kuan"
+            'mapCustBreakPy("kuange") = "kuan"
+            'mapCustBreakPy("kuanger") = "kuang"
+            mapCustBreakPy("kuangei") = "kuan"
+            'mapCustBreakPy("kuangen") = "kuang"
+            'mapCustBreakPy("kuangeng") = "kuan"
+            mapCustBreakPy("kuangu") = "kuan"
+
+
+            mapCustBreakPy("luani") = "lu"
+            mapCustBreakPy("luanu") = "lu"
+            mapCustBreakPy("luanv") = "lu"
+
+            mapCustBreakPy("zuani") = "zu"
+            mapCustBreakPy("zuanu") = "zu"
+            mapCustBreakPy("zuanv") = "zu"
+            mapCustBreakPy("zhuani") = "zhua"
+            mapCustBreakPy("zhuanu") = "zhua"
+            mapCustBreakPy("zhuanv") = "zhua"
+            mapCustBreakPy("zhuangi") = "zhuan"
+            mapCustBreakPy("zhuangu") = "zhuan"
+
+            mapCustBreakPy("xuani") = "xu"
+            mapCustBreakPy("xuanu") = "xu"
+            mapCustBreakPy("xuanv") = "xu"
+
+            mapCustBreakPy("cuani") = "cu"
+            mapCustBreakPy("cuanu") = "cu"
+            mapCustBreakPy("cuanv") = "cu"
+            mapCustBreakPy("chuani") = "chu"
+            mapCustBreakPy("chuanu") = "chu"
+            mapCustBreakPy("chuanv") = "chu"
+            mapCustBreakPy("chuangi") = "chuan"
+            mapCustBreakPy("chuangu") = "chuan"
+
+            mapCustBreakPy("nuani") = "nu"
+            mapCustBreakPy("nuanu") = "nu"
+            mapCustBreakPy("nuanv") = "nu"
+
             mapStartWithNoEr("qine") = "qi"
             mapStartWithNoEr("qinge") = "qin"
             mapStartWithNoEr("yinge") = "yin"
@@ -1642,9 +1979,47 @@ Module MPinYinBreak
             mapCustBreakPy("kanger") = "kang"
             mapCustBreakPy("zanger") = "zang"
 
+            mapCustBreakPy("banai") = "ban"
+            mapCustBreakPy("banao") = "ban"
+            mapCustBreakPy("banan") = "ban"
+            mapCustBreakPy("bana") = "ba"
+
         End If
 
         Dim sKey As String
+
+        If codes.Length >= 14 Then
+            sKey = Strings.Left(codes, 14)
+            If mapCustBreakPy.ContainsKey(sKey) Then
+                Return mapCustBreakPy(sKey)
+            End If
+        End If
+        'If codes.Length >= 13 Then
+        '    sKey = Strings.Left(codes, 13)
+        '    If mapCustBreakPy.ContainsKey(sKey) Then
+        '        Return mapCustBreakPy(sKey)
+        '    End If
+        'End If
+        If codes.Length >= 12 Then
+            sKey = Strings.Left(codes, 12)
+            If mapCustBreakPy.ContainsKey(sKey) Then
+                Return mapCustBreakPy(sKey)
+            End If
+        End If
+        If codes.Length >= 11 Then
+            sKey = Strings.Left(codes, 11)
+            If mapCustBreakPy.ContainsKey(sKey) Then
+                Return mapCustBreakPy(sKey)
+            End If
+        End If
+        If codes.Length >= 10 Then
+            sKey = Strings.Left(codes, 10)
+            If mapCustBreakPy.ContainsKey(sKey) Then
+                Return mapCustBreakPy(sKey)
+            End If
+        End If
+
+
         If codes.Length >= 8 Then
             sKey = Strings.Left(codes, 8)
             If mapCustBreakPy.ContainsKey(sKey) Then
@@ -1701,12 +2076,6 @@ Module MPinYinBreak
             If mapStartWithNoEr.ContainsKey(sKey) Then
                 Return mapStartWithNoEr(sKey)
             End If
-
-            If codes.StartsWith("bana") AndAlso Not codes.StartsWith("banai") _
-                    AndAlso Not codes.StartsWith("banan") AndAlso Not codes.StartsWith("banao") Then
-                Return "ba"
-            End If
-
         End If
 
         If codes.Length >= 3 Then
@@ -1714,26 +2083,15 @@ Module MPinYinBreak
             If mapCustBreakPy.ContainsKey(sKey) Then
                 Return mapCustBreakPy(sKey)
             End If
-        End If
 
-
-        If "zh,ch,sh".Contains(Strings.Left(codes, 2)) Then
-
-            If codes.Length = 2 Then
-                Return codes.Substring(0, 1)
-            End If
-
-            If codes.Length >= 3 AndAlso Not "a,o,e,i,u".Contains(codes.Substring(2, 1)) Then
-                Return codes.Substring(0, 1)
-            End If
-
-            If codes.Length >= 4 AndAlso "er".Equals(codes.Substring(2, 2)) Then
-                Return codes.Substring(0, 1)
+            ' 仅模糊音适用 zua, cua, sua
+            If P_ZCS_ZHCHSH Then
+                If codes.StartsWith("zua") OrElse codes.StartsWith("cua")  OrElse codes.StartsWith("sua")  Then
+                    Return sKey
+                End If
             End If
 
         End If
-
-
 
         Return ""
 
@@ -1891,9 +2249,10 @@ Module MPinYinBreak
         map("duo") = True
         map("can") = True
         map("guo") = True
-        map("zh") = True
         map("huang") = True
-        map("sh") = True
+        'map("zh") = True
+        'map("ch") = True
+        'map("sh") = True
         map("y") = True
         map("z") = True
         map("yang") = True
@@ -2204,7 +2563,6 @@ Module MPinYinBreak
         map("shuan") = True
         map("feng") = True
         map("j") = True
-        map("ch") = True
         map("shei") = True
         map("chuo") = True
         map("zhun") = True
