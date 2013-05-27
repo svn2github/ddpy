@@ -19,6 +19,9 @@ Module MUserWord
         Dim wordKey As String = word.PinYin & vbTab & word.Text
         If Not mapUserWords.ContainsKey(wordKey) Then
             mapUserWords(wordKey) = word
+            If word.UsrOrder <= 0 Then
+                word.UsrOrder = 1
+            End If
             hasNewRegisterWord = True
         End If
     End Sub
@@ -33,6 +36,8 @@ Module MUserWord
         Dim wordKey As String = pinYin & vbTab & text
         
         If mapUserWords.ContainsKey(wordKey) Then
+            Dim word As CWord = mapUserWords(wordKey)
+            word.UsrOrder = 0
             mapUserWords.Remove(wordKey)
             hasNewRegisterWord = True
         End If

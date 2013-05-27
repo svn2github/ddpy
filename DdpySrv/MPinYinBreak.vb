@@ -435,9 +435,9 @@ Module MPinYinBreak
             mapCustBreakPy("dinv") = "di"
 
 
-            mapCustBreakPy("jina") = "ji"
+            'mapCustBreakPy("jina") = "ji"
             'mapCustBreakPy("jinai") = "ji"
-            'mapCustBreakPy("jinao") = "ji"
+            mapCustBreakPy("jinao") = "ji"
             'mapCustBreakPy("jinan") = "ji"
             'mapCustBreakPy("jinang") = "ji"
             'mapCustBreakPy("jino") = "ji"
@@ -571,10 +571,10 @@ Module MPinYinBreak
             'mapCustBreakPy("bingve") = "bin"
 
 
-            mapCustBreakPy("nina") = "ni"
-            'mapCustBreakPy("ninai") = "ni"
-            'mapCustBreakPy("ninao") = "ni"
-            'mapCustBreakPy("ninan") = "ni"
+            'mapCustBreakPy("nina") = "ni"
+            mapCustBreakPy("ninai") = "ni"
+            mapCustBreakPy("ninao") = "ni"
+            mapCustBreakPy("ninan") = "ni"
             'mapCustBreakPy("ninang") = "ni"
             'mapCustBreakPy("nino") = "ni"
             'mapCustBreakPy("ninou") = "ni"
@@ -745,10 +745,10 @@ Module MPinYinBreak
             mapCustBreakPy("shengu") = "shen"
 
 
-            mapCustBreakPy("dena") = "de"
-            'mapCustBreakPy("denai") = "de"
-            'mapCustBreakPy("denao") = "de"
-            'mapCustBreakPy("denan") = "de"
+            'mapCustBreakPy("dena") = "de"
+            mapCustBreakPy("denai") = "de"
+            mapCustBreakPy("denao") = "de"
+            mapCustBreakPy("denan") = "de"
             'mapCustBreakPy("denang") = "de"
             'mapCustBreakPy("deno") = "de"
             'mapCustBreakPy("denou") = "de"
@@ -905,10 +905,10 @@ Module MPinYinBreak
             mapCustBreakPy("zhengu") = "zhen"
 
 
-            mapCustBreakPy("cena") = "ce"
-            'mapCustBreakPy("cenai") = "ce"
-            'mapCustBreakPy("cenao") = "ce"
-            'mapCustBreakPy("cenan") = "ce"
+            'mapCustBreakPy("cena") = "ce"
+            mapCustBreakPy("cenai") = "ce"
+            mapCustBreakPy("cenao") = "ce"
+            mapCustBreakPy("cenan") = "ce"
             'mapCustBreakPy("cenang") = "ce"
             mapCustBreakPy("cenong") = "ce"
             mapCustBreakPy("cenei") = "ce"
@@ -932,7 +932,9 @@ Module MPinYinBreak
             'mapCustBreakPy("cengeng") = "cen"
             mapCustBreakPy("cengu") = "cen"
 
-            mapCustBreakPy("chena") = "che"
+            'mapCustBreakPy("chena") = "che"
+            mapCustBreakPy("chenao") = "che"
+            mapCustBreakPy("chenan") = "che"
             mapCustBreakPy("chenong") = "che"
             mapCustBreakPy("cengei") = "cen"
             mapCustBreakPy("cengen") = "cen"
@@ -1138,10 +1140,10 @@ Module MPinYinBreak
             mapCustBreakPy("yangu") = "yan"
 
 
-            mapCustBreakPy("pana") = "pa"
-            'mapCustBreakPy("panai") = "pa"
-            'mapCustBreakPy("panao") = "pa"
-            'mapCustBreakPy("panan") = "pa"
+            'mapCustBreakPy("pana") = "pa"
+            mapCustBreakPy("panai") = "pa"
+            mapCustBreakPy("panao") = "pa"
+            mapCustBreakPy("panan") = "pa"
             'mapCustBreakPy("panang") = "pa"
             'mapCustBreakPy("pano") = "pa"
             'mapCustBreakPy("panou") = "pa"
@@ -1983,11 +1985,6 @@ Module MPinYinBreak
             mapCustBreakPy("ganger") = "gang"
             mapCustBreakPy("kanger") = "kang"
             mapCustBreakPy("zanger") = "zang"
-
-            mapCustBreakPy("banai") = "ban"
-            mapCustBreakPy("banao") = "ban"
-            mapCustBreakPy("banan") = "ban"
-            mapCustBreakPy("bana") = "ba"
 
         End If
 

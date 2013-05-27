@@ -59,7 +59,7 @@ Module MDanDingDictionary
         For i As Integer = iSize - 1 To 0 Step -1
             If pinYin.Equals(lst(i).PinYin) AndAlso text.Equals(lst(i).Text) Then
 
-                lst(i).WordType = lst(i).WordType And &H11
+                lst(i).WordType = lst(i).WordType And (WordType.TOP Or WordType.SYS Or WordType.IMP)
                 If lst(i).WordType = WordType.UNKNOW Then
                     lst.RemoveAt(i)
                 End If
@@ -75,7 +75,7 @@ Module MDanDingDictionary
         For i As Integer = iSize - 1 To 0 Step -1
             If pinYin.Equals(lst(i).PinYin) AndAlso text.Equals(lst(i).Text) Then
 
-                lst(i).WordType = lst(i).WordType And &H11
+                lst(i).WordType = lst(i).WordType And (WordType.TOP Or WordType.SYS Or WordType.IMP)
                 If lst(i).WordType = WordType.UNKNOW Then
                     lst.RemoveAt(i)
                 End If
