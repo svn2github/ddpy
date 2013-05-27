@@ -42,6 +42,9 @@ Public Class FrmSetting
             ChkHideStatus.Checked = CBool(ary(13))
             ChkAutoPosition.Checked = CBool(ary(14))
 
+            ChkCandLimit.Checked = CBool(ary(15))
+            NumCandLimit.Value = CInt(ary(16))
+            NumCandLimit.Enabled = ChkCandLimit.Checked
 
         Catch ex As Exception
             ' MsgBox("初始显示发生异常" & vbNewLine & "(错误消息:" & ex.Message & ")", MsgBoxStyle.Exclamation, "淡定")
@@ -77,6 +80,8 @@ Public Class FrmSetting
         lst.Add(TxtFont.Text)
         lst.Add(ChkHideStatus.Checked)
         lst.Add(ChkAutoPosition.Checked)
+        lst.Add(ChkCandLimit.Checked)
+        lst.Add(NumCandLimit.Value)
 
         Return Strings.Join(lst.ToArray, vbTab)
     End Function
@@ -652,7 +657,10 @@ Public Class FrmSetting
 
     End Sub
 
-    Private Sub ChkAn_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ChkAn.MouseClick, ChkEn.MouseClick, ChkIn.MouseClick, ChkSrvMemory.MouseClick, ChkVshow.MouseClick, ChkZhizhe.MouseClick, ChkZize.MouseClick, ChkZzh.MouseClick, ChkHideStatus.MouseClick, ChkAutoPosition.MouseClick, ChkRiRe.MouseClick
+    Private Sub ChkAn_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ChkAn.MouseClick, ChkEn.MouseClick, ChkIn.MouseClick, ChkSrvMemory.MouseClick, ChkVshow.MouseClick, ChkZhizhe.MouseClick, ChkZize.MouseClick, ChkZzh.MouseClick, ChkHideStatus.MouseClick, ChkAutoPosition.MouseClick, ChkRiRe.MouseClick, ChkCandLimit.MouseClick
+
+        NumCandLimit.Enabled = ChkCandLimit.Checked
+
         If GetSetting().Equals(sSrvSetting) Then
             BtnApply.Enabled = False
         Else
@@ -668,7 +676,7 @@ Public Class FrmSetting
         End If
     End Sub
 
-    Private Sub NumPageCnt_ValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles NumPageCnt.ValueChanged, NumPyLen.ValueChanged
+    Private Sub NumPageCnt_ValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles NumPageCnt.ValueChanged, NumPyLen.ValueChanged, NumCandLimit.ValueChanged
         If GetSetting().Equals(sSrvSetting) Then
             BtnApply.Enabled = False
         Else

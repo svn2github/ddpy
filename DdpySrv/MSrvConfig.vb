@@ -67,6 +67,9 @@ Module MSrvConfig
     Private P_HIDE_STATUS As Boolean = False
     Private P_AUTO_POSITION As Boolean = True
 
+    Friend P_CAND_LIMIT As Boolean = True
+    Friend P_CAND_LIMIT_NUM As Integer = 30
+
     ''' <summary>
     ''' 取得输入法配置信息
     ''' </summary>
@@ -94,6 +97,9 @@ Module MSrvConfig
         lst.Add(P_FONT)
         lst.Add(P_HIDE_STATUS)
         lst.Add(P_AUTO_POSITION)
+
+        lst.Add(P_CAND_LIMIT)
+        lst.Add(P_CAND_LIMIT_NUM)
 
         Return Strings.Join(lst.ToArray, vbTab)
     End Function
@@ -124,6 +130,9 @@ Module MSrvConfig
             P_FONT = CStr(ary(12))
             P_HIDE_STATUS = CBool(ary(13))
             P_AUTO_POSITION = CBool(ary(14))
+
+            P_CAND_LIMIT = CBool(ary(15))
+            P_CAND_LIMIT_NUM = CInt(ary(16))
 
             ' 保存配置信息
             Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定配置.txt"

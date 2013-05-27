@@ -220,11 +220,11 @@ Module MDanDingDictionary
 
                         lstRet.Add(word)    ' 满足输入的对象
 
-                        If word.Text.Length > 1 Then
+                        If P_CAND_LIMIT AndAlso word.Text.Length > 1 Then
                             iCnt = iCnt + 1
                         End If
 
-                        If iCnt >= 30 Then
+                        If P_CAND_LIMIT AndAlso iCnt >= P_CAND_LIMIT_NUM Then
                             Exit For
                         End If
                     End If
