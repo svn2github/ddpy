@@ -254,6 +254,12 @@ Module MDanDingDictionary
 
         Dim lst As List(Of CWord)
 
+        'lst = mDanDingDic(scd)
+        'If lst Is Nothing Then
+        '    lst = New List(Of CWord)
+        '    mDanDingDic(scd) = lst
+        'End If
+
         If mDanDingDic.Contains(scd) Then
             lst = mDanDingDic(scd)
         Else
@@ -278,19 +284,23 @@ Module MDanDingDictionary
         Dim newWord As CWord = Nothing
         Dim existWord As CWord = Nothing
 
+        Dim line As String
+        Dim shotPys As String
+        Dim shotPys2 As String
+
         For i As Integer = 0 To lines.Length - 1
 
-            Dim line As String = Trim(lines(i).Replace(vbLf, ""))
+            line = lines(i).Replace(vbLf, "")
 
             ' 忽略注释行、空行
-            If line.StartsWith("//") OrElse "".Equals(line) Then
+            If line.StartsWith("//") OrElse line.Length = 0 Then
                 Continue For
             End If
 
             ' "文字 全拼 词频" 
             cols = line.Split(vbTab)
 
-            Dim shotPys As String = Strings.Join(GetMutilShotPys(cols(1)), "'")
+            shotPys = Strings.Join(GetMutilShotPys(cols(1)), "'")
             existWord = GetWord(cols(0), shotPys, cols(1))  ' 查找"同字同拼音"字
 
             If existWord Is Nothing Then
@@ -338,7 +348,11 @@ Module MDanDingDictionary
 
 
             ' ''''''''''''
-            shotPys = Strings.Join(GetMutilShotPys2(cols(1)), "'")
+            shotPys2 = Strings.Join(GetMutilShotPys2(cols(1)), "'")
+            If Not P_ADD_FIRST_WORD_IDX OrElse shotPys.Equals(shotPys2) Then
+                Continue For
+            End If
+
             existWord = GetWord(cols(0), shotPys, cols(1))  ' 查找"同字同拼音"字
 
             If existWord Is Nothing Then
@@ -394,32 +408,36 @@ Module MDanDingDictionary
 
 
     ''' <summary>
-    ''' 从文件导入字库词库
+    ''' 从文件导入系统字库词库
     ''' </summary>
-    ''' <param name="sPathFile">文件（"文字 全拼 词频"  UTF-8）</param>
+    ''' <param name="sPathFile">文件（"文字 全拼"  UTF-8）</param>
     Private Sub InitDanDingWordDic(ByVal sPathFile As String)
 
         Dim txt As String = My.Computer.FileSystem.ReadAllText(sPathFile, Encoding.UTF8)
-        Dim lines As String() = txt.Split(vbNewLine)
+        Dim lines As String() = txt.Split(vbNewLine)    ' 实际效果是按VbCr分割
         Dim cols As String()
         Dim lstWord As List(Of CWord)
         Dim newWord As CWord = Nothing
         Dim existWord As CWord = Nothing
 
+        Dim line As String
+        Dim shotPys As String
+        Dim shotPys2 As String
+
         For i As Integer = 0 To lines.Length - 1
 
-            Dim line As String = Trim(lines(i).Replace(vbLf, ""))
+            line = lines(i).Replace(vbLf, "")
 
             ' 忽略注释行、空行
-            If line.StartsWith("//") OrElse "".Equals(line) Then
+            If line.StartsWith("//") OrElse line.Length = 0 Then
                 Continue For
             End If
 
             ' "文字 全拼" 
             cols = line.Split(vbTab)
 
-            Dim shotPys As String = Strings.Join(GetMutilShotPys(cols(1)), "'")
-            Dim shotPys2 As String = Strings.Join(GetMutilShotPys2(cols(1)), "'")
+            shotPys = Strings.Join(GetMutilShotPys(cols(1)), "'")
+            shotPys2 = Strings.Join(GetMutilShotPys2(cols(1)), "'")
 
             iSysOrder = iSysOrder - 1
 
@@ -434,14 +452,14 @@ Module MDanDingDictionary
             lstWord = InitWordList(shotPys)
             lstWord.Add(newWord)
 
-            If Not shotPys2.Equals(shotPys) Then
+            If P_ADD_FIRST_WORD_IDX AndAlso Not shotPys2.Equals(shotPys) Then
                 lstWord = InitWordList(shotPys2)
                 lstWord.Add(newWord)
             End If
 
-            If newWord.WordType And WordType.USR Then
-                RegisterUserWord(newWord)
-            End If
+            'If newWord.WordType And WordType.USR Then
+            '    RegisterUserWord(newWord)
+            'End If
 
         Next
 

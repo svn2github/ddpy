@@ -60,6 +60,7 @@ Partial Class FrmSetting
         Me.TxtWord = New System.Windows.Forms.TextBox()
         Me.TabPageAdvanced = New System.Windows.Forms.TabPage()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.ChkAddFirstWordIdx = New System.Windows.Forms.CheckBox()
         Me.NumCandLimit = New System.Windows.Forms.NumericUpDown()
         Me.ChkCandLimit = New System.Windows.Forms.CheckBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
@@ -480,6 +481,7 @@ Partial Class FrmSetting
         '
         Me.GroupBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox6.Controls.Add(Me.ChkAddFirstWordIdx)
         Me.GroupBox6.Controls.Add(Me.NumCandLimit)
         Me.GroupBox6.Controls.Add(Me.ChkCandLimit)
         Me.GroupBox6.Location = New System.Drawing.Point(8, 82)
@@ -487,6 +489,16 @@ Partial Class FrmSetting
         Me.GroupBox6.Size = New System.Drawing.Size(458, 190)
         Me.GroupBox6.TabIndex = 2
         Me.GroupBox6.TabStop = False
+        '
+        'ChkAddFirstWordIdx
+        '
+        Me.ChkAddFirstWordIdx.AutoSize = True
+        Me.ChkAddFirstWordIdx.Location = New System.Drawing.Point(28, 70)
+        Me.ChkAddFirstWordIdx.Name = "ChkAddFirstWordIdx"
+        Me.ChkAddFirstWordIdx.Size = New System.Drawing.Size(338, 17)
+        Me.ChkAddFirstWordIdx.TabIndex = 7
+        Me.ChkAddFirstWordIdx.Text = "增加首字完整拼音索引（特殊情况适用，重启后生效）"
+        Me.ChkAddFirstWordIdx.UseVisualStyleBackColor = True
         '
         'NumCandLimit
         '
@@ -538,7 +550,7 @@ Partial Class FrmSetting
         Me.ChkSrvMemory.Location = New System.Drawing.Point(10, 27)
         Me.ChkSrvMemory.Name = "ChkSrvMemory"
         Me.ChkSrvMemory.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ChkSrvMemory.Size = New System.Drawing.Size(117, 17)
+        Me.ChkSrvMemory.Size = New System.Drawing.Size(102, 16)
         Me.ChkSrvMemory.TabIndex = 0
         Me.ChkSrvMemory.Text = "：节省内存模式"
         Me.ChkSrvMemory.UseVisualStyleBackColor = True
@@ -668,5 +680,6 @@ Partial Class FrmSetting
     Friend WithEvents ChkRiRe As System.Windows.Forms.CheckBox
     Friend WithEvents NumCandLimit As System.Windows.Forms.NumericUpDown
     Friend WithEvents ChkCandLimit As System.Windows.Forms.CheckBox
+    Friend WithEvents ChkAddFirstWordIdx As System.Windows.Forms.CheckBox
 
 End Class

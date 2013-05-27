@@ -100,6 +100,8 @@ Module MConfig
     Friend P_HIDE_STATUS As Boolean = False
     Friend P_AUTO_POSITION As Boolean = True
 
+    Friend P_ADD_FIRST_WORD_IDX As Boolean = False
+
     ''' <summary>
     ''' 取得最新配置信息
     ''' </summary>
@@ -132,6 +134,9 @@ Module MConfig
 
             P_HIDE_STATUS = CBool(ary(13))
             P_AUTO_POSITION = CBool(ary(14))
+            ' 15 是否限制非单字候选个数
+            ' 16 限制非单字候选个数值
+            P_ADD_FIRST_WORD_IDX = CBool(ary(17))
 
         Catch ex As Exception
             ComDebug(ex)

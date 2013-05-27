@@ -28,6 +28,10 @@ Module MPinYinBreak
     ''' <returns>简拼连拼（单引号分隔）</returns>
     Friend Function GetMutilShotPys2(ByVal fullPys As String) As String()
 
+        If Not P_ADD_FIRST_WORD_IDX Then
+            Return GetMutilShotPys(fullPys)
+        End If
+
         Dim pys As String() = fullPys.Split("'")
 
         For i As Integer = 0 To pys.Length - 1
