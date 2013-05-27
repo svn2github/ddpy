@@ -75,10 +75,10 @@ Friend NotInheritable Class ZExeCOMServer
         ' 清除缓存
         CacheCollect()
 
-        ReduceMemory()
-
         ' GC
         GC.Collect()
+
+        ReduceMemory()
 
     End Sub
 
