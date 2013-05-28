@@ -101,6 +101,7 @@ Module MConfig
     Friend P_AUTO_POSITION As Boolean = True
 
     Friend P_ADD_FIRST_WORD_IDX As Boolean = False
+    Friend P_AUTO_CREATE_WORD As Boolean = True
 
     ''' <summary>
     ''' 取得最新配置信息
@@ -137,6 +138,7 @@ Module MConfig
             ' 15 是否限制非单字候选个数
             ' 16 限制非单字候选个数值
             P_ADD_FIRST_WORD_IDX = CBool(ary(17))
+            P_AUTO_CREATE_WORD = CBool(ary(18))
 
         Catch ex As Exception
             ComDebug(ex)

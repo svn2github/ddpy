@@ -70,6 +70,7 @@ Partial Class FrmSetting
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.FontDlgCand = New System.Windows.Forms.FontDialog()
         Me.BtnApply = New System.Windows.Forms.Button()
+        Me.ChkAutoCreateWord = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumPyLen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumPageCnt, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -481,6 +482,7 @@ Partial Class FrmSetting
         '
         Me.GroupBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox6.Controls.Add(Me.ChkAutoCreateWord)
         Me.GroupBox6.Controls.Add(Me.ChkAddFirstWordIdx)
         Me.GroupBox6.Controls.Add(Me.NumCandLimit)
         Me.GroupBox6.Controls.Add(Me.ChkCandLimit)
@@ -493,7 +495,7 @@ Partial Class FrmSetting
         'ChkAddFirstWordIdx
         '
         Me.ChkAddFirstWordIdx.AutoSize = True
-        Me.ChkAddFirstWordIdx.Location = New System.Drawing.Point(28, 70)
+        Me.ChkAddFirstWordIdx.Location = New System.Drawing.Point(28, 63)
         Me.ChkAddFirstWordIdx.Name = "ChkAddFirstWordIdx"
         Me.ChkAddFirstWordIdx.Size = New System.Drawing.Size(338, 17)
         Me.ChkAddFirstWordIdx.TabIndex = 7
@@ -594,6 +596,16 @@ Partial Class FrmSetting
         Me.BtnApply.Text = "应  用"
         Me.BtnApply.UseVisualStyleBackColor = True
         '
+        'ChkAutoCreateWord
+        '
+        Me.ChkAutoCreateWord.AutoSize = True
+        Me.ChkAutoCreateWord.Location = New System.Drawing.Point(28, 93)
+        Me.ChkAutoCreateWord.Name = "ChkAutoCreateWord"
+        Me.ChkAutoCreateWord.Size = New System.Drawing.Size(156, 17)
+        Me.ChkAutoCreateWord.TabIndex = 7
+        Me.ChkAutoCreateWord.Text = "开启自动造词调频功能"
+        Me.ChkAutoCreateWord.UseVisualStyleBackColor = True
+        '
         'FrmSetting
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
@@ -681,5 +693,6 @@ Partial Class FrmSetting
     Friend WithEvents NumCandLimit As System.Windows.Forms.NumericUpDown
     Friend WithEvents ChkCandLimit As System.Windows.Forms.CheckBox
     Friend WithEvents ChkAddFirstWordIdx As System.Windows.Forms.CheckBox
+    Friend WithEvents ChkAutoCreateWord As System.Windows.Forms.CheckBox
 
 End Class

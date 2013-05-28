@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports System.Drawing
 
 ''' <summary>
 ''' 按键处理模块
@@ -1146,7 +1147,7 @@ Module MDanDingKeys
             OrElse iKey = Keys.Right _
             OrElse iKey = Keys.OemPeriod _
             OrElse iKey = Keys.Delete _
-            ) Then
+           ) Then
 
             isDot = False
             Return False

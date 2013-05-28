@@ -47,6 +47,7 @@ Public Class FrmSetting
             NumCandLimit.Enabled = ChkCandLimit.Checked
 
             ChkAddFirstWordIdx.Checked = CBool(ary(17))
+            ChkAutoCreateWord.Checked = CBool(ary(18))
 
         Catch ex As Exception
             ' MsgBox("初始显示发生异常" & vbNewLine & "(错误消息:" & ex.Message & ")", MsgBoxStyle.Exclamation, "淡定")
@@ -85,6 +86,7 @@ Public Class FrmSetting
         lst.Add(ChkCandLimit.Checked)
         lst.Add(NumCandLimit.Value)
         lst.Add(ChkAddFirstWordIdx.Checked)
+        lst.Add(ChkAutoCreateWord.Checked)
 
         Return Strings.Join(lst.ToArray, vbTab)
     End Function
@@ -668,7 +670,7 @@ Public Class FrmSetting
 
     End Sub
 
-    Private Sub ChkAn_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ChkAn.MouseClick, ChkEn.MouseClick, ChkIn.MouseClick, ChkSrvMemory.MouseClick, ChkVshow.MouseClick, ChkZhizhe.MouseClick, ChkZize.MouseClick, ChkZzh.MouseClick, ChkHideStatus.MouseClick, ChkAutoPosition.MouseClick, ChkRiRe.MouseClick, ChkCandLimit.MouseClick, ChkAddFirstWordIdx.MouseClick
+    Private Sub ChkAn_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ChkAn.MouseClick, ChkEn.MouseClick, ChkIn.MouseClick, ChkSrvMemory.MouseClick, ChkVshow.MouseClick, ChkZhizhe.MouseClick, ChkZize.MouseClick, ChkZzh.MouseClick, ChkHideStatus.MouseClick, ChkAutoPosition.MouseClick, ChkRiRe.MouseClick, ChkCandLimit.MouseClick, ChkAddFirstWordIdx.MouseClick, ChkAutoCreateWord.MouseClick
 
         NumCandLimit.Enabled = ChkCandLimit.Checked
 
@@ -694,4 +696,6 @@ Public Class FrmSetting
             BtnApply.Enabled = True
         End If
     End Sub
+
+
 End Class

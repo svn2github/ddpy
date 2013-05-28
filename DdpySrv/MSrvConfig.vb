@@ -71,6 +71,7 @@ Module MSrvConfig
     Friend P_CAND_LIMIT_NUM As Integer = 30
 
     Friend P_ADD_FIRST_WORD_IDX As Boolean = False
+    Friend P_AUTO_CREATE_WORD As Boolean = True
 
     ''' <summary>
     ''' 取得输入法配置信息
@@ -103,6 +104,7 @@ Module MSrvConfig
         lst.Add(P_CAND_LIMIT)
         lst.Add(P_CAND_LIMIT_NUM)
         lst.Add(P_ADD_FIRST_WORD_IDX)
+        lst.Add(P_AUTO_CREATE_WORD)
 
         Return Strings.Join(lst.ToArray, vbTab)
     End Function
@@ -137,6 +139,7 @@ Module MSrvConfig
             P_CAND_LIMIT = CBool(ary(15))
             P_CAND_LIMIT_NUM = CInt(ary(16))
             P_ADD_FIRST_WORD_IDX = CBool(ary(17))
+            P_AUTO_CREATE_WORD = CBool(ary(18))
 
             ' 保存配置信息
             Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定配置.txt"
