@@ -31,7 +31,6 @@ End Enum
 ''' 文字类
 ''' </summary>
 ''' <remarks></remarks>
-<Serializable()> _
 Friend Class CWord
     Implements IComparable
 
@@ -229,14 +228,16 @@ Friend Class CWord
                 Return -1
             End If
         ElseIf Me.WordType And WordType.USR Then
-            If word.WordType And WordType.USR Then
+            If word.WordType And WordType.TOP Then
+                Return 1
+            ElseIf word.WordType And WordType.USR Then
                 Return Me.UsrOrder > word.UsrOrder
             Else
                 Return -1
             End If
         ElseIf Me.WordType And WordType.SYS Then
 
-            If word.WordType And WordType.USR Then
+            If word.WordType And (WordType.USR Or WordType.TOP) Then
                 Return 1
             ElseIf word.WordType And WordType.SYS Then
                 Return Me.Order > word.Order
@@ -244,9 +245,7 @@ Friend Class CWord
                 Return -1
             End If
         ElseIf Me.WordType And WordType.IMP Then
-            If word.WordType And WordType.USR Then
-                Return 1
-            ElseIf word.WordType And WordType.SYS Then
+            If word.WordType And (WordType.USR Or WordType.TOP Or WordType.SYS) Then
                 Return 1
             ElseIf word.WordType And WordType.IMP Then
                 Return Me.ImpOrder > word.ImpOrder

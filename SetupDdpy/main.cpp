@@ -118,9 +118,9 @@ BOOL ComInit(){
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
     if (Is64BitOS()){
-        ExecuteCmd(L"msiexec.exe", L"/i DdpyX64.msi_", SW_SHOW, true);
+        ExecuteCmd(L"msiexec.exe", L"/i DdpyX64.msi", SW_SHOW, true);
     }else{
-        ExecuteCmd(L"msiexec.exe", L"/i DdpyX86.msi_", SW_SHOW, true);
+        ExecuteCmd(L"msiexec.exe", L"/i DdpyX86.msi", SW_SHOW, true);
     }
 
     // 起动后台服务程序

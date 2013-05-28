@@ -91,6 +91,7 @@ Public Class FrmSetting
 
     Private Sub BtnApply_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnApply.Click
         Try
+            Cursor = Cursors.WaitCursor
             Dim sSeting As String = GetSetting()
             Dim server = CreateObject("DdpySrv.ComClass")
             server.SrvSetSettingInfo(sSeting)
@@ -99,6 +100,8 @@ Public Class FrmSetting
             BtnApply.Enabled = False
         Catch ex As Exception
             MsgBox("配置信息保存失败" & vbNewLine & "(错误消息:" & ex.Message & ")", MsgBoxStyle.Exclamation, "淡定")
+        Finally
+            Cursor = Cursors.Arrow
         End Try
     End Sub
 
@@ -107,11 +110,13 @@ Public Class FrmSetting
     ''' </summary>
     Private Sub BtnOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnOK.Click
         Try
+            Cursor = Cursors.WaitCursor
             Dim server = CreateObject("DdpySrv.ComClass")
             server.SrvSetSettingInfo(GetSetting())
 
             Me.Close()
         Catch ex As Exception
+            Cursor = Cursors.Arrow
             MsgBox("配置信息保存失败" & vbNewLine & "(错误消息:" & ex.Message & ")", MsgBoxStyle.Exclamation, "淡定")
         End Try
 
@@ -651,10 +656,13 @@ Public Class FrmSetting
 
     Private Sub BtnCloseServer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnCloseServer.Click
         Try
+            Cursor = Cursors.WaitCursor
             Dim server As Object = CreateObject("DdpySrv.ComClass")
             server.Close()
             MsgBox("后台服务程序已关闭 （需要时会自行启动）", MsgBoxStyle.Information, "淡定")
         Catch ex As Exception
+        Finally
+            Cursor = Cursors.Arrow
         End Try
 
 

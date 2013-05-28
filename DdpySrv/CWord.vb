@@ -31,7 +31,6 @@ End Enum
 ''' 文字类
 ''' </summary>
 ''' <remarks></remarks>
-<Serializable()> _
 Friend Class CWord
     Implements IComparable
 

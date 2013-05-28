@@ -16,6 +16,7 @@ Module MDanDingDictionary
     Private iUsrOrder As Integer
     Private iTopOrder As Integer
 
+
     ''' <summary>
     ''' 增加一个新文字
     ''' </summary>
@@ -253,12 +254,6 @@ Module MDanDingDictionary
     Private Function InitWordList(ByVal scd As String) As List(Of CWord)
 
         Dim lst As List(Of CWord)
-
-        'lst = mDanDingDic(scd)
-        'If lst Is Nothing Then
-        '    lst = New List(Of CWord)
-        '    mDanDingDic(scd) = lst
-        'End If
 
         If mDanDingDic.Contains(scd) Then
             lst = mDanDingDic(scd)
