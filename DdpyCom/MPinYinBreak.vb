@@ -798,7 +798,7 @@ Module MPinYinBreak
             mapCustBreakPy("genv") = "ge"
 
             'mapCustBreakPy("genga") = "gen"
-            mapCustBreakPy("gengai") = "gen"
+            'mapCustBreakPy("gengai") = "gen"
             mapCustBreakPy("gengao") = "gen"
             mapCustBreakPy("gengan") = "gen"
             'mapCustBreakPy("gengang") = "gen"
@@ -922,7 +922,7 @@ Module MPinYinBreak
             mapCustBreakPy("cenu") = "ce"
             mapCustBreakPy("cenv") = "ce"
 
-            ' 模糊应适用
+            ' 模糊音适用
             'mapCustBreakPy("cenga") = "cen"
             'mapCustBreakPy("cengai") = "cen"
             mapCustBreakPy("cengao") = "cen"
@@ -1696,33 +1696,24 @@ Module MPinYinBreak
             mapCustBreakPy("xianger") = "xiang"
             mapCustBreakPy("xiangu") = "xian"
 
-            mapCustBreakPy("xianshibian") = "xi"   ' 西安事变
-            mapCustBreakPy("xianjiaoda") = "xi"   ' 西安交大
-            mapCustBreakPy("xianbeilin") = "xi"   ' 西安碑林
-            mapCustBreakPy("xianjiaotong") = "xi"   ' 西安交通
-            mapCustBreakPy("xianchengqiang") = "xi"   ' 西安城墙
-            mapCustBreakPy("xianfengzhen") = "xi"   ' 西安丰镇
-            mapCustBreakPy("xianbangzi") = "xi"   ' 西安梆子
-            mapCustBreakPy("xiandianzi") = "xi"   ' 西安电子
-
 
             mapCustBreakPy("biani") = "bi"
             mapCustBreakPy("bianu") = "bi"
             mapCustBreakPy("bianv") = "bi"
 
 
-            'mapCustBreakPy("niana") = "nia"  
-            'mapCustBreakPy("nianai") = "nia"
-            'mapCustBreakPy("nianao") = "nia"
-            'mapCustBreakPy("nianan") = "nia"
-            'mapCustBreakPy("nianang") = "nia"
-            'mapCustBreakPy("nianou") = "nia"
-            mapCustBreakPy("nianong") = "nia"
-            'mapCustBreakPy("niane") = "nia"
-            'mapCustBreakPy("nianer") = "nia"
-            mapCustBreakPy("nianei") = "nia"
-            'mapCustBreakPy("nianen") = "nia"
-            'mapCustBreakPy("nianeng") = "nia"
+            'mapCustBreakPy("niana") = "ni"  
+            'mapCustBreakPy("nianai") = "ni"
+            'mapCustBreakPy("nianao") = "ni"
+            'mapCustBreakPy("nianan") = "ni"
+            'mapCustBreakPy("nianang") = "ni"
+            'mapCustBreakPy("nianou") = "ni"
+            mapCustBreakPy("nianong") = "ni"
+            'mapCustBreakPy("niane") = "ni"
+            'mapCustBreakPy("nianer") = "ni"
+            mapCustBreakPy("nianei") = "ni"
+            'mapCustBreakPy("nianen") = "ni"
+            'mapCustBreakPy("nianeng") = "ni"
             mapCustBreakPy("niani") = "ni"
             mapCustBreakPy("nianu") = "ni"
             mapCustBreakPy("nianv") = "ni"

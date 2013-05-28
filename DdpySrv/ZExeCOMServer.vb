@@ -248,7 +248,7 @@ Friend NotInheritable Class ZExeCOMServer
         ' If lock drops to zero, attempt to terminate the server.
         If (nRet = 0) Then
 
-            SaveUserWords()
+            SaveUserWords(False)
 
             ' Post the WM_QUIT message to the main thread
             ZNativeMethod.PostThreadMessage( _

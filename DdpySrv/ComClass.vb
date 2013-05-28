@@ -85,6 +85,10 @@ Public Class ComClass
     Public Sub SrvSetSettingInfo(ByVal conf As String)
         Try
             SetSettingInfo(conf)
+
+            ' 清除缓存以便设定马上生效
+            CacheCollect(True)
+
         Catch ex As Exception
             ComError("SetSettingInfo(" & conf & ")", ex)
         End Try
@@ -97,76 +101,15 @@ Public Class ComClass
     ''' <param name="words">用户输入的文字（vbTab分割的拼音 + vbLf + vbTab分割的文字）</param>
     Public Sub SrvRegisterWords(ByVal words As String)
         Try
-            ' 清除缓存以便新词生效
-            CacheCollect(True)
+            RegisterWords(words)
 
-            Dim lines As String() = words.Split(vbLf)
-            Dim pys As String() = lines(0).Split(vbTab)
-            Dim txts As String() = lines(1).Split(vbTab)
-            For i As Integer = 0 To pys.Length - 1
-
-                ' 拼音或文字为空时忽略
-                If "".Equals(Trim(pys(i))) OrElse "".Equals(Trim(txts(i))) Then
-                    Continue For
-                End If
-
-                Dim sFstChar As String = Strings.Left(txts(i), 1)
-                If txts(i).Replace("啊", "").Length = 0 Then
-                    ' 无视 啊啊啊啊啊啊啊啊啊
-                    Continue For
-                End If
-                If txts(i).Length > 3 AndAlso txts(i).Replace(sFstChar, "").Length = 0 Then
-                    ' 无视3个以上的重复字
-                    Continue For
-                End If
-                If txts(i).Length > 20 Then
-                    ' 无视过长文字
-                    Continue For
-                End If
-                Dim shotPy As String = Strings.Join(GetMutilShotPys(pys(i)), "")
-                If shotPy.Length > 4 AndAlso shotPy.Replace(Strings.Left(shotPy, 1), "").Length = 0 Then
-                    ' 无视4个以上的重复简拼字
-                    Continue For
-                End If
-
-
-                Dim newWord As New CWord()
-                newWord.Text = txts(i)
-                newWord.PinYin = pys(i)
-                newWord.UsrOrder = 1
-                newWord.WordType = WordType.USR
-
-                Dim lst As List(Of CWord) = SearchWords(newWord.PinYin)
-
-                Dim isExist As Boolean = False
-                For Each word As CWord In lst
-                    If newWord.Equals(word) Then
-
-                        ' 更新文字类型和频率
-                        If word.WordType And WordType.USR Then
-                            word.UsrOrder = word.UsrOrder + 1
-                        End If
-
-                        word.WordType = word.WordType Or WordType.USR
-
-                        isExist = True
-                        RegisterUserWord(word)
-
-                        Exit For
-                    End If
-                Next
-
-                If Not isExist Then
-                    AddWordToDic(newWord)
-                    RegisterUserWord(newWord)
-                End If
-
-            Next
-
+            CacheCollect(True)   ' 清除缓存以便新词生效
         Catch ex As Exception
             ComError("SrvRegisterWord(" & words & ")", ex)
         End Try
     End Sub
+
+
 
     ''' <summary>
     ''' 从用户词库中删除指定字词
@@ -176,7 +119,15 @@ Public Class ComClass
     Public Sub SrvUnRegisterUserWord(ByVal pinYin As String, ByVal text As String)
         UnRegisterUserWord(pinYin, text)
         DeleteWordFromDic(pinYin, text)
-        CacheCollect(True)
+
+        ' 免分隔符的拼音处理（尽力删除相同词条）
+        Dim difPinyin As String = BreakPys(pinYin.Replace("'", ""))
+        If Not difPinyin.Equals(pinYin) AndAlso difPinyin.IndexOf(" ") < 0 Then
+            UnRegisterUserWord(difPinyin, text)
+            DeleteWordFromDic(difPinyin, text)
+        End If
+
+        CacheCollect(True)   ' 清除缓存以便旧词失效
     End Sub
 
     Public Function SrvSearchMixWords(ByVal codes As String) As String
@@ -214,49 +165,7 @@ Public Class ComClass
     ''' <returns>候选文字列表</returns>
     Public Function SrvSearchWords(ByVal codes As String) As String
         Try
-            Dim ret As String = ""
-
-            Dim okPys As String = BreakPys(codes).Split(" ")(0)  ' Get Right Py Only
-            Dim aryPy As String() = okPys.Split("'")
-
-            Dim stack As New Stack(Of List(Of CWord))
-            Dim py As String = ""
-            For i As Integer = 0 To aryPy.Length - 1
-                If i = 0 Then
-                    py = aryPy(i)
-                Else
-                    py = py & "'" & aryPy(i)
-                End If
-
-                Dim tmp As List(Of CWord) = SearchWords(py)
-                If tmp.Count > 0 Then
-                    stack.Push(tmp)
-                End If
-            Next
-
-
-            Dim lst As New List(Of CWord)
-            Dim wordRecom As CWord = GetRecommendWord(aryPy)
-            If Not wordRecom Is Nothing Then
-                lst.Add(wordRecom)
-            End If
-            Do While stack.Count > 0
-                lst.AddRange(stack.Pop())
-            Loop
-
-
-            ' 拼接成字符串作为结果返回给客户端
-            Dim buf As New StringBuilder
-            For i As Integer = 0 To lst.Count - 1
-                If i = 0 Then
-                    buf.Append(lst(i).ToString)
-                Else
-                    buf.Append(vbLf & lst(i).ToString)
-                End If
-            Next
-
-            Return buf.ToString
-
+            Return GetWordList(codes)
         Catch ex As Exception
             ComError("SrvSearchWords(" & codes & ")", ex)
             Return ""

@@ -187,7 +187,59 @@ Module MDanDingDictionary
     ''' </summary>
     ''' <param name="codes">拼音编码</param>
     ''' <returns>文字列表</returns>
-    Friend Function SearchWords(ByVal codes As String) As List(Of CWord)
+    Friend Function GetWordList(ByVal codes As String) As String
+        Dim ret As String = ""
+
+        Dim okPys As String = BreakPys(codes).Split(" ")(0)  ' Get Right Py Only
+        Dim aryPy As String() = okPys.Split("'")
+
+        Dim stack As New Stack(Of List(Of CWord))
+        Dim py As String = ""
+        For i As Integer = 0 To aryPy.Length - 1
+            If i = 0 Then
+                py = aryPy(i)
+            Else
+                py = py & "'" & aryPy(i)
+            End If
+
+            Dim tmp As List(Of CWord) = SearchWords(py)
+            If tmp.Count > 0 Then
+                stack.Push(tmp)
+            End If
+        Next
+
+
+        Dim lst As New List(Of CWord)
+        Dim wordRecom As CWord = GetRecommendWord(aryPy)
+        If Not wordRecom Is Nothing Then
+            lst.Add(wordRecom)
+        End If
+        Do While stack.Count > 0
+            lst.AddRange(stack.Pop())
+        Loop
+
+
+        ' 拼接成字符串作为结果返回给客户端
+        Dim buf As New StringBuilder
+        For i As Integer = 0 To lst.Count - 1
+            If i = 0 Then
+                buf.Append(lst(i).ToString)
+            Else
+                buf.Append(vbLf & lst(i).ToString)
+            End If
+        Next
+
+        Return buf.ToString
+
+    End Function
+
+
+    ''' <summary>
+    ''' 查找取得文字列表
+    ''' </summary>
+    ''' <param name="codes">拼音编码</param>
+    ''' <returns>文字列表</returns>
+    Friend Function SearchWords(ByVal codes As String, Optional ByVal bUseCache As Boolean = True) As List(Of CWord)
 
         SyncLock oCacheSyncLock
 
@@ -198,7 +250,7 @@ Module MDanDingDictionary
             End If
 
             ' 查找缓存
-            If mDicCache.ContainsKey(codes) Then
+            If bUseCache AndAlso mDicCache.ContainsKey(codes) Then
                 Return mDicCache(codes)
             End If
 
@@ -308,7 +360,7 @@ Module MDanDingDictionary
 
                 If wType And WordType.USR Then
                     newWord.UsrOrder = cols(2)
-                Else If wType And WordType.TOP Then
+                ElseIf wType And WordType.TOP Then
                     iTopOrder = iTopOrder - 1
                     newWord.TopOrder = iTopOrder
                 ElseIf wType And WordType.IMP Then

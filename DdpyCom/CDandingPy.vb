@@ -95,10 +95,10 @@ Friend Class CDandingPy
 
 
         If HasStackWord() Then
-            vDispPyText2 = vDispPyText & vDispPyText2
+            vDispPyText2 = (vDispPyText & vDispPyText2).Replace(" ", "")
             vInputPys = Strings.Left(vInputPys, vInputPys.Length - vDispPyText.Length)
         Else
-            vDispPyText2 = vInputPys & vDispPyText2
+            vDispPyText2 = (vInputPys & vDispPyText2).Replace(" ", "")
             vInputPys = ""
         End If
 
@@ -115,7 +115,11 @@ Friend Class CDandingPy
         End If
 
         If vWordStack.Count > 0 AndAlso vDispPyText = "" AndAlso Not vInputPys.EndsWith(" ") Then
-            vInputPys = vInputPys & " " & Strings.Left(vDispPyText2, 1)
+            If vInputPys.EndsWith(" ") OrElse vInputPys.EndsWith("'") Then
+                vInputPys = vInputPys & Strings.Left(vDispPyText2, 1)
+            Else
+                vInputPys = vInputPys & " " & Strings.Left(vDispPyText2, 1)
+            End If
             vDispPyText2 = Strings.Right(vDispPyText2, vDispPyText2.Length - 1)
         Else
             If My.Computer.Keyboard.CtrlKeyDown Then
@@ -136,7 +140,11 @@ Friend Class CDandingPy
             Return
         End If
 
-        vInputPys = vInputPys & vDispPyText2
+        If Not "".Equals(vDispPyText) OrElse vInputPys.EndsWith(" ") OrElse vInputPys.EndsWith("'") Then
+            vInputPys = vInputPys & vDispPyText2
+        Else
+            vInputPys = vInputPys & " " & vDispPyText2
+        End If
         vDispPyText2 = ""
 
         ExecuteSearch()
@@ -231,6 +239,9 @@ Friend Class CDandingPy
     ''' <returns>输入的拼音编码</returns>
     Public Property InputPys() As String
         Get
+            If vInputPys.EndsWith(" ") Then
+                vInputPys = Strings.Left(vInputPys, vInputPys.Length - 1)
+            End If
             Return vInputPys
         End Get
         Set(ByVal Value As String)
@@ -317,12 +328,17 @@ Friend Class CDandingPy
             vDispWordText = GetDispWordText()
 
             If vDispPyText = "" AndAlso Not vDispPyText2 = "" Then
-                vInputPys = vInputPys & vDispPyText2
+
+                If vInputPys.EndsWith(" ") OrElse vInputPys.EndsWith("'") Then
+                    vInputPys = vInputPys & vDispPyText2
+                Else
+                    vInputPys = vInputPys & " " & vDispPyText2
+                End If
 
                 ' 剩余拼音更新为vDispPyText2，最新Push的拼音拼接到vInputPys，vDispPyText还是显示空
                 vDispPyText = GetDispPyText()
                 vDispPyText2 = vDispPyText
-                vInputPys = Strings.Left(vInputPys, vInputPys.Length - vDispPyText.Length)
+                vInputPys = Strings.Left(vInputPys.Replace(" ", ""), vInputPys.Length - vDispPyText.Length)
                 vDispPyText = ""
             Else
                 vDispPyText = GetDispPyText()
@@ -456,6 +472,7 @@ Friend Class CDandingPy
         For i As Integer = 0 To vWordStack.Count - 1
             iPy = iPy + vWordStack.ElementAt(i).PinYin.Split("'").Length
         Next
+
         For i As Integer = 0 To iPy - 1
             tmp = tmp & pys(i)
         Next
@@ -515,13 +532,11 @@ Friend Class CDandingPy
         End If
 
         vDispPyText = GetDispPyText()
+
+        ' 默认按编码栏光标左边的拼音检索
         Dim searchPy As String = vDispPyText
-
         If "".Equals(vDispPyText) AndAlso vDispWordText.Length > 0 Then
-            'vDispPyText = vDispPyText2
-            'vDispPyText2 = ""
-            'vInputPys = vInputPys & vDispPyText
-
+            ' 编码栏光标左边没有拼音时，按光标右边的拼音检索
             searchPy = vDispPyText2
         End If
 
