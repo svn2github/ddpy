@@ -144,7 +144,11 @@ Public Class ComClass
                 End If
 
             Else
-                frmInput.Visible = False    ' 关闭候选窗口但不清除ddpy数据
+                If "devenv".Equals(Process.GetCurrentProcess().ProcessName) Then
+                    frmInput.Hide()             ' XP下Vs2010刚得到焦点时调用GetClassNameByHwnd会异常退出，这里清除数据个别应付
+                Else
+                    frmInput.Visible = False    ' 关闭候选窗口但不清除ddpy数据，以便激活时显示原有候选窗口
+                End If
                 frmStatus.Hide()
             End If
 
