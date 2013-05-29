@@ -44,6 +44,13 @@ Module MWinApi
 
     Friend Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Integer
 
+    <DllImport("kernel32.dll")> _
+    Private Function SetProcessWorkingSetSize(ByVal hPrc As Integer, ByVal minSize As Integer, ByVal maxSize As Integer) As Integer
+    End Function
+    <DllImport("kernel32.dll")> _
+    Private Function GetCurrentProcess() As Integer
+    End Function
+
     <DllImport("user32.dll", EntryPoint:="FindWindowEx")> _
     Friend Function FindWindowEx(ByVal hwndParent As IntPtr, ByVal hwndChildAfter As IntPtr, ByVal lpszClass As String, ByVal lpszWindow As String) As IntPtr
     End Function
@@ -62,5 +69,9 @@ Module MWinApi
         Return Strings.Left(strTitle, InStr(1, strTitle, vbNullChar))
 
     End Function
+
+    Friend Sub ReduceMemory()
+        SetProcessWorkingSetSize(GetCurrentProcess, -1, -1)
+    End Sub
 
 End Module

@@ -195,6 +195,7 @@ Public Class ComClass
         End If
 
         isLeftQte = True
+        ReduceMemory()
     End Sub
 
 

@@ -2080,14 +2080,6 @@ Module MPinYinBreak
             If mapCustBreakPy.ContainsKey(sKey) Then
                 Return mapCustBreakPy(sKey)
             End If
-
-            ' 仅模糊音适用 zua, cua, sua
-            If P_ZCS_ZHCHSH Then
-                If codes.StartsWith("zua") OrElse codes.StartsWith("cua")  OrElse codes.StartsWith("sua")  Then
-                    Return sKey
-                End If
-            End If
-
         End If
 
         Return ""
@@ -2138,6 +2130,13 @@ Module MPinYinBreak
             ' 实际没有 din 这个拼音，仅为模糊音 in=ing 用
             If P_IN_ING AndAlso sKey.Equals("din") Then
                  Return sKey
+            End If
+
+            ' 仅模糊音适用 zua, cua, sua
+            If P_ZCS_ZHCHSH Then
+                If codes.StartsWith("zua") OrElse codes.StartsWith("cua") OrElse codes.StartsWith("sua") Then
+                    Return sKey
+                End If
             End If
 
         End If
@@ -2480,8 +2479,8 @@ Module MPinYinBreak
         map("qiang") = True
         map("xia") = True
         map("shi") = True
-        map("lve") = True
-        map("nve") = True
+        map("lue") = True
+        map("nue") = True
         map("chi") = True
         map("jia") = True
         map("dia") = True
