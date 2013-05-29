@@ -40626,7 +40626,7 @@ http://code.google.com/p/ddpy/	dan'ding'pin'yin'shu'ru'fa'zhu'ye
 古井无波	gu'jing'wu'bo
 共进午餐	gong'jin'wu'can
 贵贱无常	gui'jian'wu'chang
-贵贱无二	gui'jian'wu'eer
+贵贱无二	gui'jian'wu'er
 根据我国	gen'ju'wo'guo
 挂机外挂	gua'ji'wai'gua
 国家外国专家局	guo'jia'wai'guo'zhuan'jia'ju
