@@ -213,7 +213,8 @@ Module MDanDingKeys
 
                             Dim word As CWord = ddPy.PopWord()
                             If word Is Nothing Then
-                                ddPy.InputPys = Left(ddPy.InputPys, ddPy.InputPys.Length - 1)
+                                ddPy.InputPys = ddPy.InputPys.Replace(" ", "")
+                                ddPy.InputPys = Strings.Left(ddPy.InputPys, ddPy.InputPys.Length - 1)
                                 If ddPy.InputPys.Length = 0 Then
                                     SetIkrFlag(ikr, True, False, False)
                                 Else

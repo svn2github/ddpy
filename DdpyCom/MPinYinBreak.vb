@@ -131,7 +131,7 @@ Module MPinYinBreak
 
             End While
 
-            If errPy <> "" Then
+            If errPy.Length > 0 Then
 
                 For j As Integer = i + 1 To sPys.Length - 1
                     errPy = errPy & "'" & sPys(j)

@@ -67,16 +67,29 @@ Friend Class CDandingPy
             Dim sMove As String = ""
 
             If My.Computer.Keyboard.CtrlKeyDown Then
-                Dim pys As String = BreakPys(vInputPys)
-                If pys.IndexOf(" ") > 0 Then
-                    sMove = Strings.Right(vInputPys, 1)
+
+                Dim py As String
+                Dim bEndsWithQuote As Boolean = vDispPyText.EndsWith("'")
+                If bEndsWithQuote Then
+                    py = BreakPys(vDispPyText.Substring(0, vDispPyText.Length - 1))
                 Else
-                    Dim aryPys As String() = pys.Split("'")
-                    Dim iLen As Integer = aryPys(aryPys.Length - 1).Length
-                    sMove = Strings.Right(vInputPys, iLen)
+                    py = BreakPys(vDispPyText)
+                End If
+
+                If py.IndexOf(" ") > 0 Then
+                    ' 如果有误拼就只左移一位
+                    sMove = Strings.Right(vDispPyText, 1)
+                Else
+                    ' 如果没有误拼则左移一个音节
+                    Dim aryPys As String() = py.Split("'")
+                    Dim iLen As Integer = aryPys(aryPys.Length - 1).Length  '  最后一个音节长度
+                    If bEndsWithQuote Then
+                        iLen = iLen + 1
+                    End If
+                    sMove = Strings.Right(vDispPyText, iLen)
                 End If
             Else
-                sMove = Strings.Right(vInputPys, 1)
+                sMove = Strings.Right(vDispPyText, 1)
             End If
 
 
@@ -114,22 +127,41 @@ Friend Class CDandingPy
             Return
         End If
 
-        If vWordStack.Count > 0 AndAlso vDispPyText = "" AndAlso Not vInputPys.EndsWith(" ") Then
-            If vInputPys.EndsWith(" ") OrElse vInputPys.EndsWith("'") Then
-                vInputPys = vInputPys & Strings.Left(vDispPyText2, 1)
+        If My.Computer.Keyboard.CtrlKeyDown Then
+            Dim py As String
+            Dim bStartsWithQuote As Boolean = vDispPyText2.StartsWith("'")
+            If bStartsWithQuote Then
+                py = Strings.Split(BreakPys(vDispPyText2.Substring(1)), " ")(0)
             Else
-                vInputPys = vInputPys & " " & Strings.Left(vDispPyText2, 1)
+                py = Strings.Split(BreakPys(vDispPyText2), " ")(0)
             End If
-            vDispPyText2 = Strings.Right(vDispPyText2, vDispPyText2.Length - 1)
-        Else
-            If My.Computer.Keyboard.CtrlKeyDown Then
-                Dim py As String = Strings.Split(BreakPys(vDispPyText2), "'")(0)
+            If py.Length > 0 Then
+                py = Strings.Split(py, "'")(0)
+                If bStartsWithQuote Then
+                    py = "'" & py
+                End If
+
+                If vDispPyText2.Length > py.Length AndAlso "'".Equals(vDispPyText2.Substring(py.Length, 1)) Then
+                    py = py & "'"
+                End If
+
+            Else
+                py = Strings.Left(vDispPyText2, 1)
+            End If
+
+            If vInputPys.Length > 0 AndAlso vDispPyText.Length = 0 AndAlso Not " '".Contains(Strings.Right(vInputPys, 1)) Then
+                vInputPys = vInputPys & " " & py
+            Else
                 vInputPys = vInputPys & py
-                vDispPyText2 = Strings.Right(vDispPyText2, vDispPyText2.Length - py.Length)
+            End If
+            vDispPyText2 = vDispPyText2.Substring(py.Length)
+        Else
+            If vInputPys.Length > 0 AndAlso vDispPyText.Length = 0 AndAlso Not " '".Contains(Strings.Right(vInputPys, 1)) Then
+                vInputPys = vInputPys & " " & Strings.Left(vDispPyText2, 1)
             Else
                 vInputPys = vInputPys & Strings.Left(vDispPyText2, 1)
-                vDispPyText2 = Strings.Right(vDispPyText2, vDispPyText2.Length - 1)
             End If
+            vDispPyText2 = vDispPyText2.Substring(1)
         End If
 
         ExecuteSearch()
@@ -140,7 +172,7 @@ Friend Class CDandingPy
             Return
         End If
 
-        If Not "".Equals(vDispPyText) OrElse vInputPys.EndsWith(" ") OrElse vInputPys.EndsWith("'") Then
+        If vDispPyText.Length > 0 OrElse vInputPys.Length = 0 OrElse vInputPys.EndsWith(" ") OrElse vInputPys.EndsWith("'") Then
             vInputPys = vInputPys & vDispPyText2
         Else
             vInputPys = vInputPys & " " & vDispPyText2
@@ -239,9 +271,6 @@ Friend Class CDandingPy
     ''' <returns>输入的拼音编码</returns>
     Public Property InputPys() As String
         Get
-            If vInputPys.EndsWith(" ") Then
-                vInputPys = Strings.Left(vInputPys, vInputPys.Length - 1)
-            End If
             Return vInputPys
         End Get
         Set(ByVal Value As String)
@@ -257,13 +286,17 @@ Friend Class CDandingPy
     ''' <returns>输入的拼音数组</returns>
     Private ReadOnly Property InputPyAry() As String()
         Get
-            Dim pys As String() = BreakPys(InputPys.Replace(" ", "'")).Split(" ")
-            If pys.Length > 1 Then
-                vErrorPys = pys(1)
+            Dim pys As String = vInputPys
+            If pys.EndsWith(" ") Then
+                pys = pys.Substring(0, pys.Length - 1)
+            End If
+            Dim aryPys As String() = BreakPys(pys.Replace(" ", "'")).Split(" ")
+            If aryPys.Length > 1 Then
+                vErrorPys = aryPys(1)
             Else
                 vErrorPys = ""
             End If
-            Return pys(0).Split("'")
+            Return aryPys(0).Split("'")
         End Get
     End Property
 
@@ -327,7 +360,7 @@ Friend Class CDandingPy
         Else
             vDispWordText = GetDispWordText()
 
-            If vDispPyText = "" AndAlso Not vDispPyText2 = "" Then
+            If vDispPyText.Length = 0 AndAlso vDispPyText2.Length > 0 Then
 
                 If vInputPys.EndsWith(" ") OrElse vInputPys.EndsWith("'") Then
                     vInputPys = vInputPys & vDispPyText2
@@ -335,10 +368,9 @@ Friend Class CDandingPy
                     vInputPys = vInputPys & " " & vDispPyText2
                 End If
 
-                ' 剩余拼音更新为vDispPyText2，最新Push的拼音拼接到vInputPys，vDispPyText还是显示空
-                vDispPyText = GetDispPyText()
+                ' 剩余拼音更新为vDispPyText2，vDispPyText还是显示空
+                vDispPyText = GetDispPyText(False)  ' vInputPys不拼接vDispPyText
                 vDispPyText2 = vDispPyText
-                vInputPys = Strings.Left(vInputPys.Replace(" ", ""), vInputPys.Length - vDispPyText.Length)
                 vDispPyText = ""
             Else
                 vDispPyText = GetDispPyText()
@@ -460,32 +492,52 @@ Friend Class CDandingPy
     ''' 取得输入的剩余待转换拼音
     ''' </summary>
     ''' <returns>输入的剩余待转换拼音</returns>
-    Private Function GetDispPyText() As String
+    Private Function GetDispPyText(Optional ByVal bHasDispPyText As Boolean = True) As String
 
         If vWordStack Is Nothing OrElse vWordStack.Count = 0 Then
-            Return InputPys.Replace(" ", "")
+            vInputPys = vInputPys.Replace(" ", "")
+            Return vInputPys
         End If
 
-        Dim tmp As String = ""
-        Dim pys As String() = InputPyAry
-        Dim iPy As Integer = 0
+        Dim pys As String() = InputPyAry        ' 按程序规则分割的正确部分拼音
+        Dim iPy As Integer = 0                  ' 词条堆栈中共多少个音节
+        Dim wordsPys As String = ""             ' 由词条堆栈中音节数算出的对应编码
+
         For i As Integer = 0 To vWordStack.Count - 1
             iPy = iPy + vWordStack.ElementAt(i).PinYin.Split("'").Length
         Next
 
         For i As Integer = 0 To iPy - 1
-            tmp = tmp & pys(i)
+            wordsPys = wordsPys & pys(i)
         Next
 
         Dim tar As String = ""
-        For i As Integer = tmp.Length To InputPys.Length
-            If tmp.Equals(Strings.Left(InputPys, i).Replace("'", "").Replace(" ", "")) Then
-                tar = InputPys.Substring(i)
+        For i As Integer = wordsPys.Length To vInputPys.Length
+            If wordsPys.Equals(Strings.Left(vInputPys, i).Replace("'", "").Replace(" ", "")) Then
+                tar = vInputPys.Substring(i)
+                If vInputPys.Length > i AndAlso "'".Equals(vInputPys.Substring(i, 1)) Then
+                    wordsPys = Strings.Left(vInputPys, i + 1)
+                Else
+                    wordsPys = Strings.Left(vInputPys, i)
+                End If
+
+                Exit For
             End If
         Next
 
         If tar.StartsWith("'") Then
             tar = tar.Substring(1)
+        End If
+        tar = tar.Replace(" ", "")
+
+        If bHasDispPyText Then
+            If wordsPys.EndsWith("'") Then
+                vInputPys = Trim(wordsPys & tar)
+            Else
+                vInputPys = Trim(wordsPys & " " & tar)
+            End If
+        Else
+            vInputPys = Trim(wordsPys)
         End If
 
         Return tar

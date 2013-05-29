@@ -8,21 +8,28 @@ Module MDebug
 
     Friend frmDebug As FrmImeDebug
     Private oldTime As Integer = 0
+    Private oFileLock As New Object
 
     Friend Sub ComDebug(ByVal ex As Exception)
+        SyncLock oFileLock
 
-        Dim sLogFile As String = GetAllUsersLogPath() & "\\DdpyCom-" & Now.ToString("yyyy-MM-dd") & ".log"
-        Dim txt As String = Now.ToString("yyyy-MM-dd HH:mm:ss.fff  ") & ex.Message & vbNewLine & ex.StackTrace & vbNewLine
-        My.Computer.FileSystem.WriteAllText(sLogFile, txt, True, Encoding.UTF8)
+            Dim sLogFile As String = GetAllUsersLogPath() & "\\DdpyCom-" & Now.ToString("yyyy-MM-dd") & ".log"
+            Dim txt As String = Now.ToString("yyyy-MM-dd HH:mm:ss.fff  ") & ex.Message & vbNewLine & ex.StackTrace & vbNewLine
+            My.Computer.FileSystem.WriteAllText(sLogFile, txt, True, Encoding.UTF8)
 
-        ComDebug(ex.Message & vbNewLine & ex.StackTrace)
+            ComDebug(ex.Message & vbNewLine & ex.StackTrace)
+
+        End SyncLock
     End Sub
 
     Friend Sub ComInfo(ByVal info As String)
+        SyncLock oFileLock
 
-        Dim sLogFile As String = GetAllUsersLogPath() & "\\DdpyCom-" & Now.ToString("yyyy-MM-dd") & ".log"
-        Dim txt As String = Now.ToString("yyyy-MM-dd HH:mm:ss.fff  ") & info & vbNewLine
-        My.Computer.FileSystem.WriteAllText(sLogFile, txt, True, Encoding.UTF8)
+            Dim sLogFile As String = GetAllUsersLogPath() & "\\DdpyCom-" & Now.ToString("yyyy-MM-dd") & ".log"
+            Dim txt As String = Now.ToString("yyyy-MM-dd HH:mm:ss.fff  ") & info & vbNewLine
+            My.Computer.FileSystem.WriteAllText(sLogFile, txt, True, Encoding.UTF8)
+
+        End SyncLock
 
     End Sub
 
