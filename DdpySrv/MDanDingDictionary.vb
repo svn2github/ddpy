@@ -115,8 +115,8 @@ Module MDanDingDictionary
         ' 初始化字库
         If (mDanDingDic Is Nothing) Then
             mDanDingDic = New Hashtable ' "拼音 - CWord
-            InitDanDingWordDic(sFileDic) ' 淡定字库
             InitDanDingWordDic(sFileWrd) ' 淡定词库
+            InitDanDingWordDic(sFileDic) ' 淡定字库
         End If
 
         ' 导入用户词库
