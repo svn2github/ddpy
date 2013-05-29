@@ -14,9 +14,7 @@ Module MRecommendWord
 
         Dim lst As New List(Of CWord)
         Dim cd As String = ""
-        Dim lstStack As New List(Of CWord)
         Dim tmpWord As CWord = Nothing
-        Dim i As Integer = 0
 
         ' 有完全匹配的文字存在时，不做自动组合
         Dim firstWord As CWord = GetFirstWord(Strings.Join(pyAry, "'"))
@@ -24,53 +22,32 @@ Module MRecommendWord
             Return Nothing
         End If
 
-        For i = 0 To pyAry.Count - 1
+        Dim iStart As Integer = 0
+        For i As Integer = pyAry.Length - 2 To iStart Step -1
 
-            If cd = "" Then
-                cd = cd & pyAry(i)
-            Else
-                cd = cd & "'" & pyAry(i)
+            cd = JoinPinyin(pyAry, iStart, i)
+            tmpWord = GetFirstWord(cd)
+
+            If tmpWord IsNot Nothing Then
+                lst.Add(tmpWord)
+
+                iStart = i + 1
+                i = pyAry.Length
             End If
-
-            Dim word As CWord = GetFirstWord(cd)
-            If (Not word Is Nothing) Then
-                tmpWord = word
-            Else
-                If Not tmpWord Is Nothing Then
-                    lstStack.Add(tmpWord)
-                    tmpWord = Nothing
-                End If
-
-                cd = pyAry(i)
-                word = GetFirstWord(cd)
-                If (Not word Is Nothing) Then
-                    tmpWord = word
-                End If
-
-            End If
-
         Next
-
-        If Not tmpWord Is Nothing Then
-            lstStack.Add(tmpWord)
-        End If
-
 
         ' 新文字
         Dim newWord As CWord = Nothing
-        If lstStack.Count > 1 Then
+        If lst.Count > 1 Then
 
             newWord = New CWord
             Dim txt As String = ""
-            Dim shortPinYin As String = ""
             Dim pinYin As String = ""
-            Dim zhuYin As String = ""
 
-            lstStack.Reverse()
-            For i = 0 To lstStack.Count - 1
-                tmpWord = lstStack(i)
+            For i As Integer = lst.Count - 1 To 0 Step -1
+                tmpWord = lst(i)
 
-                If txt = "" Then
+                If pinYin = "" Then
                     pinYin = tmpWord.PinYin & pinYin
                 Else
                     pinYin = tmpWord.PinYin & "'" & pinYin
@@ -80,11 +57,32 @@ Module MRecommendWord
 
             newWord.Text = txt
             newWord.PinYin = pinYin
-            newWord.Order = 1
             newWord.WordType = WordType.UNKNOW
         End If
 
         Return newWord
+    End Function
+
+
+    ''' <summary>
+    ''' 用分隔符拼接指定范围的拼音
+    ''' </summary>
+    ''' <param name="pyAry">拼音数组</param>
+    ''' <param name="iStart">开始位置</param>
+    ''' <param name="iEnd">结束位置</param>
+    ''' <returns>拼接好的拼音</returns>
+    Private Function JoinPinyin(ByVal pyAry As String(), ByVal iStart As Integer, ByVal iEnd As Integer) As String
+        Dim cd As String = ""
+
+        For i As Integer = iStart To iEnd
+            If cd = "" Then
+                cd = cd & pyAry(i)
+            Else
+                cd = cd & "'" & pyAry(i)
+            End If
+        Next
+
+        Return cd
     End Function
 
 End Module
