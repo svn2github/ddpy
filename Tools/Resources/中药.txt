@@ -282,7 +282,7 @@
 葛根芩连片	ge'gen'qin'lian'pian
 葛根芩连丸	ge'gen'qin'lian'wan
 葛根芩连微丸	ge'gen'qin'lian'wei'wan
-蛤壳	ge'qiao
+蛤壳	ge'ke
 蛤蚧	ge'jie
 蛤蚧定喘丸	ge'jie'ding'chuan'wan
 根痛平颗粒	gen'tong'ping'ke'li
@@ -1037,7 +1037,7 @@
 杞菊地黄丸	qi'ju'di'huang'wan
 枇杷叶	pi'pa'ye
 枇杷叶膏	pi'pa'ye'gao
-枳壳	zhi'qiao
+枳壳	zhi'ke
 枳实	zhi'shi
 枳实导滞丸	zhi'shi'dao'zhi'wan
 枳术丸	zhi'zhu'wan
@@ -1067,7 +1067,7 @@
 癃清片	long'qing'pian
 蜈蚣	wu'gong
 蟾酥	chan'su
-罂粟壳	ying'su'qiao
+罂粟壳	ying'su'ke
 瞿麦	qu'mai
 麝香	she'xiang
 麝香	she'xiang
