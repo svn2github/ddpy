@@ -449,7 +449,7 @@
 门派	men'pai
 什么	shen'me
 他的	ta'de
-都是	du'shi
+都是	dou'shi
 万元	wan'yuan
 一种	yi'zhong
 而且	er'qie
@@ -575,7 +575,7 @@
 之间的	zhi'jian'de
 最大的	zui'da'de
 艺术	yi'shu
-都有	du'you
+都有	dou'you
 次数	ci'shu
 房地产	fang'di'chan
 意见	yi'jian
@@ -666,7 +666,7 @@
 内部	nei'bu
 品种	pin'zhong
 娱乐	yu'le
-都会	du'hui
+都会	dou'hui
 母亲	mu'qin
 重新	chong'xin
 说道	shuo'dao
@@ -709,7 +709,7 @@
 会有	hui'you
 感受	gan'shou
 学会	xue'hui
-都在	du'zai
+都在	dou'zai
 父亲	fu'qin
 传播	chuan'bo
 全省	quan'sheng
@@ -745,7 +745,7 @@
 感到	gan'dao
 使用的	shi'yong'de
 万吨	wan'dun
-都要	du'yao
+都要	dou'yao
 体育	ti'yu
 合理	he'li
 感情	gan'qing
@@ -841,7 +841,7 @@
 出现了	chu'xian'le
 大部分	da'bu'fen
 做了	zuo'le
-都可以	du'ke'yi
+都可以	dou'ke'yi
 记得	ji'de
 责令	ze'ling
 云南	yun'nan
@@ -850,7 +850,7 @@
 旅行社	lv'xing'she
 形成了	xing'cheng'le
 高度	gao'du
-都不	du'bu
+都不	dou'bu
 组织的	zu'zhi'de
 订单	ding'dan
 小说	xiao'shuo
@@ -860,7 +860,7 @@
 得到了	de'dao'le
 广泛	guang'fan
 显得	xian'de
-都能	du'neng
+都能	dou'neng
 江苏省	jiang'su'sheng
 大会	da'hui
 大多数	da'duo'shu
@@ -970,7 +970,7 @@
 流行	liu'xing
 还能	hai'neng
 走了	zou'le
-都没有	du'mei'you
+都没有	dou'mei'you
 发生的	fa'sheng'de
 大陆	da'lu
 似的	shi'de
@@ -1038,7 +1038,7 @@
 美丽的	mei'li'de
 室内	shi'nei
 可见	ke'jian
-大家都	da'jia'du
+大家都	da'jia'dou
 人和	ren'he
 及其他	ji'qi'ta
 以内	yi'nei
@@ -1121,7 +1121,7 @@
 公司地址	gong'si'di'zhi
 也将	ye'jiang
 西藏	xi'zang
-我都	wo'du
+我都	wo'dou
 发生了	fa'sheng'le
 那天	na'tian
 董事会	dong'shi'hui
@@ -1275,7 +1275,7 @@
 较大的	jiao'da'de
 在其	zai'qi
 最新的	zui'xin'de
-都很	du'hen
+都很	dou'hen
 压缩	ya'suo
 食用	shi'yong
 城市的	cheng'shi'de
@@ -1346,6 +1346,7 @@
 养殖	yang'zhi
 摩托车	mo'tuo'che
 都市	du'shi
+大都市	da'du'shi
 月底	yue'di
 参展	can'zhan
 地产	di'chan
@@ -1463,7 +1464,7 @@
 大酒店	da'jiu'dian
 赢得	ying'de
 干燥	gan'zao
-都没	du'mei
+都没	dou'mei
 方的	fang'de
 毫无	hao'wu
 便于	bian'yu
@@ -1578,10 +1579,10 @@
 外地	wai'di
 绿化	lv'hua
 认识到	ren'shi'dao
-都被	du'bei
+都被	dou'bei
 仅供参考	jin'gong'can'kao
 各单位	ge'dan'wei
-也都	ye'du
+也都	ye'dou
 地处	di'chu
 长春	chang'chun
 对着	dui'zhe
@@ -3185,7 +3186,7 @@
 并没	bing'mei
 地质	di'zhi
 长效机制	chang'xiao'ji'zhi
-都用	du'yong
+都用	dou'yong
 数据包	shu'ju'bao
 误会	wu'hui
 那个人	na'ge'ren
@@ -4727,7 +4728,7 @@
 阻塞	zu'se
 靠着	kao'zhe
 综合开发	zong'he'kai'fa
-都认为	du'ren'wei
+都认为	dou'ren'wei
 调和	tiao'he
 大山	da'shan
 十分重视	shi'fen'zhong'shi
@@ -8388,7 +8389,6 @@
 请提前	qing'ti'qian
 那根	na'gen
 责任保险	ze'ren'bao'xian
-大都市	da'du'shi
 转成	zhuan'cheng
 看得出	kan'de'chu
 参战	can'zhan
@@ -14504,7 +14504,7 @@
 高交会	gao'jiao'hui
 尾翼	wei'yi
 国内长途	guo'nei'chang'tu
-昌都	chang'dou
+昌都	chang'du
 调色板	tiao'se'ban
 鞋柜	xie'gui
 乐声	yue'sheng
@@ -15502,3 +15502,4 @@
 翻番	fan'fan
 协调能力	xie'tiao'neng'li
 约翰逊	yue'han'xun
+的原因	de'yuan'yin

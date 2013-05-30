@@ -61,33 +61,39 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 // 四字成语 8011 个 拼音正确
-        '''哀哀父母	ai&apos;ai&apos;fu&apos;mu	1
-        '''哀哀欲绝	ai&apos;ai&apos;yu&apos;jue	1
-        '''爱别离苦	ai&apos;bie&apos;li&apos;ku	1
-        '''哀兵必胜	ai&apos;bing&apos;bi&apos;sheng	1
-        '''爱不忍释	ai&apos;bu&apos;ren&apos;shi	1
-        '''爱不释手	ai&apos;bu&apos;shi&apos;shou	1
-        '''爱才如渴	ai&apos;cai&apos;ru&apos;ke	1
-        '''爱财如命	ai&apos;cai&apos;ru&apos;ming	1
-        '''爱才若渴	ai&apos;cai&apos;ruo&apos;ke	1
-        '''哀而不伤	ai&apos;er&apos;bu&apos;shang	1
-        '''挨风缉缝	ai&apos;feng&apos;ji&apos;feng	1
-        '''哀感天地	ai&apos;gan&apos;tian&apos;di	1
-        '''哀感顽艳	ai&apos;gan&apos;wan&apos;yan	1
-        '''哀感中年	ai&apos;gan&apos;zhong&apos;nian	1
-        '''哀告宾服	ai&apos;gao&apos;bin&apos;fu	1
-        '''爱国如家	ai&apos;guo&apos;ru&apos;jia	1
-        '''爱鹤失众	ai&apos;he&apos;shi&apos;zhong	1
-        '''哀鸿遍野	ai&apos;hong&apos;bian&apos;ye	1
-        '''哀毁骨立	ai&apos;hui&apos;gu&apos;li	1
-        '''挨家挨户	ai&apos;jia&apos;ai&apos;hu	1
-        '''挨肩并足	ai&apos;jian&apos;bing&apos;zu	1
-        '''挨肩擦膀	ai&apos;jian&apos;ca&apos; [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''  查找类似 // 中医药典
+        '''阿胶	e&apos;jiao
+        '''阿魏	a&apos;wei
+        '''阿魏化痞膏	a&apos;wei&apos;hua&apos;pi&apos;gao
+        '''矮地茶	ai&apos;di&apos;cha
+        '''艾附暖宫丸	ai&apos;fu&apos;nuan&apos;gong&apos;wan
+        '''艾叶	ai&apos;ye
+        '''安坤赞育丸	an&apos;kun&apos;zan&apos;yu&apos;wan
+        '''八角茴香	ba&apos;jiao&apos;hui&apos;xiang
+        '''八角茴香油	ba&apos;jiao&apos;hui&apos;xiang&apos;you
+        '''八正合剂	ba&apos;zheng&apos;he&apos;ji
+        '''白扁豆	bai&apos;bian&apos;dou
+        '''白芍	bai&apos;shao
+        '''白术	bai&apos;zhu
+        '''柏子仁	bai&apos;zi&apos;ren
+        '''柏子养心丸	bai&apos;zi&apos;yang&apos;xin&apos;wan
+        '''百合	bai&apos;he
+        '''百合固金丸	bai&apos;he&apos;gu&apos;jin&apos;wan
+        '''浓缩丸	nong&apos;suo&apos;wan
+        '''薄荷	bo&apos;he
+        '''薄荷脑	bo&apos;hen&apos;ao
+        '''薄荷素油	bo&apos;he&apos;su&apos;you
+        '''薄荷油	bo&apos;he&apos;you
+        '''保和丸	bao&apos;he&apos;wan
+        '''宝咳宁颗粒	bao&apos;ke&apos;ning&apos;ke&apos;li
+        '''北沙参	bei&apos;sha&apos;shen
+        '''扁蓄	bian&apos;xu
+        '''合成龙脑	he&apos;cheng&apos;long&apos;nao
+        '''参精止渴丸	shen&apos;ji [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
-        Friend ReadOnly Property 四字成语() As String
+        Friend ReadOnly Property 多音词库() As String
             Get
-                Return ResourceManager.GetString("四字成语", resourceCulture)
+                Return ResourceManager.GetString("多音词库", resourceCulture)
             End Get
         End Property
         
@@ -136,177 +142,52 @@ Namespace My.Resources
             End Get
         End Property
         
-        '''<summary>
-        '''  查找类似 我们
-        '''一个
-        '''他是
-        '''年底
-        '''事后
-        '''时间
-        '''近日
-        '''积分
-        '''公司
-        '''企业
-        '''注册
-        '''中国
-        '''可以
-        '''工作
-        '''或者
-        '''没有
-        '''信息
-        '''文章
-        '''自己
-        '''产品
-        '''等级
-        '''使用
-        '''这个
-        '''精华
-        '''作者
-        '''就是
-        '''他们
-        '''通过
-        '''如果
-        '''服务
-        '''以及
-        '''论坛
-        '''提供
-        '''管理
-        '''要求
-        '''状态
-        '''问题
-        '''系统
-        '''阅读
-        '''软件
-        '''了哪
-        '''聊以
-        '''自己的
-        '''帖子
-        '''项目
-        '''因为
-        '''电话
-        '''网站
-        '''所以
-        '''但是
-        '''支持
-        '''用户
-        '''台州市
-        '''已经
-        '''同时
-        '''一些
-        '''威望
-        '''得很
-        '''发布
-        '''方式
-        '''内容
-        '''这些
-        '''设计
-        '''价格
-        '''我的
-        '''根据
-        '''技术
-        '''能么
-        '''北京
-        '''作为
-        '''具有
-        '''需要
-        '''现在
-        '''选择
-        '''活动
-        '''其他
-        '''应当
-        '''下载
-        '''权限
-        '''市场
-        '''地址
-        '''的人
-        '''包括
-        '''本站
-        '''最后
-        '''由于
-        '''还是
-        '''目前
-        '''因此
-        '''来自
-        '''国家
-        '''你的
-        '''在线
-        '''发展
-        '''功能
-        '''这种
-        '''单位
-        '''专业
-        '''会员
-        '''对于
-        '''门派
-        '''学生
-        '''所有
-        '''以上
-        '''什么
-        '''相关
-        '''回复
-        '''开始
-        '''品牌
-        '''上海
-        '''情况
-        '''组织
-        '''他的
-        '''都是
-        '''登录
-        '''万元
-        '''一种
-        '''图片
-        '''而且
-        '''离线
-        '''规定
-        '''网络
-        '''也是
-        '''主题
-        '''其中
-        '''关于
-        '''成为
-        '''学习 [字符串的其余部分被截断]&quot;; 的本地化字符串。
-        '''</summary>
-        Friend ReadOnly Property 淡定词序() As String
+        Friend ReadOnly Property 淡定词序() As Byte()
             Get
-                Return ResourceManager.GetString("淡定词序", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("淡定词序", resourceCulture)
+                Return CType(obj,Byte())
             End Get
         End Property
         
         '''<summary>
-        '''  查找类似 阿爸	a&apos;ba
+        '''  查找类似 阿炳	a&apos;bing
+        '''阿爸	a&apos;ba
         '''阿坝	a&apos;ba
         '''阿伯	a&apos;bo
+        '''阿鼻	a&apos;bi
         '''阿扁	a&apos;bian
+        '''阿保	a&apos;bao
+        '''阿谤	a&apos;bang
+        '''阿比	a&apos;bi
+        '''阿柄	a&apos;bing
+        '''阿鼻地狱	a&apos;bi&apos;di&apos;yu
+        '''阿鼻叫唤	a&apos;bi&apos;jiao&apos;huan
         '''阿波罗	a&apos;bo&apos;luo
+        '''阿波罗计划	a&apos;bo&apos;luo&apos;ji&apos;hua
+        '''阿巴拉契亚山脉	a&apos;ba&apos;la&apos;qi&apos;ya&apos;shan&apos;mai
+        '''阿比让	a&apos;bi&apos;rang
         '''阿巴斯	a&apos;ba&apos;si
         '''阿坝县	a&apos;ba&apos;xian
+        '''阿鼻狱	a&apos;bi&apos;yu
         '''阿坝州	a&apos;ba&apos;zhou
         '''阿坝镇	a&apos;ba&apos;zhen
         '''阿布扎比	a&apos;bu&apos;zha&apos;bi
+        '''阿保之功	a&apos;bao&apos;zhi&apos;gong
+        '''阿保之劳	a&apos;bao&apos;zhi&apos;lao
+        '''阿茶	a&apos;cha
+        '''阿从	a&apos;cong
+        '''阿谄	a&apos;chan
         '''阿城市	a&apos;cheng&apos;shi
         '''阿昌族	a&apos;chang&apos;zu
         '''阿城镇	a&apos;cheng&apos;zhen
         '''阿斗	a&apos;dou
+        '''阿爹	a&apos;die
         '''阿弟	a&apos;di
-        '''阿达	a&apos;da
-        '''阿呆	a&apos;dai
-        '''阿德	a&apos;de
-        '''阿迪	a&apos;di
-        '''阿迪达斯	a&apos;di&apos;da&apos;si
-        '''阿的平	a&apos;de&apos;ping
-        '''阿杜瓦战役	a&apos;du&apos;wa&apos;zhan&apos;yi
-        '''阿尔巴尼	a&apos;er&apos;ba&apos;ni
-        '''阿尔巴尼亚	a&apos;er&apos;ba&apos;ni&apos;ya
-        '''阿尔卑斯	a&apos;er&apos;bei&apos;si
-        '''阿尔卑斯山	a&apos;er&apos;bei&apos;si&apos;shan
-        '''阿尔卑斯山脉	a&apos;er&apos;bei&apos;si&apos;shan&apos;mai
-        '''阿尔法	a&apos;er&apos;fa
-        '''阿耳法粒子	a&apos;er&apos;fa&apos;li&apos;zi
-        '''阿尔及利	a&apos;er&apos;ji&apos;li
-        '''阿尔及利亚	a&apos;er&apos;ji&apos;li&apos;ya
-        '''阿尔卡特	a&apos;er&apos;ka&apos;te
-        '''阿尔山市	a&apos;er&apos;shan&apos;shi
-        '''阿尔泰山 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''阿大	a&apos;da
+        '''吖啶	a&apos;ding
+        '''阿堵	a&apos;du
+        '''阿党	a&apos;dang
+        '''阿殿	a&apos;dian [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property 淡定词库() As String
             Get

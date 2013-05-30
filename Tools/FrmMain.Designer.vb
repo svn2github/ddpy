@@ -22,6 +22,7 @@ Partial Class FrmMain
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.BtnSearchPy = New System.Windows.Forms.Button()
@@ -29,6 +30,8 @@ Partial Class FrmMain
         Me.TxtWord = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.BtnExpWord = New System.Windows.Forms.Button()
+        Me.BtnAddPinyinPlus = New System.Windows.Forms.Button()
         Me.BtnAddPinyin = New System.Windows.Forms.Button()
         Me.BtnSelectWordFile = New System.Windows.Forms.Button()
         Me.TxtWordFile = New System.Windows.Forms.TextBox()
@@ -36,13 +39,16 @@ Partial Class FrmMain
         Me.Label2 = New System.Windows.Forms.Label()
         Me.FileDlgWord = New System.Windows.Forms.OpenFileDialog()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.BtnExpDuoyinzi = New System.Windows.Forms.Button()
+        Me.BtnCreateWithDdpy = New System.Windows.Forms.Button()
         Me.BtnCreate = New System.Windows.Forms.Button()
         Me.BtnWordPinyin = New System.Windows.Forms.Button()
         Me.TxtWordPinyin = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.BtnCreateWithDdpy = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
+        Me.tip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtnUpdatePinyin = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -109,6 +115,9 @@ Partial Class FrmMain
         '
         Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Controls.Add(Me.BtnUpdatePinyin)
+        Me.GroupBox2.Controls.Add(Me.BtnExpWord)
+        Me.GroupBox2.Controls.Add(Me.BtnAddPinyinPlus)
         Me.GroupBox2.Controls.Add(Me.BtnAddPinyin)
         Me.GroupBox2.Controls.Add(Me.BtnSelectWordFile)
         Me.GroupBox2.Controls.Add(Me.TxtWordFile)
@@ -120,6 +129,28 @@ Partial Class FrmMain
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "拼音转换"
+        '
+        'BtnExpWord
+        '
+        Me.BtnExpWord.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnExpWord.Location = New System.Drawing.Point(256, 75)
+        Me.BtnExpWord.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.BtnExpWord.Name = "BtnExpWord"
+        Me.BtnExpWord.Size = New System.Drawing.Size(88, 25)
+        Me.BtnExpWord.TabIndex = 3
+        Me.BtnExpWord.Text = "导出文字"
+        Me.BtnExpWord.UseVisualStyleBackColor = True
+        '
+        'BtnAddPinyinPlus
+        '
+        Me.BtnAddPinyinPlus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnAddPinyinPlus.Location = New System.Drawing.Point(160, 75)
+        Me.BtnAddPinyinPlus.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.BtnAddPinyinPlus.Name = "BtnAddPinyinPlus"
+        Me.BtnAddPinyinPlus.Size = New System.Drawing.Size(88, 25)
+        Me.BtnAddPinyinPlus.TabIndex = 3
+        Me.BtnAddPinyinPlus.Text = "输出拼音++"
+        Me.BtnAddPinyinPlus.UseVisualStyleBackColor = True
         '
         'BtnAddPinyin
         '
@@ -178,6 +209,7 @@ Partial Class FrmMain
         '
         Me.GroupBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox3.Controls.Add(Me.BtnExpDuoyinzi)
         Me.GroupBox3.Controls.Add(Me.BtnCreateWithDdpy)
         Me.GroupBox3.Controls.Add(Me.BtnCreate)
         Me.GroupBox3.Controls.Add(Me.BtnWordPinyin)
@@ -190,6 +222,28 @@ Partial Class FrmMain
         Me.GroupBox3.TabIndex = 2
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "淡定词库文件制作"
+        '
+        'BtnExpDuoyinzi
+        '
+        Me.BtnExpDuoyinzi.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnExpDuoyinzi.Location = New System.Drawing.Point(406, 78)
+        Me.BtnExpDuoyinzi.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.BtnExpDuoyinzi.Name = "BtnExpDuoyinzi"
+        Me.BtnExpDuoyinzi.Size = New System.Drawing.Size(114, 25)
+        Me.BtnExpDuoyinzi.TabIndex = 3
+        Me.BtnExpDuoyinzi.Text = "检查导出多音字"
+        Me.BtnExpDuoyinzi.UseVisualStyleBackColor = True
+        '
+        'BtnCreateWithDdpy
+        '
+        Me.BtnCreateWithDdpy.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnCreateWithDdpy.Location = New System.Drawing.Point(225, 78)
+        Me.BtnCreateWithDdpy.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.BtnCreateWithDdpy.Name = "BtnCreateWithDdpy"
+        Me.BtnCreateWithDdpy.Size = New System.Drawing.Size(173, 25)
+        Me.BtnCreateWithDdpy.TabIndex = 7
+        Me.BtnCreateWithDdpy.Text = "补充并生成淡定词库"
+        Me.BtnCreateWithDdpy.UseVisualStyleBackColor = True
         '
         'BtnCreate
         '
@@ -240,17 +294,6 @@ Partial Class FrmMain
         Me.Label5.TabIndex = 5
         Me.Label5.Text = "文件："
         '
-        'BtnCreateWithDdpy
-        '
-        Me.BtnCreateWithDdpy.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnCreateWithDdpy.Location = New System.Drawing.Point(225, 78)
-        Me.BtnCreateWithDdpy.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.BtnCreateWithDdpy.Name = "BtnCreateWithDdpy"
-        Me.BtnCreateWithDdpy.Size = New System.Drawing.Size(173, 25)
-        Me.BtnCreateWithDdpy.TabIndex = 7
-        Me.BtnCreateWithDdpy.Text = "补充并生成淡定词库"
-        Me.BtnCreateWithDdpy.UseVisualStyleBackColor = True
-        '
         'BtnClose
         '
         Me.BtnClose.Location = New System.Drawing.Point(247, 342)
@@ -259,6 +302,17 @@ Partial Class FrmMain
         Me.BtnClose.TabIndex = 3
         Me.BtnClose.Text = "关 闭"
         Me.BtnClose.UseVisualStyleBackColor = True
+        '
+        'BtnUpdatePinyin
+        '
+        Me.BtnUpdatePinyin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnUpdatePinyin.Location = New System.Drawing.Point(352, 75)
+        Me.BtnUpdatePinyin.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.BtnUpdatePinyin.Name = "BtnUpdatePinyin"
+        Me.BtnUpdatePinyin.Size = New System.Drawing.Size(88, 25)
+        Me.BtnUpdatePinyin.TabIndex = 3
+        Me.BtnUpdatePinyin.Text = "拼音检查"
+        Me.BtnUpdatePinyin.UseVisualStyleBackColor = True
         '
         'FrmMain
         '
@@ -306,4 +360,9 @@ Partial Class FrmMain
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents BtnClose As System.Windows.Forms.Button
+    Friend WithEvents BtnAddPinyinPlus As System.Windows.Forms.Button
+    Friend WithEvents BtnExpDuoyinzi As System.Windows.Forms.Button
+    Friend WithEvents tip As System.Windows.Forms.ToolTip
+    Friend WithEvents BtnExpWord As System.Windows.Forms.Button
+    Friend WithEvents BtnUpdatePinyin As System.Windows.Forms.Button
 End Class

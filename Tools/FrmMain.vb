@@ -1,4 +1,17 @@
-﻿Public Class FrmMain
+﻿Imports System.Text
+Imports System.IO
+Imports System.IO.Compression
+
+Public Class FrmMain
+
+    Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message, ByVal keyData As System.Windows.Forms.Keys) As Boolean
+        If keyData = Keys.F12 Then
+            CopyFromScreen(Me)
+            Return True
+        End If
+
+        Return MyBase.ProcessCmdKey(msg, keyData)
+    End Function
 
     Private Sub BtnSearchPy_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSearchPy.Click
 
@@ -53,12 +66,46 @@
             End If
 
             Cursor = Cursors.WaitCursor
-            Dim files As String() = ToPinyinFiles(TxtWordFile.Text)
+            Dim sPath As String = ToPinyinFiles(TxtWordFile.Text)
 
-            If files.Length > 0 Then
-                TxtWordPinyin.Text = files(0)
+            System.Diagnostics.Process.Start(sPath)
+
+        Catch ex As Exception
+            MsgBox("怎么回事，不该发生的错误： " & ex.Message, MsgBoxStyle.Exclamation, "淡定")
+        Finally
+            Cursor = Cursors.Arrow
+        End Try
+
+    End Sub
+
+    Private Sub BtnAddPinyinPlus_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAddPinyinPlus.Click
+
+        Try
+
+            If "".Equals(Trim(TxtWordFile.Text)) Then
+                MsgBox("请选择待转换文件", MsgBoxStyle.Information, "淡定")
+                TxtWordFile.Focus()
+                TxtWordFile.SelectAll()
+                Return
             End If
-            MsgBox("转换完成，请查看文件" & vbNewLine & vbNewLine & Strings.Join(files, vbNewLine), MsgBoxStyle.Information, "淡定")
+
+            If Not My.Computer.FileSystem.FileExists(TxtWordFile.Text) Then
+                MsgBox("文件 " & TxtWordFile.Text & " 不存在，请重新输入", MsgBoxStyle.Information, "淡定")
+                TxtWordFile.Focus()
+                TxtWordFile.SelectAll()
+                Return
+            End If
+            If My.Computer.FileSystem.GetFileInfo(TxtWordFile.Text).Length = 0 Then
+                MsgBox("这是一个空文件：" & TxtWordFile.Text, MsgBoxStyle.Information, "淡定")
+                TxtWordFile.Focus()
+                TxtWordFile.SelectAll()
+                Return
+            End If
+
+            Cursor = Cursors.WaitCursor
+            Dim sPath As String = ToPinyinPlusFiles(TxtWordFile.Text)
+
+            System.Diagnostics.Process.Start(sPath)
 
         Catch ex As Exception
             MsgBox("怎么回事，不该发生的错误： " & ex.Message, MsgBoxStyle.Exclamation, "淡定")
@@ -152,5 +199,117 @@
 
     Private Sub BtnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnClose.Click
         Me.Close()
+    End Sub
+
+    Private Sub BtnExpDuoyinzi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnExpDuoyinzi.Click
+        Try
+
+            If "".Equals(Trim(TxtWordPinyin.Text)) Then
+                MsgBox("请选择待转换文件", MsgBoxStyle.Information, "淡定")
+                TxtWordPinyin.Focus()
+                TxtWordPinyin.SelectAll()
+                Return
+            End If
+
+            If Not My.Computer.FileSystem.FileExists(TxtWordPinyin.Text) Then
+                MsgBox("文件 " & TxtWordPinyin.Text & " 不存在，请重新输入", MsgBoxStyle.Information, "淡定")
+                TxtWordPinyin.Focus()
+                TxtWordPinyin.SelectAll()
+                Return
+            End If
+            If My.Computer.FileSystem.GetFileInfo(TxtWordPinyin.Text).Length = 0 Then
+                MsgBox("这是一个空文件：" & TxtWordPinyin.Text, MsgBoxStyle.Information, "淡定")
+                TxtWordPinyin.Focus()
+                TxtWordPinyin.SelectAll()
+                Return
+            End If
+
+            Cursor = Cursors.WaitCursor
+            Dim sPath As String = ExpDuoyinFile(TxtWordPinyin.Text)
+
+            System.Diagnostics.Process.Start(sPath)
+
+        Catch ex As Exception
+            MsgBox("怎么回事，不该发生的错误： " & ex.Message, MsgBoxStyle.Exclamation, "淡定")
+        Finally
+            Cursor = Cursors.Arrow
+        End Try
+
+    End Sub
+
+    Private Sub BtnExpWord_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnExpWord.Click
+
+        Try
+
+            If "".Equals(Trim(TxtWordFile.Text)) Then
+                MsgBox("请选择待转换文件", MsgBoxStyle.Information, "淡定")
+                TxtWordFile.Focus()
+                TxtWordFile.SelectAll()
+                Return
+            End If
+
+            If Not My.Computer.FileSystem.FileExists(TxtWordFile.Text) Then
+                MsgBox("文件 " & TxtWordFile.Text & " 不存在，请重新输入", MsgBoxStyle.Information, "淡定")
+                TxtWordFile.Focus()
+                TxtWordFile.SelectAll()
+                Return
+            End If
+            If My.Computer.FileSystem.GetFileInfo(TxtWordFile.Text).Length = 0 Then
+                MsgBox("这是一个空文件：" & TxtWordFile.Text, MsgBoxStyle.Information, "淡定")
+                TxtWordFile.Focus()
+                TxtWordFile.SelectAll()
+                Return
+            End If
+
+            Cursor = Cursors.WaitCursor
+            Dim sPath As String = ToWordFile(TxtWordFile.Text)
+
+            System.Diagnostics.Process.Start(sPath)
+
+        Catch ex As Exception
+            MsgBox("怎么回事，不该发生的错误： " & ex.Message, MsgBoxStyle.Exclamation, "淡定")
+        Finally
+            Cursor = Cursors.Arrow
+        End Try
+
+    End Sub
+
+
+
+    Private Sub BtnUpdatePinyin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnUpdatePinyin.Click
+
+        Try
+
+            If "".Equals(Trim(TxtWordFile.Text)) Then
+                MsgBox("请选择待转换文件", MsgBoxStyle.Information, "淡定")
+                TxtWordFile.Focus()
+                TxtWordFile.SelectAll()
+                Return
+            End If
+
+            If Not My.Computer.FileSystem.FileExists(TxtWordFile.Text) Then
+                MsgBox("文件 " & TxtWordFile.Text & " 不存在，请重新输入", MsgBoxStyle.Information, "淡定")
+                TxtWordFile.Focus()
+                TxtWordFile.SelectAll()
+                Return
+            End If
+            If My.Computer.FileSystem.GetFileInfo(TxtWordFile.Text).Length = 0 Then
+                MsgBox("这是一个空文件：" & TxtWordFile.Text, MsgBoxStyle.Information, "淡定")
+                TxtWordFile.Focus()
+                TxtWordFile.SelectAll()
+                Return
+            End If
+
+            Cursor = Cursors.WaitCursor
+            Dim sPath As String = UpdatePinyin(TxtWordFile.Text)
+
+            System.Diagnostics.Process.Start(sPath)
+
+        Catch ex As Exception
+            MsgBox("怎么回事，不该发生的错误： " & ex.Message, MsgBoxStyle.Exclamation, "淡定")
+        Finally
+            Cursor = Cursors.Arrow
+        End Try
+
     End Sub
 End Class

@@ -32,7 +32,7 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Release\</OutputPath>
     <DocumentationFile>DdpyTools.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -120,6 +120,9 @@
     <Compile Include="FrmMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MGZip.vb" />
+    <Compile Include="MPinYinBreak.vb" />
+    <Compile Include="MPrintScreen.vb" />
     <Compile Include="MWordUtil.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -161,13 +164,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\四字成语.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="DdpyTools.ico" />
+    <None Include="Resources\淡定词序.gz" />
     <None Include="Resources\淡定词库.txt" />
     <None Include="Resources\淡定字典.txt" />
-    <Content Include="Resources\淡定词序.txt" />
+    <Content Include="Resources\多音词库.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
