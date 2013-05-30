@@ -159,6 +159,7 @@
     <Compile Include="MDebug.vb" />
     <Compile Include="MIme.vb" />
     <Compile Include="MPinYinBreak.vb" />
+    <Compile Include="MPrintScreen.vb" />
     <Compile Include="MServer.vb" />
     <Compile Include="MWinApi.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

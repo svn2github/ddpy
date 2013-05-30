@@ -60,6 +60,7 @@ Partial Class FrmSetting
         Me.TxtWord = New System.Windows.Forms.TextBox()
         Me.TabPageAdvanced = New System.Windows.Forms.TabPage()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.ChkAutoCreateWord = New System.Windows.Forms.CheckBox()
         Me.ChkAddFirstWordIdx = New System.Windows.Forms.CheckBox()
         Me.NumCandLimit = New System.Windows.Forms.NumericUpDown()
         Me.ChkCandLimit = New System.Windows.Forms.CheckBox()
@@ -70,7 +71,6 @@ Partial Class FrmSetting
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.FontDlgCand = New System.Windows.Forms.FontDialog()
         Me.BtnApply = New System.Windows.Forms.Button()
-        Me.ChkAutoCreateWord = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumPyLen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumPageCnt, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -492,12 +492,22 @@ Partial Class FrmSetting
         Me.GroupBox6.TabIndex = 2
         Me.GroupBox6.TabStop = False
         '
+        'ChkAutoCreateWord
+        '
+        Me.ChkAutoCreateWord.AutoSize = True
+        Me.ChkAutoCreateWord.Location = New System.Drawing.Point(28, 93)
+        Me.ChkAutoCreateWord.Name = "ChkAutoCreateWord"
+        Me.ChkAutoCreateWord.Size = New System.Drawing.Size(144, 16)
+        Me.ChkAutoCreateWord.TabIndex = 7
+        Me.ChkAutoCreateWord.Text = "开启自动造词调频功能"
+        Me.ChkAutoCreateWord.UseVisualStyleBackColor = True
+        '
         'ChkAddFirstWordIdx
         '
         Me.ChkAddFirstWordIdx.AutoSize = True
         Me.ChkAddFirstWordIdx.Location = New System.Drawing.Point(28, 63)
         Me.ChkAddFirstWordIdx.Name = "ChkAddFirstWordIdx"
-        Me.ChkAddFirstWordIdx.Size = New System.Drawing.Size(338, 17)
+        Me.ChkAddFirstWordIdx.Size = New System.Drawing.Size(296, 16)
         Me.ChkAddFirstWordIdx.TabIndex = 7
         Me.ChkAddFirstWordIdx.Text = "增加首字完整拼音索引（特殊情况适用，重启后生效）"
         Me.ChkAddFirstWordIdx.UseVisualStyleBackColor = True
@@ -518,7 +528,7 @@ Partial Class FrmSetting
         Me.ChkCandLimit.AutoSize = True
         Me.ChkCandLimit.Location = New System.Drawing.Point(28, 32)
         Me.ChkCandLimit.Name = "ChkCandLimit"
-        Me.ChkCandLimit.Size = New System.Drawing.Size(143, 17)
+        Me.ChkCandLimit.Size = New System.Drawing.Size(132, 16)
         Me.ChkCandLimit.TabIndex = 1
         Me.ChkCandLimit.Text = "限制词语候选个数为"
         Me.ChkCandLimit.UseVisualStyleBackColor = True
@@ -595,16 +605,6 @@ Partial Class FrmSetting
         Me.BtnApply.TabIndex = 2
         Me.BtnApply.Text = "应  用"
         Me.BtnApply.UseVisualStyleBackColor = True
-        '
-        'ChkAutoCreateWord
-        '
-        Me.ChkAutoCreateWord.AutoSize = True
-        Me.ChkAutoCreateWord.Location = New System.Drawing.Point(28, 93)
-        Me.ChkAutoCreateWord.Name = "ChkAutoCreateWord"
-        Me.ChkAutoCreateWord.Size = New System.Drawing.Size(156, 17)
-        Me.ChkAutoCreateWord.TabIndex = 7
-        Me.ChkAutoCreateWord.Text = "开启自动造词调频功能"
-        Me.ChkAutoCreateWord.UseVisualStyleBackColor = True
         '
         'FrmSetting
         '

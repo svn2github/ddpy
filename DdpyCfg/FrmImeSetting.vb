@@ -697,5 +697,13 @@ Public Class FrmSetting
         End If
     End Sub
 
+    Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message, ByVal keyData As System.Windows.Forms.Keys) As Boolean
+        If keyData = Keys.F12 Then
+            CopyFromScreen(Me)
+            Return True
+        End If
+
+        Return MyBase.ProcessCmdKey(msg, keyData)
+    End Function
 
 End Class

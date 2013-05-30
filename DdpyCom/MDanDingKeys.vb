@@ -19,6 +19,15 @@ Module MDanDingKeys
         Dim bRet As Boolean = False
 
         Select Case iKey
+            Case Keys.F12
+
+                If frmInput.Visible Then
+                    ' 候选窗口显示时，做候选窗口截图
+                    CopyFromScreen(frmInput)
+                ElseIf frmStatus.Visible Then
+                    CopyFromScreen(frmStatus)   ' 状态栏截图
+                End If
+
             Case Keys.Delete
                 ' Ctrl+Delete 删除选中的非系统候选词
                 If My.Computer.Keyboard.CtrlKeyDown Then
@@ -1148,7 +1157,9 @@ Module MDanDingKeys
             OrElse iKey = Keys.Right _
             OrElse iKey = Keys.OemPeriod _
             OrElse iKey = Keys.Delete _
-           ) Then
+           ) _
+            OrElse iKey = Keys.F12 _
+        Then
 
             isDot = False
             Return False
