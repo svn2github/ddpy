@@ -2,19 +2,22 @@
 
 Module MMixInput
 
-    Private MixInputFile As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\\用户混合输入.txt"
     Private lstMix As List(Of String)
 
+    Public Function GetMixInputFile() As String
+        Dim path As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData
+        Return My.Computer.FileSystem.GetParentPath(path) & "\\用户混合输入.txt"
+    End Function
 
     Friend Sub InitMixInputFile()
 
         ' 创建网址邮件等用户混合输入文件
-        If Not My.Computer.FileSystem.FileExists(MixInputFile) Then
-            My.Computer.FileSystem.WriteAllText(MixInputFile, "ddpy.googlecode.com", False, Encoding.UTF8)
+        If Not My.Computer.FileSystem.FileExists(GetMixInputFile()) Then
+            My.Computer.FileSystem.WriteAllText(GetMixInputFile(), "http://code.google.com/p/ddpy/" & vbNewLine, False, Encoding.UTF8)
         End If
 
         lstMix = New List(Of String)
-        Dim txt As String = My.Computer.FileSystem.ReadAllText(MixInputFile, Encoding.UTF8)
+        Dim txt As String = My.Computer.FileSystem.ReadAllText(GetMixInputFile(), Encoding.UTF8)
         Dim lines As String() = txt.Split(vbNewLine)
 
         For i As Integer = 0 To lines.Length - 1
@@ -102,7 +105,7 @@ Module MMixInput
             bufTxt.AppendLine(line)
         Next
 
-        My.Computer.FileSystem.WriteAllText(MixInputFile, bufTxt.ToString, False, Encoding.UTF8)
+        My.Computer.FileSystem.WriteAllText(GetMixInputFile(), bufTxt.ToString, False, Encoding.UTF8)
     End Sub
 
 

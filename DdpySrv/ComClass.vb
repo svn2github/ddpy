@@ -200,7 +200,7 @@ Public Class ComClass
     End Function
 
     Public Function SvrGetCurrentUserDataPath() As String
-        Return My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData
+        Return My.Computer.FileSystem.GetParentPath(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData)
     End Function
 
 End Class

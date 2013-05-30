@@ -120,8 +120,8 @@ Module MDanDingDictionary
         End If
 
         ' 导入用户词库
-        If My.Computer.FileSystem.FileExists(userWordFile) Then
-            ImportWords(userWordFile, WordType.USR)
+        If My.Computer.FileSystem.FileExists(GetUserWordFile()) Then
+            ImportWords(GetUserWordFile(), WordType.USR)
         End If
 
         ' 导入固顶词库

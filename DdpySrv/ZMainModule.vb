@@ -21,13 +21,13 @@ Module ZMainModule
 
         ' 无参数
         If args Is Nothing OrElse args.Length = 0 Then
-            'System.Diagnostics.Process.Start(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData)
+            'System.Diagnostics.Process.Start(My.Computer.FileSystem.GetParentPath(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData))
             Return
         End If
 
         ' 打开用户数据目录
         If args(0) = "User" Then
-            System.Diagnostics.Process.Start(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData)
+            System.Diagnostics.Process.Start(My.Computer.FileSystem.GetParentPath(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData))
             Return
         End If
 
