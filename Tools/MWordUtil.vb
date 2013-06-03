@@ -181,10 +181,6 @@ Module MWordUtil
             Return ""
         End If
 
-        If GetMtlPinyinMap().ContainsKey(words) Then
-            Return GetMtlPinyinMap()(words)
-        End If
-
         Dim pys As New List(Of String)
         Dim w As String
         Dim py As String
@@ -330,6 +326,7 @@ Module MWordUtil
         Dim lines As String() = txt.Split(vbNewLine)
         Dim buf As New StringBuilder
         Dim bufErr As New StringBuilder
+        Dim bufErrOld As New StringBuilder
 
         For i As Integer = 0 To lines.Length - 1
             Dim line As String = Trim(lines(i).Replace(vbLf, "").Split(vbTab)(0))
@@ -344,6 +341,7 @@ Module MWordUtil
 
             If Not pys = Nothing AndAlso pys.IndexOf(",") > 0 Then
                 bufErr.AppendLine(line & vbTab & pys)
+                bufErrOld.AppendLine(lines(i).Replace(vbLf, ""))
             Else
                 buf.AppendLine(line & vbTab & pys)
             End If
@@ -365,6 +363,9 @@ Module MWordUtil
         End If
         If bufErr.Length > 0 Then
             My.Computer.FileSystem.WriteAllText(sOutFile & ".含多音字.txt", bufErr.ToString, False, Encoding.UTF8)
+        End If
+        If bufErrOld.Length > 0 Then
+            My.Computer.FileSystem.WriteAllText(sOutFile & ".含多音字原文.txt", bufErrOld.ToString, False, Encoding.UTF8)
         End If
 
         Return sPath
@@ -427,14 +428,25 @@ Module MWordUtil
 
             ' 含多音字
             If GetMtlPinyinMap().ContainsKey(cols(0)) Then
-                bufUpd.AppendLine(cols(0) & vbTab & GetMtlPinyinMap()(cols(0)))
-                bufM1.AppendLine(cols(0) & vbTab & GetMtlPinyinMap()(cols(0)))   ' 使用多音词库的拼音
-
-                If Not GetMtlPinyinMap()(cols(0)).Equals(cols(1)) Then
-                    ' 原拼音有误
-                    bufMW1.AppendLine(line)   ' 原拼音
-                    bufMW2.AppendLine(line & vbTab & GetMtlPinyinMap()(cols(0)))     ' 原拼音加新拼音对照
+                If GetMtlPinyinMap()(cols(0)).Equals(cols(1)) Then
+                    bufUpd.AppendLine(cols(0) & vbTab & GetMtlPinyinMap()(cols(0)))
+                    bufM1.AppendLine(cols(0) & vbTab & GetMtlPinyinMap()(cols(0)))   ' 使用多音词库的拼音
+                    Continue For
                 End If
+            End If
+
+            sPinyin = GetMtlPinyin(cols(0))     ' 程序整理多音字
+            ' 程序整理的多音字
+            If sPinyin.IndexOf(",") < 0 Then
+                bufUpd.AppendLine(cols(0) & vbTab & sPinyin)
+                bufM1.AppendLine(cols(0) & vbTab & sPinyin)   ' 使用程序整理的拼音
+
+                If Not sPinyin.Equals(cols(1)) Then
+                    ' 原多音字拼音有误
+                    bufMW1.AppendLine(line)   ' 原多音字拼音
+                    bufMW2.AppendLine(line & vbTab & sPinyin)     ' 原多音字拼音加新拼音对照
+                End If
+
                 Continue For
             End If
 
@@ -689,7 +701,6 @@ Module MWordUtil
             If "".Equals(line) Then
                 Continue For
             End If
-
 
             cols = line.Split(vbTab)
             line = line.Replace(",", "，")
@@ -1122,22 +1133,20 @@ Module MWordUtil
         End If
 
         If "了".Equals(sTxt) Then
-            If sTmpL.EndsWith("聪了") Then
+            If sTmpL.EndsWith("聪了") OrElse sTmpL.EndsWith("不了") OrElse sTmpL.EndsWith("不了了") OrElse sTmpL.EndsWith("明了") Then
                 Return "liao"
             End If
-            If sTmpR.StartsWith("了不起") OrElse sTmpR.StartsWith("了不得") OrElse sTmpR.StartsWith("了得") _
-                OrElse sTmpR.StartsWith("了如指掌") Then
+            If sTmpR.StartsWith("了不") OrElse sTmpR.StartsWith("了结") OrElse sTmpR.StartsWith("了得") _
+                OrElse sTmpR.StartsWith("了如指掌") OrElse sTmpR.StartsWith("了解") OrElse sTmpR.StartsWith("了断") _
+                OrElse sTmpR.StartsWith("了却") OrElse sTmpR.StartsWith("了然") OrElse sTmpR.StartsWith("了断") _
+            Then
                 Return "liao"
             End If
 
-            If text.Equals("了法") OrElse text.Equals("了得") OrElse text.Equals("了得事") _
-                OrElse text.Equals("了利") OrElse text.Equals("了然") OrElse text.Equals("一目了然") _
-                OrElse text.Equals("了还") OrElse text.Equals("了结") OrElse text.Equals("了了") _
-                OrElse text.Equals("了劣") OrElse text.Equals("了账") OrElse text.Equals("了休") _
-                OrElse text.Equals("了辩") OrElse text.Equals("了无恐色") OrElse text.Equals("了不相涉") _
-                OrElse text.Equals("了不可得") OrElse text.Equals("了不得") OrElse text.Equals("了不起") _
-                OrElse text.Equals("了断") OrElse text.Equals("了解") OrElse text.Equals("了局") _
-                OrElse text.Equals("了却") OrElse text.Equals("了悟") OrElse text.Equals("明了") _
+            If text.Equals("了法") OrElse text.Equals("了悟") OrElse text.Equals("了断") _
+                OrElse text.Equals("了利") OrElse text.Equals("了无恐色") OrElse text.Equals("了局") _
+                OrElse text.Equals("了还") OrElse text.Equals("了辩") OrElse text.Equals("了休") _
+                OrElse text.Equals("了劣") OrElse text.Equals("了账") _
             Then
                 Return "liao"
             End If
@@ -1461,7 +1470,7 @@ Module MWordUtil
         End If
 
         If "什".Equals(sTxt) Then
-            If sTmpL.EndsWith("什么") Then
+            If sTmpR.StartsWith("什么") Then
                 Return "shen"
             End If
 
@@ -1528,6 +1537,7 @@ Module MWordUtil
                OrElse sTmpL.EndsWith("元参") OrElse sTmpL.EndsWith("黑参") OrElse sTmpL.EndsWith("克参") _
                OrElse sTmpL.EndsWith("狗参") OrElse sTmpL.EndsWith("阳参") OrElse sTmpL.EndsWith("煤参") _
                OrElse sTmpL.EndsWith("海参") OrElse sTmpL.EndsWith("方参") OrElse sTmpL.EndsWith("刺参") _
+               OrElse sTmpL.EndsWith("沙参") OrElse sTmpL.EndsWith("方参") OrElse sTmpL.EndsWith("刺参") _
             Then
                 Return "shen"
             End If
@@ -1549,7 +1559,11 @@ Module MWordUtil
         If "重".Equals(sTxt) Then
             If sTmpL.EndsWith("双重") OrElse sTmpL.EndsWith("一重") OrElse sTmpL.EndsWith("盾重") _
                OrElse sTmpL.EndsWith("盾重重") OrElse sTmpL.EndsWith("烦恼重重") OrElse sTmpL.EndsWith("烦恼重") _
-            Then
+               OrElse sTmpL.EndsWith("二重") OrElse sTmpL.EndsWith("三重") OrElse sTmpL.EndsWith("九重") _
+               OrElse sTmpL.EndsWith("心事重重") OrElse sTmpL.EndsWith("心事重") OrElse sTmpL.EndsWith("多重性") _
+               OrElse sTmpL.EndsWith("两重") OrElse sTmpL.EndsWith("心事重") OrElse sTmpL.EndsWith("山重") _
+               OrElse sTmpL.EndsWith("两重") OrElse sTmpL.EndsWith("心事重") OrElse sTmpL.EndsWith("山重") _
+           Then
                 Return "chong"
             End If
             If sTmpR.StartsWith("重复") OrElse sTmpR.StartsWith("重申") OrElse sTmpR.StartsWith("重庆") _
@@ -1580,6 +1594,26 @@ Module MWordUtil
                OrElse sTmpR.StartsWith("重演") OrElse sTmpR.StartsWith("重眼") OrElse sTmpR.StartsWith("重足") _
                OrElse sTmpR.StartsWith("重译") OrElse sTmpR.StartsWith("重印") OrElse sTmpR.StartsWith("重映") _
                OrElse sTmpR.StartsWith("重奏") OrElse sTmpR.StartsWith("重搞") OrElse sTmpR.StartsWith("重说") _
+               OrElse sTmpR.StartsWith("重发") OrElse sTmpR.StartsWith("重打") OrElse sTmpR.StartsWith("重登") _
+               OrElse sTmpR.StartsWith("重获") OrElse sTmpR.StartsWith("重拍") OrElse sTmpR.StartsWith("重设") _
+               OrElse sTmpR.StartsWith("重考") OrElse sTmpR.StartsWith("重楼") OrElse sTmpR.StartsWith("重启") _
+               OrElse sTmpR.StartsWith("重选") OrElse sTmpR.StartsWith("重拨") OrElse sTmpR.StartsWith("重排") _
+               OrElse sTmpR.StartsWith("重天") OrElse sTmpR.StartsWith("重游") OrElse sTmpR.StartsWith("重码") _
+               OrElse sTmpR.StartsWith("重重叠") OrElse sTmpR.StartsWith("重组") OrElse sTmpR.StartsWith("重振") _
+               OrElse sTmpR.StartsWith("重整") OrElse sTmpR.StartsWith("重操") OrElse sTmpR.StartsWith("重圆") _
+               OrElse sTmpR.StartsWith("重学") OrElse sTmpR.StartsWith("重载") OrElse sTmpR.StartsWith("重归") _
+               OrElse sTmpR.StartsWith("重洋") OrElse sTmpR.StartsWith("重教") OrElse sTmpR.StartsWith("重门") _
+               OrElse sTmpR.StartsWith("重订") OrElse sTmpR.StartsWith("重言") OrElse sTmpR.StartsWith("重遇") _
+               OrElse sTmpR.StartsWith("重张") OrElse sTmpR.StartsWith("重发") OrElse sTmpR.StartsWith("重瞳") _
+               OrElse sTmpR.StartsWith("重坎") OrElse sTmpR.StartsWith("重练") OrElse sTmpR.StartsWith("重议") _
+               OrElse sTmpR.StartsWith("重刻") OrElse sTmpR.StartsWith("重估") OrElse sTmpR.StartsWith("重岩") _
+               OrElse sTmpR.StartsWith("重称") OrElse sTmpR.StartsWith("重采") OrElse sTmpR.StartsWith("重列") _
+               OrElse sTmpR.StartsWith("重写") OrElse sTmpR.StartsWith("重求") OrElse sTmpR.StartsWith("重茧") _
+               OrElse sTmpR.StartsWith("重会") OrElse sTmpR.StartsWith("重头") OrElse sTmpR.StartsWith("重戴") _
+               OrElse sTmpR.StartsWith("重酿") OrElse sTmpR.StartsWith("重户") OrElse sTmpR.StartsWith("重月") _
+               OrElse sTmpR.StartsWith("重裘") OrElse sTmpR.StartsWith("重床") OrElse sTmpR.StartsWith("重至") _
+               OrElse sTmpR.StartsWith("重张") OrElse sTmpR.StartsWith("重磨") OrElse sTmpR.StartsWith("重茧") _
+               OrElse sTmpR.StartsWith("重架") _
             Then
                 Return "chong"
             End If
