@@ -148,6 +148,7 @@
     </Compile>
     <Compile Include="MMemory.vb" />
     <Compile Include="MMixInput.vb" />
+    <Compile Include="MScript.vb" />
     <Compile Include="MSrvConfig.vb" />
     <Compile Include="MDanDingDictionary.vb" />
     <Compile Include="MSrvDebug.vb" />
@@ -204,7 +205,9 @@
   <ItemGroup>
     <Content Include="Resources\淡定固顶.txt" />
     <Content Include="Resources\淡定字库.txt" />
+    <None Include="Resources\淡定脚本.js" />
     <Content Include="Resources\淡定词库.txt" />
+    <None Include="Resources\脚本框架.js" />
     <Content Include="Service.ico" />
   </ItemGroup>
   <ItemGroup>

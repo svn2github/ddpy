@@ -53,10 +53,9 @@ Module MMixInput
 
         If sTmp.IndexOf("@") > 0 OrElse sTmp.IndexOf("/") > 0 OrElse sTmp.IndexOf("*") > 0 OrElse sTmp.IndexOf("-") > 0 _
              OrElse sTmp.IndexOf("+") > 0 OrElse sTmp.IndexOf(".") > 0 OrElse sTmp.IndexOf("0") > 0 _
-             OrElse sTmp.IndexOf("1") > 0 OrElse sTmp.IndexOf("2") > 0 OrElse sTmp.IndexOf("3") > 0 _
-             OrElse sTmp.IndexOf("4") > 0 OrElse sTmp.IndexOf("5") > 0 OrElse sTmp.IndexOf("6") > 0 _
-             OrElse sTmp.IndexOf("7") > 0 OrElse sTmp.IndexOf("8") > 0 OrElse sTmp.IndexOf("9") > 0 _
-             Then
+            OrElse sTmp.IndexOf("1") > 0 OrElse sTmp.IndexOf("2") > 0 OrElse sTmp.IndexOf("3") > 0 _
+            OrElse sTmp.IndexOf("4") > 0 OrElse sTmp.IndexOf("5") > 0 OrElse sTmp.IndexOf("6") > 0 _
+            OrElse sTmp.IndexOf("7") > 0 OrElse sTmp.IndexOf("8") > 0 OrElse sTmp.IndexOf("9") > 0 Then
             Return True
         End If
 

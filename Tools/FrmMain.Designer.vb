@@ -30,6 +30,7 @@ Partial Class FrmMain
         Me.TxtWord = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.BtnUpdatePinyin = New System.Windows.Forms.Button()
         Me.BtnExpWord = New System.Windows.Forms.Button()
         Me.BtnAddPinyinPlus = New System.Windows.Forms.Button()
         Me.BtnAddPinyin = New System.Windows.Forms.Button()
@@ -48,7 +49,6 @@ Partial Class FrmMain
         Me.Label5 = New System.Windows.Forms.Label()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.tip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtnUpdatePinyin = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -129,6 +129,17 @@ Partial Class FrmMain
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "拼音转换"
+        '
+        'BtnUpdatePinyin
+        '
+        Me.BtnUpdatePinyin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnUpdatePinyin.Location = New System.Drawing.Point(352, 75)
+        Me.BtnUpdatePinyin.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.BtnUpdatePinyin.Name = "BtnUpdatePinyin"
+        Me.BtnUpdatePinyin.Size = New System.Drawing.Size(88, 25)
+        Me.BtnUpdatePinyin.TabIndex = 3
+        Me.BtnUpdatePinyin.Text = "拼音检查"
+        Me.BtnUpdatePinyin.UseVisualStyleBackColor = True
         '
         'BtnExpWord
         '
@@ -302,17 +313,6 @@ Partial Class FrmMain
         Me.BtnClose.TabIndex = 3
         Me.BtnClose.Text = "关 闭"
         Me.BtnClose.UseVisualStyleBackColor = True
-        '
-        'BtnUpdatePinyin
-        '
-        Me.BtnUpdatePinyin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnUpdatePinyin.Location = New System.Drawing.Point(352, 75)
-        Me.BtnUpdatePinyin.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.BtnUpdatePinyin.Name = "BtnUpdatePinyin"
-        Me.BtnUpdatePinyin.Size = New System.Drawing.Size(88, 25)
-        Me.BtnUpdatePinyin.TabIndex = 3
-        Me.BtnUpdatePinyin.Text = "拼音检查"
-        Me.BtnUpdatePinyin.UseVisualStyleBackColor = True
         '
         'FrmMain
         '

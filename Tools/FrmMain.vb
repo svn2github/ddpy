@@ -1,7 +1,10 @@
 ﻿Imports System.Text
 Imports System.IO
 Imports System.IO.Compression
+Imports System.Security.Permissions
 
+<PermissionSet(SecurityAction.Demand, Name:="FullTrust")> _
+ <System.Runtime.InteropServices.ComVisibleAttribute(True)> _
 Public Class FrmMain
 
     Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message, ByVal keyData As System.Windows.Forms.Keys) As Boolean
@@ -312,4 +315,5 @@ Public Class FrmMain
         End Try
 
     End Sub
+
 End Class

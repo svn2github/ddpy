@@ -200,7 +200,7 @@ Module MDanDingKeys
         End If
 
         ' 处理混合输入
-        If Not My.Computer.Keyboard.CtrlKeyDown AndAlso Not "".Equals(Trim(sChar)) Then
+        If Not ddPy.InputPys.StartsWith("i") AndAlso Not My.Computer.Keyboard.CtrlKeyDown AndAlso Not "".Equals(Trim(sChar)) Then
             If SrvIsMixInput(ddPy.InputPys, ddPy.DispPyText2, sChar) Then
                 ddPy.InputPys = ddPy.InputPys & sChar
                 ddPy.ExecuteSearch()
@@ -214,11 +214,22 @@ Module MDanDingKeys
             Case Keys.Back
                 If frmInput.Visible Then
                     If ddPy.DispPyText.Length = 0 Then
-                        ddPy.MoveCurLeft()
+                        ddPy.MoveCurLeft(True)
                         SetIkrFlag(ikr, True, True, False)
                     Else
 
-                        If ddPy.DispPyText2.Length = 0 Then
+                        If ddPy.InputPys.StartsWith("i") Then
+
+                            If ddPy.InputPys.Equals("i") AndAlso ddPy.DispPyText2.Length > 0 Then
+                                SetIkrFlag(ikr, True, True, False)
+                            Else
+                                ddPy.InputPys = ddPy.InputPys.Replace(" ", "")
+                                ddPy.InputPys = Strings.Left(ddPy.InputPys, ddPy.InputPys.Length - 1)
+                                ddPy.ExecuteSearch() ' 检索
+                                SetIkrFlag(ikr, True, True, False)
+                            End If
+
+                        ElseIf ddPy.DispPyText2.Length = 0 Then
 
                             Dim word As CWord = ddPy.PopWord()
                             If word Is Nothing Then
@@ -302,8 +313,13 @@ Module MDanDingKeys
                                 ddPy.ExecuteSearch()
                             End If
                         Else
-                            ' 转换失败时，作回车上屏处理
-                            EnterWithChar(ikr, False, iKey)    ' 回车上屏
+                            If ddPy.InputPys.StartsWith("i") Then
+                                ' i模式，无候选时不响应空格键
+                                SetIkrFlag(ikr, True, True, False)
+                            Else
+                                ' 转换失败时，作回车上屏处理
+                                EnterWithChar(ikr, False, iKey)    ' 回车上屏
+                            End If
                         End If
 
                     ElseIf ddPy.DispPyText2.Length > 0 Then
@@ -631,13 +647,29 @@ Module MDanDingKeys
 
             Case Else
                 bRet = IsNumPadKey(iKey)
+                If Not bRet Then
+                    bRet = IsValidDigitKey(iKey)
+                End If
         End Select
 
         Return bRet
 
     End Function
 
+    Private Function IsValidDigitKey(ByVal iKey As UInteger) As Boolean
 
+        If Not ddPy.InputPys.StartsWith("i") OrElse iKey < Keys.D0 OrElse iKey > Keys.D9 Then
+            Return False
+        End If
+
+        'If ddPy.WordList IsNot Nothing AndAlso ddPy.WordList.Count > 0 Then
+        '    If Not ddPy.WordList(0).ShowDigit Then
+        '        Return True
+        '    End If
+        'End If
+
+        Return ddPy.HasDigitComp
+    End Function
 
     Private Function IsNumPadKey(ByVal iKey As UInteger) As Boolean
         Dim bRet As Boolean = False

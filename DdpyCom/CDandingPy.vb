@@ -18,11 +18,34 @@ Friend Class CDandingPy
     Private vFocusCand As Integer
 
     Private vTextEndChar As String = ""
+    Private vTip As String = ""
 
     Private aryRegisterWordText As String()
     Private aryRegisterWordPy As String()
 
     Private vHasInput As Boolean = True
+
+    Private vHasDigitComp As Boolean = False
+    Private vScriptModeTitle As String
+
+    Public Property ScriptModeTitle() As String
+        Get
+            Return vScriptModeTitle
+        End Get
+        Set(ByVal Value As String)
+            vScriptModeTitle = Value
+        End Set
+    End Property
+
+
+    Public Property HasDigitComp() As Boolean
+        Get
+            Return vHasDigitComp
+        End Get
+        Set(ByVal Value As Boolean)
+            vHasDigitComp = Value
+        End Set
+    End Property
 
     Public Function HasInput() As Boolean
         Return vInputPys.Length > 0 OrElse vDispPyText.Length > 0 OrElse vDispPyText2.Length > 0
@@ -31,6 +54,15 @@ Friend Class CDandingPy
     Public Function HasStackWord() As Boolean
         Return vWordStack.Count > 0
     End Function
+
+    Public Property Tip() As String
+        Get
+            Return vTip
+        End Get
+        Set(ByVal Value As String)
+            vTip = Value
+        End Set
+    End Property
 
     ''' <summary>
     ''' 编辑状态下编码栏光标右边的灰色拼音
@@ -52,14 +84,21 @@ Friend Class CDandingPy
     ''' </summary>
     ''' <param name="bDel">是否删除该编码（True时相当于按退格键）</param>
     Public Sub MoveCurLeft(Optional ByVal bDel As Boolean = False)
-        If vInputPys.Length <= 0 Then
+        If vInputPys.Length = 0 OrElse vInputPys.Equals("i") Then
             Return
         End If
 
-        vInputPys = Strings.RTrim(vInputPys)
+        vInputPys = Trim(vInputPys)
 
         If bDel Then
             vInputPys = Strings.Left(vInputPys, vInputPys.Length - 1)
+            If vInputPys.StartsWith("i") Then
+                vDispPyText = vInputPys
+            End If
+        ElseIf vInputPys.StartsWith("i") Then
+            vDispPyText2 = Strings.Right(vInputPys, 1) & vDispPyText2
+            vInputPys = Strings.Left(vInputPys, vInputPys.Length - 1)
+            vDispPyText = vInputPys
         ElseIf vDispPyText = "" Then
             PopWord()
         Else
@@ -102,7 +141,15 @@ Friend Class CDandingPy
     End Sub
 
     Public Sub MoveCurHome()
-        If vInputPys.Length <= 0 Then
+        If vInputPys.Length = 0 OrElse "i".Equals(Trim(vInputPys)) Then
+            Return
+        End If
+
+        If vInputPys.StartsWith("i") Then
+            vDispPyText2 = Trim(vInputPys.Substring(1) & vDispPyText2)
+            vInputPys = "i"
+            vDispPyText = ""
+            ExecuteSearch()
             Return
         End If
 
@@ -127,7 +174,12 @@ Friend Class CDandingPy
             Return
         End If
 
-        If My.Computer.Keyboard.CtrlKeyDown Then
+        If vInputPys.StartsWith("i") Then
+            If vDispPyText2.Length > 0 Then
+                vInputPys = vInputPys & Strings.Left(vDispPyText2, 1)
+                vDispPyText2 = vDispPyText2.Substring(1)
+            End If
+        ElseIf My.Computer.Keyboard.CtrlKeyDown Then
             Dim py As String
             Dim bStartsWithQuote As Boolean = vDispPyText2.StartsWith("'")
             If bStartsWithQuote Then
@@ -168,11 +220,11 @@ Friend Class CDandingPy
     End Sub
 
     Public Sub MoveCurEnd()
-        If vDispPyText2.Length <= 0 Then
+        If vDispPyText2.Length = 0 Then
             Return
         End If
 
-        If vDispPyText.Length > 0 OrElse vInputPys.Length = 0 OrElse vInputPys.EndsWith(" ") OrElse vInputPys.EndsWith("'") Then
+        If vInputPys.StartsWith("i") OrElse vDispPyText.Length > 0 OrElse vInputPys.Length = 0 OrElse vInputPys.EndsWith(" ") OrElse vInputPys.EndsWith("'") Then
             vInputPys = vInputPys & vDispPyText2
         Else
             vInputPys = vInputPys & " " & vDispPyText2
@@ -198,6 +250,7 @@ Friend Class CDandingPy
         vFocusCand = 1
         vTextEndChar = ""
         vDispPyText2 = ""
+        vTip = ""
     End Sub
 
     ''' <summary>
@@ -351,8 +404,20 @@ Friend Class CDandingPy
         Dim word As CWord = words(vFocusCand - 1)
         vWordStack.Push(word)
 
+        If vInputPys.StartsWith("i") Then
 
-        If word.IsMixWord Then
+            If word.PinYin.Length > 0 Then
+                vInputPys = vInputPys & word.PinYin
+                vDispPyText = vInputPys
+                vWordList = Nothing
+            Else
+                vDispWordText = word.Text
+                vDispPyText = ""
+                vDispPyText2 = ""
+                vTextEndChar = ""
+            End If
+
+        ElseIf word.IsMixWord Then
             vDispWordText = word.Text
             vDispPyText = ""
             vDispPyText2 = ""
@@ -420,6 +485,9 @@ Friend Class CDandingPy
     ''' <returns>当前显示文本（不含光标右边的灰色拼音编码）</returns>
     Public ReadOnly Property Text() As String
         Get
+            If vInputPys.StartsWith("i") AndAlso (vDispWordText & vDispPyText).Length = 0 Then
+                Return vInputPys
+            End If
             Return vDispWordText & vDispPyText
         End Get
     End Property
@@ -493,6 +561,10 @@ Friend Class CDandingPy
     ''' </summary>
     ''' <returns>输入的剩余待转换拼音</returns>
     Private Function GetDispPyText(Optional ByVal bHasDispPyText As Boolean = True) As String
+
+        If vInputPys.StartsWith("i") Then
+            Return vInputPys
+        End If
 
         If vWordStack Is Nothing OrElse vWordStack.Count = 0 Then
             vInputPys = vInputPys.Replace(" ", "")
@@ -574,6 +646,22 @@ Friend Class CDandingPy
     ''' 执行检索
     ''' </summary>
     Public Sub ExecuteSearch()
+
+        If vInputPys.StartsWith("i") Then
+            If Trim(vInputPys).Equals("i") Then
+                vDispPyText = InputPys
+                Me.WordList = SrvSearchWords(vDispPyText2, True)
+                Me.CurrentPage = 1
+                Me.FocusCand = 1
+            Else
+                vDispPyText = InputPys
+                Me.WordList = SrvSearchWords(Trim(vInputPys.Substring(1)), True)
+                Me.CurrentPage = 1
+                Me.FocusCand = 1
+            End If
+
+            Return
+        End If
 
         If SrvIsMixInput(Me.InputPys.Replace(" ", ""), Me.DispPyText2) Then
             vDispPyText = InputPys

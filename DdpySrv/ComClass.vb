@@ -56,6 +56,9 @@ Public Class ComClass
             Else
                 SetSettingInfo(My.Computer.FileSystem.ReadAllText(sFileCfg, Encoding.UTF8))
             End If
+            If Not My.Computer.FileSystem.FileExists(ddpyScriptFile) Then
+                My.Computer.FileSystem.WriteAllText(ddpyScriptFile, My.Resources.淡定脚本, False, Encoding.UTF8)
+            End If
 
 
             ' 初始化字库词库
@@ -162,10 +165,15 @@ Public Class ComClass
     ''' 指定拼音编码查找候选文字
     ''' </summary>
     ''' <param name="codes">拼音编码</param>
+    ''' <param name="isScriptMode">是否脚本模式</param>
     ''' <returns>候选文字列表</returns>
-    Public Function SrvSearchWords(ByVal codes As String) As String
+    Public Function SrvSearchWords(ByVal codes As String, Optional ByVal isScriptMode As Boolean = False) As String
         Try
-            Return GetWordList(codes)
+            If isScriptMode Then
+                Return GetScriptWordList(codes)
+            Else
+                Return GetWordList(codes)
+            End If
         Catch ex As Exception
             ComError("SrvSearchWords(" & codes & ")", ex)
             Return ""
@@ -201,6 +209,10 @@ Public Class ComClass
 
     Public Function SvrGetCurrentUserDataPath() As String
         Return My.Computer.FileSystem.GetParentPath(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData)
+    End Function
+
+    Public Function SvrMsgBox(ByVal msg As String) As Integer
+        Return MsgBox(msg, MsgBoxStyle.Information, "")
     End Function
 
 End Class

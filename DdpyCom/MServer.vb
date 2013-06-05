@@ -9,24 +9,54 @@ Module MServer
     ''' 指定拼音编码查找候选文字
     ''' </summary>
     ''' <param name="codes">拼音编码</param>
+    ''' <param name="isScriptMode">是否脚本模式</param>
     ''' <returns>候选文字列表</returns>
-    Friend Function SrvSearchWords(ByVal codes As String) As List(Of CWord)
+    Friend Function SrvSearchWords(ByVal codes As String, Optional ByVal isScriptMode As Boolean = False) As List(Of CWord)
 
         DebugTimeStart()
 
         Dim lst As New List(Of CWord)
-        Dim txt As String = GetDdpyServer().SrvSearchWords(codes)
+        Dim txt As String = GetDdpyServer().SrvSearchWords(codes, isScriptMode)
         If txt = "" Then
             Return lst
         End If
 
         Dim lines As String() = txt.Split(vbLf)
+        If isScriptMode Then
+            If lines(0).IndexOf(vbTab) < 0 Then
+                ' Tip Only
+                ddPy.Tip = lines(0)
+
+                ddPy.ScriptModeTitle = lines(lines.Length - 2)
+                ddPy.HasDigitComp = CBool(lines(lines.Length - 1))
+                Return lst
+            End If
+        Else
+            ddPy.HasDigitComp = False
+        End If
+
+        ddPy.Tip = ""
+
         For i As Integer = 0 To lines.Length - 1
-            lst.Add(New CWord(lines(i)))
+
+            If isScriptMode Then
+                If lines(i).IndexOf(vbTab) < 0 Then
+
+                    If i = lines.Length - 2 Then
+                        ddPy.ScriptModeTitle = lines(i)
+                    ElseIf i = lines.Length - 1 Then
+                        ddPy.HasDigitComp = CBool(lines(i))
+                    End If
+                Else
+                    lst.Add(New CWord(lines(i)))
+                End If
+            Else
+                lst.Add(New CWord(lines(i)))
+            End If
+
         Next
 
-
-        ComDebug("SrvGetWordList( " & codes & " ) : " & lst.Count)
+        ComDebug("SrvGetWordList( " & codes & ", " & isScriptMode & " ) : " & lst.Count)
         ComDebug("SrvGetWordList time: " & DebugTimeEnd())
         Return lst
     End Function

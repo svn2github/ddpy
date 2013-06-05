@@ -124,7 +124,13 @@
   <data name="淡定字库" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\淡定字库.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="淡定脚本" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\淡定脚本.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="淡定词库" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\淡定词库.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="脚本框架" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\脚本框架.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

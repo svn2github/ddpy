@@ -62,36 +62,76 @@ Namespace My.Resources
         
         '''<summary>
         '''  查找类似 啊	a
-        '''阿	a
         '''爱	ai
-        '''哎	ai
         '''安	an
-        '''昂	ang
         '''奥	ao
-        '''澳	ao
         '''不	bu
-        '''部	bu
-        '''报	bao
-        '''表	biao
-        '''比	bi
-        '''便	bian
-        '''变	bian
-        '''必	bi
-        '''边	bian
-        '''白	bai
-        '''百	bai
-        '''办	ban
-        '''北	bei
+        '''本	ben
         '''吧	ba
         '''并	bing
-        '''般	ban
-        '''博	bo
+        '''被	bei
+        '''别	bie
+        '''报	bao
+        '''表	biao
+        '''白	bai
+        '''办	ban
         '''帮	bang
-        '''背	bei
+        '''崩	beng
+        '''比	bi
+        '''便	bian
         '''宾	bin
-        '''本	ben
-        '''迸	beng
-        ''' 的本地化字符串。
+        '''博	bo
+        '''从	cong
+        '''出	chu
+        '''成	cheng
+        '''长	chang
+        '''此	ci
+        '''才	cai
+        '''车	che
+        '''吃	chi
+        '''产	chan
+        '''重	chong
+        '''查	cha
+        '''擦	ca
+        '''拆	chai
+        '''参	can
+        '''藏	cang
+        '''超	chao
+        '''草	cao
+        '''测	ce
+        '''称	chen
+        '''曾	ceng
+        '''抽	chou
+        '''促	cu
+        '''踹	chuai
+        '''传	chuan
+        '''窜	cuan
+        '''窗	chuang
+        '''吹	chui
+        '''催	cui
+        '''春	chun
+        '''存	cun
+        '''错	cou
+        '''戳	chuo
+        '''的	de
+        '''第	di
+        '''大	da
+        '''代	dai
+        '''到	dao
+        '''得	de
+        '''但	dan
+        '''当	dang
+        '''等	deng
+        '''点	dian
+        '''掉	diao
+        '''跌	die
+        '''顶	ding
+        '''丢	diu
+        '''动	dong
+        '''都	dou
+        '''读	du
+        '''段	duan
+        '''对	d [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property 淡定固顶() As String
             Get
@@ -196,54 +236,106 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 我们	wo&apos;men
-        '''一个	yi&apos;ge
-        '''他是	ta&apos;shi
-        '''年底	nian&apos;di
-        '''事后	shi&apos;hou
-        '''时间	shi&apos;jian
-        '''近日	jin&apos;ri
-        '''积分	ji&apos;fen
-        '''公司	gong&apos;si
-        '''企业	qi&apos;ye
-        '''注册	zhu&apos;ce
-        '''中国	zhong&apos;guo
-        '''可以	ke&apos;yi
-        '''工作	gong&apos;zuo
-        '''或者	huo&apos;zhe
-        '''没有	mei&apos;you
-        '''信息	xin&apos;xi
-        '''文章	wen&apos;zhang
-        '''自己	zi&apos;ji
-        '''产品	chan&apos;pin
-        '''等级	deng&apos;ji
-        '''使用	shi&apos;yong
-        '''这个	zhe&apos;ge
-        '''精华	jing&apos;hua
-        '''作者	zuo&apos;zhe
-        '''就是	jiu&apos;shi
-        '''他们	ta&apos;men
-        '''通过	tong&apos;guo
-        '''如果	ru&apos;guo
-        '''服务	fu&apos;wu
-        '''以及	yi&apos;ji
-        '''论坛	lun&apos;tan
-        '''提供	ti&apos;gong
-        '''管理	guan&apos;li
-        '''要求	yao&apos;qiu
-        '''状态	zhuang&apos;tai
-        '''问题	wen&apos;ti
-        '''系统	xi&apos;tong
-        '''阅读	yue&apos;du
-        '''软件	ruan&apos;jian
-        '''聊以	liao&apos;yi
-        '''自己的	zi&apos;ji&apos;de
-        '''帖子	tie&apos;zi
-        '''项目	 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''  查找类似 // 符号输入用脚本例子，编码栏输入“ifh”时被调用
+        '''//（codes为不包含第一位“i”的编码）
+        '''function execFh(codes)
+        '''{
+        '''	var aryRet = new Array();
+        '''	var cd = codes.substring(2);
+        '''
+        '''	aryRet[&quot;Title&quot;] = &apos;淡定“i”模式——爱符号&apos;;
+        '''	var sFhs = &quot;→⇒←↑↓≠＊≧≦○◎●▲△▼▽☆★◇◆□■&quot;;
+        '''	for ( var i = 0; i &lt; sFhs.length; i++ ){
+        '''		aryRet[aryRet.length] = ddpyCreateCand(sFhs.substring(i, i+1));
+        '''	}
+        '''
+        '''	return aryRet;
+        '''}
+        '''
+        '''// 张仲景伤寒论条文
+        '''function execZj(codes)
+        '''{
+        '''	var i = 1;
+        '''	var aryRet = new Array();
+        '''	var cd = codes.substring(2);
+        '''
+        '''	if ( cd.isBlank() ) {
+        '''		aryRet[&quot;Tip&quot;] = &quot;请 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Friend ReadOnly Property 淡定脚本() As String
+            Get
+                Return ResourceManager.GetString("淡定脚本", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似 阿炳	a&apos;bing
+        '''阿爸	a&apos;ba
+        '''阿坝	a&apos;ba
+        '''阿伯	a&apos;bo
+        '''阿鼻	a&apos;bi
+        '''阿扁	a&apos;bian
+        '''阿保	a&apos;bao
+        '''阿谤	a&apos;bang
+        '''阿比	a&apos;bi
+        '''阿柄	a&apos;bing
+        '''阿鼻地狱	a&apos;bi&apos;di&apos;yu
+        '''阿鼻叫唤	a&apos;bi&apos;jiao&apos;huan
+        '''阿波罗	a&apos;bo&apos;luo
+        '''阿波罗计划	a&apos;bo&apos;luo&apos;ji&apos;hua
+        '''阿巴拉契亚山脉	a&apos;ba&apos;la&apos;qi&apos;ya&apos;shan&apos;mai
+        '''阿比让	a&apos;bi&apos;rang
+        '''阿巴斯	a&apos;ba&apos;si
+        '''阿坝县	a&apos;ba&apos;xian
+        '''阿鼻狱	a&apos;bi&apos;yu
+        '''阿坝州	a&apos;ba&apos;zhou
+        '''阿坝镇	a&apos;ba&apos;zhen
+        '''阿布扎比	a&apos;bu&apos;zha&apos;bi
+        '''阿保之功	a&apos;bao&apos;zhi&apos;gong
+        '''阿保之劳	a&apos;bao&apos;zhi&apos;lao
+        '''阿茶	a&apos;cha
+        '''阿从	a&apos;cong
+        '''阿谄	a&apos;chan
+        '''阿城市	a&apos;cheng&apos;shi
+        '''阿昌族	a&apos;chang&apos;zu
+        '''阿城镇	a&apos;cheng&apos;zhen
+        '''阿斗	a&apos;dou
+        '''阿爹	a&apos;die
+        '''阿弟	a&apos;di
+        '''阿大	a&apos;da
+        '''吖啶	a&apos;ding
+        '''阿堵	a&apos;du
+        '''阿党	a&apos;dang
+        '''阿殿	a&apos;dian [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property 淡定词库() As String
             Get
                 Return ResourceManager.GetString("淡定词库", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似 // ==================================================================================
+        '''// 字符串常用方法封装
+        '''// ==================================================================================
+        '''String.prototype.trim = function () {
+        '''	return this.replace(/(^\s*)|(\s*$)/g,&quot;&quot;);
+        '''} 
+        '''
+        '''String.prototype.leftTrim = function () {
+        '''	return this.replace(/(^[\\s]*)/g, &quot;&quot;);
+        '''} 
+        '''
+        '''String.prototype.rightTrim = function () {
+        '''	return this.replace(/([\\s]*$)/g, &quot;&quot;);
+        '''} 
+        '''
+        '''String.prototype.left = function (iLength) {
+        '''	if (iLe [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Friend ReadOnly Property 脚本框架() As String
+            Get
+                Return ResourceManager.GetString("脚本框架", resourceCulture)
             End Get
         End Property
     End Module

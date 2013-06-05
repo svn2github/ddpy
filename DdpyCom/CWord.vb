@@ -43,7 +43,26 @@ Friend Class CWord
     Private vTopOrder As Integer                    ' 词频
     Private vWordType As WordType = WordType.UNKNOW ' 类型
     Private vIsMixWord As Boolean                   ' 混合输入
+    Private vShowDigit As Boolean = True            ' 
+    Private vDispText As String
 
+    Public Property DispText() As String
+        Get
+            Return vDispText
+        End Get
+        Set(ByVal Value As String)
+            vDispText = Value
+        End Set
+    End Property
+
+    Public Property ShowDigit() As Boolean
+        Get
+            Return vShowDigit
+        End Get
+        Set(ByVal Value As Boolean)
+            vShowDigit = Value
+        End Set
+    End Property
 
     ''' <summary>
     ''' 频率
@@ -106,7 +125,12 @@ Friend Class CWord
         vPinYin = cols(1)
         vWordType = cols(2)
         vIsMixWord = CBool(cols(3))
-
+        If cols.Length > 4 Then
+            vShowDigit = CBool(cols(4))
+        End If
+        If cols.Length > 5 Then
+            vDispText = cols(5)
+        End If
     End Sub
 
     Public Property IsMixWord() As Boolean

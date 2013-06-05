@@ -61,6 +61,11 @@ Friend Class FrmImeInput
     ''' </summary>
     Public Overloads Sub Show(ByVal data As CDandingPy)
 
+        If ddPy.Text.Length = 0 AndAlso ddPy.InputPys.Length = 0 AndAlso ddPy.DispPyText2.Length = 0 Then
+            Me.Hide()
+            Return
+        End If
+
         If P_AUTO_POSITION Then
             If ddPy.InputPys.Length = 1 AndAlso ddPy.DispPyText2.Length = 0 Then
                 Me.Location = New System.Drawing.Point(PosX, PosY + PosH + 2)
@@ -74,6 +79,23 @@ Friend Class FrmImeInput
             LblPinyin.Text = ddPy.Text
         End If
         LblPinyin2.Text = ddPy.DispPyText2
+
+        If ddPy.Tip.Length > 0 Then
+            ClearCands()
+            LblInfo.Text = IIf(P_TITLE = "", "   " & "0", P_TITLE)
+
+            txt1.Text = ddPy.Tip
+            txt1.ForeColor = Color.White
+            txt1.BackColor = Color.FromArgb(64, 130, 240)
+            txt1.Visible = True
+
+            LblInfo.Text = IIf(ddPy.ScriptModeTitle = "", "淡定" & ChrW(8220) & "i" & ChrW(8221) & "模式", ddPy.ScriptModeTitle)
+
+            ' 显示并调整窗口位置
+            Me.Show()
+            Return
+        End If
+
         If ddPy.WordList Is Nothing OrElse ddPy.WordList.Count = 0 Then
             ClearCands()
             LblInfo.Text = IIf(P_TITLE = "", "   " & "0", P_TITLE)
@@ -82,7 +104,13 @@ Friend Class FrmImeInput
             Me.Show()
             Return
         End If
-        LblInfo.Text = IIf(P_TITLE = "", "   " & ddPy.WordList.Count & "(" & ddPy.CurrentPage & "/" & ddPy.TotalPageCnt & ")", P_TITLE)
+
+        If ddPy.InputPys.StartsWith("i") Then
+            LblInfo.Text = IIf(ddPy.ScriptModeTitle = "", "淡定" & ChrW(8220) & "i" & ChrW(8221) & "模式", ddPy.ScriptModeTitle)
+        Else
+            LblInfo.Text = IIf(P_TITLE = "", "   " & ddPy.WordList.Count & "(" & ddPy.CurrentPage & "/" & ddPy.TotalPageCnt & ")", P_TITLE)
+        End If
+
         ComDebug("共 " & ddPy.TotalPageCnt & " 页，当前显示第 " & ddPy.CurrentPage & " 页")
 
 
@@ -90,11 +118,9 @@ Friend Class FrmImeInput
         For i As Integer = 0 To 8
 
             If i < P_MAX_PAGE_CNT AndAlso ddPy.WordList.Count >= iStart + i + 1 Then
-                If ddPy.WordList(iStart + i).IsMixWord Then
-                    GetCandidate(i).Text = ddPy.WordList(iStart + i).Text & " "
-                Else
-                    GetCandidate(i).Text = (i + 1) & "." & ddPy.WordList(iStart + i).Text
-                End If
+
+                GetCandidate(i).Text = GetLableText(ddPy.WordList(iStart + i), i + 1)
+
                 GetCandidate(i).Visible = True
             Else
                 GetCandidate(i).Visible = False
@@ -111,6 +137,35 @@ Friend Class FrmImeInput
         ' 显示并调整窗口位置
         Me.Show()
     End Sub
+
+    Private Function GetLableText(ByVal word As CWord, ByVal idx As Integer) As String
+
+        word.Text = word.Text.Replace("<br>", vbNewLine)
+        Dim sTxt As String = word.Text
+        If word.DispText IsNot Nothing AndAlso word.DispText.Length > 0 Then
+            sTxt = word.DispText.Replace("<br>", vbNewLine)
+        End If
+
+        If word.IsMixWord Then
+            Return sTxt & " "
+        End If
+
+        If ddPy.InputPys.StartsWith("i") AndAlso word.PinYin.Length > 0 Then
+            If word.ShowDigit Then
+                Return idx & ".[" & word.PinYin & "]" & sTxt
+            Else
+                Return word.PinYin & "." & sTxt
+            End If
+        End If
+
+        If word.ShowDigit Then
+            Return idx & "." & sTxt
+        Else
+            Return sTxt
+        End If
+
+    End Function
+
 
     ''' <summary>
     ''' 显示并调整窗口位置
