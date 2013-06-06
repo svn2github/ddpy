@@ -102,6 +102,7 @@ Module MConfig
 
     Friend P_ADD_FIRST_WORD_IDX As Boolean = False
     Friend P_AUTO_CREATE_WORD As Boolean = True
+    Friend P_I_MODE As Boolean = True
 
     ''' <summary>
     ''' 取得最新配置信息
@@ -139,6 +140,7 @@ Module MConfig
             ' 16 限制非单字候选个数值
             P_ADD_FIRST_WORD_IDX = CBool(ary(17))
             P_AUTO_CREATE_WORD = CBool(ary(18))
+            P_I_MODE = CBool(ary(19))
 
         Catch ex As Exception
             ComDebug(ex)

@@ -169,7 +169,7 @@ Public Class ComClass
     ''' <returns>候选文字列表</returns>
     Public Function SrvSearchWords(ByVal codes As String, Optional ByVal isScriptMode As Boolean = False) As String
         Try
-            If isScriptMode Then
+            If P_I_MODE AndAlso isScriptMode Then
                 Return GetScriptWordList(codes)
             Else
                 Return GetWordList(codes)

@@ -22,7 +22,7 @@ Module MServer
         End If
 
         Dim lines As String() = txt.Split(vbLf)
-        If isScriptMode Then
+        If P_I_MODE AndAlso isScriptMode Then
             If lines(0).IndexOf(vbTab) < 0 Then
                 ' Tip Only
                 ddPy.Tip = lines(0)
@@ -39,7 +39,7 @@ Module MServer
 
         For i As Integer = 0 To lines.Length - 1
 
-            If isScriptMode Then
+            If P_I_MODE AndAlso isScriptMode Then
                 If lines(i).IndexOf(vbTab) < 0 Then
 
                     If i = lines.Length - 2 Then

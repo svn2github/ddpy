@@ -154,6 +154,8 @@ Module MDanDingKeys
     ''' <param name="ikr">按键处理结果</param>
     Friend Sub ComProcessKey(ByVal iKey As UInteger, ByRef ikr As ImeKeyResult)
 
+        ddPy.HasChange = True
+
         ' 状态栏显示控制
         If P_HIDE_STATUS Then
             If frmStatus.Visible Then
@@ -200,7 +202,7 @@ Module MDanDingKeys
         End If
 
         ' 处理混合输入
-        If Not ddPy.InputPys.StartsWith("i") AndAlso Not My.Computer.Keyboard.CtrlKeyDown AndAlso Not "".Equals(Trim(sChar)) Then
+        If Not (P_I_MODE AndAlso ddPy.InputPys.StartsWith("i")) AndAlso Not My.Computer.Keyboard.CtrlKeyDown AndAlso Not "".Equals(Trim(sChar)) Then
             If SrvIsMixInput(ddPy.InputPys, ddPy.DispPyText2, sChar) Then
                 ddPy.InputPys = ddPy.InputPys & sChar
                 ddPy.ExecuteSearch()
@@ -214,14 +216,15 @@ Module MDanDingKeys
             Case Keys.Back
                 If frmInput.Visible Then
                     If ddPy.DispPyText.Length = 0 Then
-                        ddPy.MoveCurLeft(True)
+                        ddPy.HasChange = ddPy.MoveCurLeft(True)
                         SetIkrFlag(ikr, True, True, False)
                     Else
 
-                        If ddPy.InputPys.StartsWith("i") Then
+                        If P_I_MODE AndAlso ddPy.InputPys.StartsWith("i") Then
 
                             If ddPy.InputPys.Equals("i") AndAlso ddPy.DispPyText2.Length > 0 Then
                                 SetIkrFlag(ikr, True, True, False)
+                                ddPy.HasChange = False
                             Else
                                 ddPy.InputPys = ddPy.InputPys.Replace(" ", "")
                                 ddPy.InputPys = Strings.Left(ddPy.InputPys, ddPy.InputPys.Length - 1)
@@ -248,7 +251,7 @@ Module MDanDingKeys
 
                         Else
 
-                            ddPy.MoveCurLeft(True)
+                            ddPy.HasChange = ddPy.MoveCurLeft(True)
                             SetIkrFlag(ikr, True, True, False)
                         End If
                     End If
@@ -313,7 +316,7 @@ Module MDanDingKeys
                                 ddPy.ExecuteSearch()
                             End If
                         Else
-                            If ddPy.InputPys.StartsWith("i") Then
+                            If P_I_MODE AndAlso ddPy.InputPys.StartsWith("i") Then
                                 ' i模式，无候选时不响应空格键
                                 SetIkrFlag(ikr, True, True, False)
                             Else
@@ -344,101 +347,76 @@ Module MDanDingKeys
 
             Case Keys.Left
                 If frmInput.Visible Then
-                    ddPy.MoveCurLeft()
+                    ddPy.HasChange = ddPy.MoveCurLeft()
                     SetIkrFlag(ikr, True, True, False)
                 End If
             Case Keys.Right
                 If frmInput.Visible Then
-                    ddPy.MoveCurRight()
+                    ddPy.HasChange = ddPy.MoveCurRight()
                     SetIkrFlag(ikr, True, True, False)
                 End If
 
             Case Keys.Home
                 If frmInput.Visible Then
-                    ddPy.MoveCurHome()
+                    ddPy.HasChange = ddPy.MoveCurHome()
                     SetIkrFlag(ikr, True, True, False)
                 End If
             Case Keys.End
                 If frmInput.Visible Then
-                    ddPy.MoveCurEnd()
+                    ddPy.HasChange = ddPy.MoveCurEnd()
                     SetIkrFlag(ikr, True, True, False)
                 End If
 
 
             Case Keys.Down
                 If frmInput.Visible Then
-                    If ddPy.InputPys.Length = 0 Then
-                        SetIkrFlag(ikr, False, False, False)
-                    Else
-                        ddPy.FocusNextWord()                    ' 高亮显示下一个候选
-                        SetIkrFlag(ikr, True, True, False)
-                    End If
+                    ddPy.HasChange = ddPy.FocusNextWord()                    ' 高亮显示下一个候选
+                    SetIkrFlag(ikr, True, True, False)
                 End If
             Case Keys.Up
                 If frmInput.Visible Then
-                    If ddPy.InputPys.Length = 0 Then
-                        SetIkrFlag(ikr, False, False, False)
-                    Else
-                        ddPy.FocusPreviousWord()                ' 高亮显示前一个候选
-                        SetIkrFlag(ikr, True, True, False)
-                    End If
-
+                    ddPy.HasChange = ddPy.FocusPreviousWord()                ' 高亮显示前一个候选
+                    SetIkrFlag(ikr, True, True, False)
                 End If
 
             Case Keys.Tab
                 If frmInput.Visible Then
                     If My.Computer.Keyboard.ShiftKeyDown Then
-                        If ddPy.InputPys.Length = 0 Then
-                            SetIkrFlag(ikr, False, False, False)
-                        Else
-                            ddPy.ShowPreviousPage()                 ' 前页
-                            SetIkrFlag(ikr, True, True, False)
-                        End If
+                        ddPy.HasChange = ddPy.ShowPreviousPage()                 ' 前页
+                        SetIkrFlag(ikr, True, True, False)
                     Else
-                        If ddPy.InputPys.Length = 0 Then
-                            SetIkrFlag(ikr, False, False, False)
-                        Else
-                            ddPy.ShowNextPage()                     ' 后页
-                            SetIkrFlag(ikr, True, True, False)
-                        End If
+                        ddPy.HasChange = ddPy.ShowNextPage()                     ' 后页
+                        SetIkrFlag(ikr, True, True, False)
                     End If
 
                 End If
 
             Case Keys.PageDown
-                If ddPy.InputPys.Length = 0 Then
-                    SetIkrFlag(ikr, False, False, False)
-                Else
-                    ddPy.ShowNextPage()                     ' 后页
+                If frmInput.Visible Then
+                    ddPy.HasChange = ddPy.ShowNextPage()                     ' 后页
                     SetIkrFlag(ikr, True, True, False)
                 End If
             Case Keys.Oemplus
                 If My.Computer.Keyboard.ShiftKeyDown Then
                     EnterWithChar(ikr, True, iKey)    ' 附加字符上屏
                 Else
-                    If ddPy.InputPys.Length = 0 Then
-                        SetIkrFlag(ikr, False, False, False)
-                    Else
-                        ddPy.ShowNextPage()                     ' 后页
+                    If frmInput.Visible Then
+                        ddPy.HasChange = ddPy.ShowNextPage()                     ' 后页
                         SetIkrFlag(ikr, True, True, False)
                     End If
                 End If
 
             Case Keys.PageUp
-                If ddPy.InputPys.Length = 0 Then
-                    SetIkrFlag(ikr, False, False, False)
-                Else
-                    ddPy.ShowPreviousPage()                 ' 前页
+                If frmInput.Visible Then
+                    ddPy.HasChange = ddPy.ShowPreviousPage()                 ' 前页
                     SetIkrFlag(ikr, True, True, False)
                 End If
             Case Keys.OemMinus
                 If My.Computer.Keyboard.ShiftKeyDown Then
                     EnterWithChar(ikr, True, iKey)    ' 附加字符上屏
                 Else
-                    If ddPy.InputPys.Length = 0 Then
-                        SetIkrFlag(ikr, False, False, False)
-                    Else
-                        ddPy.ShowPreviousPage()                 ' 前页
+                    If frmInput.Visible Then
+                        ddPy.HasChange = ddPy.ShowPreviousPage()                 ' 前页
                         SetIkrFlag(ikr, True, True, False)
                     End If
                 End If

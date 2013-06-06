@@ -71,6 +71,7 @@ Partial Class FrmSetting
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.FontDlgCand = New System.Windows.Forms.FontDialog()
         Me.BtnApply = New System.Windows.Forms.Button()
+        Me.ChkIMode = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumPyLen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumPageCnt, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,7 +129,7 @@ Partial Class FrmSetting
         Me.ChkIn.AutoSize = True
         Me.ChkIn.Location = New System.Drawing.Point(17, 70)
         Me.ChkIn.Name = "ChkIn"
-        Me.ChkIn.Size = New System.Drawing.Size(62, 16)
+        Me.ChkIn.Size = New System.Drawing.Size(82, 17)
         Me.ChkIn.TabIndex = 0
         Me.ChkIn.Text = "in = ing"
         Me.ChkIn.UseVisualStyleBackColor = True
@@ -138,7 +139,7 @@ Partial Class FrmSetting
         Me.ChkZhizhe.AutoSize = True
         Me.ChkZhizhe.Location = New System.Drawing.Point(148, 70)
         Me.ChkZhizhe.Name = "ChkZhizhe"
-        Me.ChkZhizhe.Size = New System.Drawing.Size(143, 16)
+        Me.ChkZhizhe.Size = New System.Drawing.Size(201, 17)
         Me.ChkZhizhe.TabIndex = 0
         Me.ChkZhizhe.Text = "zhi,chi,shi = zhe,che,she"
         Me.ChkZhizhe.UseVisualStyleBackColor = True
@@ -148,7 +149,7 @@ Partial Class FrmSetting
         Me.ChkZize.AutoSize = True
         Me.ChkZize.Location = New System.Drawing.Point(148, 47)
         Me.ChkZize.Name = "ChkZize"
-        Me.ChkZize.Size = New System.Drawing.Size(107, 16)
+        Me.ChkZize.Size = New System.Drawing.Size(159, 17)
         Me.ChkZize.TabIndex = 0
         Me.ChkZize.Text = "zi,ci,si = ze,ce,se"
         Me.ChkZize.UseVisualStyleBackColor = True
@@ -156,9 +157,9 @@ Partial Class FrmSetting
         'ChkRiRe
         '
         Me.ChkRiRe.AutoSize = True
-        Me.ChkRiRe.Location = New System.Drawing.Point(328, 23)
+        Me.ChkRiRe.Location = New System.Drawing.Point(348, 23)
         Me.ChkRiRe.Name = "ChkRiRe"
-        Me.ChkRiRe.Size = New System.Drawing.Size(55, 16)
+        Me.ChkRiRe.Size = New System.Drawing.Size(75, 17)
         Me.ChkRiRe.TabIndex = 0
         Me.ChkRiRe.Text = "ri = re"
         Me.ChkRiRe.UseVisualStyleBackColor = True
@@ -168,7 +169,7 @@ Partial Class FrmSetting
         Me.ChkZzh.AutoSize = True
         Me.ChkZzh.Location = New System.Drawing.Point(148, 23)
         Me.ChkZzh.Name = "ChkZzh"
-        Me.ChkZzh.Size = New System.Drawing.Size(98, 16)
+        Me.ChkZzh.Size = New System.Drawing.Size(138, 17)
         Me.ChkZzh.TabIndex = 0
         Me.ChkZzh.Text = "z,c,s = zh,ch,sh"
         Me.ChkZzh.UseVisualStyleBackColor = True
@@ -178,7 +179,7 @@ Partial Class FrmSetting
         Me.ChkAn.AutoSize = True
         Me.ChkAn.Location = New System.Drawing.Point(17, 23)
         Me.ChkAn.Name = "ChkAn"
-        Me.ChkAn.Size = New System.Drawing.Size(68, 16)
+        Me.ChkAn.Size = New System.Drawing.Size(82, 17)
         Me.ChkAn.TabIndex = 0
         Me.ChkAn.Text = "an = ang"
         Me.ChkAn.UseVisualStyleBackColor = True
@@ -188,7 +189,7 @@ Partial Class FrmSetting
         Me.ChkEn.AutoSize = True
         Me.ChkEn.Location = New System.Drawing.Point(17, 47)
         Me.ChkEn.Name = "ChkEn"
-        Me.ChkEn.Size = New System.Drawing.Size(68, 16)
+        Me.ChkEn.Size = New System.Drawing.Size(82, 17)
         Me.ChkEn.TabIndex = 0
         Me.ChkEn.Text = "en = eng"
         Me.ChkEn.UseVisualStyleBackColor = True
@@ -239,7 +240,7 @@ Partial Class FrmSetting
         Me.ChkVshow.Location = New System.Drawing.Point(259, 24)
         Me.ChkVshow.Name = "ChkVshow"
         Me.ChkVshow.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ChkVshow.Size = New System.Drawing.Size(114, 16)
+        Me.ChkVshow.Size = New System.Drawing.Size(130, 17)
         Me.ChkVshow.TabIndex = 0
         Me.ChkVshow.Text = "：候选项竖直显示"
         Me.ChkVshow.UseVisualStyleBackColor = True
@@ -365,7 +366,7 @@ Partial Class FrmSetting
         Me.ChkAutoPosition.Location = New System.Drawing.Point(231, 117)
         Me.ChkAutoPosition.Name = "ChkAutoPosition"
         Me.ChkAutoPosition.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ChkAutoPosition.Size = New System.Drawing.Size(138, 16)
+        Me.ChkAutoPosition.Size = New System.Drawing.Size(156, 17)
         Me.ChkAutoPosition.TabIndex = 0
         Me.ChkAutoPosition.Text = "：输入法窗口光标跟随"
         Me.ChkAutoPosition.UseVisualStyleBackColor = True
@@ -376,7 +377,7 @@ Partial Class FrmSetting
         Me.ChkHideStatus.Location = New System.Drawing.Point(19, 117)
         Me.ChkHideStatus.Name = "ChkHideStatus"
         Me.ChkHideStatus.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ChkHideStatus.Size = New System.Drawing.Size(126, 16)
+        Me.ChkHideStatus.Size = New System.Drawing.Size(143, 17)
         Me.ChkHideStatus.TabIndex = 0
         Me.ChkHideStatus.Text = "：隐藏输入法状态栏"
         Me.ChkHideStatus.UseVisualStyleBackColor = True
@@ -482,6 +483,7 @@ Partial Class FrmSetting
         '
         Me.GroupBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox6.Controls.Add(Me.ChkIMode)
         Me.GroupBox6.Controls.Add(Me.ChkAutoCreateWord)
         Me.GroupBox6.Controls.Add(Me.ChkAddFirstWordIdx)
         Me.GroupBox6.Controls.Add(Me.NumCandLimit)
@@ -497,7 +499,7 @@ Partial Class FrmSetting
         Me.ChkAutoCreateWord.AutoSize = True
         Me.ChkAutoCreateWord.Location = New System.Drawing.Point(28, 93)
         Me.ChkAutoCreateWord.Name = "ChkAutoCreateWord"
-        Me.ChkAutoCreateWord.Size = New System.Drawing.Size(144, 16)
+        Me.ChkAutoCreateWord.Size = New System.Drawing.Size(156, 17)
         Me.ChkAutoCreateWord.TabIndex = 7
         Me.ChkAutoCreateWord.Text = "开启自动造词调频功能"
         Me.ChkAutoCreateWord.UseVisualStyleBackColor = True
@@ -507,7 +509,7 @@ Partial Class FrmSetting
         Me.ChkAddFirstWordIdx.AutoSize = True
         Me.ChkAddFirstWordIdx.Location = New System.Drawing.Point(28, 63)
         Me.ChkAddFirstWordIdx.Name = "ChkAddFirstWordIdx"
-        Me.ChkAddFirstWordIdx.Size = New System.Drawing.Size(296, 16)
+        Me.ChkAddFirstWordIdx.Size = New System.Drawing.Size(338, 17)
         Me.ChkAddFirstWordIdx.TabIndex = 7
         Me.ChkAddFirstWordIdx.Text = "增加首字完整拼音索引（特殊情况适用，重启后生效）"
         Me.ChkAddFirstWordIdx.UseVisualStyleBackColor = True
@@ -528,7 +530,7 @@ Partial Class FrmSetting
         Me.ChkCandLimit.AutoSize = True
         Me.ChkCandLimit.Location = New System.Drawing.Point(28, 32)
         Me.ChkCandLimit.Name = "ChkCandLimit"
-        Me.ChkCandLimit.Size = New System.Drawing.Size(132, 16)
+        Me.ChkCandLimit.Size = New System.Drawing.Size(143, 17)
         Me.ChkCandLimit.TabIndex = 1
         Me.ChkCandLimit.Text = "限制词语候选个数为"
         Me.ChkCandLimit.UseVisualStyleBackColor = True
@@ -605,6 +607,18 @@ Partial Class FrmSetting
         Me.BtnApply.TabIndex = 2
         Me.BtnApply.Text = "应  用"
         Me.BtnApply.UseVisualStyleBackColor = True
+        '
+        'ChkIMode
+        '
+        Me.ChkIMode.AutoSize = True
+        Me.ChkIMode.Checked = True
+        Me.ChkIMode.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ChkIMode.Location = New System.Drawing.Point(28, 122)
+        Me.ChkIMode.Name = "ChkIMode"
+        Me.ChkIMode.Size = New System.Drawing.Size(137, 17)
+        Me.ChkIMode.TabIndex = 7
+        Me.ChkIMode.Text = "开启淡定""i""模式"
+        Me.ChkIMode.UseVisualStyleBackColor = True
         '
         'FrmSetting
         '
@@ -694,5 +708,6 @@ Partial Class FrmSetting
     Friend WithEvents ChkCandLimit As System.Windows.Forms.CheckBox
     Friend WithEvents ChkAddFirstWordIdx As System.Windows.Forms.CheckBox
     Friend WithEvents ChkAutoCreateWord As System.Windows.Forms.CheckBox
+    Friend WithEvents ChkIMode As System.Windows.Forms.CheckBox
 
 End Class

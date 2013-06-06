@@ -91,7 +91,9 @@ Public Class ComClass
 
                         frmInput.Hide()
                     Else
-                        frmInput.Show(ddPy)
+                        If ddPy.HasChange Then
+                            frmInput.Show(ddPy)
+                        End If
 
                         ComDebug("处理中 bProcessKey=" & ikr.IsProcessKey)
                     End If

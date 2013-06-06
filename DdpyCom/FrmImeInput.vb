@@ -73,23 +73,24 @@ Friend Class FrmImeInput
         End If
 
 
-        If ddPy.Text = "" Then
+        If P_I_MODE AndAlso ddPy.Text = "" Then
             LblPinyin.Text = ddPy.InputPys
         Else
             LblPinyin.Text = ddPy.Text
         End If
         LblPinyin2.Text = ddPy.DispPyText2
 
-        If ddPy.Tip.Length > 0 Then
-            ClearCands()
-            LblInfo.Text = IIf(P_TITLE = "", "   " & "0", P_TITLE)
-
+        If P_I_MODE AndAlso ddPy.Tip.Length > 0 Then
             txt1.Text = ddPy.Tip
             txt1.ForeColor = Color.White
             txt1.BackColor = Color.FromArgb(64, 130, 240)
             txt1.Visible = True
 
             LblInfo.Text = IIf(ddPy.ScriptModeTitle = "", "淡定" & ChrW(8220) & "i" & ChrW(8221) & "模式", ddPy.ScriptModeTitle)
+
+            For i As Integer = 1 To 8
+                GetCandidate(i).Visible = False
+            Next
 
             ' 显示并调整窗口位置
             Me.Show()
@@ -105,7 +106,7 @@ Friend Class FrmImeInput
             Return
         End If
 
-        If ddPy.InputPys.StartsWith("i") Then
+        If P_I_MODE AndAlso ddPy.InputPys.StartsWith("i") Then
             LblInfo.Text = IIf(ddPy.ScriptModeTitle = "", "淡定" & ChrW(8220) & "i" & ChrW(8221) & "模式", ddPy.ScriptModeTitle)
         Else
             LblInfo.Text = IIf(P_TITLE = "", "   " & ddPy.WordList.Count & "(" & ddPy.CurrentPage & "/" & ddPy.TotalPageCnt & ")", P_TITLE)
@@ -217,10 +218,15 @@ Friend Class FrmImeInput
     Private Sub ChangeLocation()
 
         Dim bTmpVShow As Boolean = False
-        If Not ddPy.WordList Is Nothing AndAlso ddPy.WordList.Count > 5 AndAlso ddPy.WordList(0).IsMixWord Then
+        Dim iWidth As Integer = 0
+        For i As Integer = 0 To 8
+            If GetCandidate(i).Visible Then
+                iWidth = iWidth + GetCandidate(i).Width
+            End If
+        Next
+        If iWidth > Screen.PrimaryScreen.Bounds.Width * 0.8 Then
             bTmpVShow = True
         End If
-
 
         ' 调整候选文字位置
         If bTmpVShow OrElse P_V_SHOW Then

@@ -27,6 +27,16 @@ Friend Class CDandingPy
 
     Private vHasDigitComp As Boolean = False
     Private vScriptModeTitle As String
+    Private vHasChange As Boolean = False
+
+    Public Property HasChange() As Boolean
+        Get
+            Return vHasChange
+        End Get
+        Set(ByVal Value As Boolean)
+            vHasChange = Value
+        End Set
+    End Property
 
     Public Property ScriptModeTitle() As String
         Get
@@ -83,19 +93,27 @@ Friend Class CDandingPy
     ''' （移动光标编辑编码时插入空格作为分词符）
     ''' </summary>
     ''' <param name="bDel">是否删除该编码（True时相当于按退格键）</param>
-    Public Sub MoveCurLeft(Optional ByVal bDel As Boolean = False)
-        If vInputPys.Length = 0 OrElse vInputPys.Equals("i") Then
-            Return
+    Public Function MoveCurLeft(Optional ByVal bDel As Boolean = False) As Boolean
+        If vInputPys.Length = 0 OrElse (P_I_MODE AndAlso vInputPys.Equals("i")) Then
+            Return False
         End If
 
         vInputPys = Trim(vInputPys)
 
         If bDel Then
+            If P_I_MODE AndAlso vInputPys.Equals("i") Then
+                Return False
+            End If
+
             vInputPys = Strings.Left(vInputPys, vInputPys.Length - 1)
-            If vInputPys.StartsWith("i") Then
+            If P_I_MODE AndAlso vInputPys.StartsWith("i") Then
                 vDispPyText = vInputPys
             End If
-        ElseIf vInputPys.StartsWith("i") Then
+        ElseIf P_I_MODE AndAlso vInputPys.StartsWith("i") Then
+            If vInputPys.Equals("i") Then
+                Return False
+            End If
+
             vDispPyText2 = Strings.Right(vInputPys, 1) & vDispPyText2
             vInputPys = Strings.Left(vInputPys, vInputPys.Length - 1)
             vDispPyText = vInputPys
@@ -138,19 +156,21 @@ Friend Class CDandingPy
         End If
 
         ExecuteSearch()
-    End Sub
 
-    Public Sub MoveCurHome()
-        If vInputPys.Length = 0 OrElse "i".Equals(Trim(vInputPys)) Then
-            Return
+        Return True
+    End Function
+
+    Public Function MoveCurHome() As Boolean
+        If vInputPys.Length = 0 OrElse (P_I_MODE AndAlso "i".Equals(Trim(vInputPys))) Then
+            Return False
         End If
 
-        If vInputPys.StartsWith("i") Then
+        If P_I_MODE AndAlso vInputPys.StartsWith("i") Then
             vDispPyText2 = Trim(vInputPys.Substring(1) & vDispPyText2)
             vInputPys = "i"
             vDispPyText = ""
             ExecuteSearch()
-            Return
+            Return True
         End If
 
 
@@ -163,18 +183,20 @@ Friend Class CDandingPy
         End If
 
         ExecuteSearch()
-    End Sub
+
+        Return True
+    End Function
 
     ''' <summary>
     ''' 编码栏光标右移一位
     ''' （移动光标编辑编码时插入空格作为分词符）
     ''' </summary>
-    Public Sub MoveCurRight()
+    Public Function MoveCurRight() As Boolean
         If vDispPyText2.Length <= 0 Then
-            Return
+            Return False
         End If
 
-        If vInputPys.StartsWith("i") Then
+        If P_I_MODE AndAlso vInputPys.StartsWith("i") Then
             If vDispPyText2.Length > 0 Then
                 vInputPys = vInputPys & Strings.Left(vDispPyText2, 1)
                 vDispPyText2 = vDispPyText2.Substring(1)
@@ -217,14 +239,16 @@ Friend Class CDandingPy
         End If
 
         ExecuteSearch()
-    End Sub
 
-    Public Sub MoveCurEnd()
+        Return True
+    End Function
+
+    Public Function MoveCurEnd() As Boolean
         If vDispPyText2.Length = 0 Then
-            Return
+            Return False
         End If
 
-        If vInputPys.StartsWith("i") OrElse vDispPyText.Length > 0 OrElse vInputPys.Length = 0 OrElse vInputPys.EndsWith(" ") OrElse vInputPys.EndsWith("'") Then
+        If (P_I_MODE AndAlso vInputPys.StartsWith("i")) OrElse vDispPyText.Length > 0 OrElse vInputPys.Length = 0 OrElse vInputPys.EndsWith(" ") OrElse vInputPys.EndsWith("'") Then
             vInputPys = vInputPys & vDispPyText2
         Else
             vInputPys = vInputPys & " " & vDispPyText2
@@ -232,7 +256,9 @@ Friend Class CDandingPy
         vDispPyText2 = ""
 
         ExecuteSearch()
-    End Sub
+
+        Return True
+    End Function
 
 
     ''' <summary>
@@ -295,13 +321,15 @@ Friend Class CDandingPy
     ''' <summary>
     ''' 前一个候选文字为焦点
     ''' </summary>
-    Public Sub FocusPreviousWord()
-        If Me.FocusCand <= 1 Then
-            Me.FocusCand = 1
+    Public Function FocusPreviousWord() As Boolean
+        If Me.FocusCand <= 1 OrElse GetCandWords().Length <= 1 Then
+            Return False
         Else
             Me.FocusCand = Me.FocusCand - 1
         End If
-    End Sub
+
+        Return True
+    End Function
 
     ''' <summary>
     ''' 第一个候选文字为焦点
@@ -313,9 +341,15 @@ Friend Class CDandingPy
     ''' <summary>
     ''' 后一个候选文字为焦点
     ''' </summary>
-    Public Sub FocusNextWord()
+    Public Function FocusNextWord() As Boolean
+        If GetCandWords().Length <= Me.FocusCand Then
+            Return False
+        End If
+
         Me.FocusCand = Me.FocusCand + 1
-    End Sub
+
+        Return True
+    End Function
 
     ''' <summary>
     ''' 输入的拼音编码
@@ -485,7 +519,7 @@ Friend Class CDandingPy
     ''' <returns>当前显示文本（不含光标右边的灰色拼音编码）</returns>
     Public ReadOnly Property Text() As String
         Get
-            If vInputPys.StartsWith("i") AndAlso (vDispWordText & vDispPyText).Length = 0 Then
+            If P_I_MODE AndAlso vInputPys.StartsWith("i") AndAlso (vDispWordText & vDispPyText).Length = 0 Then
                 Return vInputPys
             End If
             Return vDispWordText & vDispPyText
@@ -562,7 +596,7 @@ Friend Class CDandingPy
     ''' <returns>输入的剩余待转换拼音</returns>
     Private Function GetDispPyText(Optional ByVal bHasDispPyText As Boolean = True) As String
 
-        If vInputPys.StartsWith("i") Then
+        If P_I_MODE AndAlso vInputPys.StartsWith("i") Then
             Return vInputPys
         End If
 
@@ -647,18 +681,11 @@ Friend Class CDandingPy
     ''' </summary>
     Public Sub ExecuteSearch()
 
-        If vInputPys.StartsWith("i") Then
-            If Trim(vInputPys).Equals("i") Then
-                vDispPyText = InputPys
-                Me.WordList = SrvSearchWords(vDispPyText2, True)
-                Me.CurrentPage = 1
-                Me.FocusCand = 1
-            Else
-                vDispPyText = InputPys
-                Me.WordList = SrvSearchWords(Trim(vInputPys.Substring(1)), True)
-                Me.CurrentPage = 1
-                Me.FocusCand = 1
-            End If
+        If P_I_MODE AndAlso vInputPys.StartsWith("i") Then
+            vDispPyText = InputPys
+            Me.WordList = SrvSearchWords(Trim(vInputPys.Substring(1)), True)
+            Me.CurrentPage = 1
+            Me.FocusCand = 1
 
             Return
         End If
