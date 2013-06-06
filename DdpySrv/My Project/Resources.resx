@@ -118,14 +118,29 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="i伤寒论条文" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\i伤寒论条文.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="i伤寒金匮经方" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\i伤寒金匮经方.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="i日文汉字拼音输入" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\i日文汉字拼音输入.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="i淡定脚本" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\i淡定脚本.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="i神农本草" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\i神农本草.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="i符号" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\i符号.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="淡定固顶" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\淡定固顶.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="淡定字库" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\淡定字库.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="淡定脚本" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\淡定脚本.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="淡定词库" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\淡定词库.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>

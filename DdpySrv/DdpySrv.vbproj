@@ -203,9 +203,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\i伤寒论条文.js" />
+    <None Include="Resources\i神农本草.js" />
+    <None Include="Resources\i日文汉字拼音输入.js" />
+    <None Include="Resources\i符号.js" />
+    <None Include="Resources\i伤寒金匮经方.js" />
     <Content Include="Resources\淡定固顶.txt" />
     <Content Include="Resources\淡定字库.txt" />
-    <None Include="Resources\淡定脚本.js" />
+    <None Include="Resources\i淡定脚本.js" />
     <Content Include="Resources\淡定词库.txt" />
     <None Include="Resources\脚本框架.js" />
     <Content Include="Service.ico" />

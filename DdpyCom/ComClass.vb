@@ -85,7 +85,7 @@ Public Class ComClass
 
                         SrvAddMixInputData(ddPy.InputPys.Replace(" ", "") & ddPy.DispPyText2)
 
-                        If P_AUTO_CREATE_WORD Then
+                        If P_AUTO_CREATE_WORD AndAlso Not P_I_MODE Then
                             SrvRegisterWords(ddPy.InputWord)
                         End If
 

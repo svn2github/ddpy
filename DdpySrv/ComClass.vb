@@ -56,8 +56,34 @@ Public Class ComClass
             Else
                 SetSettingInfo(My.Computer.FileSystem.ReadAllText(sFileCfg, Encoding.UTF8))
             End If
-            If Not My.Computer.FileSystem.FileExists(ddpyScriptFile) Then
-                My.Computer.FileSystem.WriteAllText(ddpyScriptFile, My.Resources.淡定脚本, False, Encoding.UTF8)
+            Dim scriptPath As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\DdpyScripts"
+            If Not My.Computer.FileSystem.DirectoryExists(scriptPath) Then
+                My.Computer.FileSystem.CreateDirectory(scriptPath)
+            End If
+
+            Dim sFile As String = scriptPath & "\\i神农本草.js"
+            If Not My.Computer.FileSystem.FileExists(sFile) Then
+                My.Computer.FileSystem.WriteAllText(sFile, My.Resources.i神农本草, False, Encoding.UTF8)
+            End If
+            sFile = scriptPath & "\\i日文汉字拼音输入.js"
+            If Not My.Computer.FileSystem.FileExists(sFile) Then
+                My.Computer.FileSystem.WriteAllText(sFile, My.Resources.i日文汉字拼音输入, False, Encoding.UTF8)
+            End If
+            sFile = scriptPath & "\\i符号.js"
+            If Not My.Computer.FileSystem.FileExists(sFile) Then
+                My.Computer.FileSystem.WriteAllText(sFile, My.Resources.i符号, False, Encoding.UTF8)
+            End If
+            sFile = scriptPath & "\\i伤寒金匮经方.js"
+            If Not My.Computer.FileSystem.FileExists(sFile) Then
+                My.Computer.FileSystem.WriteAllText(sFile, My.Resources.i伤寒金匮经方, False, Encoding.UTF8)
+            End If
+            sFile = scriptPath & "\\i伤寒论条文.js"
+            If Not My.Computer.FileSystem.FileExists(sFile) Then
+                My.Computer.FileSystem.WriteAllText(sFile, My.Resources.i伤寒论条文, False, Encoding.UTF8)
+            End If
+            sFile = scriptPath & "\\i淡定脚本.js"
+            If Not My.Computer.FileSystem.FileExists(sFile) Then
+                My.Computer.FileSystem.WriteAllText(sFile, My.Resources.i淡定脚本, False, Encoding.UTF8)
             End If
 
 

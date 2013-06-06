@@ -61,6 +61,170 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  查找类似 // 张仲景伤寒论条文例
+        '''function execZj(codes)
+        '''{
+        '''	var i = 1;
+        '''	var aryRet = new Array();
+        '''	var cd = codes.substring(2);
+        '''
+        '''	if ( cd.isBlank() ) {
+        '''		aryRet[&quot;Tip&quot;] = &quot;请输入条文编号 1～398&quot;;
+        '''    }else if (cd == i++) {
+        '''        aryRet[aryRet.length] = ddpyCreateCand(&quot;1、太阳之为病，脉浮，头项强痛而恶寒。&quot;, null, 0);
+        '''    }else if (cd == i++) {
+        '''        aryRet[aryRet.length] = ddpyCreateCand(&quot;2、太阳病，发热汗出，恶风，脉缓者，名为中风。&quot;, null, 0);
+        '''    }else if (cd == i++) {
+        '''        aryRet[aryRet.length] = ddpyCreateCand(&quot;3、太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名为伤寒。&quot; [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Friend ReadOnly Property i伤寒论条文() As String
+            Get
+                Return ResourceManager.GetString("i伤寒论条文", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似 // 伤寒金匮经方例
+        '''function execJf(codes)
+        '''{
+        '''	var bFlg = false;
+        '''	var aryRet = new Array();
+        '''	var cd = codes.substring(2);
+        '''
+        '''	if ( !cd.isBlank() ) {
+        '''		var oData = getJfObject();
+        '''
+        '''		for (var key in oData) {
+        '''			if ( key == cd ){
+        '''				aryRet[aryRet.length] = ddpyCreateCand(oData[key][1], null, 0);
+        '''				bFlg = true;
+        '''			}else if ( key.startWith(cd) ){
+        '''				aryRet[aryRet.length] = ddpyCreateCand(oData[key][0], key.substring(cd.length));
+        '''				bFlg = true;
+        '''			}
+        '''		}
+        '''		
+        '''		if ( !bFlg ){
+        '''			aryRet[&quot;Tip&quot;] = &quot;你要的东东没 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Friend ReadOnly Property i伤寒金匮经方() As String
+            Get
+                Return ResourceManager.GetString("i伤寒金匮经方", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似 // 日文汉字拼音输入
+        '''function execRw(codes)
+        '''{
+        '''    var aryRet = new Array();
+        '''    var cd = codes.substring(2);
+        '''
+        '''    if ( cd.isBlank() ){
+        '''        aryRet[&quot;Tip&quot;] = &quot;请输入单字拼音全拼&quot;;
+        '''    }else if ( cd == &quot;a&quot; ){
+        '''        aryRet = createRwCand(&quot;a&quot;, &quot;阿&quot;);
+        '''    }else if ( cd == &quot;ai&quot; ){
+        '''        aryRet = createRwCand(&quot;ai&quot;, &quot;隘愛碍艾矮藹癌皚哀挨埃&quot;);
+        '''    }else if ( cd == &quot;an&quot; ){
+        '''        aryRet = createRwCand(&quot;an&quot;, &quot;鞍案岸暗按俺安&quot;);
+        '''    }else if ( cd == &quot;ang&quot; ){
+        '''        aryRet = createRwCand(&quot;ang&quot;, &quot;昂&quot;);
+        '''    }else if ( cd == &quot;ao&quot; ){
+        '''    [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Friend ReadOnly Property i日文汉字拼音输入() As String
+            Get
+                Return ResourceManager.GetString("i日文汉字拼音输入", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似 /*
+        '''// ----------------------------------------
+        '''【方法名】ddpyRegisterCommand
+        '''【概要】注册方法
+        '''【参数】
+        '''sCmd：编码栏作为拼音输入的命令 [必须]
+        '''sName：候选中作为文本显示的名称 [必须]
+        '''sMethod：对应的方法名 [必须]
+        '''sTip：有值时忽略候选项仅显示该提示 [可选，默认无提示]
+        '''sTitle：输入法窗口标题 [可选，默认不设定标题]
+        '''hasDigitComp：是否把数字作为编码输入 [可选，默认主键盘数字键为非编码]
+        '''【返回值】无
+        '''
+        '''
+        '''【方法名】ddpyCreateCand
+        '''【概要】创建一个候选项
+        '''【参数】
+        '''sText：候选项文本（&lt;br&gt;表示换行） [必须]
+        '''sPy：候选项编码 [可选，默认空白串]
+        '''bShowDigit：该候选项是否附加显示数字编号显示 [可选，默认附加显示数字编号]
+        '''sDispText：候选项显示用文本（&lt;br&gt;表示换行） [可选，默认显示候选项文本]
+        '''【返回值】候选项对象
+        '''// --------------------------------------- [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Friend ReadOnly Property i淡定脚本() As String
+            Get
+                Return ResourceManager.GetString("i淡定脚本", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似 // 神农本草例
+        '''function execBc(codes)
+        '''{
+        '''	var bFlg = false;
+        '''	var aryRet = new Array();
+        '''	var cd = codes.substring(2);
+        '''
+        '''	if ( !cd.isBlank() ) {
+        '''		var oData = getBcObject();
+        '''
+        '''		for (var key in oData) {
+        '''			if ( key == cd ){
+        '''				aryRet[aryRet.length] = ddpyCreateCand(oData[key][1], null, 0);
+        '''				bFlg = true;
+        '''			}else if ( key.startWith(cd) ){
+        '''				aryRet[aryRet.length] = ddpyCreateCand(oData[key][0], key.substring(cd.length));
+        '''				bFlg = true;
+        '''			}
+        '''		}
+        '''		
+        '''		if ( !bFlg ){
+        '''			aryRet[&quot;Tip&quot;] = &quot;你要的东东没找到 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Friend ReadOnly Property i神农本草() As String
+            Get
+                Return ResourceManager.GetString("i神农本草", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似 // 符号输入用脚本例子，编码栏输入“ifh”时被调用
+        '''//（codes为不包含第一位“i”的编码）
+        '''function execFh(codes)
+        '''{
+        '''	var aryRet = new Array();
+        '''	var cd = codes.substring(2);
+        '''
+        '''	aryRet[&quot;Title&quot;] = &apos;淡定“i”模式——爱符号&apos;;
+        '''	var sFhs = &quot;→⇒←↑↓≠＊≧≦○◎●▲△▼▽☆★◇◆□■&quot;;
+        '''	for ( var i = 0; i &lt; sFhs.length; i++ ){
+        '''		aryRet[aryRet.length] = ddpyCreateCand(sFhs.substring(i, i+1));
+        '''	}
+        '''
+        '''	return aryRet;
+        '''}
+        ''' 的本地化字符串。
+        '''</summary>
+        Friend ReadOnly Property i符号() As String
+            Get
+                Return ResourceManager.GetString("i符号", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  查找类似 啊	a
         '''爱	ai
         '''安	an
@@ -232,39 +396,6 @@ Namespace My.Resources
         Friend ReadOnly Property 淡定字库() As String
             Get
                 Return ResourceManager.GetString("淡定字库", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找类似 // 符号输入用脚本例子，编码栏输入“ifh”时被调用
-        '''//（codes为不包含第一位“i”的编码）
-        '''function execFh(codes)
-        '''{
-        '''	var aryRet = new Array();
-        '''	var cd = codes.substring(2);
-        '''
-        '''	aryRet[&quot;Title&quot;] = &apos;淡定“i”模式——爱符号&apos;;
-        '''	var sFhs = &quot;→⇒←↑↓≠＊≧≦○◎●▲△▼▽☆★◇◆□■&quot;;
-        '''	for ( var i = 0; i &lt; sFhs.length; i++ ){
-        '''		aryRet[aryRet.length] = ddpyCreateCand(sFhs.substring(i, i+1));
-        '''	}
-        '''
-        '''	return aryRet;
-        '''}
-        '''
-        '''// 张仲景伤寒论条文
-        '''function execZj(codes)
-        '''{
-        '''	var i = 1;
-        '''	var aryRet = new Array();
-        '''	var cd = codes.substring(2);
-        '''
-        '''	if ( cd.isBlank() ) {
-        '''		aryRet[&quot;Tip&quot;] = &quot;请 [字符串的其余部分被截断]&quot;; 的本地化字符串。
-        '''</summary>
-        Friend ReadOnly Property 淡定脚本() As String
-            Get
-                Return ResourceManager.GetString("淡定脚本", resourceCulture)
             End Get
         End Property
         

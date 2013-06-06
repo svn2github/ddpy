@@ -11,7 +11,12 @@ Module MScript
                 sc = CreateObject("ScriptControl")
                 sc.Language = "JScript"
                 sc.AddCode(My.Resources.脚本框架)
-                sc.AddCode(My.Computer.FileSystem.ReadAllText(ddpyScriptFile, Encoding.UTF8))
+
+                Dim files = My.Computer.FileSystem.GetFiles(My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData _
+                                                            , FileIO.SearchOption.SearchAllSubDirectories, "i*.js")
+                For Each f As String In files
+                    sc.AddCode(My.Computer.FileSystem.ReadAllText(f, Encoding.UTF8))
+                Next
             End If
 
             Return sc.Run("main", codes)
