@@ -148,6 +148,7 @@
     </Compile>
     <Compile Include="MMemory.vb" />
     <Compile Include="MMixInput.vb" />
+    <Compile Include="MPathFile.vb" />
     <Compile Include="MScript.vb" />
     <Compile Include="MSrvConfig.vb" />
     <Compile Include="MDanDingDictionary.vb" />

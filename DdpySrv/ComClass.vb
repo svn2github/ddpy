@@ -49,43 +49,7 @@ Public Class ComClass
 
         'DebugTimeStart()
         Try
-            ' 读写配置文件
-            Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定配置.txt"
-            If Not My.Computer.FileSystem.FileExists(sFileCfg) Then
-                My.Computer.FileSystem.WriteAllText(sFileCfg, GetSettingInfo(), False, Encoding.UTF8)
-            Else
-                SetSettingInfo(My.Computer.FileSystem.ReadAllText(sFileCfg, Encoding.UTF8))
-            End If
-            Dim scriptPath As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\DdpyScripts"
-            If Not My.Computer.FileSystem.DirectoryExists(scriptPath) Then
-                My.Computer.FileSystem.CreateDirectory(scriptPath)
-            End If
-
-            Dim sFile As String = scriptPath & "\\i神农本草.js"
-            If Not My.Computer.FileSystem.FileExists(sFile) Then
-                My.Computer.FileSystem.WriteAllText(sFile, My.Resources.i神农本草, False, Encoding.UTF8)
-            End If
-            sFile = scriptPath & "\\i日文汉字拼音输入.js"
-            If Not My.Computer.FileSystem.FileExists(sFile) Then
-                My.Computer.FileSystem.WriteAllText(sFile, My.Resources.i日文汉字拼音输入, False, Encoding.UTF8)
-            End If
-            sFile = scriptPath & "\\i符号.js"
-            If Not My.Computer.FileSystem.FileExists(sFile) Then
-                My.Computer.FileSystem.WriteAllText(sFile, My.Resources.i符号, False, Encoding.UTF8)
-            End If
-            sFile = scriptPath & "\\i伤寒金匮经方.js"
-            If Not My.Computer.FileSystem.FileExists(sFile) Then
-                My.Computer.FileSystem.WriteAllText(sFile, My.Resources.i伤寒金匮经方, False, Encoding.UTF8)
-            End If
-            sFile = scriptPath & "\\i伤寒论条文.js"
-            If Not My.Computer.FileSystem.FileExists(sFile) Then
-                My.Computer.FileSystem.WriteAllText(sFile, My.Resources.i伤寒论条文, False, Encoding.UTF8)
-            End If
-            sFile = scriptPath & "\\i淡定脚本.js"
-            If Not My.Computer.FileSystem.FileExists(sFile) Then
-                My.Computer.FileSystem.WriteAllText(sFile, My.Resources.i淡定脚本, False, Encoding.UTF8)
-            End If
-
+            InitDdpyFiles()
 
             ' 初始化字库词库
             ImportDanDingFile()
@@ -224,17 +188,16 @@ Public Class ComClass
     ''' </summary>
     ''' <returns>用户Log目录</returns>
     Public Function SrvGetAllUsersLogPath() As String
-        Return GetAllUsersLogPath()
+        Return GetDdpyLogPath()
     End Function
 
 
     Public Function SvrGetDdpyCfgExePath() As String
-        Dim sPath As String = My.Computer.FileSystem.GetParentPath(Application.ExecutablePath)
-        Return sPath & "\DdpyCfg.exe"
+        Return GetDdpyConfigExeFile()
     End Function
 
     Public Function SvrGetCurrentUserDataPath() As String
-        Return My.Computer.FileSystem.GetParentPath(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData)
+        Return GetDdpyUserDataPath()
     End Function
 
     Public Function SvrMsgBox(ByVal msg As String) As Integer

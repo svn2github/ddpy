@@ -15,13 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0C60885A39FC4CB5B0009CD2CD1FA50B"
-        "OwnerKey" = "8:_671A79C655064834A7A5E1071740B362"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_29C87C56C6974BD98ACF1F6507255ECE"
+        "MsmKey" = "8:_0DE0669500DC436381A70E6D1A81388D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -29,6 +23,18 @@
         {
         "MsmKey" = "8:_2B94ED593A7446009C9C082EEBE6C16E"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3642EEA40E2C463BBF1890C7F0584877"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_397284C8716447A198D5DF0FD422703C"
+        "OwnerKey" = "8:_3642EEA40E2C463BBF1890C7F0584877"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -51,12 +57,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_671A79C655064834A7A5E1071740B362"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B27185FC1C6C44F4A1AB531E10696839"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -70,7 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_E5067E06A3CE36EC2BA8863E51435159"
-        "OwnerKey" = "8:_671A79C655064834A7A5E1071740B362"
+        "OwnerKey" = "8:_3642EEA40E2C463BBF1890C7F0584877"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -82,7 +82,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_29C87C56C6974BD98ACF1F6507255ECE"
+        "OwnerKey" = "8:_0DE0669500DC436381A70E6D1A81388D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -122,6 +122,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -288,12 +301,12 @@
             "Vital" = "11:TRUE"
             "ReadOnly" = "11:FALSE"
             "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
+            "System" = "11:TRUE"
             "Permanent" = "11:FALSE"
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -365,7 +378,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:淡定拼音输入法"
         "ProductCode" = "8:{C2095991-AADE-4845-B3DD-9EEB3DD1298E}"
-        "PackageCode" = "8:{3497154B-3CDB-4A55-8B93-EA1A4FC283F1}"
+        "PackageCode" = "8:{7B478804-1ED7-4DD8-9780-0A046D833507}"
         "UpgradeCode" = "8:{CD159289-698A-4D90-B1F5-8581CCB62EAE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -485,6 +498,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F7AF050086A4D43B82B28A90273E560"
+            {
+            "Name" = "8:卸载淡定拼音输入法"
+            "Arguments" = "8:/x"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_0DE0669500DC436381A70E6D1A81388D"
+            "Folder" = "8:_092EE5BE271546FDADEC57952063E72B"
+            "WorkingFolder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
+            "Icon" = "8:_3D4F5E1795864F21A0D2A7FBA4686881"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1AD01EDA4AAE4D149FB8DA4728573C3C"
             {
             "Name" = "8:淡定拼音输入法设定"
@@ -499,35 +526,7 @@
             "Icon" = "8:_B27185FC1C6C44F4A1AB531E10696839"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5F1F03B10D8547DA867878F38AC44C75"
-            {
-            "Name" = "8:打开输入法用户目录"
-            "Arguments" = "8:User"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_29C87C56C6974BD98ACF1F6507255ECE"
-            "Folder" = "8:_092EE5BE271546FDADEC57952063E72B"
-            "WorkingFolder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
-            "Icon" = "8:_2B94ED593A7446009C9C082EEBE6C16E"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_ADA4AE19109A4056A1682DDFB3CAEE70"
-            {
-            "Name" = "8:打开输入法日志目录"
-            "Arguments" = "8:Log"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_29C87C56C6974BD98ACF1F6507255ECE"
-            "Folder" = "8:_092EE5BE271546FDADEC57952063E72B"
-            "WorkingFolder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
-            "Icon" = "8:_2B94ED593A7446009C9C082EEBE6C16E"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C3E16FFFBEEB4A8DA4A72DD37404649F"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1AE860C0462A45929ECDC88C39710677"
             {
             "Name" = "8:打开输入法数据目录"
             "Arguments" = "8:Data"
@@ -535,24 +534,52 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_29C87C56C6974BD98ACF1F6507255ECE"
+            "Target" = "8:_0DE0669500DC436381A70E6D1A81388D"
             "Folder" = "8:_092EE5BE271546FDADEC57952063E72B"
             "WorkingFolder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
             "Icon" = "8:_2B94ED593A7446009C9C082EEBE6C16E"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F187627B6C2445CF9874A0FB7013713B"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5F2BEC6BB5674E6F837C28F40F1C8586"
             {
-            "Name" = "8:卸载淡定拼音输入法"
-            "Arguments" = "8:/x"
+            "Name" = "8:打开输入法用户目录"
+            "Arguments" = "8:User"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_29C87C56C6974BD98ACF1F6507255ECE"
+            "Target" = "8:_0DE0669500DC436381A70E6D1A81388D"
             "Folder" = "8:_092EE5BE271546FDADEC57952063E72B"
             "WorkingFolder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
-            "Icon" = "8:_3D4F5E1795864F21A0D2A7FBA4686881"
+            "Icon" = "8:_2B94ED593A7446009C9C082EEBE6C16E"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C24E5D6CE8414D33A81789A1C831DE91"
+            {
+            "Name" = "8:打开输入法脚本目录"
+            "Arguments" = "8:Script"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_0DE0669500DC436381A70E6D1A81388D"
+            "Folder" = "8:_092EE5BE271546FDADEC57952063E72B"
+            "WorkingFolder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
+            "Icon" = "8:_2B94ED593A7446009C9C082EEBE6C16E"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FE5FB7EF3B40428BA2A988EC5AD58E66"
+            {
+            "Name" = "8:打开输入法日志目录"
+            "Arguments" = "8:Log"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_0DE0669500DC436381A70E6D1A81388D"
+            "Folder" = "8:_092EE5BE271546FDADEC57952063E72B"
+            "WorkingFolder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
+            "Icon" = "8:_2B94ED593A7446009C9C082EEBE6C16E"
             "Feature" = "8:"
             }
         }
@@ -951,7 +978,7 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_0C60885A39FC4CB5B0009CD2CD1FA50B"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_397284C8716447A198D5DF0FD422703C"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
@@ -968,9 +995,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_29C87C56C6974BD98ACF1F6507255ECE"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_0DE0669500DC436381A70E6D1A81388D"
             {
-            "SourcePath" = "8:..\\DdpySrv\\obj\\Release\\DdpySrv.exe"
+            "SourcePath" = "8:..\\DdpySrv\\obj\\x86\\Release\\DdpySrv.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_6D97AAA2D637466D81B4056930BE8B6A"
@@ -988,9 +1015,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|Any CPU"
+            "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{B0EED501-B016-4FB2-9AC9-B830B42A0D06}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3642EEA40E2C463BBF1890C7F0584877"
+            {
+            "SourcePath" = "8:..\\Release\\DdpyIme.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7A9410E0DAAC453196304C8F70F2C007"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:Release|Win32"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{46A1324E-68B9-4382-9EB5-363366F47821}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
@@ -1047,34 +1102,6 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{496C2D63-FF3A-4D81-8E26-20D53E92D723}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_671A79C655064834A7A5E1071740B362"
-            {
-            "SourcePath" = "8:..\\Release\\DdpyIme.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7A9410E0DAAC453196304C8F70F2C007"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|Win32"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{46A1324E-68B9-4382-9EB5-363366F47821}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

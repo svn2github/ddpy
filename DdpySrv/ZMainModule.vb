@@ -27,22 +27,25 @@ Module ZMainModule
 
         ' 打开用户数据目录
         If args(0) = "User" Then
-            System.Diagnostics.Process.Start(My.Computer.FileSystem.GetParentPath(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData))
+            System.Diagnostics.Process.Start(GetDdpyUserDataPath())
             Return
         End If
 
         ' 打开输入法数据目录
         If args(0) = "Data" Then
-            System.Diagnostics.Process.Start(My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData)
+            System.Diagnostics.Process.Start(GetDdpyDataPath())
             Return
         End If
 
         ' 打开日志目录
         If args(0) = "Log" Then
-            Dim sPath As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData
-            sPath = My.Computer.FileSystem.GetParentPath(sPath)
-            sPath = My.Computer.FileSystem.GetParentPath(sPath) & "\Log"
-            System.Diagnostics.Process.Start(sPath)
+            System.Diagnostics.Process.Start(GetDdpyLogPath())
+            Return
+        End If
+
+        ' 打开脚本目录
+        If args(0) = "Script" Then
+            System.Diagnostics.Process.Start(GetDdpyScriptPath())
             Return
         End If
 

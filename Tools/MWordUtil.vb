@@ -183,7 +183,6 @@ Module MWordUtil
 
         Dim pys As New List(Of String)
         Dim w As String
-        Dim py As String
         For i As Integer = 0 To words.Length - 1
             w = words.Substring(i, 1)
             If GetPinyinMap().ContainsKey(w) Then

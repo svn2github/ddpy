@@ -146,15 +146,13 @@ Module MSrvConfig
             P_I_MODE = CBool(ary(19))
 
             ' 保存配置信息
-            Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定配置.txt"
-            My.Computer.FileSystem.WriteAllText(sFileCfg, GetSettingInfo(), False, Encoding.UTF8)
+            My.Computer.FileSystem.WriteAllText(GetDdpyConfigFile(), GetSettingInfo(), False, Encoding.UTF8)
 
         Catch ex As Exception
             ComError("SetSettingInfo(" & conf & ")失败。配置文件恢复成默认配置", ex)
 
             ' 保存默认配置信息
-            Dim sFileCfg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定配置.txt"
-            My.Computer.FileSystem.WriteAllText(sFileCfg, GetSettingInfo(), False, Encoding.UTF8)
+            My.Computer.FileSystem.WriteAllText(GetDdpyConfigFile(), GetSettingInfo(), False, Encoding.UTF8)
         End Try
 
     End Sub

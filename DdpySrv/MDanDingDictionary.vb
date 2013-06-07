@@ -94,19 +94,6 @@ Module MDanDingDictionary
             Return
         End If
 
-        Dim sFileDic As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定字库.txt"
-        If Not My.Computer.FileSystem.FileExists(sFileDic) Then
-            My.Computer.FileSystem.WriteAllText(sFileDic, My.Resources.淡定字库, False, Encoding.UTF8)
-        End If
-        Dim sFileWrd As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定词库.txt"
-        If Not My.Computer.FileSystem.FileExists(sFileWrd) Then
-            My.Computer.FileSystem.WriteAllText(sFileWrd, My.Resources.淡定词库, False, Encoding.UTF8)
-        End If
-        Dim sFileTop As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData & "\\淡定固顶.txt"
-        If Not My.Computer.FileSystem.FileExists(sFileTop) Then
-            My.Computer.FileSystem.WriteAllText(sFileTop, My.Resources.淡定固顶, False, Encoding.UTF8)
-        End If
-
         iSysOrder = Integer.MaxValue
         iImpOrder = Integer.MaxValue
         iUsrOrder = Integer.MaxValue
@@ -114,18 +101,18 @@ Module MDanDingDictionary
 
         ' 初始化字库
         If (mDanDingDic Is Nothing) Then
-            mDanDingDic = New Hashtable ' "拼音 - CWord
-            InitDanDingWordDic(sFileWrd) ' 淡定词库
-            InitDanDingWordDic(sFileDic) ' 淡定字库
+            mDanDingDic = New Hashtable ' [拼音 - CWord]
+            InitDanDingWordDic(GetDdpyMultWordFile()) ' 淡定词库
+            InitDanDingWordDic(GetDdpySingleWordFile()) ' 淡定字库
         End If
 
         ' 导入用户词库
-        If My.Computer.FileSystem.FileExists(GetUserWordFile()) Then
-            ImportWords(GetUserWordFile(), WordType.USR)
+        If My.Computer.FileSystem.FileExists(GetDdpyUserWordFile()) Then
+            ImportWords(GetDdpyUserWordFile(), WordType.USR)
         End If
 
         ' 导入固顶词库
-        ImportWords(sFileTop, WordType.TOP)
+        ImportWords(GetDdpyTopWordFile(), WordType.TOP)
 
     End Sub
 

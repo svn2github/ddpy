@@ -91,22 +91,6 @@ Module MPinYinMatch
             Return sPy.StartsWith(sCd)
         End If
 
-        'If (sCd.Equals(shotCd) AndAlso Not "a,o,e".Contains(Strings.Left(shotCd, 1))) _
-        '    OrElse "zh,ch,sh".Contains(sCd) _
-        '    OrElse (P_AN_ANG AndAlso "an".Equals(sCd)) _
-        '    OrElse (P_EN_ENG AndAlso "en".Equals(sCd)) Then
-
-        '    If Not sPy.StartsWith(sCd) Then
-        '        Return False
-        '    End If
-        'Else
-        '    If Not sPy.Equals(sCd) Then
-        '        Return False
-        '    End If
-        'End If
-
-        'Return True
-
     End Function
 
     ''' <summary>

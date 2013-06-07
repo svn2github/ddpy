@@ -9,11 +9,6 @@ Module MUserWord
     Private mapUserWords As New Hashtable
     Private hasNewRegisterWord As Boolean = False
 
-    Public Function GetUserWordFile() As String
-        Dim path As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData
-        Return My.Computer.FileSystem.GetParentPath(path) & "\\用户词库.txt"
-    End Function
-
     ''' <summary>
     ''' 登记文字
     ''' </summary>
@@ -73,7 +68,7 @@ Module MUserWord
         For i As Integer = 0 To lst.Count - 1
             txt.AppendLine(lst(i).Text & vbTab & lst(i).PinYin & vbTab & lst(i).UsrOrder)
         Next
-        My.Computer.FileSystem.WriteAllText(GetUserWordFile(), txt.ToString, False, Encoding.UTF8)
+        My.Computer.FileSystem.WriteAllText(GetDdpyUserWordFile(), txt.ToString, False, Encoding.UTF8)
 
     End Sub
 
