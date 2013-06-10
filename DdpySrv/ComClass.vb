@@ -139,9 +139,15 @@ Public Class ComClass
 
     End Function
 
-    Public Sub SrvAddMixInputData(ByVal codes As String)
-        AddMixInputData(codes)
-    End Sub
+    Public Function SrvAddMixInputData(ByVal codes As String) As Boolean
+        Dim bMix As Boolean = IsMixInput(codes, "")
+
+        If bMix Then
+            AddMixInputData(codes)
+        End If
+
+        Return bMix
+    End Function
 
     Public Sub SrvDeleteMixInputData(ByVal codes As String)
         DeleteMixInputData(codes)

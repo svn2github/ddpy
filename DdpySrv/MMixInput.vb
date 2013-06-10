@@ -103,8 +103,8 @@ Module MMixInput
 
     Friend Sub AddMixInputData(ByVal sData As String)
 
-        ' 太短的不处理，不是混合输入不处理
-        If sData.Length < 5 OrElse Not IsMixInput(sData, "") Then
+        ' 太短的不处理
+        If sData.Length < 5 Then
             Return
         End If
 
