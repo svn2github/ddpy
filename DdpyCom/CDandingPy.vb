@@ -29,6 +29,14 @@ Friend Class CDandingPy
     Private vScriptModeTitle As String
     Private vHasChange As Boolean = False
 
+    Public Function GetFocusWord() As CWord
+        Dim words As CWord() = GetCandWords()
+        If words.Length = 0 OrElse words.Length < FocusCand OrElse FocusCand <= 0 Then
+            Return Nothing
+        End If
+        Return words(FocusCand - 1)
+    End Function
+
     Public Property HasChange() As Boolean
         Get
             Return vHasChange

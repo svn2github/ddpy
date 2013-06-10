@@ -83,11 +83,14 @@ Public Class ComClass
                             sResult = ddPy.Text & ddPy.DispPyText2 & ddPy.TextEndChar
                         End If
 
-                        SrvAddMixInputData(ddPy.InputPys.Replace(" ", "") & ddPy.DispPyText2)
+                        If Not SrvAddMixInputData(ddPy.InputPys.Replace(" ", "") & ddPy.DispPyText2) Then
 
-                        If P_AUTO_CREATE_WORD AndAlso Not P_I_MODE Then
-                            SrvRegisterWords(ddPy.InputWord)
+                            If P_AUTO_CREATE_WORD Then
+                                SrvRegisterWords(ddPy.InputWord)
+                            End If
+
                         End If
+
 
                         frmInput.Hide()
                     Else
@@ -142,6 +145,7 @@ Public Class ComClass
                 If Not frmInput.Visible AndAlso ddPy.HasInput() Then
                     If Not "Button".Equals(GetClassNameByHwnd(GetFocus()), StringComparison.OrdinalIgnoreCase) Then
                         frmInput.Show()
+                        ActiveInfoForm()
                     End If
                 End If
 
@@ -150,6 +154,7 @@ Public Class ComClass
                     frmInput.Hide()             ' XP下Vs2010刚得到焦点时调用GetClassNameByHwnd会异常退出，这里清除数据个别应付
                 Else
                     frmInput.Visible = False    ' 关闭候选窗口但不清除ddpy数据，以便激活时显示原有候选窗口
+                    HideInfoForm(True)
                 End If
                 frmStatus.Hide()
             End If

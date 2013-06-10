@@ -188,6 +188,10 @@ Friend Class FrmImeInput
         ShowWindow(Me.Handle, SW_SHOWNOACTIVATE)
         ChangeLocation()
         NotifyImeOpenCandidate()
+
+        If P_SHOW_INFO Then
+            ShowInfoForm()
+        End If
     End Sub
 
     ''' <summary>
@@ -210,6 +214,8 @@ Friend Class FrmImeInput
 
         Me.Width = 420
         MyBase.Hide()
+
+        HideInfoForm()
     End Sub
 
     ''' <summary>

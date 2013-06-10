@@ -154,6 +154,12 @@
     <Compile Include="FrmImeTip.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmInformation.Designer.vb">
+      <DependentUpon>FrmInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MConfig.vb" />
     <Compile Include="MDanDingKeys.vb" />
     <Compile Include="MDebug.vb" />
@@ -161,6 +167,7 @@
     <Compile Include="MPinYinBreak.vb" />
     <Compile Include="MPrintScreen.vb" />
     <Compile Include="MServer.vb" />
+    <Compile Include="MShowInfo.vb" />
     <Compile Include="MWinApi.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -190,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmImeTip.resx">
       <DependentUpon>FrmImeTip.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmInformation.resx">
+      <DependentUpon>FrmInformation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

@@ -19,6 +19,18 @@ Module MDanDingKeys
         Dim bRet As Boolean = False
 
         Select Case iKey
+            Case Keys.Enter
+                If My.Computer.Keyboard.CtrlKeyDown Then
+                    ShowInfoForm(True)
+                    SetIkrFlag(ikr, True, True, False)
+                    bRet = True
+                End If
+            Case Keys.Return
+                If My.Computer.Keyboard.CtrlKeyDown Then
+                    ShowInfoForm(True)
+                    SetIkrFlag(ikr, True, True, False)
+                    bRet = True
+                End If
             Case Keys.F12
 
                 If frmInput.Visible Then
@@ -1167,6 +1179,8 @@ Module MDanDingKeys
             OrElse iKey = Keys.Right _
             OrElse iKey = Keys.OemPeriod _
             OrElse iKey = Keys.Delete _
+            OrElse iKey = Keys.Enter _
+            OrElse iKey = Keys.Return _
            ) _
             OrElse iKey = Keys.F12 _
         Then

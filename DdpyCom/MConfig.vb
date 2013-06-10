@@ -104,6 +104,8 @@ Module MConfig
     Friend P_AUTO_CREATE_WORD As Boolean = True
     Friend P_I_MODE As Boolean = True
 
+    Friend P_SHOW_INFO As Boolean = False
+
     ''' <summary>
     ''' 取得最新配置信息
     ''' </summary>

@@ -76,9 +76,9 @@ Module MServer
         Return lst
     End Function
 
-    Friend Sub SrvAddMixInputData(ByVal codes As String)
-        GetDdpyServer().SrvAddMixInputData(codes)
-    End Sub
+    Friend Function SrvAddMixInputData(ByVal codes As String) As Boolean
+        Return GetDdpyServer().SrvAddMixInputData(codes)
+    End Function
 
     Friend Sub SrvDeleteMixInputData(ByVal codes As String)
         GetDdpyServer().SrvDeleteMixInputData(codes)
