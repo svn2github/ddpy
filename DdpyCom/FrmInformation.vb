@@ -34,12 +34,12 @@ Friend Class FrmInformation
     Private oPoint As System.Drawing.Point
     Private oLoc As System.Drawing.Point
 
-    Private Sub FrmImeInput_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseDown
+    Private Sub FrmImeInput_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseDown, Label1.MouseDown
         oPoint = e.Location
         oLoc = Me.Location
     End Sub
 
-    Private Sub FrmImeInput_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseUp
+    Private Sub FrmImeInput_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseUp, Label1.MouseUp
         Dim nPoint As System.Drawing.Point = e.Location
         Dim p As New System.Drawing.Point(oLoc.X + (nPoint.X - oPoint.X), oLoc.Y + (nPoint.Y - oPoint.Y))
         Me.Location = p
@@ -68,4 +68,11 @@ Friend Class FrmInformation
     End Sub
 
 
+    Private Sub Label2_MouseEnter(ByVal sender As Object, ByVal e As System.EventArgs) Handles Label2.MouseEnter
+        Label2.ForeColor = Color.Blue
+    End Sub
+
+    Private Sub Label2_MouseLeave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Label2.MouseLeave
+        Label2.ForeColor = Color.CornflowerBlue
+    End Sub
 End Class

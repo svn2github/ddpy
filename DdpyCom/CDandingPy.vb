@@ -689,6 +689,10 @@ Friend Class CDandingPy
     ''' </summary>
     Public Sub ExecuteSearch()
 
+        If Not P_SHOW_INFO Then
+            HideInfoForm()
+        End If
+
         If P_I_MODE AndAlso vInputPys.StartsWith("i") Then
             vDispPyText = InputPys
             Me.WordList = SrvSearchWords(Trim(vInputPys.Substring(1)), True)
@@ -738,9 +742,15 @@ Friend Class CDandingPy
     ''' </summary>
     ''' <returns>成功/失败</returns>
     Public Function ShowNextPage() As Boolean
+
         Me.FocusCand = 1
         If Me.CurrentPage < Me.TotalPageCnt Then
             Me.CurrentPage = Me.CurrentPage + 1
+
+            If Not P_SHOW_INFO Then
+                HideInfoForm()
+            End If
+
             Return True
         End If
 
@@ -756,6 +766,11 @@ Friend Class CDandingPy
         Me.FocusCand = 1
         If Me.CurrentPage > 1 Then
             Me.CurrentPage = Me.CurrentPage - 1
+
+            If Not P_SHOW_INFO Then
+                HideInfoForm()
+            End If
+
             Return True
         End If
 

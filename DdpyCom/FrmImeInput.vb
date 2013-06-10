@@ -48,8 +48,8 @@ Friend Class FrmImeInput
         txt8.Font = fontCand
         txt9.Font = fontCand
 
-        Dim x As Integer = (Screen.PrimaryScreen.Bounds.Width - Me.Width) / 2
-        Dim y As Integer = (Screen.PrimaryScreen.Bounds.Height - Me.Height) * 0.6
+        Dim x As Integer = (Screen.PrimaryScreen.WorkingArea.Width - Me.Width) / 2
+        Dim y As Integer = (Screen.PrimaryScreen.WorkingArea.Height - Me.Height) * 0.6
         defaultPosX = x
         Me.Location = New System.Drawing.Point(x, y)
 
@@ -315,25 +315,25 @@ Friend Class FrmImeInput
         If P_AUTO_POSITION Then
 
             ' 光标跟随
-            Dim x As Integer = PosX
-            Dim y As Integer = PosY + PosH + 2
-            If Screen.PrimaryScreen.Bounds.Width - PosX - Me.Width < 0 Then
-                If Screen.PrimaryScreen.Bounds.Width - Me.Width < 0 Then
+            Dim x As Integer = PosX + 3
+            Dim y As Integer = PosY + PosH + 3
+            If Screen.PrimaryScreen.WorkingArea.Width - PosX - Me.Width < 0 Then
+                If Screen.PrimaryScreen.WorkingArea.Width - Me.Width < 0 Then
                     x = 0
                 Else
-                    x = Screen.PrimaryScreen.Bounds.Width - Me.Width
+                    x = Screen.PrimaryScreen.WorkingArea.Width - Me.Width
                 End If
             End If
-            If Screen.PrimaryScreen.Bounds.Height - PosY - PosH - 2 - Me.Height < 0 Then
-                y = PosY - Me.Height - 2
+            If Screen.PrimaryScreen.WorkingArea.Height - PosY - PosH - 3 - Me.Height < 0 Then
+                y = PosY - Me.Height - 3
             End If
 
             Me.Location = New Point(x, y)
         Else
 
             Dim x As Integer
-            If Screen.PrimaryScreen.Bounds.Width - defaultPosX < Me.Width Then
-                x = Screen.PrimaryScreen.Bounds.Width - Me.Width
+            If Screen.PrimaryScreen.WorkingArea.Width - defaultPosX < Me.Width Then
+                x = Screen.PrimaryScreen.WorkingArea.Width - Me.Width
             Else
                 x = defaultPosX
             End If

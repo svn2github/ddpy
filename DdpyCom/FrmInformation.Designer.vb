@@ -30,21 +30,25 @@ Partial Class FrmInformation
         'Label2
         '
         Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label2.AutoSize = True
         Me.Label2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Label2.Location = New System.Drawing.Point(129, 2)
+        Me.Label2.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label2.Location = New System.Drawing.Point(145, -1)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(33, 13)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "关闭"
+        Me.Label2.Size = New System.Drawing.Size(18, 14)
+        Me.Label2.TabIndex = 0
+        Me.Label2.Text = "×"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(2, 16)
+        Me.Label1.Cursor = System.Windows.Forms.Cursors.SizeAll
+        Me.Label1.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(3, 16)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(49, 13)
+        Me.Label1.Size = New System.Drawing.Size(56, 16)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Label1"
         '
@@ -66,7 +70,7 @@ Partial Class FrmInformation
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Panel1)
-        Me.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.Cursor = System.Windows.Forms.Cursors.SizeAll
         Me.Font = New System.Drawing.Font("宋体", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.ImeMode = System.Windows.Forms.ImeMode.Disable

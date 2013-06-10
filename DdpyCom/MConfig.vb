@@ -143,6 +143,7 @@ Module MConfig
             P_ADD_FIRST_WORD_IDX = CBool(ary(17))
             P_AUTO_CREATE_WORD = CBool(ary(18))
             P_I_MODE = CBool(ary(19))
+            P_SHOW_INFO = CBool(ary(20))
 
         Catch ex As Exception
             ComDebug(ex)
