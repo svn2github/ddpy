@@ -105,6 +105,7 @@ Module MConfig
     Friend P_I_MODE As Boolean = True
 
     Friend P_SHOW_INFO As Boolean = False
+    Friend fontInfo As New Font("宋体", 12, FontStyle.Regular)
     Friend P_SHOW_INFO_WITH_PY_TEXT As Boolean = False
 
     ''' <summary>
@@ -145,7 +146,13 @@ Module MConfig
             P_AUTO_CREATE_WORD = CBool(ary(18))
             P_I_MODE = CBool(ary(19))
             P_SHOW_INFO = CBool(ary(20))
-            P_SHOW_INFO_WITH_PY_TEXT = CBool(ary(21))
+
+            sFont = Strings.Split(ary(21), ",")
+            sFontName = sFont(0)
+            sFontSize = sFont(1)
+            sFontStyle = sFont(2)
+            fontInfo = New Font(sFontName, sFontSize, sFontStyle)
+            P_SHOW_INFO_WITH_PY_TEXT = CBool(ary(22))
 
         Catch ex As Exception
             ComDebug(ex)

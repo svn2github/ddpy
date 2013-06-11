@@ -26,11 +26,18 @@ Friend Class FrmInformation
 
 
     Public Overloads Sub Show()
-        ShowWindow(Me.Handle, SW_SHOWNOACTIVATE)
         ChangeLocation()
+        ShowWindow(Me.Handle, SW_SHOWNOACTIVATE)
     End Sub
 
     Public Sub ChangeLocation()
+
+        If LblText.Text.Length = 0 Then
+            LblExecText.Location = LblText.Location
+        Else
+            LblExecText.Location = New Point(LblText.Location.X, LblText.Location.Y + LblText.Height)
+        End If
+
         Dim x As Integer = frmInput.Location.X
         Dim y As Integer = frmInput.Location.Y + frmInput.Height
 
@@ -42,10 +49,10 @@ Friend Class FrmInformation
             End If
         End If
         If frmInput.Location.Y < PosY OrElse Screen.PrimaryScreen.WorkingArea.Height - y - Me.Height < 0 Then
-            If frmInput.Location.Y < PosY Then
+            If Not P_AUTO_POSITION OrElse frmInput.Location.Y < PosY Then
                 y = frmInput.Location.Y - Me.Height
             Else
-                y = frmInput.Location.Y - Me.Height - PosH - 3
+                y = frmInput.Location.Y - Me.Height - PosH - 5
             End If
         End If
 

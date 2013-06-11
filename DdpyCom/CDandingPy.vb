@@ -28,6 +28,16 @@ Friend Class CDandingPy
     Private vHasDigitComp As Boolean = False
     Private vScriptModeTitle As String
     Private vHasChange As Boolean = False
+    Private vDefaultKeyChar As String = ""
+
+    Public Property DefaultKeyChar() As String
+        Get
+            Return vDefaultKeyChar
+        End Get
+        Set(ByVal Value As String)
+            vDefaultKeyChar = Value
+        End Set
+    End Property
 
     Public Function GetFocusWord() As CWord
         Dim words As CWord() = GetCandWords()
@@ -285,6 +295,7 @@ Friend Class CDandingPy
         vTextEndChar = ""
         vDispPyText2 = ""
         vTip = ""
+        vDefaultKeyChar = ""
     End Sub
 
     ''' <summary>

@@ -100,7 +100,12 @@ Module MPinYinMatch
     ''' <param name="shotCds">简拼数组</param>
     ''' <param name="pys">全拼数组</param>
     ''' <returns>比较结果</returns>
-    Public Function MatchMutilPinYin(ByVal cds As String(), ByVal shotCds As String(), ByVal pys As String()) As Boolean
+    Public Function MatchMutilPinYin(ByVal cds As String(), ByVal shotCds As String(), ByVal pys As String(), ByVal text As String) As Boolean
+        If cds.Length = 1 AndAlso cds(0).Length = 1 AndAlso text.Length > 1 Then
+            Return False    ' 避免单个字母查出词语的情形，如x查出‘西安’
+        End If
+
+
         For i As Integer = 0 To pys.Length - 1
 
             If Not MatchSinglePinYin(cds(i), shotCds(i), pys(i)) Then

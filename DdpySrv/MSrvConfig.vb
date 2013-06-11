@@ -76,6 +76,7 @@ Module MSrvConfig
     Friend P_I_MODE As Boolean = True
 
     Private P_SHOW_INFO As Boolean = False
+    Private P_FONT_INFO_WIN As String = "宋体,12,0"
     Private P_SHOW_INFO_WITH_PY_TEXT As Boolean = False
 
     ''' <summary>
@@ -113,6 +114,7 @@ Module MSrvConfig
         lst.Add(P_I_MODE)
 
         lst.Add(P_SHOW_INFO)
+        lst.Add(P_FONT_INFO_WIN)
         lst.Add(P_SHOW_INFO_WITH_PY_TEXT)
 
         Return Strings.Join(lst.ToArray, vbTab)
@@ -152,7 +154,8 @@ Module MSrvConfig
             P_I_MODE = CBool(ary(19))
 
             P_SHOW_INFO = CBool(ary(20))
-            P_SHOW_INFO_WITH_PY_TEXT = CBool(ary(21))
+            P_FONT_INFO_WIN = CStr(ary(21))
+            P_SHOW_INFO_WITH_PY_TEXT = CBool(ary(22))
 
             ' 保存配置信息
             My.Computer.FileSystem.WriteAllText(GetDdpyConfigFile(), GetSettingInfo(), False, Encoding.UTF8)

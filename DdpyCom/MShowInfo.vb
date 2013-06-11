@@ -83,8 +83,8 @@ Module MShowInfo
 
 
             If Not frmInfo.Visible Then
-                frmInfo.LblText.Font = fontCand
-                frmInfo.LblExecText.Font = New Font(fontCand.Name, fontCand.Size, fontCand.Style Or FontStyle.Underline)
+                frmInfo.LblText.Font = fontInfo
+                frmInfo.LblExecText.Font = New Font(fontInfo.Name, fontInfo.Size, fontInfo.Style Or FontStyle.Underline)
                 frmInfo.Show()
             End If
 

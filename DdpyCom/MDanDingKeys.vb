@@ -197,7 +197,7 @@ Module MDanDingKeys
             Return
         End If
 
-        Dim sChar As String = ConvertDefaultChar(iKey)
+        ddPy.DefaultKeyChar = ConvertDefaultChar(iKey)
 
         ' 处理编码按键
         If Not My.Computer.Keyboard.CtrlKeyDown AndAlso IsCompKey(iKey) Then
@@ -209,7 +209,7 @@ Module MDanDingKeys
             End If
 
             ' 拼接编码后检索
-            ddPy.InputPys = ddPy.InputPys & sChar
+            ddPy.InputPys = ddPy.InputPys & ddPy.DefaultKeyChar
             ddPy.ExecuteSearch()
 
             SetIkrFlag(ikr, True, True, False)
@@ -217,9 +217,9 @@ Module MDanDingKeys
         End If
 
         ' 处理混合输入
-        If Not (P_I_MODE AndAlso ddPy.InputPys.StartsWith("i")) AndAlso Not My.Computer.Keyboard.CtrlKeyDown AndAlso Not "".Equals(Trim(sChar)) Then
-            If SrvIsMixInput(ddPy.InputPys, ddPy.DispPyText2, sChar) Then
-                ddPy.InputPys = ddPy.InputPys & sChar
+        If Not (P_I_MODE AndAlso ddPy.InputPys.StartsWith("i")) AndAlso Not My.Computer.Keyboard.CtrlKeyDown AndAlso Not "".Equals(Trim(ddPy.DefaultKeyChar)) Then
+            If SrvIsMixInput(ddPy.InputPys, ddPy.DispPyText2, ddPy.DefaultKeyChar) Then
+                ddPy.InputPys = ddPy.InputPys & ddPy.DefaultKeyChar
                 ddPy.ExecuteSearch()
                 SetIkrFlag(ikr, True, True, False)
                 Return
@@ -288,14 +288,19 @@ Module MDanDingKeys
 
                     If ddPy.DispPyText2.Length > 0 Then
                         ddPy.DispPyText2 = ddPy.DispPyText2.Substring(1)
+
+                        If ddPy.InputPys.Length > 0 OrElse ddPy.DispPyText2.Length > 0 Then
+                            SetIkrFlag(ikr, True, True, False)
+                            ddPy.ExecuteSearch()
+                        Else
+                            SetIkrFlag(ikr, True, True, False)
+                        End If
+
+                    Else
+                        SetIkrFlag(ikr, True, True, False)
+                        ddPy.HasChange = False
                     End If
 
-                    If ddPy.InputPys.Length > 0 OrElse ddPy.DispPyText2.Length > 0 Then
-                        SetIkrFlag(ikr, True, True, False)
-                        ddPy.ExecuteSearch()
-                    Else
-                        SetIkrFlag(ikr, True, False, False)
-                    End If
 
                 End If
 
@@ -510,7 +515,7 @@ Module MDanDingKeys
                         ' 已经有文字转换，不响应
                     Else
                         ' 未曾转换过，作混合输入处理
-                        ddPy.InputPys = ddPy.InputPys & ConvertDefaultChar(iKey)
+                        ddPy.InputPys = ddPy.InputPys & ddPy.DefaultKeyChar
                         ddPy.ExecuteSearch()
                     End If
                     SetIkrFlag(ikr, True, True, False)
@@ -782,9 +787,9 @@ Module MDanDingKeys
         ElseIf My.Computer.Keyboard.CapsLock OrElse (Not P_LNG_CN) Then
             ' EN
             If P_MODE_FULL Then
-                sRet = Strings.StrConv(ConvertDefaultChar(iKey), IIf(bLowerCase, VbStrConv.Lowercase + VbStrConv.Wide, VbStrConv.Uppercase + VbStrConv.Wide))
+                sRet = Strings.StrConv(ddPy.DefaultKeyChar, IIf(bLowerCase, VbStrConv.Lowercase + VbStrConv.Wide, VbStrConv.Uppercase + VbStrConv.Wide))
             Else
-                sRet = Strings.StrConv(ConvertDefaultChar(iKey), IIf(bLowerCase, VbStrConv.Lowercase, VbStrConv.Uppercase))
+                sRet = Strings.StrConv(ddPy.DefaultKeyChar, IIf(bLowerCase, VbStrConv.Lowercase, VbStrConv.Uppercase))
             End If
 
         Else
@@ -914,7 +919,7 @@ Module MDanDingKeys
                 End If
 
             Case Else
-                sRet = ConvertDefaultChar(iKey)
+                sRet = ddPy.DefaultKeyChar
 
         End Select
 

@@ -66,13 +66,6 @@ Friend Class FrmImeInput
             Return
         End If
 
-        If P_AUTO_POSITION Then
-            If ddPy.InputPys.Length = 1 AndAlso ddPy.DispPyText2.Length = 0 Then
-                Me.Location = New System.Drawing.Point(PosX, PosY + PosH + 2)
-            End If
-        End If
-
-
         If P_I_MODE AndAlso ddPy.Text = "" Then
             LblPinyin.Text = ddPy.InputPys
         Else
@@ -186,8 +179,8 @@ Friend Class FrmImeInput
             txt9.Font = fontCand
         End If
 
-        ShowWindow(Me.Handle, SW_SHOWNOACTIVATE)
         ChangeLocation()
+        ShowWindow(Me.Handle, SW_SHOWNOACTIVATE)
         NotifyImeOpenCandidate()
 
         If Not My.Computer.Keyboard.CtrlKeyDown AndAlso _
@@ -336,13 +329,16 @@ Friend Class FrmImeInput
         Else
 
             Dim x As Integer
+            Dim y As Integer = Me.Location.Y
             If Screen.PrimaryScreen.WorkingArea.Width - defaultPosX < Me.Width Then
                 x = Screen.PrimaryScreen.WorkingArea.Width - Me.Width
             Else
                 x = defaultPosX
             End If
-
-            Me.Location = New System.Drawing.Point(x, Me.Location.Y)
+            If Screen.PrimaryScreen.WorkingArea.Height - y - Me.Height < 0 Then
+                y = Screen.PrimaryScreen.WorkingArea.Height - Me.Height
+            End If
+            Me.Location = New System.Drawing.Point(x, y)
 
         End If
 

@@ -36,7 +36,7 @@ Public Class FrmSetting
             ChkSrvMemory.Checked = CBool(ary(11))
 
             If Trim(ary(12)).Replace(",", "").Length = (ary(12).Length - 2) Then
-                TxtFont.Text = ary(12)
+                TxtCandFont.Text = ary(12)
             End If
 
             ChkHideStatus.Checked = CBool(ary(13))
@@ -50,7 +50,10 @@ Public Class FrmSetting
             ChkAutoCreateWord.Checked = CBool(ary(18))
             ChkIMode.Checked = CBool(ary(19))
             ChkShowInfoWin.Checked = CBool(ary(20))
-            ChkAutoShowPyTextInfo.Checked = CBool(ary(21))
+            If Trim(ary(21)).Replace(",", "").Length = (ary(21).Length - 2) Then
+                TxtInfoFont.Text = ary(21)
+            End If
+            ChkAutoShowPyTextInfo.Checked = CBool(ary(22))
 
         Catch ex As Exception
             ' MsgBox("初始显示发生异常" & vbNewLine & "(错误消息:" & ex.Message & ")", MsgBoxStyle.Exclamation, "淡定")
@@ -83,7 +86,7 @@ Public Class FrmSetting
 
         lst.Add(ChkSrvMemory.Checked)
 
-        lst.Add(TxtFont.Text)
+        lst.Add(TxtCandFont.Text)
         lst.Add(ChkHideStatus.Checked)
         lst.Add(ChkAutoPosition.Checked)
         lst.Add(ChkCandLimit.Checked)
@@ -92,6 +95,7 @@ Public Class FrmSetting
         lst.Add(ChkAutoCreateWord.Checked)
         lst.Add(ChkIMode.Checked)
         lst.Add(ChkShowInfoWin.Checked)
+        lst.Add(TxtInfoFont.Text)
         lst.Add(ChkAutoShowPyTextInfo.Checked)
 
         Return Strings.Join(lst.ToArray, vbTab)
@@ -134,7 +138,7 @@ Public Class FrmSetting
     Private Sub BtnFontCand_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnFontCand.Click
 
         Try
-            Dim sFont As String() = Strings.Split(TxtFont.Text, ",")
+            Dim sFont As String() = Strings.Split(TxtCandFont.Text, ",")
             Dim sName As String = sFont(0)
             Dim iSize As Single = sFont(1)
             Dim iStyle As FontStyle = sFont(2)
@@ -145,7 +149,7 @@ Public Class FrmSetting
         End Try
 
         If FontDlgCand.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            TxtFont.Text = FontDlgCand.Font.Name & "," & FontDlgCand.Font.Size & "," & FontDlgCand.Font.Style
+            TxtCandFont.Text = FontDlgCand.Font.Name & "," & FontDlgCand.Font.Size & "," & FontDlgCand.Font.Style
         End If
 
     End Sub
@@ -687,7 +691,7 @@ Public Class FrmSetting
         End If
     End Sub
 
-    Private Sub TxtFont_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles TxtFont.TextChanged, TxtTitle.TextChanged
+    Private Sub TxtFont_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles TxtCandFont.TextChanged, TxtTitle.TextChanged, TxtInfoFont.TextChanged
         If GetSetting().Equals(sSrvSetting) Then
             BtnApply.Enabled = False
         Else
@@ -712,4 +716,20 @@ Public Class FrmSetting
         Return MyBase.ProcessCmdKey(msg, keyData)
     End Function
 
+    Private Sub BtnFontExtsInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnFontExtsInfo.Click
+        Try
+            Dim sFont As String() = Strings.Split(TxtInfoFont.Text, ",")
+            Dim sName As String = sFont(0)
+            Dim iSize As Single = sFont(1)
+            Dim iStyle As FontStyle = sFont(2)
+
+            FontDlgCand.Font = New Font(sName, iSize, iStyle)
+        Catch ex As Exception
+            FontDlgCand.Font = New Font("宋体", 12, FontStyle.Regular)
+        End Try
+
+        If FontDlgCand.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            TxtInfoFont.Text = FontDlgCand.Font.Name & "," & FontDlgCand.Font.Size & "," & FontDlgCand.Font.Style
+        End If
+    End Sub
 End Class

@@ -254,9 +254,7 @@ Module MDanDingDictionary
 
                 For Each word As CWord In lst
                     ' 逐个比较
-                    If MatchMutilPinYin(cds, shotCds, word.PinYin.Split("'")) Then
-
-                        ' word.SearchKey = codes
+                    If MatchMutilPinYin(cds, shotCds, word.PinYin.Split("'"), word.Text) Then
 
                         lstRet.Add(word)    ' 满足输入的对象
 

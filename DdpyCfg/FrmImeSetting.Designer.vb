@@ -47,7 +47,7 @@ Partial Class FrmSetting
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.BtnFontCand = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TxtFont = New System.Windows.Forms.TextBox()
+        Me.TxtCandFont = New System.Windows.Forms.TextBox()
         Me.ChkAutoPosition = New System.Windows.Forms.CheckBox()
         Me.ChkHideStatus = New System.Windows.Forms.CheckBox()
         Me.TabPageWordDic = New System.Windows.Forms.TabPage()
@@ -60,6 +60,7 @@ Partial Class FrmSetting
         Me.TxtWord = New System.Windows.Forms.TextBox()
         Me.TabPageAdvanced = New System.Windows.Forms.TabPage()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.ChkAutoShowPyTextInfo = New System.Windows.Forms.CheckBox()
         Me.ChkShowInfoWin = New System.Windows.Forms.CheckBox()
         Me.ChkIMode = New System.Windows.Forms.CheckBox()
         Me.ChkAutoCreateWord = New System.Windows.Forms.CheckBox()
@@ -73,7 +74,9 @@ Partial Class FrmSetting
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.FontDlgCand = New System.Windows.Forms.FontDialog()
         Me.BtnApply = New System.Windows.Forms.Button()
-        Me.ChkAutoShowPyTextInfo = New System.Windows.Forms.CheckBox()
+        Me.BtnFontExtsInfo = New System.Windows.Forms.Button()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.TxtInfoFont = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumPyLen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumPageCnt, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -131,7 +134,7 @@ Partial Class FrmSetting
         Me.ChkIn.AutoSize = True
         Me.ChkIn.Location = New System.Drawing.Point(17, 70)
         Me.ChkIn.Name = "ChkIn"
-        Me.ChkIn.Size = New System.Drawing.Size(62, 16)
+        Me.ChkIn.Size = New System.Drawing.Size(82, 17)
         Me.ChkIn.TabIndex = 0
         Me.ChkIn.Text = "in = ing"
         Me.ChkIn.UseVisualStyleBackColor = True
@@ -141,7 +144,7 @@ Partial Class FrmSetting
         Me.ChkZhizhe.AutoSize = True
         Me.ChkZhizhe.Location = New System.Drawing.Point(148, 70)
         Me.ChkZhizhe.Name = "ChkZhizhe"
-        Me.ChkZhizhe.Size = New System.Drawing.Size(143, 16)
+        Me.ChkZhizhe.Size = New System.Drawing.Size(201, 17)
         Me.ChkZhizhe.TabIndex = 0
         Me.ChkZhizhe.Text = "zhi,chi,shi = zhe,che,she"
         Me.ChkZhizhe.UseVisualStyleBackColor = True
@@ -151,7 +154,7 @@ Partial Class FrmSetting
         Me.ChkZize.AutoSize = True
         Me.ChkZize.Location = New System.Drawing.Point(148, 47)
         Me.ChkZize.Name = "ChkZize"
-        Me.ChkZize.Size = New System.Drawing.Size(107, 16)
+        Me.ChkZize.Size = New System.Drawing.Size(159, 17)
         Me.ChkZize.TabIndex = 0
         Me.ChkZize.Text = "zi,ci,si = ze,ce,se"
         Me.ChkZize.UseVisualStyleBackColor = True
@@ -161,7 +164,7 @@ Partial Class FrmSetting
         Me.ChkRiRe.AutoSize = True
         Me.ChkRiRe.Location = New System.Drawing.Point(348, 23)
         Me.ChkRiRe.Name = "ChkRiRe"
-        Me.ChkRiRe.Size = New System.Drawing.Size(55, 16)
+        Me.ChkRiRe.Size = New System.Drawing.Size(75, 17)
         Me.ChkRiRe.TabIndex = 0
         Me.ChkRiRe.Text = "ri = re"
         Me.ChkRiRe.UseVisualStyleBackColor = True
@@ -171,7 +174,7 @@ Partial Class FrmSetting
         Me.ChkZzh.AutoSize = True
         Me.ChkZzh.Location = New System.Drawing.Point(148, 23)
         Me.ChkZzh.Name = "ChkZzh"
-        Me.ChkZzh.Size = New System.Drawing.Size(98, 16)
+        Me.ChkZzh.Size = New System.Drawing.Size(138, 17)
         Me.ChkZzh.TabIndex = 0
         Me.ChkZzh.Text = "z,c,s = zh,ch,sh"
         Me.ChkZzh.UseVisualStyleBackColor = True
@@ -181,7 +184,7 @@ Partial Class FrmSetting
         Me.ChkAn.AutoSize = True
         Me.ChkAn.Location = New System.Drawing.Point(17, 23)
         Me.ChkAn.Name = "ChkAn"
-        Me.ChkAn.Size = New System.Drawing.Size(68, 16)
+        Me.ChkAn.Size = New System.Drawing.Size(82, 17)
         Me.ChkAn.TabIndex = 0
         Me.ChkAn.Text = "an = ang"
         Me.ChkAn.UseVisualStyleBackColor = True
@@ -191,7 +194,7 @@ Partial Class FrmSetting
         Me.ChkEn.AutoSize = True
         Me.ChkEn.Location = New System.Drawing.Point(17, 47)
         Me.ChkEn.Name = "ChkEn"
-        Me.ChkEn.Size = New System.Drawing.Size(68, 16)
+        Me.ChkEn.Size = New System.Drawing.Size(82, 17)
         Me.ChkEn.TabIndex = 0
         Me.ChkEn.Text = "en = eng"
         Me.ChkEn.UseVisualStyleBackColor = True
@@ -242,7 +245,7 @@ Partial Class FrmSetting
         Me.ChkVshow.Location = New System.Drawing.Point(259, 24)
         Me.ChkVshow.Name = "ChkVshow"
         Me.ChkVshow.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ChkVshow.Size = New System.Drawing.Size(114, 16)
+        Me.ChkVshow.Size = New System.Drawing.Size(130, 17)
         Me.ChkVshow.TabIndex = 0
         Me.ChkVshow.Text = "：候选项竖直显示"
         Me.ChkVshow.UseVisualStyleBackColor = True
@@ -316,7 +319,7 @@ Partial Class FrmSetting
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox3.Controls.Add(Me.BtnFontCand)
         Me.GroupBox3.Controls.Add(Me.Label7)
-        Me.GroupBox3.Controls.Add(Me.TxtFont)
+        Me.GroupBox3.Controls.Add(Me.TxtCandFont)
         Me.GroupBox3.Controls.Add(Me.NumPageCnt)
         Me.GroupBox3.Controls.Add(Me.NumPyLen)
         Me.GroupBox3.Controls.Add(Me.TxtTitle)
@@ -351,14 +354,14 @@ Partial Class FrmSetting
         Me.Label7.TabIndex = 9
         Me.Label7.Text = "候选字体："
         '
-        'TxtFont
+        'TxtCandFont
         '
-        Me.TxtFont.Location = New System.Drawing.Point(297, 53)
-        Me.TxtFont.Name = "TxtFont"
-        Me.TxtFont.ReadOnly = True
-        Me.TxtFont.Size = New System.Drawing.Size(94, 22)
-        Me.TxtFont.TabIndex = 10
-        Me.TxtFont.Text = "宋体,12,0"
+        Me.TxtCandFont.Location = New System.Drawing.Point(297, 53)
+        Me.TxtCandFont.Name = "TxtCandFont"
+        Me.TxtCandFont.ReadOnly = True
+        Me.TxtCandFont.Size = New System.Drawing.Size(94, 22)
+        Me.TxtCandFont.TabIndex = 10
+        Me.TxtCandFont.Text = "宋体,12,0"
         '
         'ChkAutoPosition
         '
@@ -368,7 +371,7 @@ Partial Class FrmSetting
         Me.ChkAutoPosition.Location = New System.Drawing.Point(231, 117)
         Me.ChkAutoPosition.Name = "ChkAutoPosition"
         Me.ChkAutoPosition.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ChkAutoPosition.Size = New System.Drawing.Size(138, 16)
+        Me.ChkAutoPosition.Size = New System.Drawing.Size(156, 17)
         Me.ChkAutoPosition.TabIndex = 0
         Me.ChkAutoPosition.Text = "：输入法窗口光标跟随"
         Me.ChkAutoPosition.UseVisualStyleBackColor = True
@@ -379,7 +382,7 @@ Partial Class FrmSetting
         Me.ChkHideStatus.Location = New System.Drawing.Point(19, 117)
         Me.ChkHideStatus.Name = "ChkHideStatus"
         Me.ChkHideStatus.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ChkHideStatus.Size = New System.Drawing.Size(126, 16)
+        Me.ChkHideStatus.Size = New System.Drawing.Size(143, 17)
         Me.ChkHideStatus.TabIndex = 0
         Me.ChkHideStatus.Text = "：隐藏输入法状态栏"
         Me.ChkHideStatus.UseVisualStyleBackColor = True
@@ -485,6 +488,9 @@ Partial Class FrmSetting
         '
         Me.GroupBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox6.Controls.Add(Me.BtnFontExtsInfo)
+        Me.GroupBox6.Controls.Add(Me.Label8)
+        Me.GroupBox6.Controls.Add(Me.TxtInfoFont)
         Me.GroupBox6.Controls.Add(Me.ChkAutoShowPyTextInfo)
         Me.GroupBox6.Controls.Add(Me.ChkShowInfoWin)
         Me.GroupBox6.Controls.Add(Me.ChkIMode)
@@ -498,11 +504,20 @@ Partial Class FrmSetting
         Me.GroupBox6.TabIndex = 2
         Me.GroupBox6.TabStop = False
         '
+        'ChkAutoShowPyTextInfo
+        '
+        Me.ChkAutoShowPyTextInfo.Location = New System.Drawing.Point(20, 135)
+        Me.ChkAutoShowPyTextInfo.Name = "ChkAutoShowPyTextInfo"
+        Me.ChkAutoShowPyTextInfo.Size = New System.Drawing.Size(197, 16)
+        Me.ChkAutoShowPyTextInfo.TabIndex = 7
+        Me.ChkAutoShowPyTextInfo.Text = "拼音汉字作扩展信息处理"
+        Me.ChkAutoShowPyTextInfo.UseVisualStyleBackColor = True
+        '
         'ChkShowInfoWin
         '
         Me.ChkShowInfoWin.Checked = True
         Me.ChkShowInfoWin.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ChkShowInfoWin.Location = New System.Drawing.Point(28, 153)
+        Me.ChkShowInfoWin.Location = New System.Drawing.Point(20, 113)
         Me.ChkShowInfoWin.Name = "ChkShowInfoWin"
         Me.ChkShowInfoWin.Size = New System.Drawing.Size(135, 16)
         Me.ChkShowInfoWin.TabIndex = 7
@@ -514,7 +529,7 @@ Partial Class FrmSetting
         Me.ChkIMode.AutoSize = True
         Me.ChkIMode.Checked = True
         Me.ChkIMode.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ChkIMode.Location = New System.Drawing.Point(28, 122)
+        Me.ChkIMode.Location = New System.Drawing.Point(20, 90)
         Me.ChkIMode.Name = "ChkIMode"
         Me.ChkIMode.Size = New System.Drawing.Size(125, 17)
         Me.ChkIMode.TabIndex = 7
@@ -524,7 +539,7 @@ Partial Class FrmSetting
         'ChkAutoCreateWord
         '
         Me.ChkAutoCreateWord.AutoSize = True
-        Me.ChkAutoCreateWord.Location = New System.Drawing.Point(28, 93)
+        Me.ChkAutoCreateWord.Location = New System.Drawing.Point(20, 67)
         Me.ChkAutoCreateWord.Name = "ChkAutoCreateWord"
         Me.ChkAutoCreateWord.Size = New System.Drawing.Size(156, 17)
         Me.ChkAutoCreateWord.TabIndex = 7
@@ -534,7 +549,7 @@ Partial Class FrmSetting
         'ChkAddFirstWordIdx
         '
         Me.ChkAddFirstWordIdx.AutoSize = True
-        Me.ChkAddFirstWordIdx.Location = New System.Drawing.Point(28, 63)
+        Me.ChkAddFirstWordIdx.Location = New System.Drawing.Point(20, 44)
         Me.ChkAddFirstWordIdx.Name = "ChkAddFirstWordIdx"
         Me.ChkAddFirstWordIdx.Size = New System.Drawing.Size(338, 17)
         Me.ChkAddFirstWordIdx.TabIndex = 7
@@ -543,7 +558,7 @@ Partial Class FrmSetting
         '
         'NumCandLimit
         '
-        Me.NumCandLimit.Location = New System.Drawing.Point(169, 28)
+        Me.NumCandLimit.Location = New System.Drawing.Point(193, 16)
         Me.NumCandLimit.Maximum = New Decimal(New Integer() {99, 0, 0, 0})
         Me.NumCandLimit.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NumCandLimit.Name = "NumCandLimit"
@@ -555,7 +570,7 @@ Partial Class FrmSetting
         'ChkCandLimit
         '
         Me.ChkCandLimit.AutoSize = True
-        Me.ChkCandLimit.Location = New System.Drawing.Point(28, 32)
+        Me.ChkCandLimit.Location = New System.Drawing.Point(20, 21)
         Me.ChkCandLimit.Name = "ChkCandLimit"
         Me.ChkCandLimit.Size = New System.Drawing.Size(143, 17)
         Me.ChkCandLimit.TabIndex = 1
@@ -591,7 +606,7 @@ Partial Class FrmSetting
         Me.ChkSrvMemory.Location = New System.Drawing.Point(10, 27)
         Me.ChkSrvMemory.Name = "ChkSrvMemory"
         Me.ChkSrvMemory.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ChkSrvMemory.Size = New System.Drawing.Size(102, 16)
+        Me.ChkSrvMemory.Size = New System.Drawing.Size(117, 17)
         Me.ChkSrvMemory.TabIndex = 0
         Me.ChkSrvMemory.Text = "：节省内存模式"
         Me.ChkSrvMemory.UseVisualStyleBackColor = True
@@ -635,14 +650,32 @@ Partial Class FrmSetting
         Me.BtnApply.Text = "应  用"
         Me.BtnApply.UseVisualStyleBackColor = True
         '
-        'ChkAutoShowPyTextInfo
+        'BtnFontExtsInfo
         '
-        Me.ChkAutoShowPyTextInfo.Location = New System.Drawing.Point(169, 153)
-        Me.ChkAutoShowPyTextInfo.Name = "ChkAutoShowPyTextInfo"
-        Me.ChkAutoShowPyTextInfo.Size = New System.Drawing.Size(197, 16)
-        Me.ChkAutoShowPyTextInfo.TabIndex = 7
-        Me.ChkAutoShowPyTextInfo.Text = "拼音汉字作扩展信息自动显示"
-        Me.ChkAutoShowPyTextInfo.UseVisualStyleBackColor = True
+        Me.BtnFontExtsInfo.Location = New System.Drawing.Point(394, 108)
+        Me.BtnFontExtsInfo.Name = "BtnFontExtsInfo"
+        Me.BtnFontExtsInfo.Size = New System.Drawing.Size(47, 25)
+        Me.BtnFontExtsInfo.TabIndex = 11
+        Me.BtnFontExtsInfo.Text = "变更"
+        Me.BtnFontExtsInfo.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(190, 114)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(98, 13)
+        Me.Label8.TabIndex = 12
+        Me.Label8.Text = "扩展信息字体："
+        '
+        'TxtInfoFont
+        '
+        Me.TxtInfoFont.Location = New System.Drawing.Point(294, 109)
+        Me.TxtInfoFont.Name = "TxtInfoFont"
+        Me.TxtInfoFont.ReadOnly = True
+        Me.TxtInfoFont.Size = New System.Drawing.Size(94, 22)
+        Me.TxtInfoFont.TabIndex = 13
+        Me.TxtInfoFont.Text = "宋体,12,0"
         '
         'FrmSetting
         '
@@ -721,7 +754,7 @@ Partial Class FrmSetting
     Friend WithEvents FontDlgCand As System.Windows.Forms.FontDialog
     Friend WithEvents BtnFontCand As System.Windows.Forms.Button
     Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents TxtFont As System.Windows.Forms.TextBox
+    Friend WithEvents TxtCandFont As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox7 As System.Windows.Forms.GroupBox
     Friend WithEvents BtnApply As System.Windows.Forms.Button
     Friend WithEvents ChkHideStatus As System.Windows.Forms.CheckBox
@@ -734,5 +767,8 @@ Partial Class FrmSetting
     Friend WithEvents ChkIMode As System.Windows.Forms.CheckBox
     Friend WithEvents ChkShowInfoWin As System.Windows.Forms.CheckBox
     Friend WithEvents ChkAutoShowPyTextInfo As System.Windows.Forms.CheckBox
+    Friend WithEvents BtnFontExtsInfo As System.Windows.Forms.Button
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents TxtInfoFont As System.Windows.Forms.TextBox
 
 End Class
