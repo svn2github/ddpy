@@ -632,9 +632,11 @@ objJsScriptSearch["小儿疳虫蚀齿"] = "小儿疳虫蚀齿<br>雄黄 葶苈 �
 // 附带可执行串
 objJsScriptSearch["淡定拼音"] = "淡定拼音输入法主页\thttp://code.google.com/p/ddpy/";
 objJsScriptSearch["淡定拼音输入法"] = "淡定拼音输入法主页\thttp://code.google.com/p/ddpy/";
+objJsScriptSearch["http://code.google.com/p/ddpy/"] = "淡定拼音输入法主页\thttp://code.google.com/p/ddpy/";
 
-objJsScriptSearch["谷歌"] = "\thttp://www.google.com";
-objJsScriptSearch["百度"] = "\thttp://www.baidu.com";
+objJsScriptSearch["www.google.com"] = "\twww.google.com";
+objJsScriptSearch["谷歌"] = "\twww.google.co.jp";
+objJsScriptSearch["百度"] = "\twww.baidu.com";
 objJsScriptSearch["命令"] = "\tcmd.exe";
 
 objJsScriptSearch["胡俭雷"] = "孙氏太极胡俭雷先生的博客\thttp://blog.sina.com.cn/u/2121861154";
