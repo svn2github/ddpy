@@ -162,6 +162,7 @@ Module MWordUtil
 
             Dim cols As String() = line.Split(vbTab)
             map(cols(0)) = cols(1)
+            map(line) = line
         Next
 
 
@@ -426,12 +427,10 @@ Module MWordUtil
 
 
             ' 含多音字
-            If GetMtlPinyinMap().ContainsKey(cols(0)) Then
-                If GetMtlPinyinMap()(cols(0)).Equals(cols(1)) Then
-                    bufUpd.AppendLine(cols(0) & vbTab & GetMtlPinyinMap()(cols(0)))
-                    bufM1.AppendLine(cols(0) & vbTab & GetMtlPinyinMap()(cols(0)))   ' 使用多音词库的拼音
-                    Continue For
-                End If
+            If GetMtlPinyinMap().ContainsKey(cols(0) & vbTab & cols(1)) Then
+                bufUpd.AppendLine(cols(0) & vbTab & cols(1))
+                bufM1.AppendLine(cols(0) & vbTab & cols(1))   ' 使用多音词库的拼音
+                Continue For
             End If
 
             sPinyin = GetMtlPinyin(cols(0))     ' 程序整理多音字
@@ -1723,6 +1722,297 @@ Module MWordUtil
             End If
 
             Return "jiao"
+        End If
+
+        If "埋".Equals(sTxt) Then
+            If sTmpR.StartsWith("埋怨") OrElse sTmpR.StartsWith("埋三怨四") Then
+                Return "man"
+            End If
+
+            Return "mai"
+        End If
+
+        If "亲".Equals(sTxt) Then
+            If sTmpR.StartsWith("亲家") Then
+                Return "qing"
+            End If
+
+            Return "qin"
+        End If
+
+        If "传".Equals(sTxt) Then
+            If sTmpL.EndsWith("立传") OrElse sTmpL.EndsWith("作传") OrElse sTmpL.EndsWith("略传") _
+               OrElse sTmpL.EndsWith("纪传") OrElse sTmpL.EndsWith("自传") OrElse sTmpL.EndsWith("正传") _
+               OrElse sTmpL.EndsWith("杂传") OrElse sTmpL.EndsWith("左传") OrElse sTmpL.EndsWith("志传") _
+            Then
+                Return "zhuan"
+            End If
+
+            If sTmpR.StartsWith("传记") OrElse sTmpR.StartsWith("传注") OrElse sTmpR.StartsWith("传诂") _
+               OrElse sTmpR.StartsWith("传疏") OrElse sTmpR.StartsWith("传笺") OrElse sTmpR.StartsWith("传诂") _
+               OrElse sTmpR.StartsWith("传略") OrElse sTmpR.StartsWith("传赞") _
+            Then
+                Return "zhuan"
+            End If
+
+            Return "chuan"
+        End If
+
+        If "券".Equals(sTxt) Then
+            If sTmpL.EndsWith("拱券") Then
+                Return "xuan"
+            End If
+
+            If sTmpR.StartsWith("券门") Then
+                Return "xuan"
+            End If
+
+            Return "quan"
+        End If
+
+        If "率".Equals(sTxt) Then
+            If sTmpL.EndsWith("表率") OrElse sTmpL.EndsWith("将率") OrElse sTmpL.EndsWith("在率") _
+               OrElse sTmpL.EndsWith("别率") OrElse sTmpL.EndsWith("为率") OrElse sTmpL.EndsWith("悉率") _
+               OrElse sTmpL.EndsWith("身率") OrElse sTmpL.EndsWith("统率") OrElse sTmpL.EndsWith("不率") _
+               OrElse sTmpL.EndsWith("敢率") OrElse sTmpL.EndsWith("时率") OrElse sTmpL.EndsWith("抵率") _
+               OrElse sTmpL.EndsWith("草率") OrElse sTmpL.EndsWith("轻率") OrElse sTmpL.EndsWith("路率") _
+               OrElse sTmpL.EndsWith("粗率") OrElse sTmpL.EndsWith("坦率") OrElse sTmpL.EndsWith("直率") _
+               OrElse sTmpL.EndsWith("语率") OrElse sTmpL.EndsWith("真率") OrElse sTmpL.EndsWith("悉率") _
+            Then
+                Return "zhuan"
+            End If
+
+            If sTmpR.StartsWith("率下") OrElse sTmpR.StartsWith("率示") OrElse sTmpR.StartsWith("率物") _
+               OrElse sTmpR.StartsWith("率身") OrElse sTmpR.StartsWith("率时") OrElse sTmpR.StartsWith("率众") _
+               OrElse sTmpR.StartsWith("率导") OrElse sTmpR.StartsWith("率师") OrElse sTmpR.StartsWith("率众") _
+               OrElse sTmpR.StartsWith("率长") OrElse sTmpR.StartsWith("率正") OrElse sTmpR.StartsWith("率募") _
+               OrElse sTmpR.StartsWith("率敛") OrElse sTmpR.StartsWith("率钱") OrElse sTmpR.StartsWith("率财") _
+               OrElse sTmpR.StartsWith("率领") OrElse sTmpR.StartsWith("率俾") OrElse sTmpR.StartsWith("率将") _
+               OrElse sTmpR.StartsWith("率勒") OrElse sTmpR.StartsWith("率厉") OrElse sTmpR.StartsWith("率御") _
+               OrElse sTmpR.StartsWith("率导") OrElse sTmpR.StartsWith("率道") OrElse sTmpR.StartsWith("率义") _
+               OrElse sTmpR.StartsWith("率由旧章") OrElse sTmpR.StartsWith("率勉") OrElse sTmpR.StartsWith("率厉") _
+               OrElse sTmpR.StartsWith("率民") OrElse sTmpR.StartsWith("率俗") OrElse sTmpR.StartsWith("率从") _
+               OrElse sTmpR.StartsWith("率由群匹") OrElse sTmpR.StartsWith("率教") OrElse sTmpR.StartsWith("率履") _
+               OrElse sTmpR.StartsWith("率法") OrElse sTmpR.StartsWith("率西") OrElse sTmpR.StartsWith("率口") _
+               OrElse sTmpR.StartsWith("率心") OrElse sTmpR.StartsWith("率任") OrElse sTmpR.StartsWith("率情") _
+               OrElse sTmpR.StartsWith("率服") OrElse sTmpR.StartsWith("率化") OrElse sTmpR.StartsWith("率尔") _
+               OrElse sTmpR.StartsWith("率笔") OrElse sTmpR.StartsWith("率悟") OrElse sTmpR.StartsWith("率健") _
+               OrElse sTmpR.StartsWith("率意") OrElse sTmpR.StartsWith("率达") OrElse sTmpR.StartsWith("率躁") _
+               OrElse sTmpR.StartsWith("率赂") OrElse sTmpR.StartsWith("率天") OrElse sTmpR.StartsWith("率土") _
+               OrElse sTmpR.StartsWith("率同") OrElse sTmpR.StartsWith("率皆") OrElse sTmpR.StartsWith("率多侈纵") _
+               OrElse sTmpR.StartsWith("率初") OrElse sTmpR.StartsWith("率幸") OrElse sTmpR.StartsWith("率常如此") _
+               OrElse sTmpR.StartsWith("率马以骥") OrElse sTmpR.StartsWith("率然以答") OrElse sTmpR.StartsWith("率先") _
+               OrElse sTmpR.StartsWith("率性") OrElse sTmpR.StartsWith("率直") OrElse sTmpR.StartsWith("率真") _
+               OrElse sTmpR.StartsWith("率兵") _
+            Then
+                Return "shuai"
+            End If
+
+            Return "lv"
+        End If
+
+        If "便".Equals(sTxt) Then
+            If sTmpL.EndsWith("大腹便") OrElse sTmpL.EndsWith("大腹便便") Then
+                Return "pian"
+            End If
+
+            If sTmpR.StartsWith("便人") OrElse sTmpR.StartsWith("便嬖") OrElse sTmpR.StartsWith("便佞") _
+               OrElse sTmpR.StartsWith("便旋") OrElse sTmpR.StartsWith("便言") OrElse sTmpR.StartsWith("便宜") _
+            Then
+                Return "pian"
+            End If
+
+            Return "bian"
+        End If
+
+        If "害".Equals(sTxt) Then
+            If sTmpL.EndsWith("害澣害") Then
+                Return "he"
+            End If
+
+            If sTmpR.StartsWith("害不违卜") OrElse sTmpR.StartsWith("害澣害否") Then
+                Return "he"
+            End If
+
+            Return "hai"
+        End If
+
+        If "勒".Equals(sTxt) Then
+            If sTmpL.EndsWith("涨勒") OrElse sTmpL.EndsWith("紧勒") Then
+                Return "lei"
+            End If
+
+            If sTmpR.StartsWith("勒死") OrElse sTmpR.StartsWith("勒紧") Then
+                Return "lei"
+            End If
+
+            Return "le"
+        End If
+
+        If "番".Equals(sTxt) Then
+            If sTmpR.StartsWith("番禺") OrElse sTmpR.StartsWith("番维司徒") Then
+                Return "pan"
+            End If
+
+            Return "fan"
+        End If
+
+        If "石".Equals(sTxt) Then
+            If sTmpR.StartsWith("石二鸟") Then
+                Return "shi"
+            End If
+            If sTmpL.EndsWith("一石") OrElse sTmpL.EndsWith("四钧为石") OrElse sTmpL.EndsWith("重不过石") _
+                OrElse sTmpL.EndsWith("两石") OrElse sTmpL.EndsWith("三石") Then
+                Return "dan"
+            End If
+
+            Return "shi"
+        End If
+
+        If "哪".Equals(sTxt) Then
+            If sTmpR.StartsWith("哪吒") Then
+                Return "ne"
+            End If
+
+            Return "na"
+        End If
+
+        If "转".Equals(sTxt) Then
+            Return "zhuan"
+        End If
+
+        If "查".Equals(sTxt) Then
+            If sTmpL.EndsWith("两耳过肩查") Then
+                Return "zha"
+            End If
+            If sTmpR.StartsWith("查秽") Then
+                Return "zha"
+            End If
+
+            Return "cha"
+        End If
+
+        If "红".Equals(sTxt) Then
+            If sTmpL.EndsWith("又夺园夫女红") Then
+                Return "gong"
+            End If
+            If sTmpR.StartsWith("红女下机") Then
+                Return "gong"
+            End If
+
+            Return "hong"
+        End If
+
+        If "综".Equals(sTxt) Then
+            If text.Equals("综也") Then
+                Return "zeng"
+            End If
+            If sTmpR.StartsWith("综光瓦亮") OrElse sTmpR.StartsWith("综亮") Then
+                Return "zeng"
+            End If
+
+            Return "zong"
+        End If
+
+        If "属".Equals(sTxt) Then
+            If text.Equals("属意") Then
+                Return "zhu"
+            End If
+            If sTmpR.StartsWith("属望") Then
+                Return "zhu"
+            End If
+
+            Return "shu"
+        End If
+
+        If "长".Equals(sTxt) Then
+            If sTmpL.EndsWith("年长") OrElse sTmpL.EndsWith("生长") OrElse sTmpL.EndsWith("在率") _
+               OrElse sTmpL.EndsWith("万夫之长") OrElse sTmpL.EndsWith("雄长") OrElse sTmpL.EndsWith("成长") _
+               OrElse sTmpL.EndsWith("草木遂长") OrElse sTmpL.EndsWith("江南草长") OrElse sTmpL.EndsWith("助长") _
+               OrElse sTmpL.EndsWith("滋长") OrElse sTmpL.EndsWith("增长") OrElse sTmpL.EndsWith("日日以长") _
+               OrElse sTmpL.EndsWith("科长") OrElse sTmpL.EndsWith("处长") OrElse sTmpL.EndsWith("家长") _
+               OrElse sTmpL.EndsWith("校长") OrElse sTmpL.EndsWith("厂长") OrElse sTmpL.EndsWith("市长") _
+               OrElse sTmpL.EndsWith("军长") OrElse sTmpL.EndsWith("旅长") OrElse sTmpL.EndsWith("师长") _
+               OrElse sTmpL.EndsWith("排长") OrElse sTmpL.EndsWith("连长") OrElse sTmpL.EndsWith("营长") _
+               OrElse sTmpL.EndsWith("室长") OrElse sTmpL.EndsWith("司长") OrElse sTmpL.EndsWith("团长") _
+               OrElse sTmpL.EndsWith("县长") OrElse sTmpL.EndsWith("省长") OrElse sTmpL.EndsWith("部长") _
+               OrElse sTmpL.EndsWith("助长") OrElse sTmpL.EndsWith("组长") OrElse sTmpL.EndsWith("局长") _
+               OrElse sTmpL.EndsWith("族长") OrElse sTmpL.EndsWith("区长") OrElse sTmpL.EndsWith("厅长") _
+               OrElse sTmpL.EndsWith("台长") OrElse sTmpL.EndsWith("探长") OrElse sTmpL.EndsWith("庭长") _
+               OrElse sTmpL.EndsWith("徒长") OrElse sTmpL.EndsWith("艇长") OrElse sTmpL.EndsWith("亭长") _
+               OrElse sTmpL.EndsWith("院长") OrElse sTmpL.EndsWith("士长") OrElse sTmpL.EndsWith("队长") _
+               OrElse sTmpL.EndsWith("店长") OrElse sTmpL.EndsWith("疯长") OrElse sTmpL.EndsWith("镇长") _
+               OrElse sTmpL.EndsWith("村长") OrElse sTmpL.EndsWith("船长") OrElse sTmpL.EndsWith("成长") _
+               OrElse sTmpL.EndsWith("处长") OrElse sTmpL.EndsWith("车长") OrElse sTmpL.EndsWith("场长") _
+               OrElse sTmpL.EndsWith("班长") OrElse sTmpL.EndsWith("保长") OrElse sTmpL.EndsWith("盟长") _
+               OrElse sTmpL.EndsWith("酋长") OrElse sTmpL.EndsWith("尊长") OrElse sTmpL.EndsWith("寨长") _
+            Then
+                Return "zhang"
+            End If
+
+            If sTmpR.StartsWith("长老") OrElse sTmpR.StartsWith("长者") OrElse sTmpR.StartsWith("长子") _
+               OrElse sTmpR.StartsWith("长君") OrElse sTmpR.StartsWith("长德") OrElse sTmpR.StartsWith("长贤") _
+               OrElse sTmpR.StartsWith("长宾") OrElse sTmpR.StartsWith("长郎") OrElse sTmpR.StartsWith("长殇") _
+               OrElse sTmpR.StartsWith("长兄") OrElse sTmpR.StartsWith("长弟") OrElse sTmpR.StartsWith("长庶") _
+               OrElse sTmpR.StartsWith("长嫡") OrElse sTmpR.StartsWith("长杰") OrElse sTmpR.StartsWith("长妾") _
+               OrElse sTmpR.StartsWith("长公主") OrElse sTmpR.StartsWith("长吏") OrElse sTmpR.StartsWith("长雄") _
+               OrElse sTmpR.StartsWith("长爵") OrElse sTmpR.StartsWith("长成") OrElse sTmpR.StartsWith("长俊") _
+               OrElse sTmpR.StartsWith("长立") OrElse sTmpR.StartsWith("长牙") OrElse sTmpR.StartsWith("长毛") _
+               OrElse sTmpR.StartsWith("长肉") OrElse sTmpR.StartsWith("长胖") OrElse sTmpR.StartsWith("长出来") _
+               OrElse sTmpR.StartsWith("长我") OrElse sTmpR.StartsWith("长养") OrElse sTmpR.StartsWith("长育") _
+               OrElse sTmpR.StartsWith("长寇") OrElse sTmpR.StartsWith("长俭") OrElse sTmpR.StartsWith("长知识") _
+               OrElse sTmpR.StartsWith("长见识") OrElse sTmpR.StartsWith("长夫") OrElse sTmpR.StartsWith("长家") _
+               OrElse sTmpR.StartsWith("长卿") OrElse sTmpR.StartsWith("长侯") OrElse sTmpR.StartsWith("长辈") _
+               OrElse sTmpR.StartsWith("长膘") OrElse sTmpR.StartsWith("长虫") OrElse sTmpR.StartsWith("长大") _
+               OrElse sTmpR.StartsWith("长房") OrElse sTmpR.StartsWith("长官") OrElse sTmpR.StartsWith("长厚") _
+               OrElse sTmpR.StartsWith("长进") OrElse sTmpR.StartsWith("长君") OrElse sTmpR.StartsWith("长吏") _
+               OrElse sTmpR.StartsWith("长亲") OrElse sTmpR.StartsWith("长上") OrElse sTmpR.StartsWith("长史") _
+               OrElse sTmpR.StartsWith("长势") OrElse sTmpR.StartsWith("长相") OrElse sTmpR.StartsWith("长头发") _
+               OrElse sTmpR.StartsWith("长指甲") OrElse sTmpR.StartsWith("长牙") OrElse sTmpR.StartsWith("长皮") _
+               OrElse sTmpR.StartsWith("长歪") OrElse sTmpR.StartsWith("长斜") _
+            Then
+                Return "zhang"
+            End If
+
+            Return "chang"
+        End If
+
+        If "卡".Equals(sTxt) Then
+            If sTmpR.StartsWith("卡脖子") OrElse sTmpR.StartsWith("卡具") OrElse sTmpR.StartsWith("卡壳") _
+               OrElse sTmpR.StartsWith("卡子")  _
+            Then
+                Return "qia"
+            End If
+
+            Return "ka"
+        End If
+
+        If "薄".Equals(sTxt) Then
+            If sTmpL.EndsWith("厚薄") OrElse sTmpL.EndsWith("浅薄") OrElse sTmpL.EndsWith("嘴薄") _
+               OrElse sTmpL.EndsWith("菲薄") OrElse sTmpL.EndsWith("轻薄") OrElse sTmpL.EndsWith("刻薄") _
+               OrElse sTmpL.EndsWith("鄙薄") OrElse sTmpL.EndsWith("日薄") OrElse sTmpL.EndsWith("淡薄") _
+            Then
+                Return "bo"
+            End If
+
+            If sTmpR.StartsWith("薄礼") OrElse sTmpR.StartsWith("薄产") OrElse sTmpR.StartsWith("薄命") _
+               OrElse sTmpR.StartsWith("薄寒") OrElse sTmpR.StartsWith("薄酬") OrElse sTmpR.StartsWith("薄夫") _
+               OrElse sTmpR.StartsWith("薄幸") OrElse sTmpR.StartsWith("薄情") OrElse sTmpR.StartsWith("薄古") _
+               OrElse sTmpR.StartsWith("薄弱") OrElse sTmpR.StartsWith("薄近") OrElse sTmpR.StartsWith("薄暮") _
+               OrElse sTmpR.StartsWith("薄暗") OrElse sTmpR.StartsWith("薄产") OrElse sTmpR.StartsWith("薄酬") _
+               OrElse sTmpR.StartsWith("薄待") OrElse sTmpR.StartsWith("薄技") OrElse sTmpR.StartsWith("薄酒") _
+               OrElse sTmpR.StartsWith("薄利") OrElse sTmpR.StartsWith("薄明") OrElse sTmpR.StartsWith("薄田") _
+               OrElse sTmpR.StartsWith("薄雾") OrElse sTmpR.StartsWith("薄晓") OrElse sTmpR.StartsWith("薄幸") _
+               OrElse sTmpR.StartsWith("薄养") OrElse sTmpR.StartsWith("薄荷") OrElse sTmpR.StartsWith("薄面") _
+            Then
+                Return "bo"
+            End If
+
+            Return "bao"
+        End If
+
+        If "血".Equals(sTxt) Then
+            Return "xie"
         End If
 
         Return GetPinyinMap()(sTxt)      ' 用字典含逗号的多音字
