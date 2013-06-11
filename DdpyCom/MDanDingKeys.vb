@@ -21,16 +21,14 @@ Module MDanDingKeys
         Select Case iKey
             Case Keys.Enter
                 If My.Computer.Keyboard.CtrlKeyDown Then
-                    ShowInfoForm(True)
                     ddPy.HasChange = False
-                    SetIkrFlag(ikr, True, True, False)
+                    SetIkrFlag(ikr, True, ShowInfoForm(True), False)
                     bRet = True
                 End If
             Case Keys.Return
                 If My.Computer.Keyboard.CtrlKeyDown Then
-                    ShowInfoForm(True)
                     ddPy.HasChange = False
-                    SetIkrFlag(ikr, True, True, False)
+                    SetIkrFlag(ikr, True, ShowInfoForm(True), False)
                     bRet = True
                 End If
             Case Keys.F12

@@ -7,29 +7,35 @@ Module MShowInfo
     Friend frmInfo As New FrmInformation
     Private bCrlShow As Boolean = False
 
-    Friend Sub ShowInfoForm(Optional ByVal bCtrl As Boolean = False)
+    Friend Function ShowInfoForm(Optional ByVal bCtrl As Boolean = False) As Boolean
 
         If bCtrl AndAlso frmInfo.Visible AndAlso frmInfo.LblExecText.Text.Length > 0 Then
             Try
                 System.Diagnostics.Process.Start(frmInfo.LblExecText.Text)
-                frmInput.Visible = False    ' 关闭候选窗口但不清除ddpy数据，以便激活时显示原有候选窗口
-                frmInfo.Visible = False
+
+                ' 通常是继续输入其他内容，不需要保存ddpy数据
+                frmInput.Hide()
+
+                Return False
             Catch ex As Exception
                 ComDebug(ex)
+                Return True
             End Try
-            Return
+
         End If
 
         If Not frmInput.Visible Then
-            Return
+            Return True
         End If
 
         If Not My.Computer.Keyboard.CtrlKeyDown AndAlso P_I_MODE AndAlso ddPy.InputPys.StartsWith("i") Then
-            Return
+            Return True
         End If
 
         ShowForm()
-    End Sub
+
+        Return True
+    End Function
 
     Private Sub ShowForm()
 
