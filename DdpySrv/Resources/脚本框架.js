@@ -194,7 +194,10 @@ function main(parms)
 			words[words.length] = ddpyCreateCand(oRegisteredCmd[cmd]["Name"], oRegisteredCmd[cmd]["Cmd"]);
 		}
 		words["Title"] = "淡定“i”模式";
-	}else if ( parms.length == 1 ) {
+    } else if (parms.startWith("淡定")) {
+        return ddpyExecuteMethod("ddpyJsScriptSearch", parms.substring(2));
+
+    } else if (parms.length == 1) {
 		words = new Array();
 		for (var cmd in oRegisteredCmd) {
 			if ( cmd.startWith(parms) ){

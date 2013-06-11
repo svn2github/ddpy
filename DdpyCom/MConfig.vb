@@ -105,6 +105,7 @@ Module MConfig
     Friend P_I_MODE As Boolean = True
 
     Friend P_SHOW_INFO As Boolean = False
+    Friend P_SHOW_INFO_WITH_PY_TEXT As Boolean = False
 
     ''' <summary>
     ''' 取得最新配置信息
@@ -144,6 +145,7 @@ Module MConfig
             P_AUTO_CREATE_WORD = CBool(ary(18))
             P_I_MODE = CBool(ary(19))
             P_SHOW_INFO = CBool(ary(20))
+            P_SHOW_INFO_WITH_PY_TEXT = CBool(ary(21))
 
         Catch ex As Exception
             ComDebug(ex)

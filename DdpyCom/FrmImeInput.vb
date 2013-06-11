@@ -137,6 +137,7 @@ Friend Class FrmImeInput
 
         ' 显示并调整窗口位置
         Me.Show()
+
     End Sub
 
     Private Function GetLableText(ByVal word As CWord, ByVal idx As Integer) As String
@@ -189,7 +190,10 @@ Friend Class FrmImeInput
         ChangeLocation()
         NotifyImeOpenCandidate()
 
-        If P_SHOW_INFO Then
+        If Not My.Computer.Keyboard.CtrlKeyDown AndAlso _
+            (Not P_SHOW_INFO OrElse (P_I_MODE AndAlso ddPy.InputPys.StartsWith("i"))) Then
+            HideInfoForm()
+        Else
             ShowInfoForm()
         End If
     End Sub
@@ -468,10 +472,15 @@ Friend Class FrmImeInput
 
 #End Region
 
+    Private Sub FrmImeInput_AutoSizeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.AutoSizeChanged
+        ChangeLocation()
+    End Sub
+
 #Region "窗口拖动处理"
 
     Private oPoint As Point
     Private oLoc As Point
+
 
     Private Sub FrmImeInput_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseDown, PanelPinyin.MouseDown, PanelFill.MouseDown, LblPinyin.MouseDown, LblInfo.MouseDown  ' , txt1.MouseDown, txt2.MouseDown, txt3.MouseDown, txt4.MouseDown, txt5.MouseDown, txt6.MouseDown, txt7.MouseDown, txt8.MouseDown, txt9.MouseDown
         oPoint = e.Location

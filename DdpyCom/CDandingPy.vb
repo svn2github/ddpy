@@ -689,9 +689,9 @@ Friend Class CDandingPy
     ''' </summary>
     Public Sub ExecuteSearch()
 
-        If Not P_SHOW_INFO Then
-            HideInfoForm()
-        End If
+        'If Not P_SHOW_INFO Then
+        '    HideInfoForm()
+        'End If
 
         If P_I_MODE AndAlso vInputPys.StartsWith("i") Then
             vDispPyText = InputPys

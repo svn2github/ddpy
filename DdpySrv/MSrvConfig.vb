@@ -74,7 +74,9 @@ Module MSrvConfig
     Friend P_AUTO_CREATE_WORD As Boolean = True
 
     Friend P_I_MODE As Boolean = True
+
     Private P_SHOW_INFO As Boolean = False
+    Private P_SHOW_INFO_WITH_PY_TEXT As Boolean = False
 
     ''' <summary>
     ''' 取得输入法配置信息
@@ -109,7 +111,9 @@ Module MSrvConfig
         lst.Add(P_ADD_FIRST_WORD_IDX)
         lst.Add(P_AUTO_CREATE_WORD)
         lst.Add(P_I_MODE)
+
         lst.Add(P_SHOW_INFO)
+        lst.Add(P_SHOW_INFO_WITH_PY_TEXT)
 
         Return Strings.Join(lst.ToArray, vbTab)
     End Function
@@ -146,13 +150,15 @@ Module MSrvConfig
             P_ADD_FIRST_WORD_IDX = CBool(ary(17))
             P_AUTO_CREATE_WORD = CBool(ary(18))
             P_I_MODE = CBool(ary(19))
+
             P_SHOW_INFO = CBool(ary(20))
+            P_SHOW_INFO_WITH_PY_TEXT = CBool(ary(21))
 
             ' 保存配置信息
             My.Computer.FileSystem.WriteAllText(GetDdpyConfigFile(), GetSettingInfo(), False, Encoding.UTF8)
 
         Catch ex As Exception
-            ComError("SetSettingInfo(" & conf & ")失败。配置文件恢复成默认配置", ex)
+            ' ComError("SetSettingInfo(" & conf & ")失败。配置文件恢复成默认配置", ex)
 
             ' 保存默认配置信息
             My.Computer.FileSystem.WriteAllText(GetDdpyConfigFile(), GetSettingInfo(), False, Encoding.UTF8)

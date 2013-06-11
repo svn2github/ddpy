@@ -5,6 +5,10 @@ Module MServer
 
     Private server As Object = Nothing
 
+    Friend Function JsScriptSearch(ByVal codes As String) As String
+        Return GetDdpyServer().SrvSearchWords("淡定" & codes, True)
+    End Function
+
     ''' <summary>
     ''' 指定拼音编码查找候选文字
     ''' </summary>

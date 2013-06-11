@@ -145,7 +145,6 @@ Public Class ComClass
                 If Not frmInput.Visible AndAlso ddPy.HasInput() Then
                     If Not "Button".Equals(GetClassNameByHwnd(GetFocus()), StringComparison.OrdinalIgnoreCase) Then
                         frmInput.Show()
-                        ActiveInfoForm()
                     End If
                 End If
 

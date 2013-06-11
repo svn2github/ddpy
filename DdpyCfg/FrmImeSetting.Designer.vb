@@ -60,6 +60,7 @@ Partial Class FrmSetting
         Me.TxtWord = New System.Windows.Forms.TextBox()
         Me.TabPageAdvanced = New System.Windows.Forms.TabPage()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.ChkShowInfoWin = New System.Windows.Forms.CheckBox()
         Me.ChkIMode = New System.Windows.Forms.CheckBox()
         Me.ChkAutoCreateWord = New System.Windows.Forms.CheckBox()
         Me.ChkAddFirstWordIdx = New System.Windows.Forms.CheckBox()
@@ -72,7 +73,7 @@ Partial Class FrmSetting
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.FontDlgCand = New System.Windows.Forms.FontDialog()
         Me.BtnApply = New System.Windows.Forms.Button()
-        Me.ChkShowInfoWin = New System.Windows.Forms.CheckBox()
+        Me.ChkAutoShowPyTextInfo = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumPyLen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumPageCnt, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -484,6 +485,7 @@ Partial Class FrmSetting
         '
         Me.GroupBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox6.Controls.Add(Me.ChkAutoShowPyTextInfo)
         Me.GroupBox6.Controls.Add(Me.ChkShowInfoWin)
         Me.GroupBox6.Controls.Add(Me.ChkIMode)
         Me.GroupBox6.Controls.Add(Me.ChkAutoCreateWord)
@@ -495,6 +497,17 @@ Partial Class FrmSetting
         Me.GroupBox6.Size = New System.Drawing.Size(458, 190)
         Me.GroupBox6.TabIndex = 2
         Me.GroupBox6.TabStop = False
+        '
+        'ChkShowInfoWin
+        '
+        Me.ChkShowInfoWin.Checked = True
+        Me.ChkShowInfoWin.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ChkShowInfoWin.Location = New System.Drawing.Point(28, 153)
+        Me.ChkShowInfoWin.Name = "ChkShowInfoWin"
+        Me.ChkShowInfoWin.Size = New System.Drawing.Size(135, 16)
+        Me.ChkShowInfoWin.TabIndex = 7
+        Me.ChkShowInfoWin.Text = "开启扩展信息窗口"
+        Me.ChkShowInfoWin.UseVisualStyleBackColor = True
         '
         'ChkIMode
         '
@@ -622,16 +635,14 @@ Partial Class FrmSetting
         Me.BtnApply.Text = "应  用"
         Me.BtnApply.UseVisualStyleBackColor = True
         '
-        'ChkShowInfoWin
+        'ChkAutoShowPyTextInfo
         '
-        Me.ChkShowInfoWin.Checked = True
-        Me.ChkShowInfoWin.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ChkShowInfoWin.Location = New System.Drawing.Point(28, 153)
-        Me.ChkShowInfoWin.Name = "ChkShowInfoWin"
-        Me.ChkShowInfoWin.Size = New System.Drawing.Size(111, 16)
-        Me.ChkShowInfoWin.TabIndex = 7
-        Me.ChkShowInfoWin.Text = "开启扩展信息窗口"
-        Me.ChkShowInfoWin.UseVisualStyleBackColor = True
+        Me.ChkAutoShowPyTextInfo.Location = New System.Drawing.Point(169, 153)
+        Me.ChkAutoShowPyTextInfo.Name = "ChkAutoShowPyTextInfo"
+        Me.ChkAutoShowPyTextInfo.Size = New System.Drawing.Size(197, 16)
+        Me.ChkAutoShowPyTextInfo.TabIndex = 7
+        Me.ChkAutoShowPyTextInfo.Text = "拼音汉字作扩展信息自动显示"
+        Me.ChkAutoShowPyTextInfo.UseVisualStyleBackColor = True
         '
         'FrmSetting
         '
@@ -722,5 +733,6 @@ Partial Class FrmSetting
     Friend WithEvents ChkAutoCreateWord As System.Windows.Forms.CheckBox
     Friend WithEvents ChkIMode As System.Windows.Forms.CheckBox
     Friend WithEvents ChkShowInfoWin As System.Windows.Forms.CheckBox
+    Friend WithEvents ChkAutoShowPyTextInfo As System.Windows.Forms.CheckBox
 
 End Class

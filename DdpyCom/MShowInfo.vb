@@ -9,13 +9,22 @@ Module MShowInfo
 
     Friend Sub ShowInfoForm(Optional ByVal bCtrl As Boolean = False)
 
+        'If bCtrl AndAlso frmInfo.Visible AndAlso frmInfo.LblExecText.Text.Length > 0 Then
+        '    Try
+        '        System.Diagnostics.Process.Start(frmInfo.LblExecText.Text)
+        '        frmInput.Visible = False    ' 关闭候选窗口但不清除ddpy数据，以便激活时显示原有候选窗口
+        '        frmInfo.Visible = False
+        '    Catch ex As Exception
+        '        ComDebug(ex)
+        '    End Try
+        '    Return
+        'End If
+
         If Not frmInput.Visible Then
             Return
         End If
 
-        bCrlShow = bCtrl
-
-        If Not bCrlShow AndAlso P_I_MODE AndAlso ddPy.InputPys.StartsWith("i") Then
+        If Not My.Computer.Keyboard.CtrlKeyDown AndAlso P_I_MODE AndAlso ddPy.InputPys.StartsWith("i") Then
             Return
         End If
 
@@ -27,60 +36,88 @@ Module MShowInfo
         Dim word As CWord = ddPy.GetFocusWord()
         If word IsNot Nothing Then
 
-            If "".Equals(word.PinYin) Then
-                frmInfo.Label1.Text = word.Text
+            Dim sTxt As String = JsScriptSearch(word.Text)
+            If ddPy.InputPys.StartsWith("i") Then
+                If Not My.Computer.Keyboard.CtrlKeyDown Then
+                    HideInfoForm()
+                    Return
+                End If
             Else
-                frmInfo.Label1.Text = word.PinYin.Replace("'", " ") & vbNewLine & word.Text
+                If Not My.Computer.Keyboard.CtrlKeyDown AndAlso Not P_SHOW_INFO_WITH_PY_TEXT AndAlso sTxt.Length = 0 Then
+                    HideInfoForm()
+                    Return
+                End If
             End If
 
+            If sTxt.Length > 0 Then
+
+                Dim sInfo As String() = sTxt.Split(vbTab)
+                frmInfo.LblText.Text = sInfo(0).Replace("<br>", vbNewLine)
+                If sInfo.Length > 1 Then
+                    frmInfo.LblExecText.Text = sInfo(1)
+                Else
+                    frmInfo.LblExecText.Text = ""
+                End If
+
+                frmInfo.LblText.Visible = frmInfo.LblText.Text.Length > 0
+                frmInfo.LblExecText.Visible = frmInfo.LblExecText.Text.Length > 0
+
+            Else
+                If "".Equals(word.PinYin) OrElse ddPy.InputPys.StartsWith("i") Then
+                    frmInfo.LblText.Text = word.Text
+                Else
+                    frmInfo.LblText.Text = word.PinYin.Replace("'", " ") & vbNewLine & word.Text
+                End If
+
+                frmInfo.LblExecText.Text = ""
+            End If
+
+            frmInfo.LblText.Visible = frmInfo.LblText.Text.Length > 0
+            frmInfo.LblExecText.Visible = frmInfo.LblExecText.Text.Length > 0
+
+
             If Not frmInfo.Visible Then
-                frmInfo.Label1.Font = fontCand
+                frmInfo.LblText.Font = fontCand
+                frmInfo.LblExecText.Font = fontCand
                 frmInfo.Show()
             End If
 
-            Dim x As Integer = frmInput.Location.X
-            Dim y As Integer = frmInput.Location.Y + frmInput.Height
-
-            If Screen.PrimaryScreen.WorkingArea.Width - x - frmInfo.Width < 0 Then
-                If Screen.PrimaryScreen.WorkingArea.Width - frmInfo.Width < 0 Then
-                    x = 0
-                Else
-                    x = Screen.PrimaryScreen.WorkingArea.Width - frmInfo.Width
-                End If
-            End If
-            If frmInput.Location.Y < PosY OrElse Screen.PrimaryScreen.WorkingArea.Height - y - frmInfo.Height < 0 Then
-                If frmInput.Location.Y < PosY Then
-                    y = frmInput.Location.Y - frmInfo.Height
-                Else
-                    y = frmInput.Location.Y - frmInfo.Height - PosH - 3
-                End If
-            End If
-
-            frmInfo.Location = New Point(x, y)
 
         Else
-            HideInfoForm()
+
+            If My.Computer.Keyboard.CtrlKeyDown Then
+                frmInfo.LblText.Text = "空空如也"
+                frmInfo.LblText.Visible = True
+                frmInfo.LblExecText.Visible = False
+                frmInfo.Show()
+
+            Else
+                HideInfoForm()
+            End If
         End If
     End Sub
 
+
     Friend Sub ActiveInfoForm()
 
-        If Not frmInput.Visible OrElse Not bCrlShow Then
+        If Not frmInput.Visible Then
             Return
         End If
 
-        ShowForm()
+        If Not frmInfo.Visible AndAlso frmInfo.HasData Then
+            frmInfo.Show()
+        End If
     End Sub
 
 
     Friend Sub HideInfoForm(Optional ByVal bActive As Boolean = False)
 
-        If Not bActive Then
-            bCrlShow = False
-        End If
-
         If frmInfo.Visible Then
             frmInfo.Hide()
+
+            If Not bActive Then
+                frmInfo.Clear()
+            End If
         End If
     End Sub
 

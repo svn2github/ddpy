@@ -22,42 +22,56 @@ Partial Class FrmInformation
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.LblClose = New System.Windows.Forms.Label()
+        Me.LblText = New System.Windows.Forms.Label()
+        Me.LblExecText = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.SuspendLayout()
         '
-        'Label2
+        'LblClose
         '
-        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Label2.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.CornflowerBlue
-        Me.Label2.Location = New System.Drawing.Point(145, -1)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(18, 14)
-        Me.Label2.TabIndex = 0
-        Me.Label2.Text = "×"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.LblClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LblClose.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.LblClose.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblClose.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.LblClose.Location = New System.Drawing.Point(165, -1)
+        Me.LblClose.Name = "LblClose"
+        Me.LblClose.Size = New System.Drawing.Size(18, 14)
+        Me.LblClose.TabIndex = 0
+        Me.LblClose.Text = "×"
+        Me.LblClose.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'Label1
+        'LblText
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.SystemColors.Control
-        Me.Label1.Cursor = System.Windows.Forms.Cursors.SizeAll
-        Me.Label1.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(3, 16)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(56, 16)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Label1"
+        Me.LblText.AutoSize = True
+        Me.LblText.BackColor = System.Drawing.SystemColors.Control
+        Me.LblText.Cursor = System.Windows.Forms.Cursors.Default
+        Me.LblText.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblText.Location = New System.Drawing.Point(3, 16)
+        Me.LblText.Name = "LblText"
+        Me.LblText.Size = New System.Drawing.Size(56, 16)
+        Me.LblText.TabIndex = 0
+        Me.LblText.Text = "Label1"
+        '
+        'LblExecText
+        '
+        Me.LblExecText.AutoSize = True
+        Me.LblExecText.BackColor = System.Drawing.SystemColors.Control
+        Me.LblExecText.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.LblExecText.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblExecText.ForeColor = System.Drawing.Color.Blue
+        Me.LblExecText.Location = New System.Drawing.Point(3, 35)
+        Me.LblExecText.Name = "LblExecText"
+        Me.LblExecText.Size = New System.Drawing.Size(56, 16)
+        Me.LblExecText.TabIndex = 3
+        Me.LblExecText.Text = "Label1"
         '
         'Panel1
         '
-        Me.Panel1.Location = New System.Drawing.Point(190, 0)
+        Me.Panel1.Location = New System.Drawing.Point(179, 1)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(10, 10)
-        Me.Panel1.TabIndex = 2
+        Me.Panel1.Size = New System.Drawing.Size(1, 1)
+        Me.Panel1.TabIndex = 4
         '
         'FrmInformation
         '
@@ -66,11 +80,12 @@ Partial Class FrmInformation
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(160, 60)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Label2)
+        Me.ClientSize = New System.Drawing.Size(180, 60)
+        Me.Controls.Add(Me.LblExecText)
+        Me.Controls.Add(Me.LblText)
+        Me.Controls.Add(Me.LblClose)
         Me.Controls.Add(Me.Panel1)
-        Me.Cursor = System.Windows.Forms.Cursors.SizeAll
+        Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Font = New System.Drawing.Font("宋体", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.ImeMode = System.Windows.Forms.ImeMode.Disable
@@ -84,7 +99,8 @@ Partial Class FrmInformation
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents LblClose As System.Windows.Forms.Label
+    Friend WithEvents LblText As System.Windows.Forms.Label
+    Friend WithEvents LblExecText As System.Windows.Forms.Label
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
 End Class

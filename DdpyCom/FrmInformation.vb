@@ -27,29 +27,32 @@ Friend Class FrmInformation
 
     Public Overloads Sub Show()
         ShowWindow(Me.Handle, SW_SHOWNOACTIVATE)
+        ChangeLocation()
     End Sub
 
-#Region "窗口拖动处理"
+    Public Sub ChangeLocation()
+        Dim x As Integer = frmInput.Location.X
+        Dim y As Integer = frmInput.Location.Y + frmInput.Height
 
-    Private oPoint As System.Drawing.Point
-    Private oLoc As System.Drawing.Point
+        If Screen.PrimaryScreen.WorkingArea.Width - x - Me.Width < 0 Then
+            If Screen.PrimaryScreen.WorkingArea.Width - Me.Width < 0 Then
+                x = 0
+            Else
+                x = Screen.PrimaryScreen.WorkingArea.Width - Me.Width
+            End If
+        End If
+        If frmInput.Location.Y < PosY OrElse Screen.PrimaryScreen.WorkingArea.Height - y - Me.Height < 0 Then
+            If frmInput.Location.Y < PosY Then
+                y = frmInput.Location.Y - Me.Height
+            Else
+                y = frmInput.Location.Y - Me.Height - PosH - 3
+            End If
+        End If
 
-    Private Sub FrmImeInput_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseDown, Label1.MouseDown
-        oPoint = e.Location
-        oLoc = Me.Location
+        Me.Location = New Point(x, y)
     End Sub
 
-    Private Sub FrmImeInput_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseUp, Label1.MouseUp
-        Dim nPoint As System.Drawing.Point = e.Location
-        Dim p As New System.Drawing.Point(oLoc.X + (nPoint.X - oPoint.X), oLoc.Y + (nPoint.Y - oPoint.Y))
-        Me.Location = p
-    End Sub
-
-#End Region
-
-
-
-    Private Sub Label2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label2.Click
+    Private Sub Label2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LblClose.Click
         Me.Hide()
     End Sub
 
@@ -62,17 +65,38 @@ Friend Class FrmInformation
 
         Dim bgColor As Color = Color.FromArgb(245, 245, 245)
         Me.BackColor = bgColor
-        Me.Label1.BackColor = bgColor
-        Me.Label2.BackColor = bgColor
+        Me.LblText.BackColor = bgColor
+        Me.LblClose.BackColor = bgColor
+        Me.LblExecText.BackColor = bgColor
+
+        Clear()
 
     End Sub
 
 
-    Private Sub Label2_MouseEnter(ByVal sender As Object, ByVal e As System.EventArgs) Handles Label2.MouseEnter
-        Label2.ForeColor = Color.Blue
+    Private Sub LblClose_MouseEnter(ByVal sender As Object, ByVal e As System.EventArgs) Handles LblClose.MouseEnter
+        LblClose.ForeColor = Color.Blue
     End Sub
 
-    Private Sub Label2_MouseLeave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Label2.MouseLeave
-        Label2.ForeColor = Color.CornflowerBlue
+    Private Sub LblClose_MouseLeave(ByVal sender As Object, ByVal e As System.EventArgs) Handles LblClose.MouseLeave
+        LblClose.ForeColor = Color.CornflowerBlue
     End Sub
+
+    Private Sub LblExecText_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LblExecText.Click
+        Try
+            System.Diagnostics.Process.Start(LblExecText.Text)
+        Catch ex As Exception
+            ComDebug(ex)
+        End Try
+    End Sub
+
+    Public Sub Clear()
+        LblText.Text = ""
+        LblExecText.Text = ""
+    End Sub
+
+    Public Function HasData() As Boolean
+        Return LblText.Text.Length > 0 OrElse LblExecText.Text.Length > 0
+    End Function
+
 End Class
