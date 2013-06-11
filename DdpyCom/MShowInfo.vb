@@ -4,21 +4,21 @@ Imports System.Windows.Forms
 
 Module MShowInfo
 
-    Private frmInfo As New FrmInformation
+    Friend frmInfo As New FrmInformation
     Private bCrlShow As Boolean = False
 
     Friend Sub ShowInfoForm(Optional ByVal bCtrl As Boolean = False)
 
-        'If bCtrl AndAlso frmInfo.Visible AndAlso frmInfo.LblExecText.Text.Length > 0 Then
-        '    Try
-        '        System.Diagnostics.Process.Start(frmInfo.LblExecText.Text)
-        '        frmInput.Visible = False    ' 关闭候选窗口但不清除ddpy数据，以便激活时显示原有候选窗口
-        '        frmInfo.Visible = False
-        '    Catch ex As Exception
-        '        ComDebug(ex)
-        '    End Try
-        '    Return
-        'End If
+        If bCtrl AndAlso frmInfo.Visible AndAlso frmInfo.LblExecText.Text.Length > 0 Then
+            Try
+                System.Diagnostics.Process.Start(frmInfo.LblExecText.Text)
+                frmInput.Visible = False    ' 关闭候选窗口但不清除ddpy数据，以便激活时显示原有候选窗口
+                frmInfo.Visible = False
+            Catch ex As Exception
+                ComDebug(ex)
+            End Try
+            Return
+        End If
 
         If Not frmInput.Visible Then
             Return
@@ -78,7 +78,7 @@ Module MShowInfo
 
             If Not frmInfo.Visible Then
                 frmInfo.LblText.Font = fontCand
-                frmInfo.LblExecText.Font = fontCand
+                frmInfo.LblExecText.Font = New Font(fontCand.Name, fontCand.Size, fontCand.Style Or FontStyle.Underline)
                 frmInfo.Show()
             End If
 

@@ -22,18 +22,23 @@ Module MDanDingKeys
             Case Keys.Enter
                 If My.Computer.Keyboard.CtrlKeyDown Then
                     ShowInfoForm(True)
+                    ddPy.HasChange = False
                     SetIkrFlag(ikr, True, True, False)
                     bRet = True
                 End If
             Case Keys.Return
                 If My.Computer.Keyboard.CtrlKeyDown Then
                     ShowInfoForm(True)
+                    ddPy.HasChange = False
                     SetIkrFlag(ikr, True, True, False)
                     bRet = True
                 End If
             Case Keys.F12
 
-                If frmInput.Visible Then
+                If frmInfo.Visible Then
+                    ' 扩充窗口显示时，做扩充选窗口截图
+                    CopyFromScreen(frmInfo)
+                ElseIf frmStatus.Visible Then
                     ' 候选窗口显示时，做候选窗口截图
                     CopyFromScreen(frmInput)
                 ElseIf frmStatus.Visible Then
