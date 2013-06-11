@@ -78,6 +78,10 @@ Module MPathFile
         If Not My.Computer.FileSystem.FileExists(sDstFile) Then
             My.Computer.FileSystem.WriteAllText(sDstFile, My.Resources.i伤寒论条文, False, Encoding.UTF8)
         End If
+        sDstFile = GetDdpyScriptPath() & "\\i淡定扩充信息脚本.js"
+        If Not My.Computer.FileSystem.FileExists(sDstFile) Then
+            My.Computer.FileSystem.WriteAllText(sDstFile, My.Resources.i淡定扩充信息脚本, False, Encoding.UTF8)
+        End If
         sDstFile = GetDdpyScriptPath() & "\\i淡定脚本.js"
         If Not My.Computer.FileSystem.FileExists(sDstFile) Then
             My.Computer.FileSystem.WriteAllText(sDstFile, My.Resources.i淡定脚本, False, Encoding.UTF8)

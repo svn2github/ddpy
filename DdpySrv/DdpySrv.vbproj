@@ -209,6 +209,7 @@
     <None Include="Resources\i日文汉字拼音输入.js" />
     <None Include="Resources\i符号.js" />
     <None Include="Resources\i伤寒金匮经方.js" />
+    <None Include="Resources\i淡定扩充信息脚本.js" />
     <Content Include="Resources\淡定固顶.txt" />
     <Content Include="Resources\淡定字库.txt" />
     <None Include="Resources\i淡定脚本.js" />
