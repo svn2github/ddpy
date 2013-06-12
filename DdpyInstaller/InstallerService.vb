@@ -30,11 +30,12 @@ Public Class InstallerService
 
         ' 注册后台服务COM
         Dim info As New System.Diagnostics.ProcessStartInfo
-        If Environment.Is64BitOperatingSystem Then
-            info.FileName = windir & "\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
-        Else
-            info.FileName = windir & "\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
-        End If
+        'If Environment.Is64BitOperatingSystem Then
+        '    info.FileName = windir & "\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+        'Else
+        '    info.FileName = windir & "\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
+        'End If
+        info.FileName = windir & "\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
         info.Arguments = """" & installPath & "\\DdpySrv.exe"""
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
@@ -69,11 +70,12 @@ Public Class InstallerService
 
         ' 卸载后台服务COM
         Dim info As New System.Diagnostics.ProcessStartInfo
-        If Environment.Is64BitOperatingSystem Then
-            info.FileName = windir & "\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
-        Else
-            info.FileName = windir & "\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
-        End If
+        'If Environment.Is64BitOperatingSystem Then
+        '    info.FileName = windir & "\\Microsoft.NET\\Framework64\\v4.0.30319\\regasm.exe"
+        'Else
+        '    info.FileName = windir & "\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
+        'End If
+        info.FileName = windir & "\\Microsoft.NET\\Framework\\v4.0.30319\\regasm.exe"
         info.Arguments = "/u """ & installPath & "\\DdpySrv.exe"""
         info.WindowStyle = ProcessWindowStyle.Hidden
         System.Diagnostics.Process.Start(info)
