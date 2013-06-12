@@ -637,10 +637,16 @@ objJsScriptSearch["http://code.google.com/p/ddpy/"] = "淡定拼音输入法主�
 objJsScriptSearch["www.google.com"] = "\twww.google.com";
 objJsScriptSearch["谷歌"] = "\twww.google.co.jp";
 objJsScriptSearch["百度"] = "\twww.baidu.com";
-objJsScriptSearch["命令"] = "\tcmd.exe";
+objJsScriptSearch["淘宝"] = "\twww.taobao.com";
+objJsScriptSearch["翻译"] = "\thttp://translate.google.com.hk";
 
 objJsScriptSearch["胡俭雷"] = "孙氏太极胡俭雷先生的博客\thttp://blog.sina.com.cn/u/2121861154";
 objJsScriptSearch["孙氏太极"] = "孙氏太极胡俭雷先生的博客\thttp://blog.sina.com.cn/u/2121861154";
+
+objJsScriptSearch["无极学"] = "孙氏太极　１、无极学<br>　无极者，当人未练拳术之初，心无所思，意无所动，目无所视，手足无舞蹈，<br>身体无动作，阴阳未判，清浊未分，浑浑噩噩，一气浑然者也。<br>　起点：面向正方，身子直立，两手下垂，两肩不可向下用力，下垂要自然，两足为九十度之形式。<br>两足尖亦不用力抓扣，两足后根亦不用力蹬扭，身子如同立在沙漠之地。<br>手足亦无往来动作之节制，身心未知开合顶劲之灵活，但顺其自然之性，流行不已。<br>心中空空洞洞，内无所思，外无所视，伸缩往来，进退动作，皆无联兆。\thttp://blog.sina.com.cn/s/blog_b3610c730101ee80.html";
+objJsScriptSearch["太极学"] = "孙氏太极　２、太极学<br>　太极者，在于无极之中先求一至中和至虚灵之极点，其气之隐于内也，则为德，其气之现于外也，则为道。<br>内外一气之流行，可以位天地，孕阴阳。故拳术之内劲，实为人身之基础。<br>在天曰命，在人曰性，在物曰理，在技曰内家拳术。名称虽殊，其理则一，故名之曰太极。<br>　起点：两手下垂，两肩松开，右足尖向里扭直，与左足成为四十五度之形式。<br>头与右足向里扭时，同时亦向左边扭转，两眼向斜角看去。将心稳住，气往下沉。<br>腰用意塌住，要自然，不可用拙力塌劲。头扭之时，要与心意、丹田、上下内外，如同一气旋转之意。<br>舌顶上颖，谷道上提。如此则谓之转乾坤、扭气机，逆运先天真一之气，此气名之曰太极。\thttp://blog.sina.com.cn/s/blog_b3610c730101ee86.html";
+
+objJsScriptSearch["命令"] = "\tcmd.exe";
 
 // Js脚本扩充信息检索
 // 返回扩充窗口显示用文本
