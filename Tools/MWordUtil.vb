@@ -859,44 +859,6 @@ Module MWordUtil
         Return ddpyFile
     End Function
 
-    'Private Function GetMtlPinyin(ByVal words As String) As String
-
-    '    If words = Nothing OrElse "".Equals(words) Then
-    '        Return ""
-    '    End If
-
-    '    Dim pys As New List(Of String)
-    '    Dim w As String
-    '    Dim py As String
-    '    For i As Integer = 0 To words.Length - 1
-    '        w = words.Substring(i, 1)
-    '        If GetPinyinMap().ContainsKey(w) Then
-    '            py = GetPinyinMap()(w)
-    '            If py.IndexOf(",") < 0 Then
-    '                pys.Add(GetPinyinMap()(w))
-    '                Continue For
-    '            End If
-
-    '            py = GetMtlPinyin(words, i)
-    '            If py.IndexOf(",") < 0 Then
-    '                pys.Add(py)
-    '                Continue For
-    '            End If
-
-    '            pys.Add(GetPinyinMap()(w))
-
-    '        Else
-    '            ' pys.Add("")     ' 非汉字无拼音
-    '        End If
-    '    Next
-
-    '    If pys.Count = 0 Then
-    '        Return ""
-    '    End If
-    '    Return Strings.Join(pys.ToArray, "'")
-
-    'End Function
-
     Private Function GetMtlPinyin(ByVal text As String, ByVal idx As Integer) As String
 
         Dim sTxt As String = text.Substring(idx, 1)
@@ -981,42 +943,6 @@ Module MWordUtil
                 Return "hang"
             End If
 
-            'If sTmpR.StartsWith("行走") OrElse sTmpR.StartsWith("行踪") OrElse sTmpR.StartsWith("行政") _
-            '     OrElse sTmpR.StartsWith("行为") OrElse sTmpR.StartsWith("行文") OrElse sTmpR.StartsWith("行人") _
-            '     OrElse sTmpR.StartsWith("行啊") OrElse sTmpR.StartsWith("形式") OrElse sTmpR.StartsWith("行使") _
-            '     OrElse sTmpR.StartsWith("行驶") OrElse sTmpR.StartsWith("行事") OrElse sTmpR.StartsWith("行动") _
-            '     OrElse sTmpR.StartsWith("行宫") OrElse sTmpR.StartsWith("刑侦") OrElse sTmpR.StartsWith("行针") _
-            '     OrElse sTmpR.StartsWith("行经") OrElse sTmpR.StartsWith("行进") OrElse sTmpR.StartsWith("行径") _
-            '     OrElse sTmpR.StartsWith("行者") OrElse sTmpR.StartsWith("行踪") OrElse sTmpR.StartsWith("行至") _
-            '     OrElse sTmpR.StartsWith("行哦") OrElse sTmpR.StartsWith("行的") OrElse sTmpR.StartsWith("行不行") _
-            '     OrElse sTmpR.StartsWith("行书") OrElse sTmpR.StartsWith("行楷") OrElse sTmpR.StartsWith("行心") _
-            '     OrElse sTmpR.StartsWith("行门") OrElse sTmpR.StartsWith("行踏") OrElse sTmpR.StartsWith("行景") _
-            '     OrElse sTmpR.StartsWith("行短") OrElse sTmpR.StartsWith("行短") OrElse sTmpR.StartsWith("行处") _
-            '     OrElse sTmpR.StartsWith("行同") OrElse sTmpR.StartsWith("行短") OrElse sTmpR.StartsWith("行处") _
-            '     OrElse sTmpR.StartsWith("行义") OrElse sTmpR.StartsWith("行谊") OrElse sTmpR.StartsWith("行李") _
-            '     OrElse sTmpR.StartsWith("行头") OrElse sTmpR.StartsWith("行旅") OrElse sTmpR.StartsWith("行程") _
-            '     OrElse sTmpR.StartsWith("行藏") OrElse sTmpR.StartsWith("行车") OrElse sTmpR.StartsWith("行成") _
-            '     OrElse sTmpR.StartsWith("行刺") OrElse sTmpR.StartsWith("行都") OrElse sTmpR.StartsWith("行房") _
-            '     OrElse sTmpR.StartsWith("行歌") OrElse sTmpR.StartsWith("行宫") OrElse sTmpR.StartsWith("行贾") _
-            '     OrElse sTmpR.StartsWith("行贿") OrElse sTmpR.StartsWith("行将") OrElse sTmpR.StartsWith("行劫") _
-            '     OrElse sTmpR.StartsWith("行军") OrElse sTmpR.StartsWith("行猎") OrElse sTmpR.StartsWith("行令") _
-            '     OrElse sTmpR.StartsWith("行路") OrElse sTmpR.StartsWith("行酒") OrElse sTmpR.StartsWith("行囊") _
-            '     OrElse sTmpR.StartsWith("行骗") OrElse sTmpR.StartsWith("行聘") OrElse sTmpR.StartsWith("行期") _
-            '     OrElse sTmpR.StartsWith("行腔") OrElse sTmpR.StartsWith("行乞") OrElse sTmpR.StartsWith("行窃") _
-            '     OrElse sTmpR.StartsWith("行取") OrElse sTmpR.StartsWith("行色") OrElse sTmpR.StartsWith("行行若无事") _
-            '     OrElse sTmpR.StartsWith("行行色色") OrElse sTmpR.StartsWith("行善") OrElse sTmpR.StartsWith("行尸走肉") _
-            '     OrElse sTmpR.StartsWith("行商") OrElse sTmpR.StartsWith("行时") OrElse sTmpR.StartsWith("行市") _
-            '     OrElse sTmpR.StartsWith("行署") OrElse sTmpR.StartsWith("行刑") OrElse sTmpR.StartsWith("行凶") _
-            '     OrElse sTmpR.StartsWith("行医") OrElse sTmpR.StartsWith("行吟") OrElse sTmpR.StartsWith("行营") _
-            '     OrElse sTmpR.StartsWith("行远") OrElse sTmpR.StartsWith("行御史台") OrElse sTmpR.StartsWith("行云") _
-            '     OrElse sTmpR.StartsWith("行灶") OrElse sTmpR.StartsWith("行之有效") OrElse sTmpR.StartsWith("行止") _
-            '     OrElse sTmpR.StartsWith("行至") OrElse sTmpR.StartsWith("行志") OrElse sTmpR.StartsWith("行舟") _
-            '     OrElse sTmpR.StartsWith("行装") OrElse sTmpR.StartsWith("行状") OrElse sTmpR.StartsWith("行踪") _
-            '     OrElse sTmpR.StartsWith("行礼") OrElse sTmpR.StartsWith("行方") OrElse sTmpR.StartsWith("行踪") _
-            'Then
-            '    Return "xing"
-            'End If
-
             If sTmpL.EndsWith("排行") OrElse sTmpL.EndsWith("银行") OrElse sTmpL.EndsWith("商行") _
                  OrElse sTmpL.EndsWith("分行") OrElse sTmpL.EndsWith("招行") OrElse sTmpL.EndsWith("中行") _
                  OrElse sTmpL.EndsWith("农行") OrElse sTmpL.EndsWith("工行") OrElse sTmpL.EndsWith("央行") _
@@ -1029,31 +955,12 @@ Module MWordUtil
                 Return "hang"
             End If
 
-            'If sTmpL.EndsWith("自行") OrElse sTmpL.EndsWith("之行") OrElse sTmpL.EndsWith("品行") _
-            '     OrElse sTmpL.EndsWith("平行") OrElse sTmpL.EndsWith("践行") OrElse sTmpL.EndsWith("旅行") _
-            '     OrElse sTmpL.EndsWith("实行") OrElse sTmpL.EndsWith("施行") OrElse sTmpL.EndsWith("试行") _
-            '     OrElse sTmpL.EndsWith("遵行") OrElse sTmpL.EndsWith("住行") OrElse sTmpL.EndsWith("左行") _
-            '     OrElse sTmpL.EndsWith("右行") OrElse sTmpL.EndsWith("前行") OrElse sTmpL.EndsWith("后行") _
-            '     OrElse sTmpL.EndsWith("上行") OrElse sTmpL.EndsWith("下行") OrElse sTmpL.EndsWith("执行") _
-            '     OrElse sTmpL.EndsWith("自行") OrElse sTmpL.EndsWith("直行") OrElse sTmpL.EndsWith("准行") _
-            '     OrElse sTmpL.EndsWith("再行") OrElse sTmpL.EndsWith("通行") OrElse sTmpL.EndsWith("流行") _
-            '     OrElse sTmpL.EndsWith("进行") OrElse sTmpL.EndsWith("知难而行") OrElse sTmpL.EndsWith("知难行") _
-            '     OrElse sTmpL.EndsWith("发行") OrElse sTmpL.EndsWith("夜行") OrElse sTmpL.EndsWith("日行") _
-            '     OrElse sTmpL.EndsWith("出行") OrElse sTmpL.EndsWith("绳行") OrElse sTmpL.EndsWith("罪行") _
-            '     OrElse sTmpL.EndsWith("暂行") OrElse sTmpL.EndsWith("知易行") OrElse sTmpL.EndsWith("昼夜兼行") _
-            '     OrElse sTmpL.EndsWith("利于行") OrElse sTmpL.EndsWith("坐言起行") OrElse sTmpL.EndsWith("恣意妄行") _
-            '     OrElse sTmpL.EndsWith("直言危行") OrElse sTmpL.EndsWith("运行") OrElse sTmpL.EndsWith("骑行") _
-            '     OrElse sTmpL.EndsWith("竹行") OrElse sTmpL.EndsWith("运行") OrElse sTmpL.EndsWith("朱行") _
-            'Then
-            '    Return "xing"
-            'End If
-
             Return "xing"
         End If
 
 
         If "的".Equals(sTxt) Then
-            If sTmpR.StartsWith("的确") OrElse sTmpR.StartsWith("的确良") OrElse sTmpR.StartsWith("的士")  Then
+            If sTmpR.StartsWith("的确") OrElse sTmpR.StartsWith("的确良") OrElse sTmpR.StartsWith("的士") Then
                 Return "di"
             End If
             If sTmpL.EndsWith("目的") OrElse sTmpR.EndsWith("众矢之的") OrElse sTmpR.EndsWith("打的") Then
@@ -1979,7 +1886,7 @@ Module MWordUtil
 
         If "卡".Equals(sTxt) Then
             If sTmpR.StartsWith("卡脖子") OrElse sTmpR.StartsWith("卡具") OrElse sTmpR.StartsWith("卡壳") _
-               OrElse sTmpR.StartsWith("卡子")  _
+               OrElse sTmpR.StartsWith("卡子") _
             Then
                 Return "qia"
             End If

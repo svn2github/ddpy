@@ -63,6 +63,18 @@ function alert(msg)
 	obj.SvrMsgBox(msg)
 }
 
+// 调用淡定拼音输入法后台服务程序访问网页
+function getHttpResponse(url, charset)
+{
+    var obj = new ActiveXObject("DdpySrv.ComClass");
+    if (charset == null) {
+	    return obj.SrvGetHttpResponse(url)
+    } else {
+	    return obj.SrvGetHttpResponse(url, charset)
+    }
+
+}
+
 ///////////////////////////////////////////
 
 // ****************************************

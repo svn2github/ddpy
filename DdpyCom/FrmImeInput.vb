@@ -66,6 +66,10 @@ Friend Class FrmImeInput
             Return
         End If
 
+        If ddPy.DefaultKeyChar.Length > 0 AndAlso ddPy.InputPys.Length = 1 AndAlso ddPy.DispPyText2.Length = 0 Then
+            Me.Location = IIf(P_AUTO_POSITION, GetAutoPos(), GetDefaultPos())
+        End If
+
         If P_I_MODE AndAlso ddPy.Text = "" Then
             LblPinyin.Text = ddPy.InputPys
         Else
@@ -179,8 +183,9 @@ Friend Class FrmImeInput
             txt9.Font = fontCand
         End If
 
-        ChangeLocation()
         ShowWindow(Me.Handle, SW_SHOWNOACTIVATE)
+        ChangeLocation()
+
         NotifyImeOpenCandidate()
 
         If Not My.Computer.Keyboard.CtrlKeyDown AndAlso _
@@ -205,12 +210,13 @@ Friend Class FrmImeInput
         ClearCands()
         LblInfo.Text = IIf(P_TITLE = "", "   " & "0", P_TITLE)
 
+        MyBase.Hide()
+
         If Not P_AUTO_POSITION Then
             Me.Location = New System.Drawing.Point(defaultPosX, Me.Location.Y)
         End If
 
         Me.Width = 420
-        MyBase.Hide()
 
         HideInfoForm()
     End Sub
@@ -309,40 +315,42 @@ Friend Class FrmImeInput
 
 
         ' 调整窗口位置
-        If P_AUTO_POSITION Then
-
-            ' 光标跟随
-            Dim x As Integer = PosX + 3
-            Dim y As Integer = PosY + PosH + 3
-            If Screen.PrimaryScreen.WorkingArea.Width - PosX - Me.Width < 0 Then
-                If Screen.PrimaryScreen.WorkingArea.Width - Me.Width < 0 Then
-                    x = 0
-                Else
-                    x = Screen.PrimaryScreen.WorkingArea.Width - Me.Width
-                End If
-            End If
-            If Screen.PrimaryScreen.WorkingArea.Height - PosY - PosH - 3 - Me.Height < 0 Then
-                y = PosY - Me.Height - 3
-            End If
-
-            Me.Location = New Point(x, y)
-        Else
-
-            Dim x As Integer
-            Dim y As Integer = Me.Location.Y
-            If Screen.PrimaryScreen.WorkingArea.Width - defaultPosX < Me.Width Then
-                x = Screen.PrimaryScreen.WorkingArea.Width - Me.Width
-            Else
-                x = defaultPosX
-            End If
-            If Screen.PrimaryScreen.WorkingArea.Height - y - Me.Height < 0 Then
-                y = Screen.PrimaryScreen.WorkingArea.Height - Me.Height
-            End If
-            Me.Location = New System.Drawing.Point(x, y)
-
-        End If
+        Me.Location = IIf(P_AUTO_POSITION, GetAutoPos(), GetDefaultPos())
 
     End Sub
+
+    Private Function GetAutoPos() As Point
+        ' 光标跟随
+        Dim x As Integer = PosX + 3
+        Dim y As Integer = PosY + PosH + 3
+        If Screen.PrimaryScreen.WorkingArea.Width - PosX - Me.Width < 0 Then
+            If Screen.PrimaryScreen.WorkingArea.Width - Me.Width < 0 Then
+                x = 0
+            Else
+                x = Screen.PrimaryScreen.WorkingArea.Width - Me.Width
+            End If
+        End If
+        If Screen.PrimaryScreen.WorkingArea.Height - PosY - PosH - 3 - Me.Height < 0 Then
+            y = PosY - Me.Height - 3
+        End If
+
+        Return New Point(x, y)
+    End Function
+
+    Private Function GetDefaultPos() As Point
+        Dim x As Integer
+        Dim y As Integer = Me.Location.Y
+        If Screen.PrimaryScreen.WorkingArea.Width - defaultPosX < Me.Width Then
+            x = Screen.PrimaryScreen.WorkingArea.Width - Me.Width
+        Else
+            x = defaultPosX
+        End If
+        If Screen.PrimaryScreen.WorkingArea.Height - y - Me.Height < 0 Then
+            y = Screen.PrimaryScreen.WorkingArea.Height - Me.Height
+        End If
+
+        Return New Point(x, y)
+    End Function
 
     ''' <summary>
     ''' 取得候选Label

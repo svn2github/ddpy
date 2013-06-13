@@ -170,6 +170,7 @@ Module MDanDingKeys
     Friend Sub ComProcessKey(ByVal iKey As UInteger, ByRef ikr As ImeKeyResult)
 
         ddPy.HasChange = True
+        ddPy.DefaultKeyChar = ConvertDefaultChar(iKey)
 
         ' 状态栏显示控制
         If P_HIDE_STATUS Then
@@ -197,7 +198,6 @@ Module MDanDingKeys
             Return
         End If
 
-        ddPy.DefaultKeyChar = ConvertDefaultChar(iKey)
 
         ' 处理编码按键
         If Not My.Computer.Keyboard.CtrlKeyDown AndAlso IsCompKey(iKey) Then
@@ -492,44 +492,50 @@ Module MDanDingKeys
     ''' <param name="ikr">按键处理结果</param>
     Private Sub ProcessDigitKey(ByVal iKey As UInteger, ByRef ikr As ImeKeyResult)
 
-        If iKey >= Keys.D1 And iKey <= Keys.D9 Then
+        If frmInput.Visible Then
+            If iKey >= Keys.D1 And iKey <= Keys.D9 Then
 
-            If My.Computer.Keyboard.ShiftKeyDown Then
-                ddPy.TextEndChar = ConvertChar(iKey)
-                ddPy.PushWord()
-                SetIkrFlag(ikr, True, True, True)
-            Else
-                ddPy.FocusCand = iKey - Keys.D0
-
-                If ddPy.FocusCand = iKey - Keys.D0 Then
+                If My.Computer.Keyboard.ShiftKeyDown Then
+                    ddPy.TextEndChar = ConvertChar(iKey)
                     ddPy.PushWord()
                     SetIkrFlag(ikr, True, True, True)
-
-                    If Not ddPy.IsFinish Then
-                        ikr.IsInputEnd = False
-                        ddPy.ExecuteSearch()
-                    End If
                 Else
-                    ' 所按数字非候选项
-                    If ddPy.HasStackWord() Then
-                        ' 已经有文字转换，不响应
+                    ddPy.FocusCand = iKey - Keys.D0
+
+                    If ddPy.FocusCand = iKey - Keys.D0 Then
+                        ddPy.PushWord()
+                        SetIkrFlag(ikr, True, True, True)
+
+                        If Not ddPy.IsFinish Then
+                            ikr.IsInputEnd = False
+                            ddPy.ExecuteSearch()
+                        End If
                     Else
-                        ' 未曾转换过，作混合输入处理
-                        ddPy.InputPys = ddPy.InputPys & ddPy.DefaultKeyChar
-                        ddPy.ExecuteSearch()
+                        ' 所按数字非候选项
+                        If ddPy.HasStackWord() Then
+                            ' 已经有文字转换，不响应
+                        Else
+                            ' 未曾转换过，作混合输入处理
+                            ddPy.InputPys = ddPy.InputPys & ddPy.DefaultKeyChar
+                            ddPy.ExecuteSearch()
+                        End If
+                        SetIkrFlag(ikr, True, True, False)
+
                     End If
-                    SetIkrFlag(ikr, True, True, False)
 
                 End If
 
+            ElseIf iKey = Keys.D0 Then
+
+                ddPy.TextEndChar = ConvertChar(iKey)
+                ddPy.PushWord()
+                SetIkrFlag(ikr, True, True, True)
+
             End If
 
-        ElseIf iKey = Keys.D0 Then
-
-            ddPy.TextEndChar = ConvertChar(iKey)
-            ddPy.PushWord()
+        Else
+            ddPy.TextEndChar = IIf(P_MODE_FULL, Strings.StrConv(ddPy.DefaultKeyChar, VbStrConv.Wide), ddPy.DefaultKeyChar)
             SetIkrFlag(ikr, True, True, True)
-
         End If
     End Sub
 
@@ -779,10 +785,9 @@ Module MDanDingKeys
 
         Dim bLowerCase As Boolean = IIf(My.Computer.Keyboard.CapsLock, IIf(My.Computer.Keyboard.ShiftKeyDown, True, False), IIf(My.Computer.Keyboard.ShiftKeyDown, False, True))
 
-
         If IsNumPadKey(iKey) Then
             ' 按小键盘输入可见字符，任何时候都不作转换
-            sRet = ToDefaultCharOfNumPad(iKey)
+            sRet = ddPy.DefaultKeyChar
 
         ElseIf My.Computer.Keyboard.CapsLock OrElse (Not P_LNG_CN) Then
             ' EN
@@ -1220,7 +1225,6 @@ Module MDanDingKeys
                     OrElse My.Computer.Keyboard.CapsLock _
                     OrElse (Not P_LNG_CN) _
                     ) Then
-
             Dim sChar As String = ConvertChar(iKey)
             If sChar.Length = 0 Then
                 ' 无法显示字符的按键

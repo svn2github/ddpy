@@ -63,6 +63,10 @@ Public Class ComClass
 
     End Sub
 
+    Public Function SrvGetHttpResponse(ByVal url As String, Optional ByVal charset As String = "gb2312") As String
+        Return GetHttpResponse(url, charset)
+    End Function
+
     ''' <summary>
     ''' 取得输入法配置信息
     ''' </summary>
