@@ -32,6 +32,10 @@ Module MShowInfo
             Return True
         End If
 
+        If My.Computer.Keyboard.CtrlKeyDown AndAlso ddPy.InputKey = Keys.Delete Then
+            Return True
+        End If
+
         ShowForm()
 
         Return True
@@ -83,9 +87,9 @@ Module MShowInfo
 
 
             If Not frmInfo.Visible Then
-                frmInfo.LblText.Font = fontInfo
-                frmInfo.LblExecText.Font = New Font(fontInfo.Name, fontInfo.Size, fontInfo.Style Or FontStyle.Underline)
                 frmInfo.Show()
+            Else
+                frmInfo.ChangeLocation()
             End If
 
 

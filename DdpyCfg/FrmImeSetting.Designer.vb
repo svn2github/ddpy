@@ -60,11 +60,18 @@ Partial Class FrmSetting
         Me.TxtWord = New System.Windows.Forms.TextBox()
         Me.TabPageAdvanced = New System.Windows.Forms.TabPage()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.BtnFontExtsInfo = New System.Windows.Forms.Button()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.TxtInfoFont = New System.Windows.Forms.TextBox()
         Me.ChkAutoShowPyTextInfo = New System.Windows.Forms.CheckBox()
         Me.ChkShowInfoWin = New System.Windows.Forms.CheckBox()
         Me.ChkIMode = New System.Windows.Forms.CheckBox()
         Me.ChkAutoCreateWord = New System.Windows.Forms.CheckBox()
         Me.ChkAddFirstWordIdx = New System.Windows.Forms.CheckBox()
+        Me.NumMaxExtsHeight = New System.Windows.Forms.NumericUpDown()
+        Me.NumMaxExtsWidth = New System.Windows.Forms.NumericUpDown()
         Me.NumCandLimit = New System.Windows.Forms.NumericUpDown()
         Me.ChkCandLimit = New System.Windows.Forms.CheckBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
@@ -74,9 +81,6 @@ Partial Class FrmSetting
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.FontDlgCand = New System.Windows.Forms.FontDialog()
         Me.BtnApply = New System.Windows.Forms.Button()
-        Me.BtnFontExtsInfo = New System.Windows.Forms.Button()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.TxtInfoFont = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumPyLen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumPageCnt, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +91,8 @@ Partial Class FrmSetting
         Me.GroupBox2.SuspendLayout()
         Me.TabPageAdvanced.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
+        CType(Me.NumMaxExtsHeight, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumMaxExtsWidth, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumCandLimit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
         Me.TabPageHelp.SuspendLayout()
@@ -488,7 +494,10 @@ Partial Class FrmSetting
         '
         Me.GroupBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox6.Controls.Add(Me.NumMaxExtsHeight)
         Me.GroupBox6.Controls.Add(Me.BtnFontExtsInfo)
+        Me.GroupBox6.Controls.Add(Me.Label10)
+        Me.GroupBox6.Controls.Add(Me.Label9)
         Me.GroupBox6.Controls.Add(Me.Label8)
         Me.GroupBox6.Controls.Add(Me.TxtInfoFont)
         Me.GroupBox6.Controls.Add(Me.ChkAutoShowPyTextInfo)
@@ -496,6 +505,7 @@ Partial Class FrmSetting
         Me.GroupBox6.Controls.Add(Me.ChkIMode)
         Me.GroupBox6.Controls.Add(Me.ChkAutoCreateWord)
         Me.GroupBox6.Controls.Add(Me.ChkAddFirstWordIdx)
+        Me.GroupBox6.Controls.Add(Me.NumMaxExtsWidth)
         Me.GroupBox6.Controls.Add(Me.NumCandLimit)
         Me.GroupBox6.Controls.Add(Me.ChkCandLimit)
         Me.GroupBox6.Location = New System.Drawing.Point(8, 82)
@@ -504,13 +514,59 @@ Partial Class FrmSetting
         Me.GroupBox6.TabIndex = 2
         Me.GroupBox6.TabStop = False
         '
+        'BtnFontExtsInfo
+        '
+        Me.BtnFontExtsInfo.Location = New System.Drawing.Point(399, 132)
+        Me.BtnFontExtsInfo.Name = "BtnFontExtsInfo"
+        Me.BtnFontExtsInfo.Size = New System.Drawing.Size(47, 25)
+        Me.BtnFontExtsInfo.TabIndex = 11
+        Me.BtnFontExtsInfo.Text = "变更"
+        Me.BtnFontExtsInfo.UseVisualStyleBackColor = True
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(282, 113)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(59, 13)
+        Me.Label10.TabIndex = 12
+        Me.Label10.Text = "最大高度"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(166, 113)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(59, 13)
+        Me.Label9.TabIndex = 12
+        Me.Label9.Text = "最大宽度"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(195, 138)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(98, 13)
+        Me.Label8.TabIndex = 12
+        Me.Label8.Text = "扩展显示字体："
+        '
+        'TxtInfoFont
+        '
+        Me.TxtInfoFont.Location = New System.Drawing.Point(299, 133)
+        Me.TxtInfoFont.Name = "TxtInfoFont"
+        Me.TxtInfoFont.ReadOnly = True
+        Me.TxtInfoFont.Size = New System.Drawing.Size(94, 22)
+        Me.TxtInfoFont.TabIndex = 13
+        Me.TxtInfoFont.Text = "宋体,12,0"
+        '
         'ChkAutoShowPyTextInfo
         '
+        Me.ChkAutoShowPyTextInfo.AutoSize = True
         Me.ChkAutoShowPyTextInfo.Location = New System.Drawing.Point(20, 135)
         Me.ChkAutoShowPyTextInfo.Name = "ChkAutoShowPyTextInfo"
-        Me.ChkAutoShowPyTextInfo.Size = New System.Drawing.Size(197, 16)
+        Me.ChkAutoShowPyTextInfo.Size = New System.Drawing.Size(130, 17)
         Me.ChkAutoShowPyTextInfo.TabIndex = 7
-        Me.ChkAutoShowPyTextInfo.Text = "拼音汉字作扩展信息处理"
+        Me.ChkAutoShowPyTextInfo.Text = "扩展显示拼音汉字"
         Me.ChkAutoShowPyTextInfo.UseVisualStyleBackColor = True
         '
         'ChkShowInfoWin
@@ -556,9 +612,31 @@ Partial Class FrmSetting
         Me.ChkAddFirstWordIdx.Text = "增加首字完整拼音索引（特殊情况适用，重启后生效）"
         Me.ChkAddFirstWordIdx.UseVisualStyleBackColor = True
         '
+        'NumMaxExtsHeight
+        '
+        Me.NumMaxExtsHeight.Location = New System.Drawing.Point(343, 104)
+        Me.NumMaxExtsHeight.Maximum = New Decimal(New Integer() {999, 0, 0, 0})
+        Me.NumMaxExtsHeight.Minimum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.NumMaxExtsHeight.Name = "NumMaxExtsHeight"
+        Me.NumMaxExtsHeight.Size = New System.Drawing.Size(50, 22)
+        Me.NumMaxExtsHeight.TabIndex = 6
+        Me.NumMaxExtsHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.NumMaxExtsHeight.Value = New Decimal(New Integer() {30, 0, 0, 0})
+        '
+        'NumMaxExtsWidth
+        '
+        Me.NumMaxExtsWidth.Location = New System.Drawing.Point(227, 104)
+        Me.NumMaxExtsWidth.Maximum = New Decimal(New Integer() {999, 0, 0, 0})
+        Me.NumMaxExtsWidth.Minimum = New Decimal(New Integer() {180, 0, 0, 0})
+        Me.NumMaxExtsWidth.Name = "NumMaxExtsWidth"
+        Me.NumMaxExtsWidth.Size = New System.Drawing.Size(50, 22)
+        Me.NumMaxExtsWidth.TabIndex = 6
+        Me.NumMaxExtsWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.NumMaxExtsWidth.Value = New Decimal(New Integer() {500, 0, 0, 0})
+        '
         'NumCandLimit
         '
-        Me.NumCandLimit.Location = New System.Drawing.Point(193, 16)
+        Me.NumCandLimit.Location = New System.Drawing.Point(169, 16)
         Me.NumCandLimit.Maximum = New Decimal(New Integer() {99, 0, 0, 0})
         Me.NumCandLimit.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NumCandLimit.Name = "NumCandLimit"
@@ -650,33 +728,6 @@ Partial Class FrmSetting
         Me.BtnApply.Text = "应  用"
         Me.BtnApply.UseVisualStyleBackColor = True
         '
-        'BtnFontExtsInfo
-        '
-        Me.BtnFontExtsInfo.Location = New System.Drawing.Point(394, 108)
-        Me.BtnFontExtsInfo.Name = "BtnFontExtsInfo"
-        Me.BtnFontExtsInfo.Size = New System.Drawing.Size(47, 25)
-        Me.BtnFontExtsInfo.TabIndex = 11
-        Me.BtnFontExtsInfo.Text = "变更"
-        Me.BtnFontExtsInfo.UseVisualStyleBackColor = True
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(190, 114)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(98, 13)
-        Me.Label8.TabIndex = 12
-        Me.Label8.Text = "扩展信息字体："
-        '
-        'TxtInfoFont
-        '
-        Me.TxtInfoFont.Location = New System.Drawing.Point(294, 109)
-        Me.TxtInfoFont.Name = "TxtInfoFont"
-        Me.TxtInfoFont.ReadOnly = True
-        Me.TxtInfoFont.Size = New System.Drawing.Size(94, 22)
-        Me.TxtInfoFont.TabIndex = 13
-        Me.TxtInfoFont.Text = "宋体,12,0"
-        '
         'FrmSetting
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
@@ -708,6 +759,8 @@ Partial Class FrmSetting
         Me.TabPageAdvanced.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
+        CType(Me.NumMaxExtsHeight, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumMaxExtsWidth, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumCandLimit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
@@ -770,5 +823,9 @@ Partial Class FrmSetting
     Friend WithEvents BtnFontExtsInfo As System.Windows.Forms.Button
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents TxtInfoFont As System.Windows.Forms.TextBox
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents NumMaxExtsHeight As System.Windows.Forms.NumericUpDown
+    Friend WithEvents NumMaxExtsWidth As System.Windows.Forms.NumericUpDown
 
 End Class

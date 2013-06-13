@@ -43,7 +43,7 @@ Module MSrvConfig
     ''' <summary>
     ''' 能输入的拼音最大长度
     ''' </summary>
-    Private P_MAX_PY_LEN As Integer = 30
+    Private P_MAX_PY_LEN As Integer = 50
 
     ''' <summary>
     ''' 每页最大候选件数
@@ -78,6 +78,8 @@ Module MSrvConfig
     Private P_SHOW_INFO As Boolean = False
     Private P_FONT_INFO_WIN As String = "宋体,12,0"
     Private P_SHOW_INFO_WITH_PY_TEXT As Boolean = False
+    Private P_MAX_EXTS_WIN_WIDTH As Integer = 530
+    Private P_MAX_EXTS_WIN_HEIGHT As Integer = 10
 
     ''' <summary>
     ''' 取得输入法配置信息
@@ -116,6 +118,8 @@ Module MSrvConfig
         lst.Add(P_SHOW_INFO)
         lst.Add(P_FONT_INFO_WIN)
         lst.Add(P_SHOW_INFO_WITH_PY_TEXT)
+        lst.Add(P_MAX_EXTS_WIN_WIDTH)
+        lst.Add(P_MAX_EXTS_WIN_HEIGHT)
 
         Return Strings.Join(lst.ToArray, vbTab)
     End Function
@@ -156,6 +160,8 @@ Module MSrvConfig
             P_SHOW_INFO = CBool(ary(20))
             P_FONT_INFO_WIN = CStr(ary(21))
             P_SHOW_INFO_WITH_PY_TEXT = CBool(ary(22))
+            P_MAX_EXTS_WIN_WIDTH = CInt(ary(23))
+            P_MAX_EXTS_WIN_HEIGHT = CInt(ary(24))
 
             ' 保存配置信息
             My.Computer.FileSystem.WriteAllText(GetDdpyConfigFile(), GetSettingInfo(), False, Encoding.UTF8)

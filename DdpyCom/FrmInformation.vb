@@ -32,10 +32,21 @@ Friend Class FrmInformation
 
     Public Sub ChangeLocation()
 
+        LblText.Font = fontInfo
+        LblExecText.Font = New Font(fontInfo.Name, fontInfo.Size, fontInfo.Style Or FontStyle.Underline)
+        LblText.MaximumSize = New Size(P_MAX_EXTS_WIN_WIDTH, P_MAX_EXTS_WIN_HEIGHT)
+        LblExecText.MaximumSize = New Size(P_MAX_EXTS_WIN_WIDTH, LblExecText.Height)
+
         If LblText.Text.Length = 0 Then
             LblExecText.Location = LblText.Location
+        ElseIf LblExecText.Text.Length > 0 Then
+            LblExecText.Location = New System.Drawing.Point(LblText.Location.X, LblText.Location.Y + LblText.Height)
+        End If
+
+        If LblExecText.Text.Length > 0 Then
+            PanPosition.Location = New System.Drawing.Point(PanPosition.Location.X, LblText.Location.Y + LblText.Height + 2)
         Else
-            LblExecText.Location = New Point(LblText.Location.X, LblText.Location.Y + LblText.Height)
+            PanPosition.Location = New System.Drawing.Point(PanPosition.Location.X, 1)
         End If
 
         Dim x As Integer = frmInput.Location.X
@@ -92,6 +103,7 @@ Friend Class FrmInformation
     Private Sub LblExecText_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LblExecText.Click
         Try
             System.Diagnostics.Process.Start(LblExecText.Text)
+            frmInput.Hide()
         Catch ex As Exception
             ComDebug(ex)
         End Try

@@ -29,6 +29,7 @@ Friend Class CDandingPy
     Private vScriptModeTitle As String
     Private vHasChange As Boolean = False
     Private vDefaultKeyChar As String = ""
+    Private vKey As UInteger
 
     Public Property DefaultKeyChar() As String
         Get
@@ -36,6 +37,14 @@ Friend Class CDandingPy
         End Get
         Set(ByVal Value As String)
             vDefaultKeyChar = Value
+        End Set
+    End Property
+    Public Property InputKey() As UInteger
+        Get
+            Return vKey
+        End Get
+        Set(ByVal Value As UInteger)
+            vKey = Value
         End Set
     End Property
 
@@ -296,6 +305,7 @@ Friend Class CDandingPy
         vDispPyText2 = ""
         vTip = ""
         vDefaultKeyChar = ""
+        vKey = 0
     End Sub
 
     ''' <summary>

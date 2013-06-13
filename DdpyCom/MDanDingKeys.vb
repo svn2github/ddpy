@@ -170,6 +170,7 @@ Module MDanDingKeys
     Friend Sub ComProcessKey(ByVal iKey As UInteger, ByRef ikr As ImeKeyResult)
 
         ddPy.HasChange = True
+        ddPy.InputKey = iKey
         ddPy.DefaultKeyChar = ConvertDefaultChar(iKey)
 
         ' 状态栏显示控制

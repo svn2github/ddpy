@@ -54,6 +54,8 @@ Public Class FrmSetting
                 TxtInfoFont.Text = ary(21)
             End If
             ChkAutoShowPyTextInfo.Checked = CBool(ary(22))
+            NumMaxExtsWidth.Value = CInt(ary(23))
+            NumMaxExtsHeight.Value = CInt(ary(24))
 
         Catch ex As Exception
             ' MsgBox("初始显示发生异常" & vbNewLine & "(错误消息:" & ex.Message & ")", MsgBoxStyle.Exclamation, "淡定")
@@ -97,6 +99,8 @@ Public Class FrmSetting
         lst.Add(ChkShowInfoWin.Checked)
         lst.Add(TxtInfoFont.Text)
         lst.Add(ChkAutoShowPyTextInfo.Checked)
+        lst.Add(NumMaxExtsWidth.Value)
+        lst.Add(NumMaxExtsHeight.Value)
 
         Return Strings.Join(lst.ToArray, vbTab)
     End Function
@@ -699,7 +703,7 @@ Public Class FrmSetting
         End If
     End Sub
 
-    Private Sub NumPageCnt_ValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles NumPageCnt.ValueChanged, NumPyLen.ValueChanged, NumCandLimit.ValueChanged
+    Private Sub NumPageCnt_ValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles NumPageCnt.ValueChanged, NumPyLen.ValueChanged, NumCandLimit.ValueChanged, NumMaxExtsHeight.ValueChanged, NumMaxExtsWidth.ValueChanged
         If GetSetting().Equals(sSrvSetting) Then
             BtnApply.Enabled = False
         Else

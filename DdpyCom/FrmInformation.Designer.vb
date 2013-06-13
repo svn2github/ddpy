@@ -25,7 +25,7 @@ Partial Class FrmInformation
         Me.LblClose = New System.Windows.Forms.Label()
         Me.LblText = New System.Windows.Forms.Label()
         Me.LblExecText = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.PanPosition = New System.Windows.Forms.Panel()
         Me.SuspendLayout()
         '
         'LblClose
@@ -66,12 +66,12 @@ Partial Class FrmInformation
         Me.LblExecText.TabIndex = 3
         Me.LblExecText.Text = "Label1"
         '
-        'Panel1
+        'PanPosition
         '
-        Me.Panel1.Location = New System.Drawing.Point(179, 1)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1, 1)
-        Me.Panel1.TabIndex = 4
+        Me.PanPosition.Location = New System.Drawing.Point(179, 1)
+        Me.PanPosition.Name = "PanPosition"
+        Me.PanPosition.Size = New System.Drawing.Size(1, 1)
+        Me.PanPosition.TabIndex = 4
         '
         'FrmInformation
         '
@@ -80,11 +80,11 @@ Partial Class FrmInformation
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(180, 60)
+        Me.ClientSize = New System.Drawing.Size(180, 70)
         Me.Controls.Add(Me.LblExecText)
         Me.Controls.Add(Me.LblText)
         Me.Controls.Add(Me.LblClose)
-        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.PanPosition)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Font = New System.Drawing.Font("宋体", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -102,5 +102,5 @@ Partial Class FrmInformation
     Friend WithEvents LblClose As System.Windows.Forms.Label
     Friend WithEvents LblText As System.Windows.Forms.Label
     Friend WithEvents LblExecText As System.Windows.Forms.Label
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents PanPosition As System.Windows.Forms.Panel
 End Class
