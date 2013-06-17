@@ -81,6 +81,15 @@ Module MPinYinMatch
                 sPy = "ri"
             End If
         End If
+        ' yuan=yan
+        If P_YUAN_YAN Then
+            If sCd.Equals("yuan") Then
+                sCd = "yan"
+            End If
+            If sPy.Equals("yuan") Then
+                sPy = "yan"
+            End If
+        End If
 
         ' 比较
         If "a,o,e".Contains(Strings.Left(sCd, 1)) Then

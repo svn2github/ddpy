@@ -69,6 +69,11 @@ Module MPinYinBreak
             sCd = "ri"
         End If
 
+        ' yuan -> yan
+        If sCd.Equals("yuan") Then
+            sCd = "yan"
+        End If
+
         Return sCd
     End Function
 

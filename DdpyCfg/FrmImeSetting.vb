@@ -57,6 +57,8 @@ Public Class FrmSetting
             NumMaxExtsWidth.Value = CInt(ary(23))
             NumMaxExtsHeight.Value = CInt(ary(24))
 
+            ChkYuanYan.Checked = CBool(ary(25))
+
         Catch ex As Exception
             ' MsgBox("初始显示发生异常" & vbNewLine & "(错误消息:" & ex.Message & ")", MsgBoxStyle.Exclamation, "淡定")
         End Try
@@ -101,6 +103,8 @@ Public Class FrmSetting
         lst.Add(ChkAutoShowPyTextInfo.Checked)
         lst.Add(NumMaxExtsWidth.Value)
         lst.Add(NumMaxExtsHeight.Value)
+
+        lst.Add(ChkYuanYan.Checked)
 
         Return Strings.Join(lst.ToArray, vbTab)
     End Function
@@ -684,7 +688,7 @@ Public Class FrmSetting
 
     End Sub
 
-    Private Sub ChkAn_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ChkAn.MouseClick, ChkEn.MouseClick, ChkIn.MouseClick, ChkSrvMemory.MouseClick, ChkVshow.MouseClick, ChkZhizhe.MouseClick, ChkZize.MouseClick, ChkZzh.MouseClick, ChkHideStatus.MouseClick, ChkAutoPosition.MouseClick, ChkRiRe.MouseClick, ChkCandLimit.MouseClick, ChkAddFirstWordIdx.MouseClick, ChkAutoCreateWord.MouseClick, ChkIMode.MouseClick, ChkShowInfoWin.MouseClick, ChkAutoShowPyTextInfo.MouseClick
+    Private Sub ChkAn_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ChkAn.MouseClick, ChkEn.MouseClick, ChkIn.MouseClick, ChkSrvMemory.MouseClick, ChkVshow.MouseClick, ChkZhizhe.MouseClick, ChkZize.MouseClick, ChkZzh.MouseClick, ChkHideStatus.MouseClick, ChkAutoPosition.MouseClick, ChkRiRe.MouseClick, ChkCandLimit.MouseClick, ChkAddFirstWordIdx.MouseClick, ChkAutoCreateWord.MouseClick, ChkIMode.MouseClick, ChkShowInfoWin.MouseClick, ChkAutoShowPyTextInfo.MouseClick, ChkYuanYan.MouseClick
 
         NumCandLimit.Enabled = ChkCandLimit.Checked
 

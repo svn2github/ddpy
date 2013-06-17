@@ -41,6 +41,10 @@ Module MConfig
     ''' </summary>
     Friend P_RI_RE As Boolean = True
 
+    ''' <summary>
+    ''' 模糊音标志 yuan=yan
+    ''' </summary>
+    Friend P_YUAN_YAN As Boolean = True
 
     ''' <summary>
     ''' 中文模式
@@ -157,6 +161,8 @@ Module MConfig
             P_SHOW_INFO_WITH_PY_TEXT = CBool(ary(22))
             P_MAX_EXTS_WIN_WIDTH = CInt(ary(23))
             P_MAX_EXTS_WIN_HEIGHT = CInt(ary(24))
+
+            P_YUAN_YAN = CBool(ary(25))
 
         Catch ex As Exception
             ComDebug(ex)

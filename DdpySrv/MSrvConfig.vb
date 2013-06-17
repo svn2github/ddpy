@@ -41,6 +41,11 @@ Module MSrvConfig
     Friend P_RI_RE As Boolean = True
 
     ''' <summary>
+    ''' 模糊音标志 yuan=yan
+    ''' </summary>
+    Friend P_YUAN_YAN As Boolean = True
+
+    ''' <summary>
     ''' 能输入的拼音最大长度
     ''' </summary>
     Private P_MAX_PY_LEN As Integer = 50
@@ -121,6 +126,8 @@ Module MSrvConfig
         lst.Add(P_MAX_EXTS_WIN_WIDTH)
         lst.Add(P_MAX_EXTS_WIN_HEIGHT)
 
+        lst.Add(P_YUAN_YAN)
+
         Return Strings.Join(lst.ToArray, vbTab)
     End Function
 
@@ -162,6 +169,8 @@ Module MSrvConfig
             P_SHOW_INFO_WITH_PY_TEXT = CBool(ary(22))
             P_MAX_EXTS_WIN_WIDTH = CInt(ary(23))
             P_MAX_EXTS_WIN_HEIGHT = CInt(ary(24))
+
+            P_YUAN_YAN = CBool(ary(25))
 
             ' 保存配置信息
             My.Computer.FileSystem.WriteAllText(GetDdpyConfigFile(), GetSettingInfo(), False, Encoding.UTF8)
