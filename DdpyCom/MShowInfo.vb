@@ -32,7 +32,8 @@ Module MShowInfo
             Return True
         End If
 
-        If My.Computer.Keyboard.CtrlKeyDown AndAlso ddPy.InputKey = Keys.Delete Then
+        If My.Computer.Keyboard.CtrlKeyDown AndAlso _
+            (ddPy.InputKey = Keys.Delete OrElse ddPy.InputKey = Keys.Left OrElse ddPy.InputKey = Keys.Right) Then
             Return True
         End If
 
