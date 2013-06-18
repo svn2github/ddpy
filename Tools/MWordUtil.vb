@@ -926,7 +926,7 @@ Module MWordUtil
                 Return "heng"
             End If
             If sTmpL.EndsWith("五行") Then
-                Return "xing,hang"
+                Return "hang"
             End If
 
             If sTmpR.StartsWith("行业") OrElse sTmpR.StartsWith("行阵") OrElse sTmpR.StartsWith("行列") _
@@ -3448,6 +3448,142 @@ Module MWordUtil
         End If
         If "陌".Equals(sTxt) Then
             Return "mo"
+        End If
+        If "犍".Equals(sTxt) Then
+            If sTmpR.StartsWith("犍为") Then
+                Return "qian"
+            End If
+            Return "jian"
+        End If
+        If "剿".Equals(sTxt) Then
+            If sTmpR.StartsWith("剿拾") OrElse sTmpR.StartsWith("剿袭") OrElse sTmpR.StartsWith("剿说") _
+            Then
+                Return "chao"
+            End If
+            Return "jiao"
+        End If
+        If "藉".Equals(sTxt) Then
+            If sTmpL.EndsWith("死者相藉") OrElse sTmpL.EndsWith("以草荐地而坐曰藉") OrElse sTmpL.EndsWith("凌藉") _
+               OrElse sTmpL.EndsWith("白头无籍") OrElse sTmpL.EndsWith("慰藉") OrElse sTmpL.EndsWith("枕藉") _
+               OrElse sTmpL.EndsWith("蕴藉") _
+            Then
+                Return "jie"
+            End If
+            If sTmpR.StartsWith("藉茅") OrElse sTmpR.StartsWith("藉草枕块") OrElse sTmpR.StartsWith("藉子") _
+               OrElse sTmpR.StartsWith("藉萋萋之纤草") OrElse sTmpR.StartsWith("藉槀") OrElse sTmpR.StartsWith("藉在") _
+            Then
+                Return "jie"
+            End If
+            Return "ji"
+        End If
+        If "琢".Equals(sTxt) Then
+            If sTmpR.StartsWith("琢磨") Then
+                Return "zuo"
+            End If
+            Return "zhuo"
+        End If
+        If "圈".Equals(sTxt) Then
+            If sTmpL.EndsWith("猪圈") OrElse sTmpL.EndsWith("虎圈") OrElse sTmpL.EndsWith("羊圈") _
+               OrElse sTmpL.EndsWith("狗圈") _
+            Then
+                Return "juan"
+            End If
+            If sTmpR.StartsWith("圈舍") OrElse sTmpR.StartsWith("圈养") OrElse sTmpR.StartsWith("圈牢") _
+               OrElse sTmpR.StartsWith("圈巨狿") OrElse sTmpR.StartsWith("圈闭") OrElse sTmpR.StartsWith("圈禁") _
+               OrElse sTmpR.StartsWith("圈留") OrElse sTmpR.StartsWith("圈在家里") OrElse sTmpR.StartsWith("圈属") _
+               OrElse sTmpR.StartsWith("圈槛") OrElse sTmpR.StartsWith("圈在家里") OrElse sTmpR.StartsWith("圈属") _
+               OrElse sTmpR.StartsWith("圈闳闳") OrElse sTmpR.StartsWith("圈交之") OrElse sTmpR.StartsWith("圈肥") _
+            Then
+                Return "juan"
+            End If
+            Return "quan"
+        End If
+        If "蕉".Equals(sTxt) Then
+            If sTmpR.StartsWith("蕉萃") Then
+                Return "qiao"
+            End If
+            Return "jiao"
+        End If
+        If "壳".Equals(sTxt) Then
+            If sTmpL.EndsWith("甲壳") OrElse sTmpL.EndsWith("地壳") OrElse sTmpL.EndsWith("脱壳") _
+               OrElse sTmpL.EndsWith("躯壳") OrElse sTmpL.EndsWith("介壳") OrElse sTmpL.EndsWith("枳壳") _
+            Then
+                Return "qiao"
+            End If
+            Return "ke"
+        End If
+        If "吭".Equals(sTxt) Then
+            If sTmpR.StartsWith("吭咽") OrElse sTmpR.StartsWith("吭首") OrElse sTmpR.StartsWith("吭嗌") _
+               OrElse sTmpR.StartsWith("吭高歌") OrElse sTmpR.StartsWith("xxx") OrElse sTmpR.StartsWith("xxx") _
+            Then
+                Return "hang"
+            End If
+            Return "keng"
+        End If
+        If "蹊".Equals(sTxt) Then
+            If sTmpR.StartsWith("蹊跷") Then
+                Return "qi"
+            End If
+            Return "xi"
+        End If
+        If "卒".Equals(sTxt) Then
+            If sTmpL.EndsWith("行西逾陇卒") OrElse sTmpL.EndsWith("仓卒") OrElse sTmpL.EndsWith("则亡以应卒") _
+               OrElse sTmpL.EndsWith("卒卒") Then
+                Return "cu"
+            End If
+            If sTmpR.StartsWith("卒惶急") OrElse sTmpR.StartsWith("卒拔") OrElse sTmpR.StartsWith("卒迫") _
+               OrElse sTmpR.StartsWith("卒然") OrElse sTmpR.StartsWith("卒倒") OrElse sTmpR.StartsWith("卒暴") _
+               OrElse sTmpR.StartsWith("卒卒") OrElse sTmpR.StartsWith("卒中") Then
+                Return "cu"
+            End If
+            Return "zu"
+        End If
+        If "靓".Equals(sTxt) Then
+            If sTmpR.StartsWith("靓姐") OrElse sTmpR.StartsWith("靓女") OrElse sTmpR.StartsWith("靓妞") Then
+                Return "liang"
+            End If
+            Return "jing"
+        End If
+        If "棱".Equals(sTxt) Then
+            If sTmpL.EndsWith("穆棱") Then
+                Return "ling"
+            End If
+            Return "leng"
+        End If
+        If "缩".Equals(sTxt) Then
+            If sTmpR.StartsWith("缩砂") Then
+                Return "su"
+            End If
+            Return "suo"
+        End If
+        If "且".Equals(sTxt) Then
+            If sTmpL.EndsWith("有萋有且") OrElse sTmpL.EndsWith("狂童之狂也且") Then
+                Return "ju"
+            End If
+            Return "qie"
+        End If
+        If "炮".Equals(sTxt) Then
+            If sTmpR.StartsWith("炮干") OrElse sTmpR.StartsWith("炮羊肉") OrElse sTmpR.StartsWith("炮姜") _
+            Then
+                Return "bao"
+            End If
+            Return "pao"
+        End If
+        If "爪".Equals(sTxt) Then
+            If sTmpL.EndsWith("鹰爪") OrElse sTmpL.EndsWith("一鳞半爪") OrElse sTmpL.EndsWith("鳞爪") _
+               OrElse sTmpL.EndsWith("虎爪") OrElse sTmpL.EndsWith("猫爪") OrElse sTmpL.EndsWith("前爪") _
+               OrElse sTmpL.EndsWith("舞爪") OrElse sTmpL.EndsWith("棘爪") OrElse sTmpL.EndsWith("掣爪") _
+               OrElse sTmpL.EndsWith("制动爪") Then
+                Return "zhao"
+            End If
+            If sTmpR.StartsWith("爪牙") OrElse sTmpR.StartsWith("爪甲") OrElse sTmpR.StartsWith("爪牙") _
+               OrElse sTmpR.StartsWith("爪下") OrElse sTmpR.StartsWith("爪嘴") OrElse sTmpR.StartsWith("爪吻") _
+               OrElse sTmpR.StartsWith("爪其肤") OrElse sTmpR.StartsWith("爪足") OrElse sTmpR.StartsWith("爪手") _
+               OrElse sTmpR.StartsWith("爪翦") OrElse sTmpR.StartsWith("爪哇") OrElse sTmpR.StartsWith("爪牙") _
+            Then
+                Return "zhao"
+            End If
+            Return "zhua"
         End If
 
 
