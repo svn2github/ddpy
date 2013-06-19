@@ -4388,6 +4388,666 @@ Module MWordUtil
         If "蹲".Equals(sTxt) Then
             Return "dun"
         End If
+        If "澹".Equals(sTxt) Then
+            If sTmpR.StartsWith("澹台") Then
+                Return "tan"
+            End If
+            Return "dan"
+        End If
+        If "曝".Equals(sTxt) Then
+            Return "bao"
+        End If
+
+        If "喋".Equals(sTxt) Then
+            If sTmpL.EndsWith("喋呷") Then
+                Return "zha"
+            End If
+            Return "die"
+        End If
+        If "叨".Equals(sTxt) Then
+            If sTmpR.StartsWith("叨光") OrElse sTmpR.StartsWith("叨教") OrElse sTmpR.StartsWith("叨陪") _
+               OrElse sTmpR.StartsWith("叨扰") Then
+                Return "tao"
+            End If
+            Return "dao"
+        End If
+        If "掸".Equals(sTxt) Then
+            If sTmpR.StartsWith("掸邦") Then
+                Return "shan"
+            End If
+            Return "dan"
+        End If
+        If "汶".Equals(sTxt) Then
+            If sTmpL.EndsWith("汶汶") OrElse sTmpR.StartsWith("汶汶") Then
+                Return "men"
+            End If
+            Return "wen"
+        End If
+        If "垌".Equals(sTxt) Then
+            If sTmpR.StartsWith("垌冢") Then
+                Return "tong"
+            End If
+            Return "dong"
+        End If
+        If "町".Equals(sTxt) Then
+            If sTmpL.EndsWith("畹町") Then
+                Return "ding"
+            End If
+            Return "ting"
+        End If
+        If "铤".Equals(sTxt) Then
+            Return "ting"
+        End If
+        If "仿".Equals(sTxt) Then
+            Return "fang"
+        End If
+        If "渎".Equals(sTxt) Then
+            Return "du"
+        End If
+        If "哏".Equals(sTxt) Then
+            Return "gen"
+        End If
+        If "镐".Equals(sTxt) Then
+            If sTmpR.StartsWith("镐京") Then
+                Return "hao"
+            End If
+            Return "gao"
+        End If
+        If "鬲".Equals(sTxt) Then
+            If sTmpR.StartsWith("鬲如") Then
+                Return "li"
+            End If
+            Return "ge"
+        End If
+        If "呱".Equals(sTxt) Then
+            Return "gua"
+        End If
+        If "绠".Equals(sTxt) Then
+            Return "geng"
+        End If
+        If "肋".Equals(sTxt) Then
+            If sTmpR.StartsWith("肋脦") Then
+                Return "le"
+            End If
+            Return "lei"
+        End If
+        If "莞".Equals(sTxt) Then
+            If sTmpL.EndsWith("胃莞") Then
+                Return "wan"
+            End If
+            If sTmpR.StartsWith("莞纳") OrElse sTmpR.StartsWith("莞收") OrElse sTmpR.StartsWith("莞尔") _
+            Then
+                Return "wan"
+            End If
+            Return "guan"
+        End If
+        If "夯".Equals(sTxt) Then
+            If sTmpR.StartsWith("夯汉") OrElse sTmpR.StartsWith("夯货") Then
+                Return "ben"
+            End If
+            Return "hang"
+        End If
+        If "蛤".Equals(sTxt) Then
+            If sTmpR.StartsWith("蛤蟆") Then
+                Return "ha"
+            End If
+            Return "ge"
+        End If
+        If "浒".Equals(sTxt) Then
+            If sTmpR.StartsWith("浒墅关") OrElse sTmpR.StartsWith("浒浦") Then
+                Return "xu"
+            End If
+            Return "hu"
+        End If
+        If "侗".Equals(sTxt) Then
+            If sTmpL.EndsWith("倥侗") OrElse sTmpL.EndsWith("毋侗") OrElse sTmpL.EndsWith("在后之侗") _
+               OrElse sTmpL.EndsWith("侗侗") OrElse sTmpL.EndsWith("能侗") Then
+                Return "tong"
+            End If
+            If sTmpR.StartsWith("侗而不愿") OrElse sTmpR.StartsWith("侗长") OrElse sTmpR.StartsWith("侗侗") _
+            Then
+                Return "tong"
+            End If
+            Return "dong"
+        End If
+        If "隽".Equals(sTxt) Then
+            If sTmpL.EndsWith("英隽") Then
+                Return "tong"
+            End If
+            If sTmpR.StartsWith("隽才") OrElse sTmpR.StartsWith("隽乂英旄") OrElse sTmpR.StartsWith("隽良") _
+               OrElse sTmpR.StartsWith("隽材") OrElse sTmpR.StartsWith("隽武") OrElse sTmpR.StartsWith("隽拔") _
+               OrElse sTmpR.StartsWith("隽辅") OrElse sTmpR.StartsWith("隽英") OrElse sTmpR.StartsWith("隽士") _
+               OrElse sTmpR.StartsWith("隽言妙语") OrElse sTmpR.StartsWith("隽公车") _
+            Then
+                Return "jun"
+            End If
+            Return "juan"
+        End If
+        If "炕".Equals(sTxt) Then
+            Return "kang"
+        End If
+        If "隗".Equals(sTxt) Then
+            Return "wei"
+        End If
+        If "荼".Equals(sTxt) Then
+            If sTmpL.EndsWith("诸侯御荼") Then
+                Return "shu"
+            End If
+            If sTmpR.StartsWith("荼缓") Then
+                Return "shu"
+            End If
+            Return "tu"
+        End If
+        If "湫".Equals(sTxt) Then
+            If sTmpR.StartsWith("湫隘") OrElse sTmpR.StartsWith("湫仄") OrElse sTmpR.StartsWith("湫阨") _
+               OrElse sTmpR.StartsWith("湫凹") OrElse sTmpR.StartsWith("湫居") Then
+                Return "jiao"
+            End If
+            If sTmpR.StartsWith("湫然") Then
+                Return "jiu"
+            End If
+            Return "qiu"
+        End If
+        If "渎".Equals(sTxt) Then
+            Return "du"
+        End If
+        If "捻".Equals(sTxt) Then
+            If sTmpR.StartsWith("捻土成香") OrElse sTmpR.StartsWith("捻") OrElse sTmpR.StartsWith("捻着鼻子") _
+               OrElse sTmpR.StartsWith("捻香") OrElse sTmpR.StartsWith("捻掿") OrElse sTmpR.StartsWith("捻管") OrElse sTmpR.StartsWith("捻船") _
+            Then
+                Return "nie"
+            End If
+            Return "nian"
+        End If
+        If "疟".Equals(sTxt) Then
+            If sTmpR.StartsWith("疟子") Then
+                Return "yao"
+            End If
+            Return "nue"
+        End If
+        If "瀼".Equals(sTxt) Then
+            If sTmpL.EndsWith("泱瀼") Then
+                Return "nang"
+            End If
+            Return "rang"
+        End If
+        If "庶".Equals(sTxt) Then
+            If sTmpR.StartsWith("庶虫") OrElse sTmpR.StartsWith("庶氏下士一人") Then
+                Return "zhu"
+            End If
+            Return "shu"
+        End If
+        If "恫".Equals(sTxt) Then
+            If sTmpL.EndsWith("神网时恫") Then
+                Return "dong"
+            End If
+            If sTmpR.StartsWith("恫恐") OrElse sTmpR.StartsWith("恫震") OrElse sTmpR.StartsWith("恫惧") _
+               OrElse sTmpR.StartsWith("恫胁") OrElse sTmpR.StartsWith("恫骇") OrElse sTmpR.StartsWith("恫喝") _
+               OrElse sTmpR.StartsWith("恫扰") OrElse sTmpR.StartsWith("恫吓") Then
+                Return "dong"
+            End If
+            Return "tong"
+        End If
+        If "峤".Equals(sTxt) Then
+            If sTmpR.StartsWith("峤道") OrElse sTmpR.StartsWith("峤路") OrElse sTmpR.StartsWith("峤南") _
+               OrElse sTmpR.StartsWith("峤外") Then
+                Return "jiao"
+            End If
+            Return "qiao"
+        End If
+        If "揲".Equals(sTxt) Then
+            If sTmpR.StartsWith("揲舞衣归未得")  Then
+                Return "die"
+            End If
+            Return "she"
+        End If
+        If "螫".Equals(sTxt) Then
+            Return "shi"
+        End If
+        If "貉".Equals(sTxt) Then
+            Return "hao"
+        End If
+        If "阽".Equals(sTxt) Then
+            Return "dian"
+        End If
+        If "眩".Equals(sTxt) Then
+            Return "xuan"
+        End If
+        If "殷".Equals(sTxt) Then
+            If sTmpR.StartsWith("殷红") OrElse sTmpR.StartsWith("殷妍") Then
+                Return "yan"
+            End If
+            Return "yin"
+        End If
+        If "窨".Equals(sTxt) Then
+            Return "yin"
+        End If
+        If "荑".Equals(sTxt) Then
+            Return "ti"
+        End If
+        If "熨".Equals(sTxt) Then
+            If sTmpR.StartsWith("熨帖") Then
+                Return "yu"
+            End If
+            Return "yun"
+        End If
+        If "铫".Equals(sTxt) Then
+            Return "yao"
+        End If
+        If "絜".Equals(sTxt) Then
+            Return "xie"
+        End If
+        If "仡".Equals(sTxt) Then
+            If sTmpR.StartsWith("仡佬") Then
+                Return "ge"
+            End If
+            Return "yi"
+        End If
+        If "栅".Equals(sTxt) Then
+            If sTmpL.EndsWith("上栅") OrElse sTmpL.EndsWith("下栅") Then
+                Return "ce"
+            End If
+            If sTmpL.EndsWith("光栅") Then
+                Return "shan"
+            End If
+            If sTmpR.StartsWith("栅极") Then
+                Return "shan"
+            End If
+            Return "zha"
+        End If
+        If "莩".Equals(sTxt) Then
+            If sTmpL.EndsWith("葭莩") Then
+                Return "fu"
+            End If
+            Return "piao"
+        End If
+        If "阏".Equals(sTxt) Then
+            If sTmpR.StartsWith("阏氏") Then
+                Return "yan"
+            End If
+            Return "e"
+        End If
+        If "堨".Equals(sTxt) Then
+            If sTmpL.EndsWith("富堨") Then
+                Return "ye"
+            End If
+            If sTmpL.EndsWith("扬尘起堨") Then
+                Return "ai"
+            End If
+            Return "e"
+        End If
+        If "肮".Equals(sTxt) Then
+            If sTmpL.EndsWith("绝肮") Then
+                Return "hang"
+            End If
+            Return "ang"
+        End If
+        If "咶".Equals(sTxt) Then
+            If sTmpL.EndsWith("噔咚扎咶") Then
+                Return "huai"
+            End If
+            If sTmpL.EndsWith("伏而咶") Then
+                Return "shi"
+            End If
+            Return "guo"
+        End If
+        If "涡".Equals(sTxt) Then
+            If sTmpR.StartsWith("涡河") Then
+                Return "guo"
+            End If
+            Return "wo"
+        End If
+        If "枹".Equals(sTxt) Then
+            If sTmpR.StartsWith("枹端") OrElse sTmpR.StartsWith("枹鼓") Then
+                Return "fu"
+            End If
+            Return "bao"
+        End If
+        If "桁".Equals(sTxt) Then
+            If sTmpR.StartsWith("桁杨") OrElse sTmpR.StartsWith("桁渡") Then
+                Return "hang"
+            End If
+            Return "heng"
+        End If
+        If "匙".Equals(sTxt) Then
+            If sTmpL.EndsWith("茶匙") OrElse sTmpL.EndsWith("汤匙") OrElse sTmpL.EndsWith("儿匙") _
+            Then
+                Return "chi"
+            End If
+            If sTmpR.StartsWith("匙子")  Then
+                Return "chi"
+            End If
+            Return "shi"
+        End If
+        If "擿".Equals(sTxt) Then
+            If sTmpR.StartsWith("擿匕") OrElse sTmpR.StartsWith("擿弃") Then
+                Return "zhi"
+            End If
+            Return "ti"
+        End If
+        If "潦".Equals(sTxt) Then
+            If sTmpR.StartsWith("潦旱") OrElse sTmpR.StartsWith("潦灾") OrElse sTmpR.StartsWith("潦岁") _
+            Then
+                Return "lao"
+            End If
+            Return "liao"
+        End If
+        If "怫".Equals(sTxt) Then
+            If sTmpR.StartsWith("怫郁") OrElse sTmpR.StartsWith("怫忾") Then
+                Return "fu"
+            End If
+            Return "fei"
+        End If
+        If "咖".Equals(sTxt) Then
+            If sTmpR.StartsWith("咖啡") Then
+                Return "ka"
+            End If
+            Return "ga"
+        End If
+        If "噱".Equals(sTxt) Then
+            If sTmpL.EndsWith("可发一噱") OrElse sTmpL.EndsWith("噱噱") OrElse sTmpL.EndsWith("谈笑大噱") _
+               OrElse sTmpL.EndsWith("遥噱虖") OrElse sTmpL.EndsWith("口内之上下名为噱") Then
+                Return "jue"
+            End If
+            If sTmpR.StartsWith("噱谈") OrElse sTmpR.StartsWith("噱噱") Then
+                Return "jue"
+            End If
+            Return "xue"
+        End If
+        If "戆".Equals(sTxt) Then
+            If sTmpR.StartsWith("戆头戆脑") OrElse sTmpR.StartsWith("戆脑") OrElse sTmpR.StartsWith("戆言") _
+               OrElse sTmpR.StartsWith("戆激") Then
+                Return "gang"
+            End If
+            Return "zhuang"
+        End If
+        If "汩".Equals(sTxt) Then
+            If sTmpL.EndsWith("悲风汩") Then
+                Return "yu"
+            End If
+            If sTmpR.StartsWith("汩徂") OrElse sTmpR.StartsWith("汩话") OrElse sTmpR.StartsWith("汩流") _
+               OrElse sTmpR.StartsWith("汩越") Then
+                Return "yu"
+            End If
+            Return "gu"
+        End If
+        If "哕".Equals(sTxt) Then
+            If sTmpL.EndsWith("哕哕") OrElse sTmpL.EndsWith("声哕") Then
+                Return "hui"
+            End If
+            If sTmpR.StartsWith("哕哕") Then
+                Return "hui"
+            End If
+            Return "yue"
+        End If
+        If "赣".Equals(sTxt) Then
+            Return "gan"
+        End If
+        If "桔".Equals(sTxt) Then
+            If sTmpL.EndsWith("红桔") OrElse sTmpL.EndsWith("黄桔") OrElse sTmpL.EndsWith("青桔") _
+              OrElse sTmpL.EndsWith("柑桔")  Then
+                Return "ju"
+            End If
+            If sTmpR.StartsWith("桔皮") OrElse sTmpR.StartsWith("桔子") OrElse sTmpR.StartsWith("桔绿") _
+                OrElse sTmpR.StartsWith("桔红") OrElse sTmpR.StartsWith("桔黄") OrElse sTmpR.StartsWith("桔青") _
+                OrElse sTmpR.StartsWith("桔色") _
+             Then
+                Return "ju"
+            End If
+            Return "jie"
+        End If
+        If "浚".Equals(sTxt) Then
+            If sTmpR.StartsWith("浚县") Then
+                Return "xun"
+            End If
+            Return "jun"
+        End If
+        If "雇".Equals(sTxt) Then
+            If sTmpL.EndsWith("九雇") Then
+                Return "hu"
+            End If
+            Return "gu"
+        End If
+        If "珲".Equals(sTxt) Then
+            If sTmpR.StartsWith("珲春") Then
+                Return "hun"
+            End If
+            Return "hui"
+        End If
+        If "桧".Equals(sTxt) Then
+            If sTmpL.EndsWith("秦桧") Then
+                Return "hui"
+            End If
+            Return "gui"
+        End If
+        If "鲑".Equals(sTxt) Then
+            Return "gui"
+        End If
+        If "鹘".Equals(sTxt) Then
+            If sTmpR.StartsWith("鹘仑吞枣") Then
+                Return "hu"
+            End If
+            Return "gu"
+        End If
+        If "纥".Equals(sTxt) Then
+            If sTmpR.StartsWith("纥地") OrElse sTmpR.StartsWith("纥刺星") Then
+                Return "ge"
+            End If
+            Return "he"
+        End If
+        If "偻".Equals(sTxt) Then
+            If sTmpL.EndsWith("佝偻") OrElse sTmpR.StartsWith("偻儸") Then
+                Return "lou"
+            End If
+            Return "lv"
+        End If
+        If "姥".Equals(sTxt) Then
+            If sTmpL.EndsWith("老姥") OrElse sTmpL.EndsWith("公姥") Then
+                Return "mu"
+            End If
+            Return "lao"
+        End If
+        If "脯".Equals(sTxt) Then
+            If sTmpL.EndsWith("胸脯") OrElse sTmpL.EndsWith("鸡脯") Then
+                Return "pu"
+            End If
+            If sTmpR.StartsWith("脯子") Then
+                Return "pu"
+            End If
+            Return "fu"
+        End If
+        If "氿".Equals(sTxt) Then
+            If sTmpL.EndsWith("东氿") OrElse sTmpL.EndsWith("西氿") Then
+                Return "jiu"
+            End If
+            Return "gui"
+        End If
+        If "炅".Equals(sTxt) Then
+            Return "jiong"
+        End If
+        If "僮".Equals(sTxt) Then
+            If sTmpR.StartsWith("僮族") Then
+                Return "zhuang"
+            End If
+            Return "tong"
+        End If
+        If "馘".Equals(sTxt) Then
+            Return "guo"
+        End If
+        If "荥".Equals(sTxt) Then
+            If sTmpR.StartsWith("荥阳") Then
+                Return "xing"
+            End If
+            Return "ying"
+        End If
+        If "疸".Equals(sTxt) Then
+            If sTmpL.EndsWith("疙疸") Then
+                Return "da"
+            End If
+            Return "dan"
+        End If
+        If "沌".Equals(sTxt) Then
+            If sTmpR.StartsWith("沌口") Then
+                Return "zhuan"
+            End If
+            Return "dun"
+        End If
+        If "郇".Equals(sTxt) Then
+            Return "huan"
+        End If
+        If "浍".Equals(sTxt) Then
+            Return "hui"
+        End If
+        If "嗨".Equals(sTxt) Then
+            Return "hai"
+        End If
+        If "唬".Equals(sTxt) Then
+            If sTmpR.StartsWith("唬杀") Then
+                Return "xia"
+            End If
+            Return "hu"
+        End If
+        If "崴".Equals(sTxt) Then
+            If sTmpR.StartsWith("崴嵬") Then
+                Return "wei"
+            End If
+            Return "wai"
+        End If
+        If "嘿".Equals(sTxt) Then
+            If sTmpL.EndsWith("嘿嘿") OrElse sTmpR.StartsWith("嘿嘿") Then
+                Return "hei"
+            End If
+            Return "mo"
+        End If
+        If "亟".Equals(sTxt) Then
+            If sTmpR.StartsWith("亟请") OrElse sTmpR.StartsWith("亟叹") Then
+                Return "qi"
+            End If
+            Return "ji"
+        End If
+        If "葭".Equals(sTxt) Then
+            Return "jia"
+        End If
+        If "珩".Equals(sTxt) Then
+            If sTmpR.StartsWith("珩磨") Then
+                Return "hang"
+            End If
+            Return "heng"
+        End If
+        If "苕".Equals(sTxt) Then
+            If sTmpL.EndsWith("红苕") Then
+                Return "shao"
+            End If
+            Return "tiao"
+        End If
+        If "峒".Equals(sTxt) Then
+            If sTmpL.EndsWith("崆峒") Then
+                Return "tong"
+            End If
+            Return "dong"
+        End If
+        If "芫".Equals(sTxt) Then
+            If sTmpR.StartsWith("芫荽") Then
+                Return "yan"
+            End If
+            Return "yuan"
+        End If
+        If "筠".Equals(sTxt) Then
+            If sTmpR.StartsWith("筠连") Then
+                Return "jun"
+            End If
+            Return "yun"
+        End If
+        If "丌".Equals(sTxt) Then
+            Return "qi"
+        End If
+        If "埏".Equals(sTxt) Then
+            If sTmpR.StartsWith("埏埴") OrElse sTmpR.StartsWith("埏揉") OrElse sTmpR.StartsWith("埏稾") _
+            Then
+                Return "shan"
+            End If
+            Return "yan"
+        End If
+        If "麇".Equals(sTxt) Then
+            If sTmpR.StartsWith("麇聚") OrElse sTmpR.StartsWith("麇集") OrElse sTmpR.StartsWith("麇至") _
+               OrElse sTmpR.StartsWith("麇居") OrElse sTmpR.StartsWith("xxx") OrElse sTmpR.StartsWith("xxx") _
+            Then
+                Return "qun"
+            End If
+            Return "jun"
+        End If
+        If "栝".Equals(sTxt) Then
+            If sTmpL.EndsWith("箭无栝") Then
+                Return "kuo"
+            End If
+            Return "gua"
+        End If
+        If "袢".Equals(sTxt) Then
+            If sTmpL.EndsWith("袷袢") Then
+                Return "pan"
+            End If
+            If sTmpR.StartsWith("袢袄") Then
+                Return "pan"
+            End If
+            Return "fan"
+        End If
+        If "圻".Equals(sTxt) Then
+            If sTmpL.EndsWith("无圻") Then
+                Return "yin"
+            End If
+            Return "qi"
+        End If
+        If "侥".Equals(sTxt) Then
+            If sTmpL.EndsWith("僬侥") Then
+                Return "yao"
+            End If
+            Return "jiao"
+        End If
+        If "嶷".Equals(sTxt) Then
+            If sTmpL.EndsWith("九嶷") Then
+                Return "yi"
+            End If
+            Return "ni"
+        End If
+        If "嚓".Equals(sTxt) Then
+            If sTmpL.EndsWith("喀嚓") OrElse sTmpL.EndsWith("啪嚓") Then
+                Return "cha"
+            End If
+            Return "ca"
+        End If
+        If "哩".Equals(sTxt) Then
+            Return "li"
+        End If
+        If "夭".Equals(sTxt) Then
+            Return "yao"
+        End If
+        If "辗".Equals(sTxt) Then
+            Return "zhan"
+        End If
+        If "綮".Equals(sTxt) Then
+            If sTmpL.EndsWith("肯綮") Then
+                Return "qing"
+            End If
+            Return "qi"
+        End If
+        If "嘬".Equals(sTxt) Then
+            If sTmpL.EndsWith("嘬嘬") Then
+                Return "chuai"
+            End If
+            If sTmpR.StartsWith("嘬樘") OrElse sTmpR.StartsWith("嘬嘬") Then
+                Return "chuai"
+            End If
+            Return "zuo"
+        End If
+        If "拶".Equals(sTxt) Then
+            If sTmpL.EndsWith("排拶") OrElse sTmpL.EndsWith("拶拶") Then
+                Return "za"
+            End If
+            If sTmpR.StartsWith("拶拆") OrElse sTmpR.StartsWith("拶逼") OrElse sTmpR.StartsWith("拶拶") OrElse sTmpR.StartsWith("拶榨") Then
+                Return "za"
+            End If
+            Return "zan"
+        End If
 
 
 
