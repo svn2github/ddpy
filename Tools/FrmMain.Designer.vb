@@ -32,7 +32,6 @@ Partial Class FrmMain
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.BtnUpdatePinyin = New System.Windows.Forms.Button()
         Me.BtnExpWord = New System.Windows.Forms.Button()
-        Me.BtnAddPinyinPlus = New System.Windows.Forms.Button()
         Me.BtnAddPinyin = New System.Windows.Forms.Button()
         Me.BtnSelectWordFile = New System.Windows.Forms.Button()
         Me.TxtWordFile = New System.Windows.Forms.TextBox()
@@ -115,9 +114,9 @@ Partial Class FrmMain
         '
         Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Controls.Add(Me.BtnExpDuoyinzi)
         Me.GroupBox2.Controls.Add(Me.BtnUpdatePinyin)
         Me.GroupBox2.Controls.Add(Me.BtnExpWord)
-        Me.GroupBox2.Controls.Add(Me.BtnAddPinyinPlus)
         Me.GroupBox2.Controls.Add(Me.BtnAddPinyin)
         Me.GroupBox2.Controls.Add(Me.BtnSelectWordFile)
         Me.GroupBox2.Controls.Add(Me.TxtWordFile)
@@ -133,35 +132,24 @@ Partial Class FrmMain
         'BtnUpdatePinyin
         '
         Me.BtnUpdatePinyin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnUpdatePinyin.Location = New System.Drawing.Point(352, 75)
+        Me.BtnUpdatePinyin.Location = New System.Drawing.Point(160, 75)
         Me.BtnUpdatePinyin.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.BtnUpdatePinyin.Name = "BtnUpdatePinyin"
         Me.BtnUpdatePinyin.Size = New System.Drawing.Size(88, 25)
         Me.BtnUpdatePinyin.TabIndex = 3
-        Me.BtnUpdatePinyin.Text = "拼音检查"
+        Me.BtnUpdatePinyin.Text = "检查拼音"
         Me.BtnUpdatePinyin.UseVisualStyleBackColor = True
         '
         'BtnExpWord
         '
         Me.BtnExpWord.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnExpWord.Location = New System.Drawing.Point(256, 75)
+        Me.BtnExpWord.Location = New System.Drawing.Point(378, 75)
         Me.BtnExpWord.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.BtnExpWord.Name = "BtnExpWord"
         Me.BtnExpWord.Size = New System.Drawing.Size(88, 25)
         Me.BtnExpWord.TabIndex = 3
         Me.BtnExpWord.Text = "导出文字"
         Me.BtnExpWord.UseVisualStyleBackColor = True
-        '
-        'BtnAddPinyinPlus
-        '
-        Me.BtnAddPinyinPlus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnAddPinyinPlus.Location = New System.Drawing.Point(160, 75)
-        Me.BtnAddPinyinPlus.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.BtnAddPinyinPlus.Name = "BtnAddPinyinPlus"
-        Me.BtnAddPinyinPlus.Size = New System.Drawing.Size(88, 25)
-        Me.BtnAddPinyinPlus.TabIndex = 3
-        Me.BtnAddPinyinPlus.Text = "输出拼音++"
-        Me.BtnAddPinyinPlus.UseVisualStyleBackColor = True
         '
         'BtnAddPinyin
         '
@@ -220,7 +208,6 @@ Partial Class FrmMain
         '
         Me.GroupBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox3.Controls.Add(Me.BtnExpDuoyinzi)
         Me.GroupBox3.Controls.Add(Me.BtnCreateWithDdpy)
         Me.GroupBox3.Controls.Add(Me.BtnCreate)
         Me.GroupBox3.Controls.Add(Me.BtnWordPinyin)
@@ -237,7 +224,7 @@ Partial Class FrmMain
         'BtnExpDuoyinzi
         '
         Me.BtnExpDuoyinzi.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnExpDuoyinzi.Location = New System.Drawing.Point(406, 78)
+        Me.BtnExpDuoyinzi.Location = New System.Drawing.Point(256, 75)
         Me.BtnExpDuoyinzi.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.BtnExpDuoyinzi.Name = "BtnExpDuoyinzi"
         Me.BtnExpDuoyinzi.Size = New System.Drawing.Size(114, 25)
@@ -360,7 +347,6 @@ Partial Class FrmMain
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents BtnClose As System.Windows.Forms.Button
-    Friend WithEvents BtnAddPinyinPlus As System.Windows.Forms.Button
     Friend WithEvents BtnExpDuoyinzi As System.Windows.Forms.Button
     Friend WithEvents tip As System.Windows.Forms.ToolTip
     Friend WithEvents BtnExpWord As System.Windows.Forms.Button

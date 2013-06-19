@@ -81,7 +81,7 @@ Public Class FrmMain
 
     End Sub
 
-    Private Sub BtnAddPinyinPlus_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAddPinyinPlus.Click
+    Private Sub BtnAddPinyinPlus_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
         Try
 
@@ -207,28 +207,28 @@ Public Class FrmMain
     Private Sub BtnExpDuoyinzi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnExpDuoyinzi.Click
         Try
 
-            If "".Equals(Trim(TxtWordPinyin.Text)) Then
-                MsgBox("请选择待转换文件", MsgBoxStyle.Information, "淡定")
-                TxtWordPinyin.Focus()
-                TxtWordPinyin.SelectAll()
+            If "".Equals(Trim(TxtWordFile.Text)) Then
+                MsgBox("请选择待处理文件", MsgBoxStyle.Information, "淡定")
+                TxtWordFile.Focus()
+                TxtWordFile.SelectAll()
                 Return
             End If
 
-            If Not My.Computer.FileSystem.FileExists(TxtWordPinyin.Text) Then
-                MsgBox("文件 " & TxtWordPinyin.Text & " 不存在，请重新输入", MsgBoxStyle.Information, "淡定")
-                TxtWordPinyin.Focus()
-                TxtWordPinyin.SelectAll()
+            If Not My.Computer.FileSystem.FileExists(TxtWordFile.Text) Then
+                MsgBox("文件 " & TxtWordFile.Text & " 不存在，请重新输入", MsgBoxStyle.Information, "淡定")
+                TxtWordFile.Focus()
+                TxtWordFile.SelectAll()
                 Return
             End If
-            If My.Computer.FileSystem.GetFileInfo(TxtWordPinyin.Text).Length = 0 Then
-                MsgBox("这是一个空文件：" & TxtWordPinyin.Text, MsgBoxStyle.Information, "淡定")
-                TxtWordPinyin.Focus()
-                TxtWordPinyin.SelectAll()
+            If My.Computer.FileSystem.GetFileInfo(TxtWordFile.Text).Length = 0 Then
+                MsgBox("这是一个空文件：" & TxtWordFile.Text, MsgBoxStyle.Information, "淡定")
+                TxtWordFile.Focus()
+                TxtWordFile.SelectAll()
                 Return
             End If
 
             Cursor = Cursors.WaitCursor
-            Dim sPath As String = ExpDuoyinFile(TxtWordPinyin.Text)
+            Dim sPath As String = ExpDuoyinFile(TxtWordFile.Text)
 
             System.Diagnostics.Process.Start(sPath)
 
@@ -245,7 +245,7 @@ Public Class FrmMain
         Try
 
             If "".Equals(Trim(TxtWordFile.Text)) Then
-                MsgBox("请选择待转换文件", MsgBoxStyle.Information, "淡定")
+                MsgBox("请选择待处理文件", MsgBoxStyle.Information, "淡定")
                 TxtWordFile.Focus()
                 TxtWordFile.SelectAll()
                 Return
@@ -284,7 +284,7 @@ Public Class FrmMain
         Try
 
             If "".Equals(Trim(TxtWordFile.Text)) Then
-                MsgBox("请选择待转换文件", MsgBoxStyle.Information, "淡定")
+                MsgBox("请选择待处理文件", MsgBoxStyle.Information, "淡定")
                 TxtWordFile.Focus()
                 TxtWordFile.SelectAll()
                 Return
