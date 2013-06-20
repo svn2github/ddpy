@@ -187,7 +187,7 @@ Module MPinYinBreak
             mapCustBreakPy("qunong") = "qu"
             mapCustBreakPy("qunei") = "qu"
             mapCustBreakPy("qunen") = "qu"
-
+            
             mapCustBreakPy("runi") = "ru"
             mapCustBreakPy("runu") = "ru"
             mapCustBreakPy("runv") = "ru"
@@ -196,6 +196,8 @@ Module MPinYinBreak
             mapCustBreakPy("runong") = "ru"
             mapCustBreakPy("runei") = "ru"
             mapCustBreakPy("runen") = "ru"
+            mapCustBreakPy("ruou") = "ru"
+
 
             mapCustBreakPy("tuni") = "tu"
             mapCustBreakPy("tunu") = "tu"
@@ -205,6 +207,7 @@ Module MPinYinBreak
             mapCustBreakPy("tunong") = "tu"
             mapCustBreakPy("tunei") = "tu"
             mapCustBreakPy("tunen") = "tu"
+            mapCustBreakPy("tuou") = "tu"
 
             mapCustBreakPy("yuni") = "yu"
             mapCustBreakPy("yunu") = "yu"
@@ -223,6 +226,7 @@ Module MPinYinBreak
             mapCustBreakPy("sunong") = "su"
             mapCustBreakPy("sunei") = "su"
             mapCustBreakPy("sunen") = "su"
+            mapCustBreakPy("suou") = "su"
 
             mapCustBreakPy("shuni") = "shu"
             mapCustBreakPy("shunu") = "shu"
@@ -232,6 +236,7 @@ Module MPinYinBreak
             mapCustBreakPy("shunong") = "shu"
             mapCustBreakPy("shunei") = "shu"
             mapCustBreakPy("shunen") = "shu"
+            mapCustBreakPy("shuou") = "shu"
 
             mapCustBreakPy("duni") = "du"
             mapCustBreakPy("dunu") = "du"
@@ -241,6 +246,7 @@ Module MPinYinBreak
             mapCustBreakPy("dunong") = "du"
             mapCustBreakPy("dunei") = "du"
             mapCustBreakPy("dunen") = "du"
+            mapCustBreakPy("duou") = "du"
 
             mapCustBreakPy("guni") = "gu"
             mapCustBreakPy("gunu") = "gu"
@@ -250,6 +256,7 @@ Module MPinYinBreak
             mapCustBreakPy("gunong") = "gu"
             mapCustBreakPy("gunei") = "gu"
             mapCustBreakPy("gunen") = "gu"
+            mapCustBreakPy("guou") = "gu"
 
             mapCustBreakPy("huni") = "hu"
             mapCustBreakPy("hunu") = "hu"
@@ -259,6 +266,7 @@ Module MPinYinBreak
             mapCustBreakPy("hunong") = "hu"
             mapCustBreakPy("hunei") = "hu"
             mapCustBreakPy("hunen") = "hu"
+            mapCustBreakPy("huou") = "hu"
 
             mapCustBreakPy("juni") = "ju"
             mapCustBreakPy("junu") = "ju"
@@ -277,6 +285,7 @@ Module MPinYinBreak
             mapCustBreakPy("kunong") = "ku"
             mapCustBreakPy("kunei") = "ku"
             mapCustBreakPy("kunen") = "ku"
+            mapCustBreakPy("kuou") = "ku"
 
             mapCustBreakPy("luni") = "lu"
             mapCustBreakPy("lunu") = "lu"
@@ -286,6 +295,7 @@ Module MPinYinBreak
             mapCustBreakPy("lunong") = "lu"
             mapCustBreakPy("lunei") = "lu"
             mapCustBreakPy("lunen") = "lu"
+            mapCustBreakPy("luou") = "lu"
 
             mapCustBreakPy("zuni") = "zu"
             mapCustBreakPy("zunu") = "zu"
@@ -295,6 +305,7 @@ Module MPinYinBreak
             mapCustBreakPy("zunong") = "zu"
             mapCustBreakPy("zunei") = "zu"
             mapCustBreakPy("zunen") = "zu"
+            mapCustBreakPy("zuou") = "zu"
 
             mapCustBreakPy("xuni") = "xu"
             mapCustBreakPy("xunu") = "xu"
@@ -313,6 +324,7 @@ Module MPinYinBreak
             mapCustBreakPy("cunong") = "cu"
             mapCustBreakPy("cunei") = "cu"
             mapCustBreakPy("cunen") = "cu"
+            mapCustBreakPy("cuou") = "cu"
 
             mapCustBreakPy("chuni") = "chu"
             mapCustBreakPy("chunu") = "chu"
@@ -322,6 +334,7 @@ Module MPinYinBreak
             mapCustBreakPy("chunong") = "chu"
             mapCustBreakPy("chunei") = "chu"
             mapCustBreakPy("chunen") = "chu"
+            mapCustBreakPy("chuou") = "chu"
 
             'mapCustBreakPy("qina") = "qi"
             'mapCustBreakPy("qinai") = "qi"
@@ -1772,11 +1785,13 @@ Module MPinYinBreak
             mapCustBreakPy("shuangei") = "shuan"
             mapCustBreakPy("shuangi") = "shuan"
             mapCustBreakPy("shuangu") = "shuan"
+            mapCustBreakPy("shuou") = "shu"
 
 
             mapCustBreakPy("duani") = "du"
             mapCustBreakPy("duanu") = "du"
             mapCustBreakPy("duanv") = "du"
+            mapCustBreakPy("duou") = "du"
 
 
             'mapCustBreakPy("guana") = "gua"  
@@ -1794,6 +1809,7 @@ Module MPinYinBreak
             mapCustBreakPy("guani") = "gu"
             mapCustBreakPy("guanu") = "gu"
             mapCustBreakPy("guanv") = "gu"
+            mapCustBreakPy("guou") = "gu"
 
             'mapCustBreakPy("guanga") = "guan"
             mapCustBreakPy("guangai") = "guan"
@@ -1826,6 +1842,7 @@ Module MPinYinBreak
             mapCustBreakPy("huani") = "hu"
             mapCustBreakPy("huanu") = "hu"
             mapCustBreakPy("huanv") = "hu"
+            mapCustBreakPy("huou") = "hu"
 
             'mapCustBreakPy("huanga") = "huan"
             'mapCustBreakPy("huangai") = "huan"
@@ -1863,6 +1880,7 @@ Module MPinYinBreak
             mapCustBreakPy("kuani") = "ku"
             mapCustBreakPy("kuanu") = "ku"
             mapCustBreakPy("kuanv") = "ku"
+            mapCustBreakPy("kuou") = "ku"
 
             'mapCustBreakPy("kuanga") = "kuan"
             'mapCustBreakPy("kuangai") = "kuan"
@@ -1883,6 +1901,7 @@ Module MPinYinBreak
             mapCustBreakPy("luani") = "lu"
             mapCustBreakPy("luanu") = "lu"
             mapCustBreakPy("luanv") = "lu"
+            mapCustBreakPy("luou") = "lu"
 
             mapCustBreakPy("zuani") = "zu"
             mapCustBreakPy("zuanu") = "zu"
@@ -1892,6 +1911,7 @@ Module MPinYinBreak
             mapCustBreakPy("zhuanv") = "zhua"
             mapCustBreakPy("zhuangi") = "zhuan"
             mapCustBreakPy("zhuangu") = "zhuan"
+            mapCustBreakPy("zhuou") = "zhu"
 
             mapCustBreakPy("xuani") = "xu"
             mapCustBreakPy("xuanu") = "xu"
@@ -1905,10 +1925,12 @@ Module MPinYinBreak
             mapCustBreakPy("chuanv") = "chu"
             mapCustBreakPy("chuangi") = "chuan"
             mapCustBreakPy("chuangu") = "chuan"
+            mapCustBreakPy("chuou") = "chu"
 
             mapCustBreakPy("nuani") = "nu"
             mapCustBreakPy("nuanu") = "nu"
             mapCustBreakPy("nuanv") = "nu"
+            mapCustBreakPy("nuou") = "nu"
 
             mapStartWithNoEr("qine") = "qi"
             mapStartWithNoEr("qinge") = "qin"
