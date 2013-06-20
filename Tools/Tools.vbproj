@@ -123,6 +123,7 @@
     <Compile Include="MGZip.vb" />
     <Compile Include="MPinYinBreak.vb" />
     <Compile Include="MPrintScreen.vb" />
+    <Compile Include="MWeb.vb" />
     <Compile Include="MWordUtil.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

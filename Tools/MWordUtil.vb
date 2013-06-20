@@ -581,7 +581,7 @@ Module MWordUtil
 
         For i As Integer = 0 To lines.Length - 1
             Dim line As String = Trim(lines(i).Replace(vbLf, "").Split(vbTab)(0))
-            If "".Equals(line) Then
+            If line.Length < 2 Then
                 Continue For
             End If
 
@@ -1920,7 +1920,7 @@ Module MWordUtil
                OrElse sTmpR.StartsWith("长官") OrElse sTmpR.StartsWith("长得") OrElse sTmpR.StartsWith("长女") _
                OrElse sTmpR.StartsWith("长公") OrElse sTmpR.StartsWith("长骨") OrElse sTmpR.StartsWith("长一智") _
                OrElse sTmpR.StartsWith("长男") OrElse sTmpR.StartsWith("长幼") OrElse sTmpR.StartsWith("长他人") _
-               OrElse sTmpR.StartsWith("长眼") OrElse sTmpR.StartsWith("长幼") OrElse sTmpR.StartsWith("长他人") _
+               OrElse sTmpR.StartsWith("长眼") OrElse sTmpR.StartsWith("长大") OrElse sTmpR.StartsWith("长他人") _
             Then
                 Return "zhang"
             End If
@@ -1981,7 +1981,7 @@ Module MWordUtil
         End If
 
         If "血".Equals(sTxt) Then
-            Return "xie"
+            Return "xue"
         End If
 
         If "那".Equals(sTxt) Then
@@ -5613,6 +5613,55 @@ Module MWordUtil
                 Return "zhu"
             End If
             Return "zhou"
+        End If
+        If "焘".Equals(sTxt) Then
+            Return "dao"
+        End If
+        If "楤".Equals(sTxt) Then
+            Return "song"
+        End If
+        If "菀".Equals(sTxt) Then
+            If sTmpR.StartsWith("菀结") OrElse sTmpR.StartsWith("菀热") Then
+                Return "yu"
+            End If
+            Return "wan"
+        End If
+        If "鳜".Equals(sTxt) Then
+            If sTmpR.StartsWith("鳜鯞") Then
+                Return "jue"
+            End If
+            Return "gui"
+        End If
+        If "椹".Equals(sTxt) Then
+            If sTmpR.StartsWith("椹质") OrElse sTmpR.StartsWith("椹板") OrElse sTmpR.StartsWith("椹斧") _
+            Then
+                Return "zhen"
+            End If
+            Return "shen"
+        End If
+        If "踡".Equals(sTxt) Then
+            Return "quan"
+        End If
+        If "尢".Equals(sTxt) Then
+            Return "you"
+        End If
+        If "倞".Equals(sTxt) Then
+            Return "jing"
+        End If
+        If "漯".Equals(sTxt) Then
+            If sTmpR.StartsWith("漯河") Then
+                Return "luo"
+            End If
+            Return "lei"
+        End If
+        If "硌".Equals(sTxt) Then
+            If sTmpL.EndsWith("磊硌") OrElse sTmpL.EndsWith("磥硌")  Then
+                Return "luo"
+            End If
+            If sTmpR.StartsWith("硌石") OrElse sTmpR.StartsWith("硌硌若石") OrElse sTmpR.StartsWith("硌若石") Then
+                Return "luo"
+            End If
+            Return "ge"
         End If
 
 

@@ -73,6 +73,9 @@ Public Class FrmMain
 
             System.Diagnostics.Process.Start(sPath)
 
+            Dim sFileName As String = sPath & "\\" & My.Computer.FileSystem.GetFileInfo(TxtWordFile.Text).Name & ".转换正确.txt"
+            TxtWordPinyin.Text = sFileName
+
         Catch ex As Exception
             MsgBox("怎么回事，不该发生的错误： " & ex.Message, MsgBoxStyle.Exclamation, "淡定")
         Finally
