@@ -2110,19 +2110,32 @@ Module MWordUtil
         End If
 
         If "藏".Equals(sTxt) Then
+            If sTmpR.StartsWith("藏着") OrElse sTmpR.StartsWith("藏了") Then
+                Return "cang"
+            End If
             If sTmpL.EndsWith("宝藏") OrElse sTmpL.EndsWith("守藏") OrElse sTmpL.EndsWith("五藏") _
                OrElse sTmpL.EndsWith("六藏") OrElse sTmpL.EndsWith("道藏") OrElse sTmpL.EndsWith("三藏") _
                OrElse sTmpL.EndsWith("释藏") OrElse sTmpL.EndsWith("西藏") OrElse sTmpL.EndsWith("驻藏") _
                OrElse sTmpL.EndsWith("心藏") OrElse sTmpL.EndsWith("脾藏") OrElse sTmpL.EndsWith("肝藏") _
                OrElse sTmpL.EndsWith("肺藏") OrElse sTmpL.EndsWith("肾藏") OrElse sTmpL.EndsWith("内藏") _
-               OrElse sTmpL.EndsWith("雅鲁藏") OrElse sTmpL.EndsWith("青藏") _
+               OrElse sTmpL.EndsWith("雅鲁藏") OrElse sTmpL.EndsWith("青藏") OrElse sTmpL.EndsWith("阴藏") _
+               OrElse sTmpL.EndsWith("入藏") OrElse sTmpL.EndsWith("之藏") OrElse sTmpL.EndsWith("生脏") _
+               OrElse sTmpL.EndsWith("本藏") OrElse sTmpL.EndsWith("心包藏") OrElse sTmpL.EndsWith("彼藏") _
+               OrElse sTmpL.EndsWith("阳藏") OrElse sTmpL.EndsWith("他藏") OrElse sTmpL.EndsWith("腑藏") _
+               OrElse sTmpL.EndsWith("一藏") OrElse sTmpL.EndsWith("脉藏") OrElse sTmpL.EndsWith("各藏") _
+               OrElse sTmpL.EndsWith("胃藏") OrElse sTmpL.EndsWith("温藏") OrElse sTmpL.EndsWith("胞藏") _
+               OrElse sTmpL.EndsWith("中藏") OrElse sTmpL.EndsWith("温藏") OrElse sTmpL.EndsWith("胞藏") _
             Then
                 Return "zang"
             End If
             If sTmpR.StartsWith("藏府") OrElse sTmpR.StartsWith("藏主") OrElse sTmpR.StartsWith("藏族") _
                OrElse sTmpR.StartsWith("藏民") OrElse sTmpR.StartsWith("藏獒") OrElse sTmpR.StartsWith("藏红花") _
                OrElse sTmpR.StartsWith("藏蓝") OrElse sTmpR.StartsWith("藏历") OrElse sTmpR.StartsWith("藏青") _
-               OrElse sTmpR.StartsWith("藏戏") OrElse sTmpR.StartsWith("藏经") OrElse sTmpR.StartsWith("藏青") _
+               OrElse sTmpR.StartsWith("藏戏") OrElse sTmpR.StartsWith("藏经") OrElse sTmpR.StartsWith("藏不病") _
+               OrElse sTmpR.StartsWith("藏病") OrElse sTmpR.StartsWith("藏寒") OrElse sTmpR.StartsWith("藏热") _
+               OrElse sTmpR.StartsWith("藏者") OrElse sTmpR.StartsWith("藏阴") OrElse sTmpR.StartsWith("藏阳") _
+               OrElse sTmpR.StartsWith("藏器") OrElse sTmpR.StartsWith("藏燥") OrElse sTmpR.StartsWith("藏湿") _
+               OrElse sTmpR.StartsWith("藏乃") OrElse sTmpR.StartsWith("藏气") OrElse sTmpR.StartsWith("藏湿") _
             Then
                 Return "zang"
             End If
@@ -5655,13 +5668,43 @@ Module MWordUtil
             Return "lei"
         End If
         If "硌".Equals(sTxt) Then
-            If sTmpL.EndsWith("磊硌") OrElse sTmpL.EndsWith("磥硌")  Then
+            If sTmpL.EndsWith("磊硌") OrElse sTmpL.EndsWith("磥硌") Then
                 Return "luo"
             End If
             If sTmpR.StartsWith("硌石") OrElse sTmpR.StartsWith("硌硌若石") OrElse sTmpR.StartsWith("硌若石") Then
                 Return "luo"
             End If
             Return "ge"
+        End If
+        If "熇".Equals(sTxt) Then
+            If sTmpR.StartsWith("熇焚") OrElse sTmpR.StartsWith("熇燥") Then
+                Return "kao"
+            End If
+            Return "he"
+        End If
+        If "咥".Equals(sTxt) Then
+            If sTmpL.EndsWith("咥咥") Then
+                Return "xi"
+            End If
+            If sTmpR.StartsWith("咥然") OrElse sTmpR.StartsWith("咥咥") Then
+                Return "xi"
+            End If
+            Return "die"
+        End If
+        If "蹢".Equals(sTxt) Then
+            If sTmpL.EndsWith("白蹢") Then
+                Return "di"
+            End If
+            Return "zhi"
+        End If
+        If "酾".Equals(sTxt) Then
+            Return "shi"
+        End If
+        If "焯".Equals(sTxt) Then
+            If sTmpR.StartsWith("焯菠菜") OrElse sTmpR.StartsWith("焯菜") OrElse sTmpR.StartsWith("焯化") Then
+                Return "chao"
+            End If
+            Return "zhuo"
         End If
 
 
