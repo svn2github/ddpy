@@ -585,6 +585,11 @@ Module MWordUtil
                 Continue For
             End If
 
+            If line.StartsWith("//") Then
+                buf.AppendLine(line)
+                Continue For
+            End If
+
             Dim j As Integer = 0
             Do While j < line.Length
                 If Not gbk.Contains(line.Substring(j, 1)) Then
@@ -5759,11 +5764,26 @@ Module MWordUtil
         If "酾".Equals(sTxt) Then
             Return "shi"
         End If
+        If "箄".Equals(sTxt) Then
+            Return "bi"
+        End If
         If "焯".Equals(sTxt) Then
             If sTmpR.StartsWith("焯菠菜") OrElse sTmpR.StartsWith("焯菜") OrElse sTmpR.StartsWith("焯化") Then
                 Return "chao"
             End If
             Return "zhuo"
+        End If
+        If "慊".Equals(sTxt) Then
+            If sTmpL.EndsWith("自慊") Then
+                Return "qie"
+            End If
+            Return "qian"
+        End If
+        If "笮".Equals(sTxt) Then
+            If sTmpR.StartsWith("笮桥") Then
+                Return "zuo"
+            End If
+            Return "ze"
         End If
 
 
