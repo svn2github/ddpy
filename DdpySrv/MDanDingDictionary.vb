@@ -11,11 +11,40 @@ Module MDanDingDictionary
     Private mDicCache As New Hashtable  ' 拼音-List
     Private mDicCacheTick As New Hashtable  ' 拼音-Tick
 
-    Private iSysOrder As Integer
-    Private iImpOrder As Integer
-    Private iUsrOrder As Integer
-    Private iTopOrder As Integer
+    Private iOrder As Integer
 
+    Friend bLoading As Boolean = True
+
+
+    ''' <summary>
+    ''' 导入词库（"文字 简拼 全拼 注音 词频"  UTF-8）
+    ''' </summary>
+    Friend Sub ImportDanDingFile()
+
+        If (Not mDanDingDic Is Nothing) Then
+            Return
+        End If
+
+        ' 初始化字库
+        If (mDanDingDic Is Nothing) Then
+            mDanDingDic = New Hashtable ' [拼音 - CWord]
+
+            iOrder = 2000 * 10000    ' (1千万 ～ 2千万)
+            InitDanDingWordDic(GetDdpySingleWordFile()) ' 淡定字库
+            iOrder = 5000 * 10000    ' (2千万 ～ 5千万)
+            InitDanDingWordDic(GetDdpyMultWordFile()) ' 淡定词库
+        End If
+
+        ' 导入用户词库
+        If My.Computer.FileSystem.FileExists(GetDdpyUserWordFile()) Then
+            ImportWords(GetDdpyUserWordFile(), WordType.USR)
+        End If
+
+        ' 导入固顶词库
+        iOrder = Integer.MaxValue
+        ImportWords(GetDdpyTopWordFile(), WordType.TOP)
+
+    End Sub
 
     ''' <summary>
     ''' 增加一个新文字
@@ -82,37 +111,6 @@ Module MDanDingDictionary
                 End If
             End If
         Next
-
-    End Sub
-
-    ''' <summary>
-    ''' 导入词库（"文字 简拼 全拼 注音 词频"  UTF-8）
-    ''' </summary>
-    Friend Sub ImportDanDingFile()
-
-        If (Not mDanDingDic Is Nothing) Then
-            Return
-        End If
-
-        iSysOrder = Integer.MaxValue
-        iImpOrder = Integer.MaxValue
-        iUsrOrder = Integer.MaxValue
-        iTopOrder = Integer.MaxValue
-
-        ' 初始化字库
-        If (mDanDingDic Is Nothing) Then
-            mDanDingDic = New Hashtable ' [拼音 - CWord]
-            InitDanDingWordDic(GetDdpyMultWordFile()) ' 淡定词库
-            InitDanDingWordDic(GetDdpySingleWordFile()) ' 淡定字库
-        End If
-
-        ' 导入用户词库
-        If My.Computer.FileSystem.FileExists(GetDdpyUserWordFile()) Then
-            ImportWords(GetDdpyUserWordFile(), WordType.USR)
-        End If
-
-        ' 导入固顶词库
-        ImportWords(GetDdpyTopWordFile(), WordType.TOP)
 
     End Sub
 
@@ -237,7 +235,7 @@ Module MDanDingDictionary
             End If
 
             ' 查找缓存
-            If bUseCache AndAlso mDicCache.ContainsKey(codes) Then
+            If Not bLoading AndAlso bUseCache AndAlso mDicCache.ContainsKey(codes) Then
                 Return mDicCache(codes)
             End If
 
@@ -245,7 +243,7 @@ Module MDanDingDictionary
             Dim cds As String() = codes.Split("'")          ' 输入的混拼数组
 
             ' 按简拼取词
-            Dim lst As List(Of CWord) = mDanDingDic(Strings.Join(shotCds, "'"))
+            Dim lst As List(Of CWord) = mDanDingDic(Strings.Join(shotCds, "'").GetHashCode())
 
             If Not lst Is Nothing Then
 
@@ -274,8 +272,10 @@ Module MDanDingDictionary
             'lstRet.Sort()
 
             ' 缓存
-            mDicCache(codes) = lstRet
-            mDicCacheTick(codes) = Now.Ticks
+            If Not bLoading Then
+                mDicCache(codes) = lstRet
+                mDicCacheTick(codes) = Now.Ticks
+            End If
 
             Return lstRet
 
@@ -292,11 +292,11 @@ Module MDanDingDictionary
 
         Dim lst As List(Of CWord)
 
-        If mDanDingDic.Contains(scd) Then
-            lst = mDanDingDic(scd)
+        If mDanDingDic.Contains(scd.GetHashCode()) Then
+            lst = mDanDingDic(scd.GetHashCode())
         Else
             lst = New List(Of CWord)
-            mDanDingDic(scd) = lst
+            mDanDingDic(scd.GetHashCode()) = lst
         End If
 
         Return lst
@@ -344,13 +344,10 @@ Module MDanDingDictionary
                 newWord.PinYin = cols(1)
 
                 If wType And WordType.USR Then
-                    newWord.UsrOrder = cols(2)
-                ElseIf wType And WordType.TOP Then
-                    iTopOrder = iTopOrder - 1
-                    newWord.TopOrder = iTopOrder
-                ElseIf wType And WordType.IMP Then
-                    iImpOrder = iImpOrder - 1
-                    newWord.ImpOrder = iImpOrder
+                    newWord.Order = cols(2)
+                Else
+                    iOrder = iOrder - 1
+                    newWord.Order = iOrder
                 End If
 
                 lstWord = InitWordList(shotPys)
@@ -360,17 +357,14 @@ Module MDanDingDictionary
                     RegisterUserWord(newWord)
                 End If
             Else
-                ' 已存在时，仅更新类型
+                ' 已存在时，更新类型
                 existWord.WordType = existWord.WordType Or wType
 
                 If wType And WordType.USR Then
-                    existWord.UsrOrder = cols(2)
-                ElseIf wType And WordType.TOP Then
-                    iTopOrder = iTopOrder - 1
-                    existWord.TopOrder = iTopOrder
-                ElseIf wType And WordType.IMP Then
-                    iImpOrder = iImpOrder - 1
-                    existWord.ImpOrder = iImpOrder
+                    existWord.Order = cols(2)
+                Else
+                    iOrder = iOrder - 1
+                    existWord.Order = iOrder
                 End If
 
                 If existWord.WordType And WordType.USR Then
@@ -397,13 +391,10 @@ Module MDanDingDictionary
                     newWord.PinYin = cols(1)
 
                     If wType And WordType.USR Then
-                        newWord.UsrOrder = cols(2)
-                    ElseIf wType And WordType.TOP Then
-                        iTopOrder = iTopOrder - 1
-                        newWord.TopOrder = iTopOrder
-                    ElseIf wType And WordType.IMP Then
-                        iImpOrder = iImpOrder - 1
-                        newWord.ImpOrder = iImpOrder
+                        newWord.Order = cols(2)
+                    Else
+                        iOrder = iOrder - 1
+                        newWord.Order = iOrder
                     End If
 
                 End If
@@ -419,13 +410,10 @@ Module MDanDingDictionary
                 existWord.WordType = existWord.WordType Or wType
 
                 If wType And WordType.USR Then
-                    existWord.UsrOrder = cols(2)
-                ElseIf wType And WordType.TOP Then
-                    iTopOrder = iTopOrder - 1
-                    existWord.TopOrder = iTopOrder
-                ElseIf wType And WordType.IMP Then
-                    iImpOrder = iImpOrder - 1
-                    existWord.ImpOrder = iImpOrder
+                    existWord.Order = cols(2)
+                Else
+                    iOrder = iOrder - 1
+                    existWord.Order = iOrder
                 End If
 
                 If existWord.WordType And WordType.USR Then
@@ -471,15 +459,14 @@ Module MDanDingDictionary
             shotPys = Strings.Join(GetMutilShotPys(cols(1)), "'")
             shotPys2 = Strings.Join(GetMutilShotPys2(cols(1)), "'")
 
-            iSysOrder = iSysOrder - 1
-
             ' 直接追加
             newWord = New CWord()
             newWord.WordType = WordType.SYS
             newWord.Text = cols(0)
             newWord.PinYin = cols(1)
 
-            newWord.Order = iSysOrder
+            iOrder = iOrder - 1
+            newWord.Order = iOrder
 
             lstWord = InitWordList(shotPys)
             lstWord.Add(newWord)

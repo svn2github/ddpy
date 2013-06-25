@@ -34,6 +34,32 @@ Module MPathFile
         End If
 
 
+        My.Computer.FileSystem.CopyFile(GetDdpyUserWordFile(), GetDdpyUserBackupPath() & "\\" & Now.ToString("yyyy-MM-dd-HHmm") & "用户词库.txt")
+        My.Computer.FileSystem.CopyFile(GetDdpyUserMixInputFile(), GetDdpyUserBackupPath() & "\\" & Now.ToString("yyyy-MM-dd-HHmm") & "用户混合输入.txt")
+
+        Dim files = My.Computer.FileSystem.GetFiles(GetDdpyUserBackupPath() _
+                                            , FileIO.SearchOption.SearchTopLevelOnly _
+                                            , "????-??-??-????用户词库.txt")
+        Dim lstFile As New List(Of String)
+        lstFile.AddRange(files)
+        lstFile.Sort()
+        lstFile.Reverse()
+        For i As Integer = 30 To lstFile.Count - 1
+            My.Computer.FileSystem.DeleteFile(lstFile(i))
+        Next
+
+        files = My.Computer.FileSystem.GetFiles(GetDdpyUserBackupPath() _
+                                    , FileIO.SearchOption.SearchTopLevelOnly _
+                                    , "????-??-??-????用户混合输入.txt")
+        lstFile = New List(Of String)
+        lstFile.AddRange(files)
+        lstFile.Sort()
+        lstFile.Reverse()
+        For i As Integer = 30 To lstFile.Count - 1
+            My.Computer.FileSystem.DeleteFile(lstFile(i))
+        Next
+
+
         ' 配置
         sDstFile = GetDdpyConfigFile()
         If Not My.Computer.FileSystem.FileExists(sDstFile) Then
@@ -121,6 +147,15 @@ Module MPathFile
 
     Public Function GetDdpyUserDataPath() As String
         Dim sPath As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\Data"
+        If Not My.Computer.FileSystem.DirectoryExists(sPath) Then
+            My.Computer.FileSystem.CreateDirectory(sPath)
+        End If
+
+        Return sPath
+    End Function
+
+    Public Function GetDdpyUserBackupPath() As String
+        Dim sPath As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\Backup"
         If Not My.Computer.FileSystem.DirectoryExists(sPath) Then
             My.Computer.FileSystem.CreateDirectory(sPath)
         End If

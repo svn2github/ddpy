@@ -105,7 +105,7 @@ Partial Class FrmSetting
         Me.BtnOK.Location = New System.Drawing.Point(212, 336)
         Me.BtnOK.Name = "BtnOK"
         Me.BtnOK.Size = New System.Drawing.Size(93, 25)
-        Me.BtnOK.TabIndex = 1
+        Me.BtnOK.TabIndex = 15
         Me.BtnOK.Text = "确  定"
         Me.BtnOK.UseVisualStyleBackColor = True
         '
@@ -114,7 +114,7 @@ Partial Class FrmSetting
         Me.BtnClose.Location = New System.Drawing.Point(307, 336)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(93, 25)
-        Me.BtnClose.TabIndex = 2
+        Me.BtnClose.TabIndex = 16
         Me.BtnClose.Text = "取  消"
         Me.BtnClose.UseVisualStyleBackColor = True
         '
@@ -133,7 +133,7 @@ Partial Class FrmSetting
         Me.GroupBox1.Location = New System.Drawing.Point(7, 9)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(458, 101)
-        Me.GroupBox1.TabIndex = 3
+        Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "模糊音设定"
         '
@@ -142,7 +142,7 @@ Partial Class FrmSetting
         Me.ChkIn.Location = New System.Drawing.Point(17, 70)
         Me.ChkIn.Name = "ChkIn"
         Me.ChkIn.Size = New System.Drawing.Size(82, 17)
-        Me.ChkIn.TabIndex = 0
+        Me.ChkIn.TabIndex = 2
         Me.ChkIn.Text = "in = ing"
         Me.ChkIn.UseVisualStyleBackColor = True
         '
@@ -151,7 +151,7 @@ Partial Class FrmSetting
         Me.ChkZhizhe.Location = New System.Drawing.Point(148, 70)
         Me.ChkZhizhe.Name = "ChkZhizhe"
         Me.ChkZhizhe.Size = New System.Drawing.Size(201, 17)
-        Me.ChkZhizhe.TabIndex = 0
+        Me.ChkZhizhe.TabIndex = 5
         Me.ChkZhizhe.Text = "zhi,chi,shi = zhe,che,she"
         Me.ChkZhizhe.UseVisualStyleBackColor = True
         '
@@ -160,7 +160,7 @@ Partial Class FrmSetting
         Me.ChkZize.Location = New System.Drawing.Point(148, 47)
         Me.ChkZize.Name = "ChkZize"
         Me.ChkZize.Size = New System.Drawing.Size(159, 17)
-        Me.ChkZize.TabIndex = 0
+        Me.ChkZize.TabIndex = 4
         Me.ChkZize.Text = "zi,ci,si = ze,ce,se"
         Me.ChkZize.UseVisualStyleBackColor = True
         '
@@ -169,7 +169,7 @@ Partial Class FrmSetting
         Me.ChkYuanYan.Location = New System.Drawing.Point(348, 47)
         Me.ChkYuanYan.Name = "ChkYuanYan"
         Me.ChkYuanYan.Size = New System.Drawing.Size(96, 17)
-        Me.ChkYuanYan.TabIndex = 0
+        Me.ChkYuanYan.TabIndex = 7
         Me.ChkYuanYan.Text = "yuan = yan"
         Me.ChkYuanYan.UseVisualStyleBackColor = True
         '
@@ -178,7 +178,7 @@ Partial Class FrmSetting
         Me.ChkRiRe.Location = New System.Drawing.Point(348, 23)
         Me.ChkRiRe.Name = "ChkRiRe"
         Me.ChkRiRe.Size = New System.Drawing.Size(75, 17)
-        Me.ChkRiRe.TabIndex = 0
+        Me.ChkRiRe.TabIndex = 6
         Me.ChkRiRe.Text = "ri = re"
         Me.ChkRiRe.UseVisualStyleBackColor = True
         '
@@ -187,7 +187,7 @@ Partial Class FrmSetting
         Me.ChkZzh.Location = New System.Drawing.Point(148, 23)
         Me.ChkZzh.Name = "ChkZzh"
         Me.ChkZzh.Size = New System.Drawing.Size(138, 17)
-        Me.ChkZzh.TabIndex = 0
+        Me.ChkZzh.TabIndex = 3
         Me.ChkZzh.Text = "z,c,s = zh,ch,sh"
         Me.ChkZzh.UseVisualStyleBackColor = True
         '
@@ -205,7 +205,7 @@ Partial Class FrmSetting
         Me.ChkEn.Location = New System.Drawing.Point(17, 47)
         Me.ChkEn.Name = "ChkEn"
         Me.ChkEn.Size = New System.Drawing.Size(82, 17)
-        Me.ChkEn.TabIndex = 0
+        Me.ChkEn.TabIndex = 1
         Me.ChkEn.Text = "en = eng"
         Me.ChkEn.UseVisualStyleBackColor = True
         '
@@ -225,7 +225,7 @@ Partial Class FrmSetting
         Me.NumPyLen.Minimum = New Decimal(New Integer() {20, 0, 0, 0})
         Me.NumPyLen.Name = "NumPyLen"
         Me.NumPyLen.Size = New System.Drawing.Size(42, 22)
-        Me.NumPyLen.TabIndex = 5
+        Me.NumPyLen.TabIndex = 8
         Me.NumPyLen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.NumPyLen.Value = New Decimal(New Integer() {30, 0, 0, 0})
         '
@@ -245,7 +245,7 @@ Partial Class FrmSetting
         Me.NumPageCnt.Minimum = New Decimal(New Integer() {3, 0, 0, 0})
         Me.NumPageCnt.Name = "NumPageCnt"
         Me.NumPageCnt.Size = New System.Drawing.Size(42, 22)
-        Me.NumPageCnt.TabIndex = 5
+        Me.NumPageCnt.TabIndex = 10
         Me.NumPageCnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.NumPageCnt.Value = New Decimal(New Integer() {9, 0, 0, 0})
         '
@@ -255,7 +255,7 @@ Partial Class FrmSetting
         Me.ChkVshow.Name = "ChkVshow"
         Me.ChkVshow.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.ChkVshow.Size = New System.Drawing.Size(130, 17)
-        Me.ChkVshow.TabIndex = 0
+        Me.ChkVshow.TabIndex = 9
         Me.ChkVshow.Text = "：候选项竖直显示"
         Me.ChkVshow.UseVisualStyleBackColor = True
         '
@@ -275,7 +275,7 @@ Partial Class FrmSetting
         Me.TxtTitle.MaxLength = 20
         Me.TxtTitle.Name = "TxtTitle"
         Me.TxtTitle.Size = New System.Drawing.Size(243, 22)
-        Me.TxtTitle.TabIndex = 6
+        Me.TxtTitle.TabIndex = 12
         '
         'LinkLabel1
         '
@@ -283,7 +283,7 @@ Partial Class FrmSetting
         Me.LinkLabel1.Location = New System.Drawing.Point(176, 203)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(217, 13)
-        Me.LinkLabel1.TabIndex = 7
+        Me.LinkLabel1.TabIndex = 36
         Me.LinkLabel1.TabStop = True
         Me.LinkLabel1.Text = "http://code.google.com/p/ddpy/"
         '
@@ -308,7 +308,7 @@ Partial Class FrmSetting
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(484, 316)
-        Me.TabControl1.TabIndex = 9
+        Me.TabControl1.TabIndex = 35
         '
         'TabPageNormal
         '
@@ -341,7 +341,7 @@ Partial Class FrmSetting
         Me.GroupBox3.Location = New System.Drawing.Point(7, 121)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(458, 151)
-        Me.GroupBox3.TabIndex = 7
+        Me.GroupBox3.TabIndex = 2
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "外观显示"
         '
@@ -350,7 +350,7 @@ Partial Class FrmSetting
         Me.BtnFontCand.Location = New System.Drawing.Point(399, 51)
         Me.BtnFontCand.Name = "BtnFontCand"
         Me.BtnFontCand.Size = New System.Drawing.Size(47, 25)
-        Me.BtnFontCand.TabIndex = 8
+        Me.BtnFontCand.TabIndex = 11
         Me.BtnFontCand.Text = "变更"
         Me.BtnFontCand.UseVisualStyleBackColor = True
         '
@@ -380,7 +380,7 @@ Partial Class FrmSetting
         Me.ChkAutoPosition.Name = "ChkAutoPosition"
         Me.ChkAutoPosition.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.ChkAutoPosition.Size = New System.Drawing.Size(156, 17)
-        Me.ChkAutoPosition.TabIndex = 0
+        Me.ChkAutoPosition.TabIndex = 14
         Me.ChkAutoPosition.Text = "：输入法窗口光标跟随"
         Me.ChkAutoPosition.UseVisualStyleBackColor = True
         '
@@ -390,7 +390,7 @@ Partial Class FrmSetting
         Me.ChkHideStatus.Name = "ChkHideStatus"
         Me.ChkHideStatus.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.ChkHideStatus.Size = New System.Drawing.Size(143, 17)
-        Me.ChkHideStatus.TabIndex = 0
+        Me.ChkHideStatus.TabIndex = 13
         Me.ChkHideStatus.Text = "：隐藏输入法状态栏"
         Me.ChkHideStatus.UseVisualStyleBackColor = True
         '
@@ -440,7 +440,7 @@ Partial Class FrmSetting
         Me.BtnAddWord.Location = New System.Drawing.Point(325, 22)
         Me.BtnAddWord.Name = "BtnAddWord"
         Me.BtnAddWord.Size = New System.Drawing.Size(117, 25)
-        Me.BtnAddWord.TabIndex = 3
+        Me.BtnAddWord.TabIndex = 21
         Me.BtnAddWord.Text = "添加到用户词库"
         Me.BtnAddWord.UseVisualStyleBackColor = True
         '
@@ -468,7 +468,7 @@ Partial Class FrmSetting
         Me.TxtPinYin.MaxLength = 6
         Me.TxtPinYin.Name = "TxtPinYin"
         Me.TxtPinYin.Size = New System.Drawing.Size(76, 22)
-        Me.TxtPinYin.TabIndex = 1
+        Me.TxtPinYin.TabIndex = 20
         '
         'TxtWord
         '
@@ -477,7 +477,7 @@ Partial Class FrmSetting
         Me.TxtWord.MaxLength = 1
         Me.TxtWord.Name = "TxtWord"
         Me.TxtWord.Size = New System.Drawing.Size(23, 22)
-        Me.TxtWord.TabIndex = 0
+        Me.TxtWord.TabIndex = 19
         Me.TxtWord.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TabPageAdvanced
@@ -522,7 +522,7 @@ Partial Class FrmSetting
         Me.NumMaxExtsHeight.Minimum = New Decimal(New Integer() {20, 0, 0, 0})
         Me.NumMaxExtsHeight.Name = "NumMaxExtsHeight"
         Me.NumMaxExtsHeight.Size = New System.Drawing.Size(50, 22)
-        Me.NumMaxExtsHeight.TabIndex = 6
+        Me.NumMaxExtsHeight.TabIndex = 31
         Me.NumMaxExtsHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.NumMaxExtsHeight.Value = New Decimal(New Integer() {30, 0, 0, 0})
         '
@@ -531,7 +531,7 @@ Partial Class FrmSetting
         Me.BtnFontExtsInfo.Location = New System.Drawing.Point(399, 132)
         Me.BtnFontExtsInfo.Name = "BtnFontExtsInfo"
         Me.BtnFontExtsInfo.Size = New System.Drawing.Size(47, 25)
-        Me.BtnFontExtsInfo.TabIndex = 11
+        Me.BtnFontExtsInfo.TabIndex = 33
         Me.BtnFontExtsInfo.Text = "变更"
         Me.BtnFontExtsInfo.UseVisualStyleBackColor = True
         '
@@ -576,7 +576,7 @@ Partial Class FrmSetting
         Me.ChkAutoShowPyTextInfo.Location = New System.Drawing.Point(20, 138)
         Me.ChkAutoShowPyTextInfo.Name = "ChkAutoShowPyTextInfo"
         Me.ChkAutoShowPyTextInfo.Size = New System.Drawing.Size(156, 17)
-        Me.ChkAutoShowPyTextInfo.TabIndex = 7
+        Me.ChkAutoShowPyTextInfo.TabIndex = 32
         Me.ChkAutoShowPyTextInfo.Text = "扩展显示拼音汉字"
         Me.ChkAutoShowPyTextInfo.UseVisualStyleBackColor = True
         '
@@ -587,7 +587,7 @@ Partial Class FrmSetting
         Me.ChkShowInfoWin.Location = New System.Drawing.Point(20, 113)
         Me.ChkShowInfoWin.Name = "ChkShowInfoWin"
         Me.ChkShowInfoWin.Size = New System.Drawing.Size(135, 16)
-        Me.ChkShowInfoWin.TabIndex = 7
+        Me.ChkShowInfoWin.TabIndex = 29
         Me.ChkShowInfoWin.Text = "开启扩展信息窗口"
         Me.ChkShowInfoWin.UseVisualStyleBackColor = True
         '
@@ -598,17 +598,19 @@ Partial Class FrmSetting
         Me.ChkIMode.Location = New System.Drawing.Point(20, 90)
         Me.ChkIMode.Name = "ChkIMode"
         Me.ChkIMode.Size = New System.Drawing.Size(130, 17)
-        Me.ChkIMode.TabIndex = 7
+        Me.ChkIMode.TabIndex = 28
         Me.ChkIMode.Text = "开启淡定""i""模式"
         Me.ChkIMode.UseVisualStyleBackColor = True
         '
         'ChkAutoCreateWord
         '
         Me.ChkAutoCreateWord.AutoSize = True
+        Me.ChkAutoCreateWord.Checked = True
+        Me.ChkAutoCreateWord.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ChkAutoCreateWord.Location = New System.Drawing.Point(20, 67)
         Me.ChkAutoCreateWord.Name = "ChkAutoCreateWord"
-        Me.ChkAutoCreateWord.Size = New System.Drawing.Size(156, 17)
-        Me.ChkAutoCreateWord.TabIndex = 7
+        Me.ChkAutoCreateWord.Size = New System.Drawing.Size(144, 16)
+        Me.ChkAutoCreateWord.TabIndex = 27
         Me.ChkAutoCreateWord.Text = "开启自动造词调频功能"
         Me.ChkAutoCreateWord.UseVisualStyleBackColor = True
         '
@@ -617,8 +619,8 @@ Partial Class FrmSetting
         Me.ChkAddFirstWordIdx.AutoSize = True
         Me.ChkAddFirstWordIdx.Location = New System.Drawing.Point(20, 44)
         Me.ChkAddFirstWordIdx.Name = "ChkAddFirstWordIdx"
-        Me.ChkAddFirstWordIdx.Size = New System.Drawing.Size(338, 17)
-        Me.ChkAddFirstWordIdx.TabIndex = 7
+        Me.ChkAddFirstWordIdx.Size = New System.Drawing.Size(296, 16)
+        Me.ChkAddFirstWordIdx.TabIndex = 26
         Me.ChkAddFirstWordIdx.Text = "增加首字完整拼音索引（特殊情况适用，重启后生效）"
         Me.ChkAddFirstWordIdx.UseVisualStyleBackColor = True
         '
@@ -629,7 +631,7 @@ Partial Class FrmSetting
         Me.NumMaxExtsWidth.Minimum = New Decimal(New Integer() {180, 0, 0, 0})
         Me.NumMaxExtsWidth.Name = "NumMaxExtsWidth"
         Me.NumMaxExtsWidth.Size = New System.Drawing.Size(50, 22)
-        Me.NumMaxExtsWidth.TabIndex = 6
+        Me.NumMaxExtsWidth.TabIndex = 30
         Me.NumMaxExtsWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.NumMaxExtsWidth.Value = New Decimal(New Integer() {500, 0, 0, 0})
         '
@@ -640,7 +642,7 @@ Partial Class FrmSetting
         Me.NumCandLimit.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NumCandLimit.Name = "NumCandLimit"
         Me.NumCandLimit.Size = New System.Drawing.Size(42, 22)
-        Me.NumCandLimit.TabIndex = 6
+        Me.NumCandLimit.TabIndex = 25
         Me.NumCandLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.NumCandLimit.Value = New Decimal(New Integer() {30, 0, 0, 0})
         '
@@ -649,8 +651,8 @@ Partial Class FrmSetting
         Me.ChkCandLimit.AutoSize = True
         Me.ChkCandLimit.Location = New System.Drawing.Point(20, 21)
         Me.ChkCandLimit.Name = "ChkCandLimit"
-        Me.ChkCandLimit.Size = New System.Drawing.Size(143, 17)
-        Me.ChkCandLimit.TabIndex = 1
+        Me.ChkCandLimit.Size = New System.Drawing.Size(132, 16)
+        Me.ChkCandLimit.TabIndex = 24
         Me.ChkCandLimit.Text = "限制词语候选个数为"
         Me.ChkCandLimit.UseVisualStyleBackColor = True
         '
@@ -673,7 +675,7 @@ Partial Class FrmSetting
         Me.BtnCloseServer.Location = New System.Drawing.Point(279, 22)
         Me.BtnCloseServer.Name = "BtnCloseServer"
         Me.BtnCloseServer.Size = New System.Drawing.Size(163, 25)
-        Me.BtnCloseServer.TabIndex = 0
+        Me.BtnCloseServer.TabIndex = 23
         Me.BtnCloseServer.Text = "关闭后台服务程序"
         Me.BtnCloseServer.UseVisualStyleBackColor = True
         '
@@ -684,7 +686,7 @@ Partial Class FrmSetting
         Me.ChkSrvMemory.Name = "ChkSrvMemory"
         Me.ChkSrvMemory.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.ChkSrvMemory.Size = New System.Drawing.Size(102, 16)
-        Me.ChkSrvMemory.TabIndex = 0
+        Me.ChkSrvMemory.TabIndex = 23
         Me.ChkSrvMemory.Text = "：节省内存模式"
         Me.ChkSrvMemory.UseVisualStyleBackColor = True
         '
@@ -723,7 +725,7 @@ Partial Class FrmSetting
         Me.BtnApply.Location = New System.Drawing.Point(401, 336)
         Me.BtnApply.Name = "BtnApply"
         Me.BtnApply.Size = New System.Drawing.Size(93, 25)
-        Me.BtnApply.TabIndex = 2
+        Me.BtnApply.TabIndex = 17
         Me.BtnApply.Text = "应  用"
         Me.BtnApply.UseVisualStyleBackColor = True
         '

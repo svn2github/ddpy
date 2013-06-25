@@ -84,7 +84,7 @@ Module MSrvConfig
     Private P_FONT_INFO_WIN As String = "宋体,12,0"
     Private P_SHOW_INFO_WITH_PY_TEXT As Boolean = False
     Private P_MAX_EXTS_WIN_WIDTH As Integer = 530
-    Private P_MAX_EXTS_WIN_HEIGHT As Integer = 10
+    Private P_MAX_EXTS_WIN_HEIGHT As Integer = 300
 
     ''' <summary>
     ''' 取得输入法配置信息

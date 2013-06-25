@@ -47,20 +47,25 @@ Public Class ComClass
     Public Sub New()
         MyBase.New()
 
-        'DebugTimeStart()
+        bLoading = True
+
+        InitDdpyFiles()
+        loadData()
+
+    End Sub
+
+    Private Sub loadData()
         Try
-            InitDdpyFiles()
 
             ' 初始化字库词库
             ImportDanDingFile()
             InitMixInputFile()
 
         Catch ex As Exception
-            ComError("New()", ex)
-        Finally
-            'ComError("初始化时间共: " & DebugTimeEnd() & " 毫秒")
+            ComError("loadData()", ex)
         End Try
 
+        bLoading = False
     End Sub
 
     Public Function SrvGetHttpResponse(ByVal url As String, Optional ByVal charset As String = "gb2312") As String

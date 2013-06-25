@@ -38,9 +38,7 @@ Friend Class CWord
     Private vSearchKey As String                    ' 检索串
     Private vPinYin As String                       ' 全拼
     Private vOrder As Integer                       ' 词频
-    Private vImpOrder As Integer                    ' 词频
-    Private vUsrOrder As Integer                    ' 词频
-    Private vTopOrder As Integer                    ' 词频
+    Private vUsrOrder As Int16                     ' 词频
     Private vWordType As WordType = WordType.UNKNOW ' 类型
     Private vIsMixWord As Boolean                   ' 混合输入
     Private vShowDigit As Boolean = True            ' 
@@ -69,39 +67,11 @@ Friend Class CWord
     ''' </summary>
     ''' <value>频率</value>
     ''' <returns>频率</returns>
-    Public Property TopOrder() As Integer
-        Get
-            Return (vTopOrder)
-        End Get
-        Set(ByVal Value As Integer)
-            vTopOrder = Value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' 频率
-    ''' </summary>
-    ''' <value>频率</value>
-    ''' <returns>频率</returns>
-    Public Property ImpOrder() As Integer
-        Get
-            Return (vImpOrder)
-        End Get
-        Set(ByVal Value As Integer)
-            vImpOrder = Value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' 频率
-    ''' </summary>
-    ''' <value>频率</value>
-    ''' <returns>频率</returns>
-    Public Property UsrOrder() As Integer
+    Public Property UsrOrder() As Int16
         Get
             Return vUsrOrder
         End Get
-        Set(ByVal Value As Integer)
+        Set(ByVal Value As Int16)
             vUsrOrder = Value
         End Set
     End Property
@@ -131,6 +101,7 @@ Friend Class CWord
         If cols.Length > 5 Then
             vDispText = cols(5)
         End If
+
     End Sub
 
     Public Property IsMixWord() As Boolean
@@ -155,20 +126,6 @@ Friend Class CWord
             vText = Value
         End Set
     End Property
-
-    ' ''' <summary>
-    ' ''' 检索串
-    ' ''' </summary>
-    ' ''' <value>检索串</value>
-    ' ''' <returns>检索串</returns>
-    'Public Property SearchKey() As String
-    '    Get
-    '        Return vSearchKey
-    '    End Get
-    '    Set(ByVal Value As String)
-    '        vSearchKey = Value
-    '    End Set
-    'End Property
 
     ''' <summary>
     ''' 全拼
@@ -213,30 +170,6 @@ Friend Class CWord
         End Set
     End Property
 
-
-    'Public Function CompareTo(ByVal obj As Object) As Integer Implements IComparable.CompareTo
-    '    Dim word As CWord = obj
-    '    If Me.ShortPinYin > word.ShortPinYin Then
-    '        Return 1
-    '    ElseIf Me.ShortPinYin < word.ShortPinYin Then
-    '        Return -1
-    '    ElseIf Me.Order > word.Order Then
-    '        Return 1
-    '    ElseIf Me.Order < word.Order Then
-    '        Return -1
-    '    ElseIf Me.PinYin > word.PinYin Then
-    '        Return 1
-    '    ElseIf Me.PinYin < word.PinYin Then
-    '        Return -1
-    '    ElseIf Me.Text > word.Text Then
-    '        Return 1
-    '    ElseIf Me.Text < word.Text Then
-    '        Return -1
-    '    Else
-    '        Return 0
-    '    End If
-    'End Function
-
     ''' <summary>
     ''' 排序用比较方法
     ''' </summary>
@@ -247,7 +180,7 @@ Friend Class CWord
 
         If Me.WordType And WordType.TOP Then
             If word.WordType And WordType.TOP Then
-                Return Me.TopOrder > word.TopOrder
+                Return word.Order - Me.Order
             Else
                 Return -1
             End If
@@ -255,7 +188,7 @@ Friend Class CWord
             If word.WordType And WordType.TOP Then
                 Return 1
             ElseIf word.WordType And WordType.USR Then
-                Return Me.UsrOrder > word.UsrOrder
+                Return word.Order - Me.Order
             Else
                 Return -1
             End If
@@ -264,7 +197,7 @@ Friend Class CWord
             If word.WordType And (WordType.USR Or WordType.TOP) Then
                 Return 1
             ElseIf word.WordType And WordType.SYS Then
-                Return Me.Order > word.Order
+                Return word.Order - Me.Order
             Else
                 Return -1
             End If
@@ -272,7 +205,7 @@ Friend Class CWord
             If word.WordType And (WordType.USR Or WordType.TOP Or WordType.SYS) Then
                 Return 1
             ElseIf word.WordType And WordType.IMP Then
-                Return Me.ImpOrder > word.ImpOrder
+                Return word.Order - Me.Order
             Else
                 Return -1
             End If
