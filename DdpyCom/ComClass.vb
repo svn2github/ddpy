@@ -190,12 +190,17 @@ Public Class ComClass
 
             '  ComInfo("此应用程序打开输入法：" & Process.GetCurrentProcess().ProcessName)
         Else
-            frmInput.Hide()
+            'frmInput.Hide()
+            frmInput.Close()
+            frmInput = New FrmImeInput
+
             If Not frmDebug Is Nothing Then
                 frmDebug.Hide()
             End If
 
-            frmStatus.Hide()
+            'frmStatus.Hide()
+            frmStatus.Close()
+            frmStatus = New FrmImeStatus
 
             GC.Collect()
         End If
