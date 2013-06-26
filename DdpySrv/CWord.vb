@@ -38,7 +38,7 @@ Friend Class CWord
     Private vSearchKey As String                    ' 检索串
     Private vPinYin As String                       ' 全拼
     Private vOrder As Integer                       ' 词频
-    Private vUsrOrder As Int16                     ' 词频
+    Private vUsrOrder As Integer                     ' 词频
     Private vWordType As WordType = WordType.UNKNOW ' 类型
     Private vIsMixWord As Boolean                   ' 混合输入
     Private vShowDigit As Boolean = True            ' 
@@ -67,11 +67,11 @@ Friend Class CWord
     ''' </summary>
     ''' <value>频率</value>
     ''' <returns>频率</returns>
-    Public Property UsrOrder() As Int16
+    Public Property UsrOrder() As Integer
         Get
             Return vUsrOrder
         End Get
-        Set(ByVal Value As Int16)
+        Set(ByVal Value As Integer)
             vUsrOrder = Value
         End Set
     End Property

@@ -13,8 +13,7 @@ Module MDanDingDictionary
 
     Private iOrder As Integer
 
-    Friend bLoading As Boolean = True
-
+    Friend bDataLoaded As Boolean
 
     ''' <summary>
     ''' 导入词库（"文字 简拼 全拼 注音 词频"  UTF-8）
@@ -28,12 +27,13 @@ Module MDanDingDictionary
         ' 初始化字库
         If (mDanDingDic Is Nothing) Then
             mDanDingDic = New Hashtable ' [拼音 - CWord]
-
-            iOrder = 2000 * 10000    ' (1千万 ～ 2千万)
-            InitDanDingWordDic(GetDdpySingleWordFile()) ' 淡定字库
-            iOrder = 5000 * 10000    ' (2千万 ～ 5千万)
-            InitDanDingWordDic(GetDdpyMultWordFile()) ' 淡定词库
         End If
+
+        iOrder = 2000 * 10000    ' (1千万 ～ 2千万)
+        InitDanDingWordDic(GetDdpySingleWordFile()) ' 淡定字库
+
+        iOrder = 5000 * 10000    ' (2千万 ～ 5千万)
+        InitDanDingWordDic(GetDdpyMultWordFile()) ' 淡定词库
 
         ' 导入用户词库
         If My.Computer.FileSystem.FileExists(GetDdpyUserWordFile()) Then
@@ -235,7 +235,7 @@ Module MDanDingDictionary
             End If
 
             ' 查找缓存
-            If Not bLoading AndAlso bUseCache AndAlso mDicCache.ContainsKey(codes) Then
+            If bDataLoaded AndAlso bUseCache AndAlso mDicCache.ContainsKey(codes) Then
                 Return mDicCache(codes)
             End If
 
@@ -271,8 +271,8 @@ Module MDanDingDictionary
             '' 排序显示
             'lstRet.Sort()
 
-            ' 缓存
-            If Not bLoading Then
+            If bDataLoaded Then
+                ' 缓存
                 mDicCache(codes) = lstRet
                 mDicCacheTick(codes) = Now.Ticks
             End If
@@ -344,7 +344,7 @@ Module MDanDingDictionary
                 newWord.PinYin = cols(1)
 
                 If wType And WordType.USR Then
-                    newWord.Order = cols(2)
+                    newWord.UsrOrder = cols(2)
                 Else
                     iOrder = iOrder - 1
                     newWord.Order = iOrder
@@ -361,7 +361,7 @@ Module MDanDingDictionary
                 existWord.WordType = existWord.WordType Or wType
 
                 If wType And WordType.USR Then
-                    existWord.Order = cols(2)
+                    existWord.UsrOrder = cols(2)
                 Else
                     iOrder = iOrder - 1
                     existWord.Order = iOrder
@@ -391,7 +391,7 @@ Module MDanDingDictionary
                     newWord.PinYin = cols(1)
 
                     If wType And WordType.USR Then
-                        newWord.Order = cols(2)
+                        newWord.UsrOrder = cols(2)
                     Else
                         iOrder = iOrder - 1
                         newWord.Order = iOrder
@@ -410,7 +410,7 @@ Module MDanDingDictionary
                 existWord.WordType = existWord.WordType Or wType
 
                 If wType And WordType.USR Then
-                    existWord.Order = cols(2)
+                    existWord.UsrOrder = cols(2)
                 Else
                     iOrder = iOrder - 1
                     existWord.Order = iOrder

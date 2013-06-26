@@ -34,12 +34,16 @@ Module MPathFile
         End If
 
 
-        My.Computer.FileSystem.CopyFile(GetDdpyUserWordFile(), GetDdpyUserBackupPath() & "\\" & Now.ToString("yyyy-MM-dd-HHmm") & "用户词库.txt")
-        My.Computer.FileSystem.CopyFile(GetDdpyUserMixInputFile(), GetDdpyUserBackupPath() & "\\" & Now.ToString("yyyy-MM-dd-HHmm") & "用户混合输入.txt")
+        If My.Computer.FileSystem.FileExists(GetDdpyUserWordFile()) Then
+            My.Computer.FileSystem.CopyFile(GetDdpyUserWordFile(), GetDdpyUserBackupPath() & "\\" & Now.ToString("yyyy-MM-dd-HHmmss") & "用户词库.txt")
+        End If
+        If My.Computer.FileSystem.FileExists(GetDdpyUserMixInputFile()) Then
+            My.Computer.FileSystem.CopyFile(GetDdpyUserMixInputFile(), GetDdpyUserBackupPath() & "\\" & Now.ToString("yyyy-MM-dd-HHmmss") & "用户混合输入.txt")
+        End If
 
         Dim files = My.Computer.FileSystem.GetFiles(GetDdpyUserBackupPath() _
                                             , FileIO.SearchOption.SearchTopLevelOnly _
-                                            , "????-??-??-????用户词库.txt")
+                                            , "????-??-??-??????用户词库.txt")
         Dim lstFile As New List(Of String)
         lstFile.AddRange(files)
         lstFile.Sort()
@@ -50,7 +54,7 @@ Module MPathFile
 
         files = My.Computer.FileSystem.GetFiles(GetDdpyUserBackupPath() _
                                     , FileIO.SearchOption.SearchTopLevelOnly _
-                                    , "????-??-??-????用户混合输入.txt")
+                                    , "????-??-??-??????用户混合输入.txt")
         lstFile = New List(Of String)
         lstFile.AddRange(files)
         lstFile.Sort()

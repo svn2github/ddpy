@@ -47,25 +47,25 @@ Public Class ComClass
     Public Sub New()
         MyBase.New()
 
-        bLoading = True
+        bDataLoaded = False
 
         InitDdpyFiles()
-        loadData()
+        InitMixInputFile()
+
+        Dim trd As New Threading.Thread(AddressOf LoadData)
+        trd.Start()
 
     End Sub
 
-    Private Sub loadData()
+    Private Sub LoadData()
         Try
-
             ' 初始化字库词库
             ImportDanDingFile()
-            InitMixInputFile()
-
         Catch ex As Exception
-            ComError("loadData()", ex)
+            ComError("LoadData()", ex)
         End Try
 
-        bLoading = False
+        bDataLoaded = True
     End Sub
 
     Public Function SrvGetHttpResponse(ByVal url As String, Optional ByVal charset As String = "gb2312") As String

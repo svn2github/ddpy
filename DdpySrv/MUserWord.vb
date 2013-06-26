@@ -46,7 +46,7 @@ Module MUserWord
     Public Sub SaveUserWords(Optional ByVal bConditionSave As Boolean = True)
 
         ' 减少写文件操作
-        If bConditionSave AndAlso Not hasNewRegisterWord Then
+        If Not bDataLoaded OrElse (bConditionSave AndAlso Not hasNewRegisterWord) Then
             Return
         End If
         hasNewRegisterWord = False
@@ -108,8 +108,6 @@ Module MUserWord
             Dim newWord As New CWord()
             newWord.Text = txts(i)
             newWord.PinYin = pys(i)
-            newWord.UsrOrder = 1
-            newWord.WordType = WordType.USR
 
             RegisterWordByPinyin(newWord, True)
 
@@ -119,8 +117,6 @@ Module MUserWord
                 Dim newWord2 = New CWord()
                 newWord2.Text = newWord.Text
                 newWord2.PinYin = difPinyin
-                newWord2.UsrOrder = 1
-                newWord2.WordType = WordType.USR
 
                 RegisterWordByPinyin(newWord2, False)
             End If
@@ -139,8 +135,17 @@ Module MUserWord
         For Each word As CWord In lst
             If newWord.Equals(word) Then
 
+                isExist = True
+
                 If Not bUserWord Then
-                    Return
+                    If Not (word.WordType And WordType.USR) Then
+                        word.UsrOrder = 0
+                    End If
+
+                    word.WordType = word.WordType Or WordType.USR
+                    RegisterUserWord(word)
+
+                    Exit For
                 End If
 
                 ' 存在则更新文字类型和频率
@@ -151,8 +156,6 @@ Module MUserWord
                 End If
 
                 word.WordType = word.WordType Or WordType.USR
-
-                isExist = True
                 RegisterUserWord(word)
 
                 Exit For
@@ -164,6 +167,8 @@ Module MUserWord
             AddWordToDic(newWord)
 
             ' 为了以后能用，保存在用户词库中
+            newWord.WordType = newWord.WordType Or WordType.USR
+            newWord.UsrOrder = 1
             RegisterUserWord(newWord)
 
             ' 非用户词词频设定为0便于区分

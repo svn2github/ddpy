@@ -610,9 +610,10 @@ Friend Class CDandingPy
             End If
         Next
 
-        lstTxt.Add(txt)
-        lstPy.Add(py)
-
+        If lstTxt.Count > 1 Then
+            lstTxt.Add(txt)
+            lstPy.Add(py)
+        End If
         aryRegisterWordText = lstTxt.ToArray
         aryRegisterWordPy = lstPy.ToArray
 
